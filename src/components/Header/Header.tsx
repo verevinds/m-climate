@@ -19,16 +19,16 @@ const Header = () => {
                 </button>
             </div>
             <div className={styles['header__search']}>
-                <Search/>
+                <Search />
             </div>
             <div className={styles['header__toolbar']}>
-                <a href='#' className={'link-menu'}>
-                    <FontAwesomeIcon icon={faHeart} />
-                    Избранное
-                </a>
-                <a href='#' className={'link-menu'}>
+                <a href="#" className={'link-menu'}>
                     <FontAwesomeIcon icon={faPercent} />
                     Акции
+                </a>
+                <a href="#" className={'link-menu'}>
+                    <FontAwesomeIcon icon={faHeart} />
+                    Избранное
                 </a>
             </div>
             <div className={styles['header__nav']}></div>

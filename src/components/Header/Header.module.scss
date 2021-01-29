@@ -55,6 +55,7 @@
         padding: 0.2rem;
 
         &__button {
+            background-color: transparent;
             &__text {
                 display: none;
             }
@@ -68,9 +69,8 @@
         }
         &__toolbar {
             overflow: hidden;
-
-            &:first-child {
-                display: flex;
+            & > :nth-child(n + 2) {
+                display: none;
             }
         }
     }
