@@ -29,13 +29,22 @@ const Slider = () => {
                     />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={isMobile ? small : big} />
+                    <img
+                        src={isMobile ? small : big}
+                        className={styles['slider__img']}
+                    />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={isMobile ? small : big} />
+                    <img
+                        src={isMobile ? small : big}
+                        className={styles['slider__img']}
+                    />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={isMobile ? small : big} />
+                    <img
+                        src={isMobile ? small : big}
+                        className={styles['slider__img']}
+                    />
                 </SwiperSlide>
             </Swiper>
         </div>
