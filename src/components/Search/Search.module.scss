@@ -1,0 +1,23 @@
+.search {
+    display: flex;
+    background-color: var(--color-brand-primary);
+    border-radius: var(--radius);
+    padding: 2px;
+
+    &__input {
+        border: none;
+        padding: 0 1rem;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__button {
+        background-color: transparent;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

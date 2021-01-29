@@ -1,0 +1,12 @@
+$viewport-xxs: 480px;
+$viewport-xs: 576px;
+$viewport-sm: 768px;
+$viewport-md: 992px;
+$viewport-lg: 1200px;
+$viewport-xl: 1440px;
+
+$z-indexes: (
+    'nav': 500,
+    'spinner': 400,
+    'modal': 600,
+);
