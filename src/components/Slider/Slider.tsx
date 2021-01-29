@@ -9,6 +9,8 @@ const Slider = () => {
     const big = '//via.placeholder.com/1900x300';
     const small = '//via.placeholder.com/375x300';
 
+    if (!process.browser) return null;
+
     return (
         <div className={styles['slider']}>
             <Swiper
@@ -21,7 +23,10 @@ const Slider = () => {
                 pagination={{ clickable: true }}
             >
                 <SwiperSlide>
-                    <img src={isMobile ? small : big} />
+                    <img
+                        src={isMobile ? small : big}
+                        className={styles['slider__img']}
+                    />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={isMobile ? small : big} />
