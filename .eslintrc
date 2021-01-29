@@ -1,0 +1,6 @@
+{
+    "extends": "@vsemayki/eslint-config-typescript-codestyle",
+    "rules": {
+        "@typescript-eslint/ban-ts-ignore": "off"
+    }
+}

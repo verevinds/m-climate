@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.server.json",
+  "exclude": [
+    ".k8s",
+    "dist",
+    ".next",
+    "docker",
+    ".vscode",
+    "next.config.js",
+    "node_modules",
+    "package-lock.json",
+    "package.json"
+  ],
+  "include": [
+    ".env.d.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "isolatedModules": true
+  }
+}
