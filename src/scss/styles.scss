@@ -1,4 +1,8 @@
 @import './global_variables.scss';
+@import '~swiper/swiper.scss';
+@import '~swiper/components/effect-fade/effect-fade.scss';
+@import '~swiper/components/pagination/pagination.scss';
+@import '~swiper/components/scrollbar/scrollbar.scss';
 
 :root {
     --color-brand-primary: rgb(255, 204, 0);
@@ -78,4 +82,10 @@ a {
     .main {
         padding: 0;
     }
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
