@@ -6,25 +6,27 @@
 @import '~swiper/components/scrollbar/scrollbar.scss';
 
 :root {
-  --color-brand-primary: rgb(255, 204, 0);
-  --color-brand-secondary: hsl(252, 83%, 60%);
-  --color-brand-secondary-light: hsl(252, 83%, 70%);
-  --color-text-for-secondary: rgba(255,255,255);
-  --color-divider: rgb(230, 230, 230);
-  --color-text-primary: rgb(0, 0, 0);
-  --color-text-primary-light: hsl(0, 0%, 20%);
-  --color-text-primary-lighter: hsl(0, 0%, 40%);
-  --color-text-primary-lightest: hsl(0, 0%, 60%);
-  --color-text-secondary: rgb(236, 0, 0);
+  --color-brand-primary: hsl(36, 66%, 65%);
+  --color-brand-secondary: hsl(177, 20%, 56%);
+  --color-brand-secondary-light:hsl(177, 20%, 66%);
+  --color-text-for-secondary: hsl(0, 0%, 100%);
+  --color-divider: hsl(0, 0%, 90%);
+  --color-text-primary: hsl(220, 15%, 31%);
+  --color-text-primary-light: hsl(220, 15%, 51%);
+  --color-text-primary-lighter: hsl(220, 15%, 71%);
+  --color-text-primary-lightest: hsl(220, 15%, 91%);
+  --color-text-secondary: hsl(2, 55%, 57%);
   --radius: 4px;
 }
 
 * {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
-
   margin: 0;
   padding: 0;
+}
+html {
+  color: var(--color-text-primary);
 }
 h1 {
     font-weight: 600;
@@ -90,7 +92,7 @@ a {
 
     text-align: center;
 
-    color: var(--color-text-primary-lighter);
+    color: var(--color-text-primary-light);
   }
   &.link-menu svg {
     width: 20px;

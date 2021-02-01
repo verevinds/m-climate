@@ -1,3 +1,4 @@
+import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import Slider from '@components/Slider/Slider';
 import { isMobile } from 'react-device-detect';
@@ -48,6 +49,7 @@ const Layout: React.FC = (props) => {
                 ))}
             </Slider>
             <main className={styles['main']}>{props.children}</main>
+            <Footer />
         </>
     );
 };
