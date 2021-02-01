@@ -6,6 +6,8 @@
 
     &__input {
         border: none;
+        border-top-left-radius: var(--radius);
+        border-bottom-left-radius: var(--radius);
         padding: 0 1rem;
         width: 100%;
         &:focus {

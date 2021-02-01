@@ -20,6 +20,7 @@
     "swiper": "^6.4.9"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.22",
     "@types/react-redux": "^7.1.16",
     "@zeit/next-css": "^1.0.1",
