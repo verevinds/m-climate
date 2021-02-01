@@ -7,6 +7,7 @@ const IndexPage = () => {
     if (!process.browser) return null;
     return (
         <Layout>
+            <Bar title='Популярные'/>
             <Bar title='Кондиционеры'/>
             <Bar title='Услуги'/>
         </Layout>
