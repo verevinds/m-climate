@@ -5,10 +5,11 @@ import React from 'react';
 
 interface Bar {
     title?: string;
+    items: any[];
 }
 
 const Bar: React.FC<Bar> = (props) => {
-    const { title } = props;
+    const { title, items } = props;
 
     return (
         <div className={styles['bar-wrap']}>
@@ -23,7 +24,7 @@ const Bar: React.FC<Bar> = (props) => {
                         disabledClass: styles['disabled'],
                     }}
                 >
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el) => (
+                    {items.map((el) => (
                         <div className={styles['bar__item']}>
                             <Item />
                         </div>

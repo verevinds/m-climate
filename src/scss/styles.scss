@@ -6,16 +6,26 @@
 @import '~swiper/components/scrollbar/scrollbar.scss';
 
 :root {
-  --color-brand-primary: hsl(36, 66%, 65%);
-  --color-brand-secondary: hsl(177, 20%, 56%);
-  --color-brand-secondary-light:hsl(177, 20%, 66%);
-  --color-text-for-secondary: hsl(0, 0%, 100%);
+  // Основной цвет
+  --color-brand-primary: #e1b26b;
+  --color-brand-primary-light: #e9c895;
+  --color-brand-primary-lighter: #f2dec0;
+  --color-brand-primary-lightest: #fbf4ea;
+
+  // Дополнительный цвет
+  --color-brand-secondary: #78a5a3;
+  --color-brand-secondary-light:#97bab8;
+
+  // Цвет текста
+  --color-text-for-secondary: #ffffff;
+  --color-text-primary: #434b5b;
+  --color-text-primary-light: #6f7c95;
+  --color-text-primary-lighter: #aab1c0;
+  --color-text-primary-lightest: #e5e7eb;
+  --color-text-secondary: #ce5955;
+
   --color-divider: hsl(0, 0%, 90%);
-  --color-text-primary: hsl(220, 15%, 31%);
-  --color-text-primary-light: hsl(220, 15%, 51%);
-  --color-text-primary-lighter: hsl(220, 15%, 71%);
-  --color-text-primary-lightest: hsl(220, 15%, 91%);
-  --color-text-secondary: hsl(2, 55%, 57%);
+
   --radius: 4px;
 }
 

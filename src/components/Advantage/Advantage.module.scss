@@ -1,0 +1,24 @@
+.advantage {
+  display: inline-flex;
+  padding: 2rem 5rem;
+  background-color: var(--color-brand-primary-lightest);
+
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  &__block {
+    display: flex;
+    align-items: center;
+  }
+  &__icon {
+    width: initial !important;
+    height: 48px;
+  }
+  &__description {
+    margin-left: 1rem;
+  }
+}

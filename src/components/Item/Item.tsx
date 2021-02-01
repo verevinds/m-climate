@@ -11,7 +11,7 @@ const BarItem = () => {
           <span className={styles['item__price-old']}>2600</span>
       </div>
       <div className={styles['item__title-wrap']}>
-        <a href='#' className={styles['item__title']}>title</a>
+        <a href='#' className={styles['item__title']}>ZURICH INVERTER SAS07Z3</a>
       </div>
     </div>
   );
