@@ -3,6 +3,7 @@ import { faBars, faPercent } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import styles from './Header.module.scss';
 import Search from '@components/Search/Search';
+import Navigation from '@components/Navigation/Navigation';
 
 const Header = () => {
     return (
@@ -31,7 +32,9 @@ const Header = () => {
                     Избранное
                 </a>
             </div>
-            <div className={styles['header__nav']}></div>
+            <div className={styles['header__nav']}>
+                <Navigation />
+            </div>
         </header>
     );
 };
