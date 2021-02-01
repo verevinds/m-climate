@@ -12,6 +12,7 @@
   grid-template-areas: 'logo menu search toolbar'
   'nav nav nav nav';
   grid-template-columns: 223px 125px 1fr auto;
+  grid-template-rows: 1fr 1fr 1fr;
 
   &__logo {
     width: 223px;
