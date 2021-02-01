@@ -1,8 +1,9 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { EffectFade } from 'swiper';
+import SwiperCore, { EffectFade, Pagination, Scrollbar, Navigation } from 'swiper';
 
-SwiperCore.use([EffectFade]);
+SwiperCore.use([EffectFade, Pagination, Scrollbar, Navigation]);
+
 import styles from './Slider.module.scss';
 
 const Slider: React.FunctionComponent<Swiper> = (props) => {
