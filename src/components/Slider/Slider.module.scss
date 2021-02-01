@@ -1,8 +1,38 @@
 @import 'src/scss/global_variables.scss';
 .slider {
+  width: 100%;
   :global{
     .swiper-pagination-bullet-active {
       background-color: var(--color-text-primary-lighter);
+    }
+    .swiper-button-prev, .swiper-button-next {
+      background-color: var(--color-brand-secondary);
+      min-height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      transform: translateX(-25%);
+      &:hover {
+        background-color: var(--color-brand-secondary-light);
+      }
+
+      @media screen and (max-width: $viewport-sm) {
+        display: none;
+      }
+    }
+    .swiper-button-prev {
+      transform: translateX(25%);
+    }
+    .swiper-button-prev:after, .swiper-button-next:after {
+      font-size: 22px;
+      margin: auto;
+      transform: translateX(25%);
+      color: var(--color-text-for-secondary);
+    }
+    .swiper-button-prev:after {
+      transform: translateX(-25%);
+    }
+    .swiper-slide {
+      width: auto;
     }
   }
 }

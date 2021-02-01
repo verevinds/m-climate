@@ -1,0 +1,13 @@
+@import 'src/scss/global_variables.scss';
+
+.full-size {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+.main {
+  padding: 1rem 5rem;
+  @media screen and (max-width: $viewport-sm) {
+    padding: 1rem 0;
+  }
+}

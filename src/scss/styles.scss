@@ -26,7 +26,20 @@
   margin: 0;
   padding: 0;
 }
-
+h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--color-text-primary-light);
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+}
+h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--color-text-primary-light);
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+}
 button {
   font-size: 16px;
   font-weight: 600;
@@ -95,8 +108,4 @@ a {
   justify-content: center;
 }
 
-.full-size {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-}
+
