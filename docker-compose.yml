@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+    api:
+        restart: always
+        ports:
+            - 8081:8081
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        command: npm run dev
+        depends_on:
+            - mongo
+    frontend:
+        restart: always
+        ports:
+            - 3000:3000
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        depends_on:
+            - api
+    mongo:
+        image: mongo
+        expose:
+            - 27017
+        ports:
+            - 27017:27017
+        volumes:
+            - apiDB:/data/db
+
+volumes:
+    apiDB:

@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import 'src/scss/styles.scss';
+import '@src/scss/styles.scss';
 
 import { Provider } from 'react-redux';
 
-import store from '../src/redux';
+import store from '@redux/index';
 import React from 'react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {

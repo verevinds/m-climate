@@ -32,7 +32,7 @@
         "strictPropertyInitialization": false,
         "paths": {
             "@api/*": ["src/api/*"],
-            "@ducks/*": ["src/store/ducks/*"],
+            "@redux/*": ["src/redux/*"],
             "@store/*": ["src/store/*"],
             "@uikit/*": ["src/components/UIKit/*"],
             "@components/*": ["src/components/*"],
