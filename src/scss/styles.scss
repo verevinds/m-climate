@@ -1,5 +1,6 @@
 @import './global_variables.scss';
 @import '~swiper/swiper.scss';
+@import 'swiper/components/navigation/navigation.scss';
 @import '~swiper/components/effect-fade/effect-fade.scss';
 @import '~swiper/components/pagination/pagination.scss';
 @import '~swiper/components/scrollbar/scrollbar.scss';
@@ -95,5 +96,7 @@ a {
 }
 
 .full-size {
+  height: 300px;
   width: 100%;
+  object-fit: cover;
 }

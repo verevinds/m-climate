@@ -1,0 +1,11 @@
+.location {
+  display: inline-flex;
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
+  &:hover {
+    color: var(--color-text-secondary);
+  }
+  &__icon {
+    margin-right: 1rem;
+  }
+}

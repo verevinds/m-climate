@@ -13,16 +13,15 @@ const IndexPage = () => {
                 slidesPerView={1}
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
-                navigation
-                pagination={{ clickable: true }}
+                pagination={{ clickable: true}}
             >
                 {[
                     {
-                        big: '//via.placeholder.com/1900x300',
+                        big: '//via.placeholder.com/900x300',
                         small: '//via.placeholder.com/375x300',
                     },
                     {
-                        big: '//via.placeholder.com/1900x300',
+                        big: '//via.placeholder.com/900x200',
                         small: '//via.placeholder.com/375x300',
                     },
                     {

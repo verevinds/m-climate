@@ -2,24 +2,29 @@
 
 .nav {
   display: inline-flex;
-  overflow: hidden;
-  -moz-overflow: hidden;
-  overflow-x: auto;
+
   margin: .5rem 0;
 
   width: 100%;
+  @media screen and (max-width: $viewport-sm){
+      overflow: hidden;
+    -moz-overflow: hidden;
+    overflow-x: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      height: 0px;
+    }
 
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    width: 0px;
   }
-  &::-webkit-scrollbar-thumb {
-    height: 0px;
-  }
-
-  &__location{
+  &__location {
+    display: flex;
     margin-right: 2rem;
     width: 223px;
+    align-items: center;
+
     @media screen and (max-width: $viewport-sm) {
       display: none;
     }
@@ -28,15 +33,21 @@
     display: inline-flex;
     list-style: none;
     width: 100%;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: $viewport-sm) {
+      flex-wrap: nowrap;
+    }
   }
   &__element{
-    display: inline-block;
+    display: inline-flex;
     white-space: nowrap;
-    margin: 0 .2rem;
+    margin-right: .2rem;
     padding: 5px 10px;
     font-weight: 600;
+
     &:first-child {
-      margin-left: 0;
+      margin-left: 10px;
     }
     &:last-child {
       margin-right: 0;

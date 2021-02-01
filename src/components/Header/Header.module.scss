@@ -6,19 +6,19 @@
 
   height: 46px;
   height: 100%;
-  padding: 1rem 1rem;
+  padding: 1rem 5rem;
 
   grid-gap: 20px;
   grid-template-areas: 'logo menu search toolbar'
   'nav nav nav nav';
   grid-template-columns: 223px 125px 1fr auto;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
   &__logo {
+    display: flex;
     width: 223px;
     height: 45px;
-    margin: 0 auto;
-
+    justify-self: center;
     grid-area: logo;
   }
   &__search {
@@ -61,6 +61,7 @@
     'search search search'
     'nav nav nav';
     grid-template-columns: 48px 1fr 79px;
+    grid-template-rows: 1fr 1fr 1fr;
 
     &__button {
       background-color: transparent;
