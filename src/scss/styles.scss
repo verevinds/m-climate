@@ -61,6 +61,7 @@ svg {
 a {
   text-decoration: none;
   transition: color ease-in-out 200ms;
+  color: var(--color-text-primary);
   &:visited {
     color: var(--color-text-primary);
   }
