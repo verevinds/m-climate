@@ -16,6 +16,13 @@
 
   background-color: var(--color-bg);
   box-shadow: 0 10px 10px 1px rgba(0,0,0,.5);
+
+  &__location {
+    display: none;
+    flex: 100%;
+
+    margin: 1rem 0;
+  }
   &-wrap {
     position: absolute;
     z-index: 100;
@@ -100,7 +107,11 @@
   @media screen and (max-width: $viewport-sm) {
     justify-content: space-between;
 
-    padding: .2rem;
+    padding: 0 .8rem;
+    padding-bottom: .8rem;
+    &__location {
+      display: block;
+    }
     &__button {
       background-color: transparent;
       &__text {

@@ -4,12 +4,12 @@ import styles from './Location.module.scss';
 
 const Location = () => {
     return (
-        <div className={styles['location']}>
+        <button className={styles['location']} type='button'>
             <span className={styles['location__icon']}>
                 <FontAwesomeIcon icon={faMapMarkerAlt} />
             </span>
             <span className={styles['location__text']}>Новосибирск</span>
-        </div>
+        </button>
     );
 };
 

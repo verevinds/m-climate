@@ -1,3 +1,4 @@
+import Location from '@components/Location/Location';
 import styles from './Menu.module.scss';
 import MenuBlock from './MenuBlock';
 
@@ -19,8 +20,10 @@ const Menu = () => {
                 <br />
                 <div className={styles['menu-wrap']}>
                     <div className={styles['menu']}>
-
-                                                <MenuBlock
+                        <div className={styles['menu__location']}>
+                            <Location />
+                        </div>
+                        <MenuBlock
                             items={[
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
@@ -29,7 +32,7 @@ const Menu = () => {
                             ]}
                             title={'Кондиционеры'}
                         />
-                                                <MenuBlock
+                        <MenuBlock
                             items={[
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
@@ -38,7 +41,7 @@ const Menu = () => {
                             ]}
                             title={'Кондиционеры'}
                         />
-                                                <MenuBlock
+                        <MenuBlock
                             items={[
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
@@ -47,33 +50,10 @@ const Menu = () => {
                             ]}
                             title={'Кондиционеры'}
                         />
-                                                <MenuBlock
+                        <MenuBlock
                             items={[
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                            ]}
-                            title={'Кондиционеры'}
-                        />
-                                                <MenuBlock
-                            items={[
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                                { name: 'ссылка', url: '#' },
-                            ]}
-                            title={'Кондиционеры'}
-                        />
-                                                <MenuBlock
-                            items={[
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
                                 { name: 'ссылка', url: '#' },
@@ -86,7 +66,29 @@ const Menu = () => {
                             ]}
                             title={'Кондиционеры'}
                         />
-
+                        <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                        <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
                     </div>
                 </div>
             </div>

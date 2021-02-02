@@ -1,9 +1,18 @@
 .location {
   display: inline-flex;
+
+  height: 100%;
+  padding: 0;
+
   cursor: pointer;
   transition: all ease-in-out 200ms;
+
+  background-color: transparent;
   &:hover {
     color: var(--color-text-secondary);
+  }
+  &:focus {
+    outline: none;
   }
   &__icon {
     margin-right: 1rem;
