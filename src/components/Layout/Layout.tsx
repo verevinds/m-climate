@@ -11,9 +11,9 @@ const Layout: React.FC = (props) => {
             <Slider
                 watchOverflow={true}
                 loop={true}
-                slidesPerView={1}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
+                speed={500}
+                effect="fade"
+                autoplay={true}
                 pagination={{ clickable: true }}
             >
                 {[

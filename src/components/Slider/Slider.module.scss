@@ -1,16 +1,18 @@
 @import 'src/scss/global_variables.scss';
 .slider {
   width: 100%;
-  :global{
+  :global {
     .swiper-pagination-bullet-active {
       background-color: var(--color-text-primary-lighter);
     }
     .swiper-button-prev, .swiper-button-next {
-      background-color: var(--color-brand-secondary);
-      min-height: 44px;
       min-width: 44px;
-      border-radius: 50%;
+      min-height: 44px;
+
       transform: translateX(-25%);
+
+      border-radius: 50%;
+      background-color: var(--color-brand-secondary);
       &:hover {
         background-color: var(--color-brand-secondary-light);
       }
@@ -24,8 +26,11 @@
     }
     .swiper-button-prev:after, .swiper-button-next:after {
       font-size: 22px;
+
       margin: auto;
+
       transform: translateX(25%);
+
       color: var(--color-text-for-secondary);
     }
     .swiper-button-prev:after {
