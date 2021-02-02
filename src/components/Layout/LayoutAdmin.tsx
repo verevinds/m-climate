@@ -1,6 +1,7 @@
 import {
     faAngleDoubleLeft,
     faAngleDoubleRight,
+    faBox,
     faHome,
     faTags,
 } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +43,7 @@ const LayoutAdmin: React.FC = ({ children }) => {
                     {[
                         { name: 'Главная', url: '/admin', icon: faHome },
                         { name: 'Бренды', url: '/admin/brand', icon: faTags },
+                        { name: 'Товар', url: '/admin/item', icon: faBox },
                     ].map((el) => (
                         <ActiveLink
                             href={el.url}
