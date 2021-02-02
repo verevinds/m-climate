@@ -1,7 +1,5 @@
 import Bar from '@components/Bar/Bar';
 import Layout from '@components/Layout/Layout';
-import Item from '@components/Item/Item'
-import styles from '@src/scss/pages/index.module.scss';
 import Advantage from '@components/Advantage/Advantage';
 
 const IndexPage = () => {
