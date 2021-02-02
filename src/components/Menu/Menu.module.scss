@@ -87,7 +87,7 @@
       &:checked ~ .menu-wrap {
         height: 100vh;
 
-        transition: all linear 600ms 200ms;
+        transition: all linear 200ms 200ms;
 
         opacity: 1;
       }
