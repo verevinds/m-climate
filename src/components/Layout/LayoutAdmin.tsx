@@ -6,7 +6,7 @@ import {
     faTags,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styles from './LayoutAdmin.module.scss';
 import cls from 'classnames';
 import ActiveLink from 'src/lib/ActiveLink';

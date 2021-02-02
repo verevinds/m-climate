@@ -15,8 +15,9 @@
     ".env.d.ts",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/lib/ActiveLink.js"  ],
+    "**/*.tsx",
+    "**/*.js"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "isolatedModules": true
