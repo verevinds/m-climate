@@ -6,32 +6,30 @@
 @import '~swiper/components/scrollbar/scrollbar.scss';
 
 :root {
+  --color-bg: #fff;
   // Основной цвет
   --color-brand-primary: #e1b26b;
   --color-brand-primary-light: #e9c895;
   --color-brand-primary-lighter: #f2dec0;
   --color-brand-primary-lightest: #fbf4ea;
-
   // Дополнительный цвет
   --color-brand-secondary: #78a5a3;
-  --color-brand-secondary-light:#97bab8;
-
+  --color-brand-secondary-light: #97bab8;
+  --color-divider: hsl(0, 0%, 90%);
   // Цвет текста
-  --color-text-for-secondary: #ffffff;
+  --color-text-for-secondary: #fff;
   --color-text-primary: #434b5b;
   --color-text-primary-light: #6f7c95;
   --color-text-primary-lighter: #aab1c0;
   --color-text-primary-lightest: #e5e7eb;
   --color-text-secondary: #ce5955;
-
-  --color-divider: hsl(0, 0%, 90%);
-
   --radius: 4px;
 }
 
 * {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+
   margin: 0;
   padding: 0;
 }
@@ -39,21 +37,24 @@ html {
   color: var(--color-text-primary);
 }
 h1 {
-    font-weight: 600;
-    font-size: 2rem;
-    padding-left: 1rem;
-    padding-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
 }
 h2 {
-    font-weight: 600;
-    font-size: 1.8rem;
-    padding-left: 1rem;
-    padding-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
 }
 h3 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  padding-bottom: 1rem;
 }
 button {
   font-size: 16px;
@@ -88,8 +89,9 @@ svg {
   height: 18px;
 }
 a {
-  text-decoration: none;
   transition: color ease-in-out 200ms;
+  text-decoration: none;
+
   color: var(--color-text-primary);
   &:visited {
     color: var(--color-text-primary);
@@ -122,5 +124,3 @@ a {
   overflow: hidden;
   justify-content: center;
 }
-
-

@@ -1,13 +1,28 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Menu.module.scss';
 
 const Menu = () => {
     return (
-        <button className={styles['menu__button']} type="button">
-            <FontAwesomeIcon icon={faBars} />
-            <span className={styles['menu__button__text']}>Каталог</span>
-        </button>
+        <>
+            <br />
+            <div className={styles['menu__button-container']}>
+                <input
+                    type="checkbox"
+                    id="menu"
+                    className={styles['menu__button-input']}
+                />
+                <label htmlFor="menu" className={styles['menu__button']}>
+                    <span className={styles['menu__button__text']}>
+                        Каталог
+                    </span>
+                </label>
+                <br />
+                <div className={styles['menu-wrap']}>
+                    <div className={styles['menu']}>
+                      <h1>huy</h1>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 
