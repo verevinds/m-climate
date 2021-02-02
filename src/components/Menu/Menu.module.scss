@@ -69,8 +69,8 @@
 
       background-color: var(--color-text-primary);
 
-      -webkit-mask: url('../../../public/bars.svg') no-repeat 50% 50%;
-      mask: url('../../../public/bars.svg') no-repeat 50% 50%;
+      -webkit-mask: url('../../../public/svg/bars.svg') no-repeat 50% 50%;
+      mask: url('../../../public/svg/bars.svg') no-repeat 50% 50%;
       -webkit-mask-size: cover;
       mask-size: cover;
     }
@@ -81,8 +81,8 @@
       position: absolute;
       left: -999px;
       &:checked ~ .menu__button::before {
-        -webkit-mask: url('../../../public/times.svg') no-repeat 50% 50%;
-        mask: url('../../../public/times.svg') no-repeat 50% 50%;
+        -webkit-mask: url('../../../public/svg/times.svg') no-repeat 50% 50%;
+        mask: url('../../../public/svg/times.svg') no-repeat 50% 50%;
       }
       &:checked ~ .menu-wrap {
         height: 100vh;

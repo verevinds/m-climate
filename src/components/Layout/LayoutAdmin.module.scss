@@ -10,9 +10,14 @@
     grid-area: header;
   }
   &__sidebar {
+    z-index: 100;
+
     width: 300px;
     height: 100vh;
 
+    transition: all ease-in-out 100ms;
+
+    background-color: #fff;
     box-shadow: 0 0 26px 0 rgba(0,0,0,.15);
 
     grid-area: sidebar;
@@ -46,6 +51,20 @@
     flex: 1;
 
     background-color: transparent;
+    &::after {
+      width: 18px;
+      height: 18px;
+
+      content: '';
+      transition: all ease-in-out 300ms;
+
+      background-color: var(--color-text-primary);
+
+      -webkit-mask: url('../../../public/svg/angle-double-left.svg') no-repeat 50% 50%;
+      mask: url('../../../public/svg/angle-double-left.svg') no-repeat 50% 50%;
+      -webkit-mask-size: cover;
+      mask-size: cover;
+    }
   }
   &__main {
     display: flex;
@@ -53,9 +72,14 @@
   }
   &__link {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 
     padding: 1rem 1.1rem;
+
+    &__text {
+      padding: 0 1.2rem;
+    }
   }
 }
 
@@ -64,6 +88,14 @@
 }
 .-hide.layout {
   grid-template-columns: 50px auto;
+}
+.-hide .sidebar__button-hide::after {
+  -webkit-mask: url('../../../public/svg/angle-double-right.svg') no-repeat 50% 50%;
+  mask: url('../../../public/svg/angle-double-right.svg') no-repeat 50% 50%;
+}
+.-hide .sidebar__link {
+  flex-direction: row;
+  justify-content: flex-end;
 }
 .-active {
   background-color: var(--color-brand-secondary-lightest);

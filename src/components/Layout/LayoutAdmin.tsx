@@ -16,15 +16,15 @@ import { selectAdmin, setHide } from '@redux/reducer/admin';
 const LayoutAdmin: React.FC = ({ children }) => {
     const dispatch = useDispatch();
 
-    const { sideBar: {  isHide  } } = useSelector(selectAdmin)
+    const {
+        sideBar: { isHide },
+    } = useSelector(selectAdmin);
 
-    const handleHide = () => dispatch(setHide())
+    const handleHide = () => dispatch(setHide());
 
     return (
         <div className={cls(styles['layout'], isHide && styles['-hide'])}>
-            <div
-                className={styles['layout__sidebar']}
-            >
+            <div className={styles['layout__sidebar']}>
                 <div className={styles['sidebar__nav-top']}>
                     <div className={styles['sidebar__title']}>
                         <p>Навигация</p>
@@ -33,11 +33,7 @@ const LayoutAdmin: React.FC = ({ children }) => {
                         type="button"
                         onClick={handleHide}
                         className={styles['sidebar__button-hide']}
-                    >
-                        <FontAwesomeIcon
-                            icon={isHide ? faAngleDoubleLeft : faAngleDoubleRight}
-                        />
-                    </button>
+                    />
                 </div>
                 <div className={styles['sidebar__main']}>
                     {[
@@ -49,7 +45,10 @@ const LayoutAdmin: React.FC = ({ children }) => {
                             href={el.url}
                             activeClassName={styles['-active']}
                         >
-                            <a className={styles['sidebar__link']}><span>{el.name}</span><FontAwesomeIcon icon={el.icon}/></a>
+                            <a className={styles['sidebar__link']}>
+                                <span className={styles['sidebar__link__text']}>{el.name}</span>
+                                <FontAwesomeIcon icon={el.icon} />
+                            </a>
                         </ActiveLink>
                     ))}
                 </div>
