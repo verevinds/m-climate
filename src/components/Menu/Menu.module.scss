@@ -6,23 +6,30 @@
   right: 0;
   left: 0;
 
-  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
 
-  transition: all ease-in-out 300ms 300ms;
+  padding: 2rem;
+
+  transition: all linear 600ms 200ms;
   transform: translateY(-999px);
 
   background-color: var(--color-bg);
+  box-shadow: 0 10px 10px 1px rgba(0,0,0,.5);
   &-wrap {
     position: absolute;
     z-index: 100;
     right: 0;
     left: 0;
 
-    overflow: hidden;
+    display: flex;
 
+    width: 100%;
     height: 0;
 
-    transition: all ease-in-out 300ms 300ms;
+    transition: all linear 200ms 0ms;
+
+    opacity: 0;
   }
   &__button {
     font-size: 16px;
@@ -67,8 +74,13 @@
       left: -999px;
       &:checked ~ .menu-wrap {
         height: 100vh;
+
+        transition: all linear 600ms 200ms;
+
+        opacity: 1;
       }
       &:checked ~ .menu-wrap > .menu {
+        transition: all linear 200ms 0ms;
         transform: translateY(0px);
       }
     }
@@ -81,6 +93,9 @@
   }
 
   @media screen and (max-width: $viewport-sm) {
+    justify-content: space-between;
+
+    padding: .2rem;
     &__button {
       background-color: transparent;
       &__text {

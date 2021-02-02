@@ -1,4 +1,5 @@
 import styles from './Menu.module.scss';
+import MenuBlock from './MenuBlock';
 
 const Menu = () => {
     return (
@@ -18,7 +19,74 @@ const Menu = () => {
                 <br />
                 <div className={styles['menu-wrap']}>
                     <div className={styles['menu']}>
-                      <h1>huy</h1>
+
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+                                                <MenuBlock
+                            items={[
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                                { name: 'ссылка', url: '#' },
+                            ]}
+                            title={'Кондиционеры'}
+                        />
+
                     </div>
                 </div>
             </div>
