@@ -16,10 +16,12 @@
 
   &__logo {
     display: flex;
+
     width: 223px;
     height: 45px;
-    justify-self: center;
+
     grid-area: logo;
+    justify-self: center;
   }
   &__search {
     grid-area: search;
@@ -29,21 +31,11 @@
 
     grid-area: toolbar;
   }
-  &__button {
-    &__text {
-      display: inline-block;
 
-      box-sizing: border-box;
-      padding-left: 12px;
-    }
-    & svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
   &__nav {
-    grid-area: nav;
     width: 100%;
+
+    grid-area: nav;
   }
   &__menu {
     margin: 0 auto;
@@ -63,12 +55,6 @@
     grid-template-columns: 48px 1fr 79px;
     grid-template-rows: 1fr 1fr 1fr;
 
-    &__button {
-      background-color: transparent;
-      &__text {
-        display: none;
-      }
-    }
 
     &__menu {
       margin: 0;

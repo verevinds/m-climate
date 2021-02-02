@@ -1,3 +1,4 @@
+@import 'src/scss/global_variables.scss';
 .advantage {
   display: inline-flex;
 
@@ -15,6 +16,8 @@
   &__block {
     display: flex;
     align-items: center;
+
+    margin: 1rem;
   }
   &__icon {
     width: initial !important;
@@ -25,5 +28,9 @@
     height: 100%;
     margin-right: 1rem;
     margin-left: 1rem;
+  }
+
+  @media screen and (max-width: $viewport-sm) {
+    flex-direction: column;
   }
 }

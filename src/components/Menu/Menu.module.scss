@@ -1,0 +1,21 @@
+@import 'src/scss/global_variables.scss';
+
+.menu {
+  &__button {
+    &__text {
+      display: inline-block;
+
+      box-sizing: border-box;
+      padding-left: 12px;
+    }
+  }
+
+  @media screen and (max-width: $viewport-sm) {
+    &__button {
+      background-color: transparent;
+      &__text {
+        display: none;
+      }
+    }
+  }
+}
