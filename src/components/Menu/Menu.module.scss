@@ -58,6 +58,7 @@
       height: 18px;
 
       content: '';
+      transition: all ease-in-out 200ms;
 
       background-color: var(--color-text-primary);
 
@@ -72,6 +73,10 @@
     &-input {
       position: absolute;
       left: -999px;
+      &:checked ~ .menu__button::before {
+        -webkit-mask: url('../../../public/times.svg') no-repeat 50% 50%;
+        mask: url('../../../public/times.svg') no-repeat 50% 50%;
+      }
       &:checked ~ .menu-wrap {
         height: 100vh;
 
