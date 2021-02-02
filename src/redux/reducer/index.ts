@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import clockReducer from './clockSlice';
+import admin from './admin';
 
 const rootReducer = combineReducers({
-    clock: clockReducer
+    admin
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

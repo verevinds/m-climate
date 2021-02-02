@@ -1,5 +1,5 @@
 import Bar from '@components/Bar/Bar';
-import Layout from '@components/Layout/Layout';
+import Layout from '@components/Layout/LayoutClient';
 import Advantage from '@components/Advantage/Advantage';
 
 const IndexPage = () => {

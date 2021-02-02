@@ -2,7 +2,7 @@ import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import Slider from '@components/Slider/Slider';
 import { isMobile } from 'react-device-detect';
-import styles from './Layout.module.scss';
+import styles from './LayoutClient.module.scss';
 
 const Layout: React.FC = (props) => {
     return (
