@@ -9,6 +9,8 @@ services:
             context: ./server
             dockerfile: ./Dockerfile
         command: npm run dev
+        volumes:
+            - ./server:/app/server
         depends_on:
             - mongo
     frontend:
