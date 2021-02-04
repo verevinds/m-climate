@@ -37,16 +37,24 @@ const LayoutAdmin: React.FC = ({ children }) => {
                 </div>
                 <div className={styles['sidebar__main']}>
                     {[
-                        { name: 'Главная', url: '/admin', icon: faHome },
+                        {
+                            name: 'Главная',
+                            url: '/admin',
+                            icon: faHome,
+                            props: { exec: true },
+                        },
                         { name: 'Бренды', url: '/admin/brand', icon: faTags },
                         { name: 'Товар', url: '/admin/item', icon: faBox },
                     ].map((el) => (
                         <ActiveLink
                             href={el.url}
                             activeClassName={styles['-active']}
+                            {...el.props}
                         >
                             <a className={styles['sidebar__link']}>
-                                <span className={styles['sidebar__link__text']}>{el.name}</span>
+                                <span className={styles['sidebar__link__text']}>
+                                    {el.name}
+                                </span>
                                 <FontAwesomeIcon icon={el.icon} />
                             </a>
                         </ActiveLink>
