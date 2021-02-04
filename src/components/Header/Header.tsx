@@ -29,7 +29,14 @@ const Header = () => {
                 </a>
             </div>
             <div className={styles['header__nav']}>
-                <Navigation />
+                <Navigation
+                    items={[
+                        { name: 'Кондиционеры', url: '#', favorite: true },
+                        { name: 'Монтаж / демонтаж', url: '#' },
+                        { name: 'Сервисное обслуживание', url: '#' },
+                        { name: 'Подключение бытовой техники', url: '#' },
+                    ]}
+                />
             </div>
         </header>
     );

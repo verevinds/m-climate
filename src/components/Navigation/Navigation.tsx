@@ -1,26 +1,39 @@
+import React from 'react';
+
 import Location from '@components/Location/Location';
+
+import { INavigation } from './interface';
+
 import cls from 'classnames';
 import styles from './Navigation.module.scss';
 
-const Navigation = () => {
+const Navigation: React.FC<INavigation> = ({ items, location }) => {
     return (
         <div className={styles['nav']}>
-            <div className={styles['nav__location']}>
-              <Location />
-            </div>
+            {location && (
+                <div className={styles['nav__location']}>
+                    <Location />
+                </div>
+            )}
             <ul className={styles['nav__bar']}>
-                <li className={cls(styles['nav__element'], styles['nav__element-favorite'])}>
-                    <a href="#" className={styles['nav__link']}>Кондиционеры</a>
-                </li>
-                <li className={styles['nav__element']}>
-                    <a href="#" className={styles['nav__link']}>Монтаж / демонтаж</a>
-                </li>
-                <li className={styles['nav__element']}>
-                    <a href="#" className={styles['nav__link']}>Сервисное обслуживание</a>
-                </li>
-                <li className={styles['nav__element']}>
-                    <a href="#" className={styles['nav__link']}>Подключение бытовой техники</a>
-                </li>
+                {items.map(({ name, url, favorite }, index) => (
+                    <li
+                        className={cls(
+                            styles['nav__element'],
+                            index === 0 &&
+                                favorite &&
+                                styles['nav__element-favorite']
+                        )}
+                    >
+                        <a
+                            href={url}
+                            className={styles['nav__link']}
+                            title={name}
+                        >
+                            {name}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </div>
     );
