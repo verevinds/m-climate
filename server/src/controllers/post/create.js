@@ -6,6 +6,7 @@ module.exports = (Post) => (req, res) => {
     const title = req.body.title;
     const description = req.body.description;
     const user = req.body.user;
+
     const post = new Post({
         title,
         description,

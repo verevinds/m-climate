@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 require('./router/post')(app);
+require('./router/brand')(app);
 
 // app.get('/users', (req, res) => {
 //     User.find({}, function(err, user){

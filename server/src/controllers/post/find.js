@@ -1,8 +1,9 @@
 module.exports = (Post) => (req, res) => {
     Post.find({})
-        .populate('user')
+        .populate({path: 'user', select: '-__v -_id'})
+        .select('-__v')
         .exec(function (err, post) {
-            if (err) return console.log(err);
+            if (err) return console.error(err);
             res.send(post);
         });
 };
