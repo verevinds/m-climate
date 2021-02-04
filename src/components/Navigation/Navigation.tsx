@@ -7,10 +7,10 @@ import { INavigation } from './interface';
 import cls from 'classnames';
 import styles from './Navigation.module.scss';
 
-const Navigation: React.FC<INavigation> = ({ items, location }) => {
+const Navigation: React.FC<INavigation> = ({ items, noLocation }) => {
     return (
         <div className={styles['nav']}>
-            {location && (
+            {!noLocation && (
                 <div className={styles['nav__location']}>
                     <Location />
                 </div>
