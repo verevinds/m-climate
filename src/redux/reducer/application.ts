@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ParsedUrlQuery } from 'querystring';
 import { RootState } from '.';
 
 interface IInitialState {
     context: {
         pathname: string;
-        query: string;
+        query: ParsedUrlQuery;
     };
 }
 
 const initialState: IInitialState = {
-    context: { pathname: '', query: '' },
+    context: { pathname: '', query: {} },
 };
 
 const application = createSlice({
@@ -18,7 +19,7 @@ const application = createSlice({
     reducers: {
         setContext: (
             state,
-            { payload }: PayloadAction<{ pathname: string; query: string }>
+            { payload }: PayloadAction<{ pathname: string; query: ParsedUrlQuery }>
         ) => {
             state.context = payload;
         },

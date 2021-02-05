@@ -1,15 +1,10 @@
+@import 'src/scss/global_variables.scss';
 .layout {
-  display: grid;
-
-  grid-gap: 10px;
-  grid-template-areas: 'sidebar main';
-  grid-template-columns: 300px auto;
   &__header {
     padding: 1rem;
-
-    grid-area: header;
   }
   &__sidebar {
+    position: absolute;
     z-index: 100;
 
     width: 300px;
@@ -19,13 +14,14 @@
 
     background-color: #fff;
     box-shadow: 0 0 26px 0 rgba(0,0,0,.15);
-
-    grid-area: sidebar;
   }
   &__main {
-    padding: 1rem;
+    margin-left: 250px;
 
-    grid-area: main;
+    transition: all ease-in 300ms;
+    @media screen and (max-width: $viewport-sm) {
+      margin-left: 0;
+    }
   }
 }
 
@@ -85,6 +81,9 @@
 
 .-hide .layout__sidebar {
   transform: translateX(-250px);
+}
+.-hide .layout__main {
+  margin-left: 0;
 }
 .-hide.layout {
   grid-template-columns: 50px auto;

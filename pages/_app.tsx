@@ -1,14 +1,29 @@
 import Head from 'next/head';
-import type { AppContext, AppProps } from 'next/app';
+import type { AppContext, AppInitialProps, AppProps } from 'next/app';
 import '@src/scss/styles.scss';
 
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 
-import { store, useAppDispatch } from '@redux/index';
+import { getStore } from '@redux/index';
+import { RootState } from '@redux/reducer';
 import React from 'react';
 import { setContext } from '@redux/reducer/application';
+import { IncomingHttpHeaders } from 'http';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+export type AppInitialPropsWithRedux = AppInitialProps & AppProps & {
+    initialReduxState: RootState;
+    headers?: IncomingHttpHeaders;
+    err?: Error;
+};
+
+const MyApp = ({
+    Component,
+    pageProps,
+    headers,
+    initialReduxState,
+}: AppInitialPropsWithRedux) => {
+    const reduxStore = getStore(initialReduxState, headers);
+
     return (
         <React.Fragment>
             <Head>
@@ -24,16 +39,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                     rel="preload"
                 />
             </Head>
-            <Provider store={store}>
+            <Provider store={reduxStore}>
                 <Component {...pageProps} />
             </Provider>
         </React.Fragment>
     );
 };
 
-MyApp.getInitialProps = async ({ ctx: { pathname, query } }: AppContext) => {
-    const dispatch = useAppDispatch();
-    dispatch(setContext({ pathname, query }));
+MyApp.getInitialProps = async ({ ctx }: AppContext) => {
+    const headers = ctx.req?.headers ?? {};
+    const reduxStore = getStore({}, headers);
+    const { pathname, query } = ctx;
+
+    reduxStore.dispatch(setContext({ pathname, query }));
+
+    return {
+        initialReduxState: reduxStore.getState(),
+        headers: headers,
+    };
 };
 
 export default MyApp;

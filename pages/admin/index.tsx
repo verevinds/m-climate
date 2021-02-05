@@ -1,14 +1,12 @@
+import AdminHeader from '@components/AdminHeader/AdminHeader';
 import LayoutAdmin from '@components/Layout/LayoutAdmin';
 
 const Admin = () => {
     return (
         <LayoutAdmin>
-            <h1>Панель администратора</h1>
+            <AdminHeader title={'Панель администратора'} />
         </LayoutAdmin>
     );
 };
-Admin.getInitialProps = async (ctx) => {
-    console.log(ctx.asPath, ctx.query);
-    return {};
-};
+
 export default Admin;

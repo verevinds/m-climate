@@ -1,9 +1,10 @@
+import AdminHeader from '@components/AdminHeader/AdminHeader';
 import LayoutAdmin from '@components/Layout/LayoutAdmin';
 
 const Item = () => {
     return (
         <LayoutAdmin>
-            <h1>Настройка товара</h1>
+            <AdminHeader title={'Настройка товара'} />
         </LayoutAdmin>
     );
 };
