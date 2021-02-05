@@ -1,34 +1,43 @@
-import type { AppContext } from 'next/app';
-import LayoutAdmin from '@components/Layout/LayoutAdmin';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ActiveLink from '@src/lib/ActiveLink';
-import styles from 'src/scss/pages/brand.module.scss';
-import { NextPage } from 'next';
+import { useSelector } from 'react-redux';
 
-const Brand: NextPage<Pick<AppContext['ctx'], 'pathname' | 'query'>> = ({
-    pathname,
-}) => {
+import LayoutAdmin from '@components/Layout/LayoutAdmin';
+import ActiveLink from '@src/lib/ActiveLink';
+
+import { selectApplicationContext } from '@redux/reducer/application';
+
+import styles from 'src/scss/pages/brand.module.scss';
+import { faList, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const Brand = () => {
+    const { pathname } = useSelector(selectApplicationContext);
     return (
         <LayoutAdmin>
             <div>
                 <h1>Настройка брендов</h1>
+                <ActiveLink
+                    href={`${pathname}`}
+                    activeClassName={styles['-active']}
+                    exec={false}
+                >
+                    <a>
+                        <FontAwesomeIcon icon={faList} />
+                        <span>Список</span>
+                    </a>
+                </ActiveLink>
                 <ActiveLink
                     href={`${pathname}?type=new`}
                     activeClassName={styles['-active']}
                     exec={false}
                 >
                     <a>
-                        <span>Создать</span>
                         <FontAwesomeIcon icon={faPlusCircle} />
+                        <span>Создать</span>
                     </a>
                 </ActiveLink>
             </div>
         </LayoutAdmin>
     );
-};
-Brand.getInitialProps = async ({ pathname, query }) => {
-    return { pathname, query };
 };
 
 export default Brand;

@@ -1,11 +1,12 @@
 import Head from 'next/head';
-import type { AppProps } from 'next/app';
+import type { AppContext, AppProps } from 'next/app';
 import '@src/scss/styles.scss';
 
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 
-import store from '@redux/index';
+import { store, useAppDispatch } from '@redux/index';
 import React from 'react';
+import { setContext } from '@redux/reducer/application';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
@@ -28,6 +29,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             </Provider>
         </React.Fragment>
     );
+};
+
+MyApp.getInitialProps = async ({ ctx: { pathname, query } }: AppContext) => {
+    const dispatch = useAppDispatch();
+    dispatch(setContext({ pathname, query }));
 };
 
 export default MyApp;
