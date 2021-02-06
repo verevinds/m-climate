@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { IncomingHttpHeaders } from 'http';
 
 import rootReducer from './reducer';
 
-const initStore = (preloadedState = {}, _headers?: IncomingHttpHeaders) => {
+const initStore = (preloadedState = {}) => {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState,
@@ -19,14 +18,11 @@ const initStore = (preloadedState = {}, _headers?: IncomingHttpHeaders) => {
 
 export type StoreWithPersist = ReturnType<typeof initStore>;
 
-export const getStore = (
-  preloadedState = {},
-  headers?: IncomingHttpHeaders,
-): StoreWithPersist => {
+export const getStore = (preloadedState = {}): StoreWithPersist => {
   // Always make a new store if server, otherwise state is shared between requests
   if (!process.browser) {
-    return initStore(preloadedState, headers);
+    return initStore(preloadedState);
   }
 
-  return initStore(preloadedState, headers);
+  return initStore(preloadedState);
 };
