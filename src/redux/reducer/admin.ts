@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { RootState } from '.';
 
 const admin = createSlice({
   name: 'admin',
   initialState: {
-    sideBar:{
+    sideBar: {
       isHide: false,
-    }
+    },
   },
   reducers: {
-    setHide: (state) => {
-      state.sideBar.isHide = !state.sideBar.isHide
+    setHide: state => {
+      state.sideBar.isHide = !state.sideBar.isHide;
     },
   },
 });
-
 
 export const selectAdmin = (state: RootState) => state.admin;
 

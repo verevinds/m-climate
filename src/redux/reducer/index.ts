@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
+
 import admin from './admin';
-import application from './application'
+import application from './application';
 
 const rootReducer = combineReducers({
-    admin,
-    application
+  admin,
+  application,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
