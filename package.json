@@ -55,19 +55,18 @@
     "build": "next build && next export -o _static",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "lint-staged",
-    "lint:write": "eslint --debug ./ --fix",
+    "eslint": "eslint --debug ./ --fix",
+    "eslint:fix": "eslint ./ --fix",
     "postinstall": "husky install",
+    "prettier": "npx prettier --debug-check ./",
+    "prettier:fix": "npx prettier --write",
     "stylelint": "stylelint '**/*{.css,.scss}'",
     "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "npx eslint --debug ./ --fix"
-    ],
-    "./pages/**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "npx eeslint --debug ./ --fix"
+    "*.{js,jsx,ts,tsx}": [
+      "npm run prettier:fix",
+      "npm run eslint:fix"
     ],
     "*.(css|scss)": [
       "npm run stylelint:fix"
