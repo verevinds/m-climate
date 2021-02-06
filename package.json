@@ -50,11 +50,15 @@
     "lint:write": "eslint --debug ./ --fix"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --debug ./ --fix", "git add"
+    "./src/**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "eslint --debug ./ --fix",
+      "git add"
     ],
-    "pages/**/*.{js,jsx,ts,tsx}": [
-      "eeslint --debug ./ --fix", "git add"
+    "./pages/**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "eeslint --debug ./ --fix",
+      "git add"
     ]
   },
   "husky": {
