@@ -51,10 +51,10 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint . --fix", "git add"
+      "eslint --debug ./ --fix", "git add"
     ],
     "pages/**/*.{js,jsx,ts,tsx}": [
-      "eslint . --fix", "git add"
+      "eeslint --debug ./ --fix", "git add"
     ]
   },
   "husky": {
