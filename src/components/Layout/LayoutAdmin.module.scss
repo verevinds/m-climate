@@ -95,4 +95,13 @@
 
 .-active {
   background-color: var(--color-brand-secondary-lightest);
+  animation: active 500ms ease-in-out;
+}
+@keyframes active {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: var(--color-brand-secondary-lightest);
+  }
 }
