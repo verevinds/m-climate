@@ -6,9 +6,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ActiveLink from 'src/lib/ActiveLink';
 
-import styles from './LayoutAdmin.module.scss';
+import styles from './AdminLayout.module.scss';
 
-const LayoutAdmin: React.FC = ({ children }) => {
+const AdminLayout: React.FC = ({ children }) => {
   const dispatch = useDispatch();
 
   const {
@@ -71,4 +71,4 @@ const LayoutAdmin: React.FC = ({ children }) => {
   );
 };
 
-export default LayoutAdmin;
+export default AdminLayout;

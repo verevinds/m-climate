@@ -19,10 +19,9 @@ export type AppInitialPropsWithRedux = AppInitialProps &
 const MyApp = ({
   Component,
   pageProps,
-  headers,
   initialReduxState,
 }: AppInitialPropsWithRedux): React.ReactNode => {
-  const reduxStore = getStore(initialReduxState, headers);
+  const reduxStore = getStore(initialReduxState);
 
   return (
     <>
@@ -45,7 +44,7 @@ const MyApp = ({
 
 MyApp.getInitialProps = async ({ ctx }: AppContext) => {
   const headers = ctx.req?.headers ?? {};
-  const reduxStore = getStore({}, headers);
+  const reduxStore = getStore({});
   const { pathname, query } = ctx;
 
   reduxStore.dispatch(setContext({ pathname, query }));

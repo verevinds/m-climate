@@ -1,5 +1,5 @@
-import AdminHeader from '@components/AdminHeader/AdminHeader';
-import LayoutAdmin from '@components/Layout/LayoutAdmin';
+import AdminHeader from '@components/AdminHeader';
+import LayoutAdmin from '@components/AdminLayout';
 
 const Item = () => {
   return (
