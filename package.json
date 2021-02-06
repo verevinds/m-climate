@@ -37,6 +37,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unicorn": "^27.0.0",
     "husky": "^5.0.8",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "sass": "^1.32.6",
     "typescript": "^4.1.3"
@@ -48,10 +49,17 @@
     "lint": "eslint --debug ./",
     "lint:write": "eslint --debug ./ --fix"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint . --fix", "git add"
+    ],
+    "pages/**/*.{js,jsx,ts,tsx}": [
+      "eslint . --fix", "git add"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint:write",
-      "pre-push": "lint:write"
+      "pre-commit": "lint-staged"
     }
   },
   "repository": {
