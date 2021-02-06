@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "stylelint-config-airbnb",
+    "stylelint-config-rational-order",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-prettier",
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "prettier/prettier": true
+  }
+}

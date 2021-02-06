@@ -40,6 +40,14 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "sass": "^1.32.6",
+    "stylelint": "^13.9.0",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-scss": "^3.18.0",
     "typescript": "^4.1.3"
   },
   "scripts": {
@@ -48,18 +56,21 @@
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "lint-staged",
     "lint:write": "eslint --debug ./ --fix",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "stylelint": "stylelint '**/*{.css,.scss}'",
+    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "eslint --debug ./ --fix",
-      "git add"
+      "npx eslint --debug ./ --fix"
     ],
     "./pages/**/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "eeslint --debug ./ --fix",
-      "git add"
+      "npx eeslint --debug ./ --fix"
+    ],
+    "*.(css|scss)": [
+      "npm run stylelint:fix"
     ]
   },
   "husky": {

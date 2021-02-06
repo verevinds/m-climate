@@ -3,12 +3,12 @@
 .nav {
   display: inline-flex;
 
-  margin: .5rem 0;
-
   width: 100%;
-  @media screen and (max-width: $viewport-sm){
-      overflow: hidden;
+
+  margin: 0.5rem 0;
+  @media screen and (max-width: $viewport-sm) {
     -moz-overflow: hidden;
+    overflow: hidden;
     overflow-x: auto;
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -17,13 +17,12 @@
     &::-webkit-scrollbar-thumb {
       height: 0px;
     }
-
   }
   &__location {
     display: flex;
-    margin-right: 2rem;
-    width: 223px;
     align-items: center;
+    width: 223px;
+    margin-right: 2rem;
 
     @media screen and (max-width: $viewport-sm) {
       display: none;
@@ -31,20 +30,20 @@
   }
   &__bar {
     display: inline-flex;
-    list-style: none;
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
 
     @media screen and (max-width: $viewport-sm) {
       flex-wrap: nowrap;
     }
   }
-  &__element{
+  &__element {
     display: inline-flex;
-    white-space: nowrap;
-    margin-right: .2rem;
+    margin-right: 0.2rem;
     padding: 5px 10px;
     font-weight: 600;
+    white-space: nowrap;
 
     &:first-child {
       margin-left: 10px;
@@ -54,48 +53,52 @@
     }
     &-favorite {
       position: relative;
+      font-style: italic;
       background-color: var(--color-brand-secondary);
       border-top-left-radius: var(--radius);
       border-bottom-right-radius: var(--radius);
-      font-style: italic;
       transition: ease-in-out 200ms;
-      &::after {
-        position: absolute;
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 0;
-        top: 0;
-        right: -4px;
-        border-top-right-radius: var(--radius);
-        border-style: solid;
-        border-width: 22px 4px 0 0;
-        border-color: var(--color-brand-secondary) transparent transparent transparent;
-        transition: ease-in-out 200ms;
-      }
-      &::before {
-        position: absolute;
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 0;
-        top: 0;
-        left: -5px;
-        border-bottom-left-radius: var(--radius);
-        border-style: solid;
-        border-width: 0 0 26px 5px;
-        border-color: transparent transparent var(--color-brand-secondary) transparent;
-        transition: ease-in-out 200ms;
-      }
-      &:hover {
-        background-color: var(--color-brand-secondary-light);
-        &::after {
-          border-color: var(--color-brand-secondary-light) transparent transparent transparent;
-        }
-        &::before {
-          border-color: transparent transparent var(--color-brand-secondary-light) transparent;
-        }
-      }
+    }
+    &-favorite::after {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-color: var(--color-brand-secondary) transparent transparent
+        transparent;
+      border-style: solid;
+      border-width: 22px 4px 0 0;
+      border-top-right-radius: var(--radius);
+      transition: ease-in-out 200ms;
+      content: '';
+    }
+    &-favorite::before {
+      position: absolute;
+      top: 0;
+      left: -5px;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent var(--color-brand-secondary)
+        transparent;
+      border-style: solid;
+      border-width: 0 0 26px 5px;
+      border-bottom-left-radius: var(--radius);
+      transition: ease-in-out 200ms;
+      content: '';
+    }
+    &-favorite:hover {
+      background-color: var(--color-brand-secondary-light);
+    }
+    &-favorite:hover &-favorite::after {
+      border-color: var(--color-brand-secondary-light) transparent transparent
+        transparent;
+    }
+    &-favorite:hover &-favorite::before {
+      border-color: transparent transparent var(--color-brand-secondary-light)
+        transparent;
     }
     &-favorite .nav__link {
       color: var(--color-text-for-secondary);

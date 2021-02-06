@@ -3,6 +3,7 @@
 .item {
   display: flex;
   flex-direction: column;
+
   &:last-child {
     margin-right: 0;
   }
@@ -19,21 +20,17 @@
       font-size: 1.5rem;
     }
     &-old {
-      font-size: 1.1rem;
+      margin-left: 0.5rem;
+      color: var(--color-text-primary-lighter);
       font-weight: 100;
-
-      margin-left: .5rem;
+      font-size: 1.1rem;
 
       text-decoration: line-through;
-
-      color: var(--color-text-primary-lighter);
     }
-    &-current, &-old {
-      &::after {
-        font-size: .7em;
-
-        content: '₽';
-      }
+    &-current::after,
+    &-old::after {
+      font-size: 0.7em;
+      content: '₽';
     }
   }
 
@@ -46,9 +43,13 @@
       color: var(--color-text-secondary);
     }
   }
-  :global {
-    .swiper-button-next, .swiper-button-prev {
-      @media screen and (max-width: $viewport-sm) {
+}
+
+@media screen and (max-width: $viewport-sm) {
+  .item {
+    :global {
+      .swiper-button-next,
+      .swiper-button-prev {
         display: none;
       }
     }

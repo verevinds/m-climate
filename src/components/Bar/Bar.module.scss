@@ -5,9 +5,9 @@
   width: 100%;
   &-wrap {
     @media screen and (max-width: $viewport-sm) {
-      box-shadow: 0 0 40px 0px rgb(0,0,0,0.11);
-      padding: 1rem;
       margin-bottom: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 40px 0px rgb(0, 0, 0, 0.11);
     }
   }
   &__title {
@@ -17,8 +17,8 @@
   }
   &__item {
     width: 144px;
-    margin-right: 1rem;
     height: 227px;
+    margin-right: 1rem;
   }
 }
 .disabled {

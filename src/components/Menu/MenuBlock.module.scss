@@ -4,15 +4,15 @@
   flex-direction: column;
 
   margin: 1rem;
-  &__title {
-    font-size: 1.3rem;
-    font-weight: 600;
-  }
-  &__link {
-    padding: .25rem 1rem;
-  }
 
   @media screen and (max-width: $viewport-sm) {
-    margin: .25rem;
+    margin: 0.25rem;
+  }
+  &__title {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  &__link {
+    padding: 0.25rem 1rem;
   }
 }

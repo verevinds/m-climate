@@ -3,8 +3,11 @@
   display: inline-flex;
 
   padding: 2rem 5rem;
-
   background-color: var(--color-brand-primary-lightest);
+
+  @media screen and (max-width: $viewport-sm) {
+    flex-direction: column;
+  }
   &-wrap {
     display: flex;
     justify-content: center;
@@ -28,9 +31,5 @@
     height: 100%;
     margin-right: 1rem;
     margin-left: 1rem;
-  }
-
-  @media screen and (max-width: $viewport-sm) {
-    flex-direction: column;
   }
 }

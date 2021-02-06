@@ -3,17 +3,17 @@
   flex-wrap: wrap-reverse;
 
   padding: 1rem 3rem;
-
   color: var(--color-text-for-secondary);
   background-color: var(--color-brand-secondary);
-  &__contact, &__menu-wrap {
+  &__contact,
+  &__menu-wrap {
     margin: 1rem 3rem;
   }
   &__menu {
     list-style: none;
   }
   &__link {
-    padding: .3rem 0;
+    padding: 0.3rem 0;
     &:first-child {
       padding-top: 0;
     }

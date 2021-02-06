@@ -3,11 +3,10 @@
 
   height: 100%;
   padding: 0;
+  background-color: transparent;
 
   cursor: pointer;
   transition: all ease-in-out 200ms;
-
-  background-color: transparent;
   &:hover {
     color: var(--color-text-secondary);
   }
