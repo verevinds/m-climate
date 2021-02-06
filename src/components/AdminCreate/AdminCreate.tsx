@@ -1,10 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export interface IAdminCreate {}
-
-const AdminCreate: React.FC<IAdminCreate> = () => {
-  return <>ba</>;
+const AdminCreate: React.FC = () => {
+  return <>b</>;
 };
 
 export default React.memo(AdminCreate);
