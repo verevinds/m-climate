@@ -47,7 +47,8 @@
     "build": "next build && next export -o _static",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "eslint --debug ./",
-    "lint:write": "eslint --debug ./ --fix"
+    "lint:write": "eslint --debug ./ --fix",
+    "postinstall": "husky install"
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx}": [
