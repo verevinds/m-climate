@@ -7,59 +7,65 @@ import styles from './LayoutClient.module.scss';
 
 const Layout: React.FC = props => {
   const { isMobile } = useWindowDimensions();
-
+  const { children } = props;
   return (
     <>
       <Header />
       <Slider
-        watchOverflow={true}
-        loop={true}
+        watchOverflow
+        loop
         speed={500}
         effect='fade'
-        autoplay={true}
+        autoplay
         pagination={{ clickable: true }}
       >
         {[
           {
+            id: '1',
             big: '//via.placeholder.com/900x300',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
           {
+            id: '2',
             big: '//via.placeholder.com/900x200',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
           {
+            id: '3',
             big: '//via.placeholder.com/1900x300',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
           {
+            id: '4',
             big: '//via.placeholder.com/1900x300',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
           {
+            id: '5',
             big: '//via.placeholder.com/1900x300',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
           {
+            id: '6',
             big: '//via.placeholder.com/1900x300',
             small: '//via.placeholder.com/375x300',
             title: 'a',
           },
-        ].map((el, index) => (
+        ].map(el => (
           <img
-            key={index}
+            key={el.id}
             src={isMobile ? el.small : el.big}
             className={styles['full-size']}
             alt={el.title}
           />
         ))}
       </Slider>
-      <main className={styles['main']}>{props.children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </>
   );

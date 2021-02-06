@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from '.';
+import type { RootState } from '.';
 
 const admin = createSlice({
   name: 'admin',

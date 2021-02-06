@@ -7,22 +7,22 @@ import styles from './Navigation.module.scss';
 
 const Navigation: React.FC<INavigation> = ({ items, noLocation }) => {
   return (
-    <div className={styles['nav']}>
+    <div className={styles.nav}>
       {!noLocation && (
-        <div className={styles['nav__location']}>
+        <div className={styles.nav__location}>
           <Location />
         </div>
       )}
-      <ul className={styles['nav__bar']}>
-        {items.map(({ name, url, favorite }, index) => (
+      <ul className={styles.nav__bar}>
+        {items.map(({ id, name, url, favorite }, index) => (
           <li
-            key={index}
+            key={id}
             className={cls(
-              styles['nav__element'],
+              styles.nav__element,
               index === 0 && favorite && styles['nav__element-favorite'],
             )}
           >
-            <a href={url} className={styles['nav__link']} title={name}>
+            <a href={url} className={styles.nav__link} title={name}>
               {name}
             </a>
           </li>

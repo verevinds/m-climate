@@ -11,8 +11,8 @@ const MenuBlock: React.FC<IMenuBlock> = ({ items, title }) => {
   return (
     <div className={styles['menu-block']}>
       {title && <span className={styles['menu-block__title']}>{title}</span>}
-      {items.map((el: TItem, index) => (
-        <a key={index} href={el.url} className={styles['menu-block__link']}>
+      {items.map((el: TItem) => (
+        <a key={el.id} href={el.url} className={styles['menu-block__link']}>
           {el.name}
         </a>
       ))}

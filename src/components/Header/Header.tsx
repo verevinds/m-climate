@@ -9,33 +9,33 @@ import styles from './Header.module.scss';
 
 const Header = () => {
   return (
-    <header className={styles['header']}>
-      <div className={styles['header__logo']}>
+    <header className={styles.header}>
+      <div className={styles.header__logo}>
         <img src='//via.placeholder.com/223x45' alt='Логотип' />
       </div>
-      <div className={styles['header__menu']}>
+      <div className={styles.header__menu}>
         <Menu />
       </div>
-      <div className={styles['header__search']}>
+      <div className={styles.header__search}>
         <Search />
       </div>
-      <div className={styles['header__toolbar']}>
-        <a href='#' className={'link-menu'}>
+      <div className={styles.header__toolbar}>
+        <a href='#' className='link-menu'>
           <FontAwesomeIcon icon={faPercent} />
           Акции
         </a>
-        <a href='#' className={'link-menu'}>
+        <a href='#' className='link-menu'>
           <FontAwesomeIcon icon={faHeart} />
           Избранное
         </a>
       </div>
-      <div className={styles['header__nav']}>
+      <div className={styles.header__nav}>
         <Navigation
           items={[
-            { name: 'Кондиционеры', url: '#', favorite: true },
-            { name: 'Монтаж / демонтаж', url: '#' },
-            { name: 'Сервисное обслуживание', url: '#' },
-            { name: 'Подключение бытовой техники', url: '#' },
+            { id: '1', name: 'Кондиционеры', url: '#', favorite: true },
+            { id: '2', name: 'Монтаж / демонтаж', url: '#' },
+            { id: '3', name: 'Сервисное обслуживание', url: '#' },
+            { id: '4', name: 'Подключение бытовой техники', url: '#' },
           ]}
         />
       </div>

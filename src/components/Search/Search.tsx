@@ -5,9 +5,9 @@ import styles from './Search.module.scss';
 
 const Search = () => {
   return (
-    <div className={styles['search']}>
-      <input className={styles['search__input']} />
-      <button type='button' className={styles['search__button']}>
+    <div className={styles.search}>
+      <input className={styles.search__input} />
+      <button type='button' className={styles.search__button}>
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </div>

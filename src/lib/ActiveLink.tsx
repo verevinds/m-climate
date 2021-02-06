@@ -17,7 +17,7 @@ const ActiveLink: React.FC<IActiveLink> = ({
   const { asPath } = useRouter();
   const child = Children.only(children);
   const childClassName = child.props.className || '';
-  const pathname = props.href;
+  const { href: pathname } = props;
 
   let className;
 

@@ -4,7 +4,7 @@ import LayoutAdmin from '@components/Layout/LayoutAdmin';
 const Brand = () => {
   return (
     <LayoutAdmin>
-      <AdminHeader title={'Настройка брендов'} />
+      <AdminHeader title='Настройка брендов' />
     </LayoutAdmin>
   );
 };

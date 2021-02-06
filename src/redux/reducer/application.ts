@@ -1,7 +1,8 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedUrlQuery } from 'querystring';
 
-import { RootState } from '.';
+import type { RootState } from '.';
 
 interface IInitialState {
   context: {

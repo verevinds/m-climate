@@ -9,6 +9,8 @@ import SwiperCore, {
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import styles from './Slider.module.scss';
+
 SwiperCore.use([
   EffectFade,
   Pagination,
@@ -18,13 +20,13 @@ SwiperCore.use([
   Autoplay,
 ]);
 
-import styles from './Slider.module.scss';
-
 const Slider: React.FunctionComponent<Swiper> = props => {
+  const { children } = props;
+
   return (
-    <div className={styles['slider']}>
+    <div className={styles.slider}>
       <Swiper {...props}>
-        {React.Children.map(props.children, child => (
+        {React.Children.map(children, child => (
           <SwiperSlide>{child}</SwiperSlide>
         ))}
       </Swiper>

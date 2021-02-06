@@ -4,27 +4,27 @@ import React from 'react';
 
 import styles from './Bar.module.scss';
 
-interface Bar {
+interface IBar {
   title?: string;
   items: any[];
 }
 
-const Bar: React.FC<Bar> = props => {
+const Bar: React.FC<IBar> = props => {
   const { title, items } = props;
 
   return (
     <div className={styles['bar-wrap']}>
-      {title && <h2 className={styles['bar__title']}>{title}</h2>}
-      <div className={styles['bar']}>
+      {title && <h2 className={styles.bar__title}>{title}</h2>}
+      <div className={styles.bar}>
         <Slider
-          watchOverflow={true}
-          slidesPerView={'auto'}
+          watchOverflow
+          slidesPerView='auto'
           navigation={{
-            disabledClass: styles['disabled'],
+            disabledClass: styles.disabled,
           }}
         >
-          {items.map((el, index) => (
-            <div key={index} className={styles['bar__item']}>
+          {items.map(el => (
+            <div key={el.id} className={styles.bar__item}>
               <Item />
             </div>
           ))}

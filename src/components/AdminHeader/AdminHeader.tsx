@@ -14,17 +14,17 @@ export interface IAdminHeader {
 const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
   const { pathname } = useSelector(selectApplicationContext);
   return (
-    <div className={styles['header']}>
+    <div className={styles.header}>
       <h1>{title}</h1>
-      <div className={styles['header__links']}>
+      <div className={styles.header__links}>
         <ActiveLink
           href={`${pathname}`}
           activeClassName={styles['-active']}
-          exec={true}
+          exec
         >
-          <a className={styles['header__link']}>
+          <a className={styles.header__link}>
             <FontAwesomeIcon icon={faList} />
-            <span className={styles['header__link__text']}>Список</span>
+            <span className={styles.header__link__text}>Список</span>
           </a>
         </ActiveLink>
         <ActiveLink
@@ -32,9 +32,9 @@ const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
           activeClassName={styles['-active']}
           exec={false}
         >
-          <a className={styles['header__link']}>
+          <a className={styles.header__link}>
             <FontAwesomeIcon icon={faPlusCircle} />
-            <span className={styles['header__link__text']}>Создать</span>
+            <span className={styles.header__link__text}>Создать</span>
           </a>
         </ActiveLink>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { useEffect, useRef } from 'react';
 
 const useInterval = (callback: any, delay: any) => {

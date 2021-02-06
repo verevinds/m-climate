@@ -18,10 +18,10 @@ const LayoutAdmin: React.FC = ({ children }) => {
   const handleHide = () => dispatch(setHide());
 
   return (
-    <div className={cls(styles['layout'], isHide && styles['-hide'])}>
-      <div className={styles['layout__sidebar']}>
+    <div className={cls(styles.layout, isHide && styles['-hide'])}>
+      <div className={styles.layout__sidebar}>
         <div className={styles['sidebar__nav-top']}>
-          <div className={styles['sidebar__title']}>
+          <div className={styles.sidebar__title}>
             <p>Навигация</p>
           </div>
           <button
@@ -30,32 +30,43 @@ const LayoutAdmin: React.FC = ({ children }) => {
             className={styles['sidebar__button-hide']}
           />
         </div>
-        <div className={styles['sidebar__main']}>
+        <div className={styles.sidebar__main}>
           {[
             {
+              id: '1',
               name: 'Главная',
               url: '/admin',
               icon: faHome,
               props: { exec: true },
             },
-            { name: 'Бренды', url: '/admin/brand', icon: faTags },
-            { name: 'Товар', url: '/admin/item', icon: faBox },
-          ].map((el, index) => (
+            {
+              id: '2',
+              name: 'Бренды',
+              url: '/admin/brand',
+              icon: faTags,
+            },
+            {
+              id: '3',
+              name: 'Товар',
+              url: '/admin/item',
+              icon: faBox,
+            },
+          ].map(el => (
             <ActiveLink
-              key={index}
+              key={el.id}
               href={el.url}
               activeClassName={styles['-active']}
               {...el.props}
             >
-              <a className={styles['sidebar__link']}>
-                <span className={styles['sidebar__link__text']}>{el.name}</span>
+              <a className={styles.sidebar__link}>
+                <span className={styles.sidebar__link__text}>{el.name}</span>
                 <FontAwesomeIcon icon={el.icon} />
               </a>
             </ActiveLink>
           ))}
         </div>
       </div>
-      <div className={styles['layout__main']}>{children}</div>
+      <div className={styles.layout__main}>{children}</div>
     </div>
   );
 };

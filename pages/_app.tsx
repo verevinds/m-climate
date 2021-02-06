@@ -25,7 +25,7 @@ const MyApp = ({
   const reduxStore = getStore(initialReduxState, headers);
 
   return (
-    <React.Fragment>
+    <>
       <Head>
         <title>MClimate</title>
         <meta charSet='utf-8' />
@@ -39,7 +39,7 @@ const MyApp = ({
       <Provider store={reduxStore}>
         <Component {...pageProps} />
       </Provider>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -52,7 +52,7 @@ MyApp.getInitialProps = async ({ ctx }: AppContext) => {
 
   return {
     initialReduxState: reduxStore.getState(),
-    headers: headers,
+    headers,
   };
 };
 
