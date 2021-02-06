@@ -1,10 +1,14 @@
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import Slider from '@components/Slider/Slider';
-import { isMobile } from 'react-device-detect';
+
+import useWindowDimensions from '@utils/hooks/useWindowDimensions';
+
 import styles from './LayoutClient.module.scss';
 
 const Layout: React.FC = (props) => {
+    const { isMobile } = useWindowDimensions();
+
     return (
         <>
             <Header />

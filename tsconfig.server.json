@@ -40,7 +40,8 @@
             "@server/*": ["server/*"],
             "@pages/*": ["pages/*"],
             "@public/*": ["public/*"],
-            "@lib/*": ["src/lib/*"]
+            "@lib/*": ["src/lib/*"],
+            "@utils/*": ["src/utils/*"]
         }
     },
     "ts-node": { "files": true }

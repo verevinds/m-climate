@@ -18,8 +18,6 @@ const Bar: React.FC<Bar> = (props) => {
                 <Slider
                     watchOverflow={true}
                     slidesPerView={'auto'}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
                     navigation={{
                         disabledClass: styles['disabled'],
                     }}

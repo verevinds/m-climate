@@ -31,7 +31,7 @@ const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
                     </a>
                 </ActiveLink>
                 <ActiveLink
-                    href={`${pathname}?type=new`}
+                    href={`${pathname}?type=create`}
                     activeClassName={styles['-active']}
                     exec={false}
                 >
