@@ -24,20 +24,20 @@ const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
             activeClassName={styles['-active']}
             exec
           >
-            <a className={styles.header__link}>
+            <span className={styles.header__link}>
               <FontAwesomeIcon icon={faList} />
               <span className={styles.header__link__text}>Список</span>
-            </a>
+            </span>
           </ActiveLink>
           <ActiveLink
             href={`${pathname}?type=create`}
             activeClassName={styles['-active']}
             exec={false}
           >
-            <a className={styles.header__link}>
+            <span className={styles.header__link}>
               <FontAwesomeIcon icon={faPlusCircle} />
               <span className={styles.header__link__text}>Создать</span>
-            </a>
+            </span>
           </ActiveLink>
         </div>
       )}
