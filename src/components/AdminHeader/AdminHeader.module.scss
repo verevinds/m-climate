@@ -1,6 +1,7 @@
 @import 'src/scss/global_variables.scss';
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   box-sizing: border-box;
