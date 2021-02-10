@@ -1,3 +1,4 @@
+import AdminHeader from '@components/AdminHeader';
 import { faBox, faHome, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectApplication, setHide } from '@redux/reducer/application';
@@ -8,7 +9,7 @@ import ActiveLink from 'src/lib/ActiveLink';
 
 import styles from './AdminLayout.module.scss';
 
-const AdminLayout: React.FC = ({ children }) => {
+const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
   const dispatch = useDispatch();
 
   const {
@@ -68,7 +69,10 @@ const AdminLayout: React.FC = ({ children }) => {
           ))}
         </div>
       </div>
-      <div className={styles.layout__main}>{children}</div>
+      <div className={styles.layout__main}>
+        <AdminHeader title={title} />
+        {children}
+      </div>
     </div>
   );
 };

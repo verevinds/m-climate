@@ -3,15 +3,29 @@ import Bar from '@components/Bar/Bar';
 import Layout from '@components/Layout/LayoutClient';
 
 const IndexPage = () => {
-  if (!process.browser) return null;
   return (
     <Layout>
-      <Bar title='Популярные' items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
+      <Bar
+        title='Популярные'
+        items={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]}
+        key='1'
+      />
       <Bar
         title='Кондиционеры'
-        items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+        items={[
+          { id: 1 },
+          { id: 2 },
+          { id: 3 },
+          { id: 4 },
+          { id: 5 },
+          { id: 6 },
+          { id: 7 },
+          { id: 8 },
+          { id: 9 },
+        ]}
+        key='2'
       />
-      <Bar title='Услуги' items={[1, 2, 3]} />
+      <Bar title='Услуги' items={[{ id: 1 }, { id: 2 }, { id: 3 }]} key='3' />
       <Advantage />
     </Layout>
   );
