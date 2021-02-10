@@ -19,6 +19,11 @@
       margin-left: 0;
     }
   }
+  &__body {
+    box-sizing: border-box;
+    margin: 1rem 70px;
+    transition: all ease-in 300ms;
+  }
 }
 
 .sidebar {

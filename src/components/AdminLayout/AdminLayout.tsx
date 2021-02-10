@@ -21,10 +21,10 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
   const handleHide = () => dispatch(setHide());
 
   return (
-    <div className={cls(styles.layout, isHide && styles['-hide'])}>
-      <div className={styles.layout__sidebar}>
+    <div className={cls(styles['layout'], isHide && styles['-hide'])}>
+      <div className={styles['layout__sidebar']}>
         <div className={styles['sidebar__nav-top']}>
-          <div className={styles.sidebar__title}>
+          <div className={styles['sidebar__title']}>
             <p>Навигация</p>
           </div>
           <button
@@ -33,7 +33,7 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
             className={styles['sidebar__button-hide']}
           />
         </div>
-        <div className={styles.sidebar__main}>
+        <div className={styles['sidebar__main']}>
           {[
             {
               id: '1',
@@ -61,17 +61,17 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
               activeClassName={styles['-active']}
               {...el.props}
             >
-              <a className={styles.sidebar__link}>
-                <span className={styles.sidebar__link__text}>{el.name}</span>
+              <a className={styles['sidebar__link']}>
+                <span className={styles['sidebar__link__text']}>{el.name}</span>
                 <FontAwesomeIcon icon={el.icon} />
               </a>
             </ActiveLink>
           ))}
         </div>
       </div>
-      <div className={styles.layout__main}>
+      <div className={styles['layout__main']}>
         <AdminHeader title={title} />
-        {children}
+        <div className={styles['layout__body']}>{children}</div>
       </div>
     </div>
   );
