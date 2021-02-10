@@ -39,4 +39,9 @@ require('./router/brand')(app);
 //         res.send(user);
 //     });
 // })
-app.listen(process.env.PORT || 8081);
+const PORT = process.env.PORT || 8081;
+
+app.listen(PORT, () => {
+      console.log("Server is up and running on port number " + PORT);
+
+});

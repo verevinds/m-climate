@@ -12,32 +12,35 @@ export interface IAdminHeader {
 }
 
 const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
-  const { pathname } = useSelector(selectApplicationContext);
+  const { pathname, name } = useSelector(selectApplicationContext);
+  const isMainPage = pathname === `/${name}`;
   return (
     <div className={styles.header}>
       <h1>{title}</h1>
-      <div className={styles.header__links}>
-        <ActiveLink
-          href={`${pathname}`}
-          activeClassName={styles['-active']}
-          exec
-        >
-          <a className={styles.header__link}>
-            <FontAwesomeIcon icon={faList} />
-            <span className={styles.header__link__text}>Список</span>
-          </a>
-        </ActiveLink>
-        <ActiveLink
-          href={`${pathname}?type=create`}
-          activeClassName={styles['-active']}
-          exec={false}
-        >
-          <a className={styles.header__link}>
-            <FontAwesomeIcon icon={faPlusCircle} />
-            <span className={styles.header__link__text}>Создать</span>
-          </a>
-        </ActiveLink>
-      </div>
+      {!isMainPage && (
+        <div className={styles.header__links}>
+          <ActiveLink
+            href={`${pathname}`}
+            activeClassName={styles['-active']}
+            exec
+          >
+            <a className={styles.header__link}>
+              <FontAwesomeIcon icon={faList} />
+              <span className={styles.header__link__text}>Список</span>
+            </a>
+          </ActiveLink>
+          <ActiveLink
+            href={`${pathname}?type=create`}
+            activeClassName={styles['-active']}
+            exec={false}
+          >
+            <a className={styles.header__link}>
+              <FontAwesomeIcon icon={faPlusCircle} />
+              <span className={styles.header__link__text}>Создать</span>
+            </a>
+          </ActiveLink>
+        </div>
+      )}
     </div>
   );
 };

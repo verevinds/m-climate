@@ -6,13 +6,14 @@ import type { RootState } from '.';
 
 interface IInitialState {
   context: {
+    name: string;
     pathname: string;
     query: ParsedUrlQuery;
   };
 }
 
 const initialState: IInitialState = {
-  context: { pathname: '', query: {} },
+  context: { name: '', pathname: '', query: {} },
 };
 
 const application = createSlice({
@@ -23,7 +24,9 @@ const application = createSlice({
       state,
       { payload }: PayloadAction<{ pathname: string; query: ParsedUrlQuery }>,
     ) => {
-      state.context = payload;
+      const name = payload.pathname.split('/')[1];
+
+      state.context = { ...payload, name };
     },
   },
 });

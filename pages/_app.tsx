@@ -47,7 +47,18 @@ MyApp.getInitialProps = async ({ ctx }: AppContext) => {
   const reduxStore = getStore({});
   const { pathname, query } = ctx;
 
-  reduxStore.dispatch(setContext({ pathname, query }));
+  const promise = [
+    reduxStore.dispatch(setContext({ pathname, query })),
+    // reduxStore.dispatch(getBrands()),
+  ];
+  fetch('http://m-climate_api_1.m-climate_local:8081/api/brand')
+    .then(e => {
+      console.log(e);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+  await Promise.all(promise);
 
   return {
     initialReduxState: reduxStore.getState(),
