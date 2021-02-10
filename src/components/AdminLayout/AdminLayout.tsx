@@ -1,6 +1,6 @@
 import { faBox, faHome, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { selectAdmin, setHide } from '@redux/reducer/admin';
+import { selectApplication, setHide } from '@redux/reducer/application';
 import cls from 'classnames';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,8 +12,10 @@ const AdminLayout: React.FC = ({ children }) => {
   const dispatch = useDispatch();
 
   const {
-    sideBar: { isHide },
-  } = useSelector(selectAdmin);
+    admin: {
+      sideBar: { isHide },
+    },
+  } = useSelector(selectApplication);
 
   const handleHide = () => dispatch(setHide());
 

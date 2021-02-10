@@ -3,6 +3,7 @@ import '@src/scss/styles.scss';
 import { getStore } from '@redux/index';
 import { RootState } from '@redux/reducer';
 import { setContext } from '@redux/reducer/application';
+import { getBrands } from '@redux/reducer/brand';
 import { IncomingHttpHeaders } from 'http';
 import type { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
@@ -49,15 +50,9 @@ MyApp.getInitialProps = async ({ ctx }: AppContext) => {
 
   const promise = [
     reduxStore.dispatch(setContext({ pathname, query })),
-    // reduxStore.dispatch(getBrands()),
+    reduxStore.dispatch(getBrands()) as unknown,
   ];
-  fetch('http://m-climate_api_1.m-climate_local:8081/api/brand')
-    .then(e => {
-      console.log(e);
-    })
-    .catch(e => {
-      console.log(e);
-    });
+
   await Promise.all(promise);
 
   return {

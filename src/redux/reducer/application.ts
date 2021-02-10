@@ -10,10 +10,20 @@ interface IInitialState {
     pathname: string;
     query: ParsedUrlQuery;
   };
+  admin: {
+    sideBar: {
+      isHide: boolean;
+    };
+  };
 }
 
 const initialState: IInitialState = {
   context: { name: '', pathname: '', query: {} },
+  admin: {
+    sideBar: {
+      isHide: false,
+    },
+  },
 };
 
 const application = createSlice({
@@ -28,6 +38,9 @@ const application = createSlice({
 
       state.context = { ...payload, name };
     },
+    setHide: state => {
+      state.admin.sideBar.isHide = !state.admin.sideBar.isHide;
+    },
   },
 });
 
@@ -35,6 +48,6 @@ export const selectApplication = (state: RootState) => state.application;
 export const selectApplicationContext = (state: RootState) =>
   state.application.context;
 
-export const { setContext } = application.actions;
+export const { setContext, setHide } = application.actions;
 
 export default application.reducer;
