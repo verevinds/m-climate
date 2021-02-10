@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { Action } from 'redux';
 import {
@@ -16,6 +17,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import rootReducer from './reducer';
 
+let store;
 const persistConfig = {
   key: 'root',
   storage,
@@ -24,10 +26,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const initStore = (preloadedState = {}) => {
-  const store = configureStore({
-    reducer: persistedReducer,
-    preloadedState,
+function makeStore(initialState: typeof persistedReducer = persistedReducer) {
+  return configureStore({
+    reducer: initialState,
     devTools: true,
     middleware: getDefaultMiddleware({
       immutableCheck: false,
@@ -36,20 +37,38 @@ const initStore = (preloadedState = {}) => {
       },
     }),
   });
+}
+export const initializeStore = (preloadedState: typeof persistedReducer) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  // eslint-disable-next-line no-underscore-dangle
+  let _store = store ?? makeStore(preloadedState);
 
-  const storeWithPersist = {
-    ...store,
-    persist: process.browser && persistStore(store),
-  };
+  // After navigating to a page with an initial Redux state, merge that state
+  // with the current state in the store, and create a new store
+  if (preloadedState && store) {
+    _store = makeStore({
+      ...store.getState(),
+      ...preloadedState,
+    });
+    // Reset the current store
+    store = undefined;
+  }
 
-  return storeWithPersist;
+  // For SSG and SSR always create a new store
+  if (typeof window === 'undefined') return _store;
+  // Create the store once in the client
+  if (!store) store = _store;
+
+  return _store;
 };
-
-export type StoreWithPersist = ReturnType<typeof initStore>;
+export function useStore(initialState) {
+  const store = useMemo(() => initializeStore(initialState), [initialState]);
+  return store;
+}
+export type StoreWithPersist = ReturnType<typeof store>;
 export type RootState = ReturnType<typeof rootReducer>;
 
 export type AppDispatch = StoreWithPersist['dispatch'];
-export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export type ThunkActionWithApi<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
@@ -67,12 +86,3 @@ export type AppThunk<R = void, T = string> = ThunkActionWithApi<
 export type AppThunkAction<ArgumentType = undefined> = (
   ...arg: ArgumentType[]
 ) => AppThunk<Promise<void>>;
-
-export const getStore = (preloadedState = {}): StoreWithPersist => {
-  // Always make a new store if server, otherwise state is shared between requests
-  if (!process.browser) {
-    return initStore(preloadedState);
-  }
-
-  return initStore(preloadedState);
-};

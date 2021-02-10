@@ -1,14 +1,14 @@
 import '@src/scss/styles.scss';
 
-import { getStore } from '@redux/index';
+import { useStore } from '@redux/index';
 import { RootState } from '@redux/reducer';
-import { setContext } from '@redux/reducer/application';
-import { getBrands } from '@redux/reducer/brand';
 import { IncomingHttpHeaders } from 'http';
-import type { AppContext, AppInitialProps, AppProps } from 'next/app';
+import type { AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export type AppInitialPropsWithRedux = AppInitialProps &
   AppProps & {
@@ -20,10 +20,11 @@ export type AppInitialPropsWithRedux = AppInitialProps &
 const MyApp = ({
   Component,
   pageProps,
-  initialReduxState,
 }: AppInitialPropsWithRedux): React.ReactNode => {
-  const reduxStore = getStore(initialReduxState);
-
+  const store = useStore(pageProps.initialReduxState);
+  const persistor = persistStore(store, {}, function () {
+    persistor.persist();
+  });
   return (
     <>
       <Head>
@@ -36,29 +37,13 @@ const MyApp = ({
           rel='preload'
         />
       </Head>
-      <Provider store={reduxStore}>
-        <Component {...pageProps} />
+      <Provider store={store}>
+        <PersistGate loading={<div>loading</div>} persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
       </Provider>
     </>
   );
-};
-
-MyApp.getInitialProps = async ({ ctx }: AppContext) => {
-  const headers = ctx.req?.headers ?? {};
-  const reduxStore = getStore({});
-  const { pathname, query } = ctx;
-
-  const promise = [
-    reduxStore.dispatch(setContext({ pathname, query })),
-    reduxStore.dispatch(getBrands()) as unknown,
-  ];
-
-  await Promise.all(promise);
-
-  return {
-    initialReduxState: reduxStore.getState(),
-    headers,
-  };
 };
 
 export default MyApp;
