@@ -1,5 +1,8 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { useMemo } from 'react';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { Action } from 'redux';
 import {
   FLUSH,
@@ -22,12 +25,13 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-export type RootState = typeof rootReducer;
+export type RootState = ReturnType<typeof rootReducer>;
 export type RootStateWithPirsist = typeof persistedReducer;
 
-const initStore = (preloadedState: RootStateWithPirsist = persistedReducer) => {
+export const initStore = (preloadedState = {}) => {
   return configureStore({
-    reducer: preloadedState,
+    reducer: persistedReducer,
+    preloadedState,
     devTools: true,
     middleware: getDefaultMiddleware({
       immutableCheck: false,
@@ -37,10 +41,6 @@ const initStore = (preloadedState: RootStateWithPirsist = persistedReducer) => {
     }),
   });
 };
-export function useStore(initialState: RootStateWithPirsist) {
-  const store = useMemo(() => initStore(initialState), [initialState]);
-  return store;
-}
 
 export type ThunkActionWithApi<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
@@ -55,6 +55,16 @@ export type AppThunk<R = void, T = string> = ThunkActionWithApi<
   Action<T>
 >;
 
-export type AppThunkAction<ArgumentType = undefined> = (
-  ...arg: ArgumentType[]
-) => AppThunk<Promise<void>>;
+// export type AppThunkAction<ArgumentType = undefined> = (
+//   ...arg: ArgumentType[]
+// ) => AppThunk<Promise<void>>;
+export type AppThunkAction<T> = PayloadAction<
+  T,
+  string,
+  {
+    arg: void;
+    requestId: string;
+    requestStatus: 'fulfilled';
+  },
+  never
+>;

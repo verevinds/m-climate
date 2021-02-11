@@ -1,16 +1,16 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import type { RootState } from '.';
+import type { AppThunkAction, RootState } from '..';
 
 export type Brand = { _id: string; name: string };
 export type BrandReducer = {
-  list: Brand[] | null;
+  list: Brand[];
 };
 
 const initialState: BrandReducer = {
-  list: null,
+  list: [],
 };
 
 export const getBrands = createAsyncThunk('admin/testThunk', async () => {
@@ -33,8 +33,9 @@ const admin = createSlice({
   extraReducers: builder => {
     builder.addCase(
       getBrands.fulfilled,
-      (state, { payload }: PayloadAction<Brand[]>) => {
-        state.list = payload;
+      (state, action: AppThunkAction<Brand[]>) => {
+        console.log('getBrands.fulfilled', state.list);
+        state.list = action.payload;
       },
     );
   },

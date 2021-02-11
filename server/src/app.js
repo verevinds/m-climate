@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://172.23.0.4:27017/');
+mongoose.connect('mongodb://m-climate_mongo_1.m-climate_local:27017/');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function (callback) {
