@@ -1,9 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-underscore-dangle */
-//    /lib/with-redux-store.js
 import { initStore } from '@redux/index';
 import React from 'react';
 

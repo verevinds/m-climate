@@ -41,7 +41,7 @@ export const initStore = (preloadedState = {}) => {
     }),
   });
 };
-
+export type StoreWithPersist = ReturnType<typeof initStore>;
 export type ThunkActionWithApi<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
   getState: () => S,

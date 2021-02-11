@@ -1,6 +1,6 @@
 import { faList, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ActiveLink from '@src/lib/ActiveLink';
+import ActiveLink from '@src/utils/ActiveLink';
 import { useRouter } from 'next/router';
 import { memo } from 'react';
 

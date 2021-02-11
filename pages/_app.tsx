@@ -1,6 +1,7 @@
 import '@src/scss/styles.scss';
 
 import withReduxStore from '@lib/with-redux-store';
+import { StoreWithPersist } from '@redux/index';
 import type { AppInitialProps, AppProps } from 'next/app';
 import App from 'next/app';
 import Head from 'next/head';
@@ -9,12 +10,17 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
-export type AppInitialPropsWithRedux = AppInitialProps &
-  AppProps & { err?: Error };
+export type AppInitialPropsWithRedux = AppProps &
+  AppInitialProps & {
+    err?: Error;
+    reduxStore: StoreWithPersist;
+  };
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, reduxStore }: any = this.props;
+    const { Component, pageProps, reduxStore } = this
+      .props as AppInitialPropsWithRedux;
+
     const persistor = persistStore(reduxStore, {}, function () {
       persistor.persist();
     });

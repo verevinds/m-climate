@@ -2,10 +2,10 @@ import AdminHeader from '@components/AdminHeader';
 import { faBox, faHome, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectApplication, setHide } from '@redux/reducer/application';
+import ActiveLink from '@src/utils/ActiveLink';
 import cls from 'classnames';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ActiveLink from 'src/lib/ActiveLink';
 
 import styles from './adminlayout.module.scss';
 
