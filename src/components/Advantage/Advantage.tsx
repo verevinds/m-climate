@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './Advantage.module.scss';
+import styles from './advantage.module.scss';
 
 const Advantage = () => {
   return (

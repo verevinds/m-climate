@@ -1,7 +1,7 @@
 import { TItem } from '@src/type/link';
 import React from 'react';
 
-import styles from './MenuBlock.module.scss';
+import styles from './menublock.module.scss';
 
 interface IMenuBlock {
   title?: string;

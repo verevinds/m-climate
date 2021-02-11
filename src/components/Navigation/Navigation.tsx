@@ -3,7 +3,7 @@ import cls from 'classnames';
 import React from 'react';
 
 import { INavigation } from './interface';
-import styles from './Navigation.module.scss';
+import styles from './navigation.module.scss';
 
 const Navigation: React.FC<INavigation> = ({ items, noLocation }) => {
   return (

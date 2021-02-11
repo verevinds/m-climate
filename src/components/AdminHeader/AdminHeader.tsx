@@ -4,7 +4,7 @@ import ActiveLink from '@src/lib/ActiveLink';
 import { useRouter } from 'next/router';
 import { memo } from 'react';
 
-import styles from './AdminHeader.module.scss';
+import styles from './adminheader.module.scss';
 
 export interface IAdminHeader {
   title: string;
@@ -13,7 +13,7 @@ export interface IAdminHeader {
 const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
   const { pathname } = useRouter();
   const isMainPage = pathname.split('/').length <= 2;
-  console.log(isMainPage);
+
   return (
     <div className={styles.header}>
       <h1>{title}</h1>

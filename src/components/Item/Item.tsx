@@ -1,4 +1,4 @@
-import styles from './Item.module.scss';
+import styles from './item.module.scss';
 
 const BarItem = () => {
   return (

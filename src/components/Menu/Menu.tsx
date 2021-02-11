@@ -1,6 +1,6 @@
 import Location from '@components/Location/Location';
 
-import styles from './Menu.module.scss';
+import styles from './menu.module.scss';
 import MenuBlock from './MenuBlock';
 
 const Menu = () => {

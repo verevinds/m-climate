@@ -2,7 +2,7 @@ import Item from '@components/Item/Item';
 import Slider from '@components/Slider/Slider';
 import React from 'react';
 
-import styles from './Bar.module.scss';
+import styles from './bar.module.scss';
 
 interface IBar {
   title?: string;

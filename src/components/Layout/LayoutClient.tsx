@@ -3,7 +3,7 @@ import Header from '@components/Header/Header';
 import Slider from '@components/Slider/Slider';
 import useWindowDimensions from '@utils/hooks/useWindowDimensions';
 
-import styles from './LayoutClient.module.scss';
+import styles from './layoutclient.module.scss';
 
 const Layout: React.FC = props => {
   const { isMobile } = useWindowDimensions();

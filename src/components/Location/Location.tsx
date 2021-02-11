@@ -1,7 +1,7 @@
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './Location.module.scss';
+import styles from './location.module.scss';
 
 const Location = () => {
   return (

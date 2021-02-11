@@ -7,7 +7,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ActiveLink from 'src/lib/ActiveLink';
 
-import styles from './AdminLayout.module.scss';
+import styles from './adminlayout.module.scss';
 
 const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
   const dispatch = useDispatch();

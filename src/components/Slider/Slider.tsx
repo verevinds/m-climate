@@ -9,7 +9,7 @@ import SwiperCore, {
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import styles from './Slider.module.scss';
+import styles from './slider.module.scss';
 
 SwiperCore.use([
   EffectFade,
