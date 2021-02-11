@@ -34,7 +34,6 @@ const admin = createSlice({
     builder.addCase(
       getBrands.fulfilled,
       (state, action: AppThunkAction<Brand[]>) => {
-        console.log('getBrands.fulfilled', state.list);
         state.list = action.payload;
       },
     );
