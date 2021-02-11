@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import Api from '@src/utils/Api';
 
 import type { AppThunkAction, RootState } from '..';
 
@@ -15,9 +15,7 @@ const initialState: BrandReducer = {
 
 export const getBrands = createAsyncThunk('admin/testThunk', async () => {
   try {
-    const { data } = await axios(
-      'http://m-climate_api_1.m-climate_local:8081/api/brand',
-    );
+    const { data } = await Api().get('/api/brand');
     return data;
   } catch (e) {
     console.error(e);

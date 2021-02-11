@@ -1,4 +1,5 @@
-import AdminCreateBrand from '@components/AdminCreateBrand';
+import AdminBrandCreate from '@components/AdminBrandCreate';
+import AdminBrandList from '@components/AdminBrandList';
 import LayoutAdmin from '@components/AdminLayout';
 import { AppInitialPropsWithRedux } from '@pages/_app';
 import { getBrands } from '@redux/reducer/brand';
@@ -10,7 +11,8 @@ const Brand = () => {
 
   return (
     <LayoutAdmin title='Настройка брендов'>
-      {isPageCreate && <AdminCreateBrand />}
+      {isPageCreate && <AdminBrandCreate />}
+      <AdminBrandList />
     </LayoutAdmin>
   );
 };
