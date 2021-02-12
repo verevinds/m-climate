@@ -1,23 +1,26 @@
+import { addBrand, Brand } from '@redux/reducer/brand';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 type Inputs = {
-  example: string;
-  exampleRequired: string;
+  name: string;
 };
 
 const AdminCreate: React.FC = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm<Inputs>();
 
-  const onSubmit = async (data: any) => {
-    console.log(data);
+  const onSubmit = async (brand: Brand) => {
+    dispatch(addBrand(brand));
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input name='example' defaultValue='test' ref={register} />
-
-      <input name='exampleRequired' ref={register({ required: true })} />
-      {errors.exampleRequired && <span>This field is required</span>}
+      <input id='name' name='name' ref={register({ required: true })} />
+      {errors.name && (
+        <label htmlFor='name'>Поле обезательное для заполнения</label>
+      )}
 
       <input type='submit' />
     </form>

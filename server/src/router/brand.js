@@ -4,6 +4,7 @@ module.exports = (app) => {
 
   router.get('/', brand.find)
   router.post('/', brand.create)
+  router.delete('/:id', brand.delete)
 
   app.use('/api/brand', router)
 }
