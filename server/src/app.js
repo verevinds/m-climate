@@ -3,8 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-var busboy = require('connect-busboy');
-var path = require('path');
+const upload = require('express-fileupload');
+const path = require('path');
+require('dotenv').config();
+
+global.__basedir = __dirname;
 
 mongoose.connect('mongodb://m-climate_mongo_1.m-climate_local:27017/');
 const db = mongoose.connection;
@@ -14,13 +17,11 @@ db.once('open', function (callback) {
 });
 
 const app = express();
+app.use(express.static(path.resolve('./public/')));
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
-
-
-app.use(busboy());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(upload());
 
 require('./router/post')(app);
 require('./router/brand')(app);

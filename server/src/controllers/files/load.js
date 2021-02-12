@@ -1,19 +1,31 @@
-var fs = require('fs-extra');
 
-exports.load = (req, res) => {
-    console.log('file load')
-       var fstream;
-        req.pipe(req.busboy);
-        req.busboy.on('file', function (fieldname, file, filename) {
-            console.log("Uploading: " + filename);
-            console.log({__dirname})
-            //Path where image will be uploaded
-            fstream = fs.createWriteStream(__dirname + '/img/' + filename);
-            file.pipe(fstream);
-            fstream.on('close', function () {
-                console.log("Upload Finished of " + filename);
-                res.redirect('back');           //where to go next
-            });
+const path = require('path');
+
+exports.load = (req, res, next) => {
+        console.log(req.files)
+    if (req.files) {
+        let file = req.files.file;
+        console.log(typeof file)
+        let uuid = Math.random(4000);
+        let filename = file.name;
+        let name = `${filename}`;
+
+        file.mv(`${'./public/uploads/'}${name}`, (err) => {
+            if (err) {
+                res.send('error occured');
+            } else {
+                res.send({
+                    message: `Файл ${filename} успешно загружен`,
+                    url: `${process.env.URL_SERVER}:8081/uploads/${name}`,
+                    filename,
+                    wasFile: true,
+                });
+            }
         });
-
-}
+    } else {
+        res.send({
+        message: `Файл отсутствует`,
+        wasFile: false,
+        });
+    }
+};
