@@ -18,27 +18,8 @@ app.use(cors());
 
 require('./router/post')(app);
 require('./router/brand')(app);
+require('./router/product')(app);
 
-// app.get('/users', (req, res) => {
-//     User.find({}, function(err, user){
-
-//         if(err) return console.log(err);
-//         res.send(user)
-//     });
-//   })
-
-// app.post('/users', (req, res) => {
-
-//     if(!req.body) return res.sendStatus(400);
-
-//     const name = req.body.name;
-//     const user = new User({name});
-
-//     user.save(function(err){
-//         if(err) return console.log(err);
-//         res.send(user);
-//     });
-// })
 const PORT = process.env.PORT || 8081;
 
 app.listen(PORT, () => {
