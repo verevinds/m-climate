@@ -11,7 +11,7 @@
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "moment": "^2.29.1",
+    "luxon": "^1.25.0",
     "next": "^10.0.6",
     "next-redux-wrapper": "^6.0.2",
     "react": "^17.0.1",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
+    "@types/luxon": "^1.25.1",
     "@types/react-redux": "^7.1.16",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",

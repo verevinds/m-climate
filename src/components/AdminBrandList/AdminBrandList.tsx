@@ -2,7 +2,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Brand } from '@redux/reducer/brand';
 import { deleteBrand, selectBrand } from '@redux/reducer/brand';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -28,7 +28,9 @@ const AdminBrandList = () => {
           <React.Fragment key={el['_id']}>
             <span className={styles['name']}>{el.name}</span>
             <span className={styles['date']}>
-              {moment(el.createdAt).format('DD.MM.YY HH:mm')}
+              {DateTime.fromISO(el.createdAt)
+                .setLocale('ru')
+                .toFormat('dd.MM.yy HH:mm')}
             </span>
             <button
               type='button'
