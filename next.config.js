@@ -1,9 +1,9 @@
 //@ts-ignore
 module.exports = {
   env: {
-    api: process.env.__API__,
-    apiProduction: process.env.__API_PRODUCTION__,
-    apiServer: process.env.__API_SERVER__,
-    apiServerProduction: process.env.__API_SERVER_PRODUCTION__,
+    api: process.env.API,
+    apiProduction: process.env.API_PRODUCTION,
+    apiServer: process.env.API_SERVER,
+    apiServerProduction: process.env.API_SERVER_PRODUCTION,
   },
 }
