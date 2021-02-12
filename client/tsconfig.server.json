@@ -36,20 +36,19 @@
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
         "paths": {
-            "@api/*": ["./client/src/api/*"],
-            "@redux/*": ["./client/src/redux/*"],
-            "@store/*": ["./client/src/store/*"],
-            "@uikit/*": ["./client/src/components/UIKit/*"],
-            "@components/*": ["./client/src/components/*"],
-            "@src/*": ["./client/src/*"],
-            "@server/*": ["./client/server/*"],
-            "@pages/*": ["./client/pages/*"],
-            "@public/*": ["./client/public/*"],
-            "@lib/*": ["./client/src/lib/*"],
+            "@api/*": ["./src/api/*"],
+            "@redux/*": ["./src/redux/*"],
+            "@store/*": ["./src/store/*"],
+            "@uikit/*": ["./src/components/UIKit/*"],
+            "@components/*": ["./src/components/*"],
+            "@src/*": ["./src/*"],
+            "@pages/*": ["./pages/*"],
+            "@public/*": ["./public/*"],
+            "@lib/*": ["./src/lib/*"],
             "@type/*": [
-                "./client/src/type/*"
+                "./src/type/*"
             ],
-            "@utils/*": ["./client/src/utils/*"]
+            "@utils/*": ["./src/utils/*"]
         }
     },
     "ts-node": { "files": true }
