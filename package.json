@@ -17,10 +17,12 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "npm run prettier:fix",
-      "npm run eslint:fix"
+      "npm run eslint:fix",
+      "git add ."
     ],
     "*.(css|scss)": [
-      "npm run stylelint:fix"
+      "npm run stylelint:fix",
+      "git add ."
     ]
   },
   "husky": {
