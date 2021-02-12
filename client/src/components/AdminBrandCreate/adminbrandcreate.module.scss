@@ -5,16 +5,14 @@
   box-sizing: border-box;
 }
 .brand {
-  overflow: hidden;
   flex-direction: column;
 
   box-sizing: border-box;
   margin-bottom: 1rem;
   padding: 1rem 0;
-
-  animation: show linear 300ms;
-
+  overflow: hidden;
   border-bottom: 1px solid var(--color-divider);
+  animation: show linear 300ms;
 }
 .form {
   animation: show-form linear 300ms;
@@ -29,7 +27,6 @@
   height: 40px;
   &__input {
     padding: 0.25rem 0.75rem;
-
     border: 2px solid var(--color-brand-primary);
     border-radius: 3px;
     &:focus {
@@ -37,13 +34,10 @@
     }
   }
   &__label {
-    font-size: 0.8rem;
-
     margin-top: 1px;
-
-    animation: vision ease-in-out 200ms;
-
     color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    animation: vision ease-in-out 200ms;
   }
 }
 .button {

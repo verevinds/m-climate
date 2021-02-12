@@ -20,7 +20,7 @@
       "npm run eslint:fix",
       "git add ."
     ],
-    "*.(css|scss)": [
+    "*.{css,scss}": [
       "npm run stylelint:fix",
       "git add ."
     ]

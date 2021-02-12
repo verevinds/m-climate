@@ -1,10 +1,10 @@
 .item {
   display: grid;
-  align-items: center;
 
   grid-row-gap: 10px;
-  grid-template-columns: 1fr 1fr 53px;
   grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 53px;
+  align-items: center;
 }
 .button {
   justify-content: center;
@@ -13,9 +13,9 @@
   width: 40px;
   height: 40px;
   padding: 0.9rem;
+  background-color: transparent;
 
   border: 1px solid var(--color-divider);
-  background-color: transparent;
   &:hover {
     background-color: var(--color-brand-primary-lighter);
   }
