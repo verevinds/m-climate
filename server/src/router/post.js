@@ -1,10 +1,10 @@
-module.exports = (app) => {
-    const post = require('../controllers/post');
+module.exports = app => {
+  const post = require('../controllers/post');
 
-    const router = require('express').Router();
+  const router = require('express').Router();
 
-    router.get('/', post.find);
-    router.post('/', post.create);
+  router.get('/', post.find);
+  router.post('/', post.create);
 
-    app.use('/post', router);
+  app.use('/post', router);
 };

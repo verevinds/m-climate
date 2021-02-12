@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import Location from '@components/Location/Location';
+import cls from 'classnames';
 import React from 'react';
 
 import { INavigation } from './interface';
