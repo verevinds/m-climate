@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install:app": "npm install",
     "dev": "kill-port 1111 && nodemon src/app.js"
   },
   "keywords": [],

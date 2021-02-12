@@ -1,9 +1,9 @@
-import Menu from '@components/Menu/Menu';
-import Navigation from '@components/Navigation/Navigation';
-import Search from '@components/Search/Search';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Menu from '@components/Menu/Menu';
+import Navigation from '@components/Navigation/Navigation';
+import Search from '@components/Search/Search';
 
 import styles from './header.module.scss';
 

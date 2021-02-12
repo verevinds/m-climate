@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RestDelete } from '@src/type/api';
-import Api from '@src/utils/Api';
 import type { AxiosResponse } from 'axios';
+import { RestDelete } from '@type/api';
+import Api from '@utils/Api';
 
 import type { RootState } from '..';
 

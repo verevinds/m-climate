@@ -1,4 +1,4 @@
-import { TItem } from '@src/type/link';
+import { TItem } from '@type/link';
 import React from 'react';
 
 import styles from './menublock.module.scss';

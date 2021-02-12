@@ -1,7 +1,7 @@
+import { AppInitialPropsWithRedux } from '@pages/_app';
 import AdminBrandCreate from '@components/AdminBrandCreate';
 import AdminBrandList from '@components/AdminBrandList';
 import LayoutAdmin from '@components/AdminLayout';
-import { AppInitialPropsWithRedux } from '@pages/_app';
 import { getBrands } from '@redux/reducer/brand';
 
 const Brand = () => {

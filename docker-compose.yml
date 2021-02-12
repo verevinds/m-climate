@@ -10,7 +10,10 @@ services:
       dockerfile: ./Dockerfile
     command: npm run dev
     volumes:
-      - ./server:/app/server
+      - ./server:/app
+      - /app/node_modules
+    env_file:
+      - ./server/.env
     depends_on:
       - mongo
     networks:
@@ -21,10 +24,14 @@ services:
     ports:
       - 3000:3000
     build:
-      context: ./
+      context: ./client
       dockerfile: ./Dockerfile
     volumes:
-      - ./:/app/
+      - ./client:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - ./client/.env
     depends_on:
       - api
     networks:

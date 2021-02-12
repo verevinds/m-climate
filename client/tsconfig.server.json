@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        // "module": "commonjs",
         "outDir": "dist",
-        "target": "es2017",
+        // "target": "es2017",
         "jsx": "preserve",
         "lib": ["DOM", "DOM.Iterable", "ES2017", "ESNext"],
         "baseUrl": ".",
@@ -18,9 +18,14 @@
         "preserveConstEnums": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
-        "isolatedModules": false,
-        "noEmit": false,
+        // "noEmit": false,
         "sourceMap": true,
+            "alwaysStrict": true,
+            "isolatedModules": true,
+            "module": "esnext",
+            "noEmit": true,
+            "noFallthroughCasesInSwitch": true,
+            "target": "esnext",
         "plugins": [
             {
                 "transform": "@zerollup/ts-transform-paths"
@@ -31,17 +36,20 @@
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
         "paths": {
-            "@api/*": ["src/api/*"],
-            "@redux/*": ["src/redux/*"],
-            "@store/*": ["src/store/*"],
-            "@uikit/*": ["src/components/UIKit/*"],
-            "@components/*": ["src/components/*"],
-            "@src/*": ["src/*"],
-            "@server/*": ["server/*"],
-            "@pages/*": ["pages/*"],
-            "@public/*": ["public/*"],
-            "@lib/*": ["src/lib/*"],
-            "@utils/*": ["src/utils/*"]
+            "@api/*": ["./src/api/*"],
+            "@redux/*": ["./src/redux/*"],
+            "@store/*": ["./src/store/*"],
+            "@uikit/*": ["./src/components/UIKit/*"],
+            "@components/*": ["./src/components/*"],
+            "@src/*": ["./src/*"],
+            "@server/*": ["./server/*"],
+            "@pages/*": ["./pages/*"],
+            "@public/*": ["./public/*"],
+            "@lib/*": ["./src/lib/*"],
+            "@type/*": [
+                "./src/type/*"
+            ],
+            "@utils/*": ["./src/utils/*"]
         }
     },
     "ts-node": { "files": true }
