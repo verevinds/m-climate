@@ -1,0 +1,84 @@
+.brand,
+.form {
+  display: flex;
+
+  box-sizing: border-box;
+}
+.brand {
+  overflow: hidden;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+
+  animation: show linear 300ms;
+
+  border-bottom: 1px solid var(--color-divider);
+}
+.form {
+  animation: show-form linear 300ms;
+}
+.title {
+  animation: show-form linear 300ms;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+
+  height: 40px;
+  &__input {
+    padding: 0.25rem 0.75rem;
+
+    border: 2px solid var(--color-brand-primary);
+    border-radius: 3px;
+    &:focus {
+      outline-color: var(--color-brand-secondary);
+    }
+  }
+  &__label {
+    font-size: 0.8rem;
+
+    margin-top: 1px;
+
+    animation: vision ease-in-out 200ms;
+
+    color: var(--color-text-secondary);
+  }
+}
+.button {
+  height: 25px;
+  height: 20px;
+  margin-left: 1rem;
+  padding: 0.9rem;
+}
+@keyframes show {
+  from {
+    height: 0;
+  }
+  to {
+    height: 110px;
+  }
+}
+
+@keyframes show-form {
+  from {
+    transform: translateY(-100px);
+
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+
+    opacity: 1;
+  }
+}
+
+@keyframes vision {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
