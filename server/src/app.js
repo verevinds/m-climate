@@ -9,7 +9,7 @@ require('dotenv').config();
 
 global.__basedir = __dirname;
 
-mongoose.connect('mongodb://m-climate_mongo_1.m-climate_local:27017/');
+mongoose.connect('mongodb://mongo:27017/');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function (callback) {
