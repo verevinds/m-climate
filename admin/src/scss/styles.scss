@@ -1,0 +1,119 @@
+@import './global_variables.scss';
+@import 'swiper/swiper.scss';
+@import 'swiper/components/navigation/navigation.scss';
+@import 'swiper/components/effect-fade/effect-fade.scss';
+@import 'swiper/components/pagination/pagination.scss';
+@import 'swiper/components/scrollbar/scrollbar.scss';
+
+:root {
+  --color-bg: #fff;
+  // Основной цвет
+  --color-brand-primary: #e1b26b;
+  --color-brand-primary-light: #e9c895;
+  --color-brand-primary-lighter: #f2dec0;
+  --color-brand-primary-lightest: #fbf4ea;
+  // Дополнительный цвет
+  --color-brand-secondary: #78a5a3;
+  --color-brand-secondary-light: #97bab8;
+  --color-brand-secondary-lighter: hsl(177, 20%, 76%);
+  --color-brand-secondary-lightest: hsl(177, 20%, 86%);
+  --color-divider: hsl(0, 0%, 90%);
+  // Цвет текста
+  --color-text-for-secondary: #fff;
+  --color-text-primary: #434b5b;
+  --color-text-primary-light: #6f7c95;
+  --color-text-primary-lighter: #aab1c0;
+  --color-text-primary-lightest: #e5e7eb;
+  --color-text-secondary: #ce5955;
+  --radius: 4px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+html {
+  color: var(--color-text-primary);
+}
+h1 {
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+h2 {
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+h3 {
+  padding-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+button {
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+
+  height: 44px;
+  padding: 0.45rem 1.25rem;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: var(--color-brand-primary);
+
+  border: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: var(--radius);
+
+  cursor: pointer;
+  transition: all 0.12s ease-out;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+svg {
+  width: 18px;
+  height: 18px;
+}
+a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color ease-in-out 200ms;
+  &:visited {
+    color: var(--color-text-primary);
+  }
+  &.link-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 0 0.5rem;
+    color: var(--color-text-primary-light);
+    font-size: 0.85rem;
+
+    text-align: center;
+  }
+  &.link-menu svg {
+    width: 20px;
+    height: 20px;
+    margin: 5px auto;
+  }
+  &:hover {
+    color: var(--color-text-secondary);
+  }
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}

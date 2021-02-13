@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    restart: always
+    restart: on-failure
     ports:
       - 8081:8081
     build:
@@ -20,9 +20,11 @@ services:
       - local
 
   frontend:
-    restart: always
+    restart: on-failure
+    expose:
+      - 80
     ports:
-      - 3000:3000
+      - 80:80
     build:
       context: ./client
       dockerfile: ./Dockerfile
@@ -37,8 +39,29 @@ services:
     networks:
       - local
 
+  admin:
+    restart: on-failure
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    build:
+      context: ./admin
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - ./admin/.env
+    depends_on:
+      - api
+    networks:
+      - local
+
   mongo:
     image: mongo
+    restart: on-failure
     volumes:
       - apiDB:/data/db
     networks:

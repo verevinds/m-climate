@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install:app": "npm install && cd client && npm install && cd ../server && npm install",
+    "install:app": "npm install && cd client && npm install && cd ../admin && npm install && cd ../server && npm install",
     "postinstall": "husky install",
     "lint": "lint-staged",
     "eslint": "eslint --debug ./ --fix",
