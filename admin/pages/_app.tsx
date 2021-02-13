@@ -25,7 +25,7 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>MClimate</title>
+          <title>Administration</title>
           <meta charSet='utf-8' />
           <meta
             name='viewport'

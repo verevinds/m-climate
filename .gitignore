@@ -139,3 +139,5 @@ yarn-error.log*
 libs/
 coverage
 dist
+
+./ui-kit/src/stories
