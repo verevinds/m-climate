@@ -1,4 +1,5 @@
 import { addBrand, Brand } from '@redux/reducer/brand';
+import { Button } from '@verevinds/ui-kit';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -40,9 +41,7 @@ const AdminCreate: React.FC = () => {
           )}
         </div>
         <div>
-          <button type='submit' className={styles['button']}>
-            Добавить
-          </button>
+          <Button type='submit'>Добавить</Button>
         </div>
       </form>
     </div>

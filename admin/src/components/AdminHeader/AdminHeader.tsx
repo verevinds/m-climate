@@ -12,7 +12,8 @@ export interface IAdminHeader {
 
 const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
   const { pathname } = useRouter();
-  const isMainPage = pathname.split('/').length <= 2;
+  console.log(pathname);
+  const isMainPage = pathname.split('/').length <= 1;
 
   return (
     <div className={styles.header}>

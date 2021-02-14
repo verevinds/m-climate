@@ -38,20 +38,20 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
             {
               id: '1',
               name: 'Главная',
-              url: '/admin',
+              url: '/',
               icon: faHome,
               props: { exec: true },
             },
             {
               id: '2',
               name: 'Бренды',
-              url: '/admin/brand',
+              url: '/brand',
               icon: faTags,
             },
             {
               id: '3',
               name: 'Товар',
-              url: '/admin/item',
+              url: '/item',
               icon: faBox,
             },
           ].map(el => (

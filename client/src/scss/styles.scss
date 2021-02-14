@@ -8,10 +8,10 @@
 :root {
   --color-bg: #fff;
   // Основной цвет
-  --color-brand-primary: #e1b26b;
-  --color-brand-primary-light: #e9c895;
-  --color-brand-primary-lighter: #f2dec0;
-  --color-brand-primary-lightest: #fbf4ea;
+  --color-primary: #e1b26b;
+  --color-primary-light: #e9c895;
+  --color-primary-lighter: #f2dec0;
+  --color-primary-lightest: #fbf4ea;
   // Дополнительный цвет
   --color-brand-secondary: #78a5a3;
   --color-brand-secondary-light: #97bab8;
@@ -65,7 +65,7 @@ button {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-primary);
 
   border: 0;
   -webkit-border-radius: 4px;

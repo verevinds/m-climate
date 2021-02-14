@@ -8,10 +8,10 @@
 :root {
   --color-bg: #fff;
   // Основной цвет
-  --color-brand-primary: #e1b26b;
-  --color-brand-primary-light: #e9c895;
-  --color-brand-primary-lighter: #f2dec0;
-  --color-brand-primary-lightest: #fbf4ea;
+  --color-primary: #e1b26b;
+  --color-primary-light: #e9c895;
+  --color-primary-lighter: #f2dec0;
+  --color-primary-lightest: #fbf4ea;
   // Дополнительный цвет
   --color-brand-secondary: #78a5a3;
   --color-brand-secondary-light: #97bab8;
@@ -53,32 +53,6 @@ h3 {
   padding-bottom: 1rem;
   font-weight: 600;
   font-size: 1.2rem;
-}
-button {
-  position: relative;
-  display: flex;
-  align-content: center;
-  align-items: center;
-
-  height: 44px;
-  padding: 0.45rem 1.25rem;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  background-color: var(--color-brand-primary);
-
-  border: 0;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: var(--radius);
-
-  cursor: pointer;
-  transition: all 0.12s ease-out;
-  -webkit-appearance: none;
-
-  &:focus {
-    outline: none;
-  }
 }
 svg {
   width: 18px;

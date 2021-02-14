@@ -3,7 +3,7 @@
   display: inline-flex;
 
   padding: 2rem 5rem;
-  background-color: var(--color-brand-primary-lightest);
+  background-color: var(--color-primary-lightest);
 
   @media screen and (max-width: $viewport-sm) {
     flex-direction: column;
