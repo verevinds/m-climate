@@ -1,5 +1,5 @@
 import '@src/scss/styles.scss';
-import '@verevinds/ui-kit/dist/index.css';
+import '@verevinds/ui-kit/dist/styles.global.css';
 
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';

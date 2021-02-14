@@ -15,6 +15,8 @@
   animation: show linear 300ms;
 }
 .form {
+  flex-direction: column;
+  justify-content: end;
   animation: show-form linear 300ms;
 }
 .title {
@@ -40,18 +42,19 @@
     animation: vision ease-in-out 200ms;
   }
 }
+.buttons-block {
+  display: flex;
+  justify-content: flex-end;
+}
 .button {
-  height: 25px;
-  height: 20px;
-  margin-left: 1rem;
-  padding: 0.9rem;
+  margin-top: 1rem;
 }
 @keyframes show {
   from {
     height: 0;
   }
   to {
-    height: 110px;
+    height: 151px;
   }
 }
 

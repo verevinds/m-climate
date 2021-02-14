@@ -40,8 +40,10 @@ const AdminCreate: React.FC = () => {
             </label>
           )}
         </div>
-        <div>
-          <Button type='submit'>Добавить</Button>
+        <div className={styles['buttons-block']}>
+          <Button type='submit' className={styles['button']}>
+            Добавить
+          </Button>
         </div>
       </form>
     </div>
