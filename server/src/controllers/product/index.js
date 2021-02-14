@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Product = require('../../models/product');
 const Brand = require('../../models/brand');
 

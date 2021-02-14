@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Post = require('../../models/post');
 const User = require('../../models/user');
 

@@ -1,13 +1,8 @@
-const path = require('path');
-
-exports.load = (req, res, next) => {
-  console.log(req.files);
+exports.load = (req, res) => {
   if (req.files) {
-    let file = req.files.file;
-    console.log(typeof file);
-    let uuid = Math.random(4000);
-    let filename = file.name;
-    let name = `${filename}`;
+    const { file } = req.files;
+    const filename = file.name;
+    const name = `${filename}`;
 
     file.mv(`${'./public/uploads/'}${name}`, err => {
       if (err) {
@@ -23,7 +18,7 @@ exports.load = (req, res, next) => {
     });
   } else {
     res.send({
-      message: `Файл отсутствует`,
+      message: 'Файл отсутствует',
       wasFile: false,
     });
   }

@@ -3,7 +3,7 @@ module.exports = Product => (req, res) => {
 
   const _id = req.params.id;
 
-  Product.deleteOne({ _id }, function (err, data) {
+  Product.deleteOne({ _id }, (err, data) => {
     res.send({
       _id,
       message: `Deleted product ${_id}`,

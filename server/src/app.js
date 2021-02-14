@@ -12,7 +12,7 @@ global.__basedir = __dirname;
 mongoose.connect('mongodb://mongo:27017/');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', function (callback) {
+db.once('open', function () {
   console.log('Connection Succeeded');
 });
 
@@ -31,5 +31,5 @@ require('./router/files')(app);
 const PORT = process.env.PORT || 8081;
 
 app.listen(PORT, () => {
-  console.log('Server is up and running on port number ' + PORT);
+  console.log(`Server is up and running on port number ${PORT}`);
 });

@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 module.exports = Post => (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
-  const title = req.body.title;
-  const description = req.body.description;
-  const user = req.body.user;
+  const { title } = req.body;
+  const { description } = req.body;
+  const { user } = req.body;
 
   const post = new Post({
     title,

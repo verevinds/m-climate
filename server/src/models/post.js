@@ -1,11 +1,12 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var PostSchema = new Schema({
+const { Schema } = mongoose;
+
+const PostSchema = new Schema({
   title: String,
   description: String,
   user: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
-var Post = mongoose.model('Post', PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;

@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 module.exports = Product => (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
-  const body = req.body;
-  const brandId = req.body.brandId;
+  const { body } = req;
+  const { brandId } = req.body;
 
   const product = new Product({
     ...body,

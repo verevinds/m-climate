@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var productSchema = new Schema({
+const { Schema } = mongoose;
+
+const productSchema = new Schema({
   name: { type: String, required: true },
   type: String,
   servicedArea: String,
@@ -26,8 +27,8 @@ var productSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-productSchema.pre('save', function (next) {
-  now = new Date();
+productSchema.pre('save', next => {
+  const now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
     this.createdAt = now;
@@ -35,5 +36,5 @@ productSchema.pre('save', function (next) {
   next();
 });
 
-var Product = mongoose.model('product', productSchema);
+const Product = mongoose.model('product', productSchema);
 module.exports = Product;

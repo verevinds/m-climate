@@ -1,8 +1,5 @@
 node_modules
-server
 lib
 next.config.js
 server/public/uploads
 tsconfig.json
-./ui-kit/src/stories
-ui-kit/src/stories

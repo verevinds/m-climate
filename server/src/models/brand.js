@@ -1,14 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var brandSchema = new Schema({
+const { Schema } = mongoose;
+
+const brandSchema = new Schema({
   name: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
-brandSchema.pre('save', function (next) {
-  now = new Date();
+brandSchema.pre('save', next => {
+  const now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
     this.createdAt = now;
@@ -16,5 +17,5 @@ brandSchema.pre('save', function (next) {
   next();
 });
 
-var Brand = mongoose.model('brand', brandSchema);
+const Brand = mongoose.model('brand', brandSchema);
 module.exports = Brand;

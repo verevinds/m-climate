@@ -1,7 +1,7 @@
 module.exports = Brand => (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
-  const name = req.body.name;
+  const { name } = req.body;
 
   const brand = new Brand({ name });
 
