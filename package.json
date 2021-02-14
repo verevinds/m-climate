@@ -47,6 +47,7 @@
     "eslint-plugin-unicorn": "^27.0.0",
     "husky": "^5.0.9",
     "lint-staged": "^10.5.4",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.1",
     "stylelint": "^13.9.0",
     "stylelint-config-airbnb": "0.0.0",
@@ -68,5 +69,8 @@
   "bugs": {
     "url": "https://github.com/verevinds/m-climate/issues"
   },
-  "homepage": "https://github.com/verevinds/m-climate#readme"
+  "homepage": "https://github.com/verevinds/m-climate#readme",
+  "dependencies": {
+    "hello-world": "0.0.2"
+  }
 }

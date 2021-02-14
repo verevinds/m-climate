@@ -141,3 +141,5 @@ coverage
 dist
 
 ./ui-kit/src/stories
+
+storybook-static

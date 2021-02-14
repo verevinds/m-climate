@@ -30,8 +30,6 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./client:/app
-      - /app/node_modules
-      - /app/.next
     env_file:
       - ./client/.env
     depends_on:
@@ -50,8 +48,6 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./admin:/app
-      - /app/node_modules
-      - /app/.next
     env_file:
       - ./admin/.env
     depends_on:

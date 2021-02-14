@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import { Button, ButtonProps } from './Button';
+import Button, { ButtonProps } from './Button';
 
 // This default export determines where your story goes in the story list
 export default {
