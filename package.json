@@ -72,6 +72,7 @@
   },
   "homepage": "https://github.com/verevinds/m-climate#readme",
   "dependencies": {
+    "@verevinds/ui-kit": "^1.0.28",
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
     "babel-plugin-transform-class-properties": "6.24.1",

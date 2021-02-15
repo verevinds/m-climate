@@ -13,7 +13,7 @@ services:
       - ./server:/app
       - /app/node_modules
     env_file:
-      - ./server/.env
+      - .env
     depends_on:
       - mongo
     networks:
@@ -22,16 +22,16 @@ services:
   frontend:
     restart: on-failure
     expose:
-      - 80
+      - 8080
     ports:
-      - 80:80
+      - 8080:8080
     build:
       context: ./client
       dockerfile: ./Dockerfile
     volumes:
       - ./client:/app
     env_file:
-      - ./client/.env
+      - .env
     depends_on:
       - api
     networks:
@@ -49,7 +49,7 @@ services:
     volumes:
       - ./admin:/app
     env_file:
-      - ./admin/.env
+      - .env
     depends_on:
       - api
     networks:
