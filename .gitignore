@@ -143,3 +143,5 @@ dist
 ./ui-kit/src/stories
 
 storybook-static
+node_modules
+.next
