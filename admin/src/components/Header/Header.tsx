@@ -4,13 +4,13 @@ import ActiveLink from '@utils/ActiveLink';
 import { useRouter } from 'next/router';
 import { memo } from 'react';
 
-import styles from './adminheader.module.scss';
+import styles from './header.module.scss';
 
 export interface IAdminHeader {
   title: string;
 }
 
-const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
+const Header: React.FC<IAdminHeader> = ({ title }) => {
   const { pathname } = useRouter();
   const isMainPage = Boolean(pathname.split('/')[1]);
 
@@ -45,4 +45,4 @@ const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
   );
 };
 
-export default memo(AdminHeader);
+export default memo(Header);

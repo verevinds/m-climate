@@ -1,4 +1,4 @@
-import AdminHeader from '@components/AdminHeader';
+import AdminHeader from '@components/Header';
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
