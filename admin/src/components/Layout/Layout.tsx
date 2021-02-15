@@ -14,9 +14,9 @@ import cls from 'classnames';
 import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './adminlayout.module.scss';
+import styles from './layout.module.scss';
 
-const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
+const Layout: React.FC<{ title: string }> = ({ children, title }) => {
   const dispatch = useDispatch();
 
   const {
@@ -41,7 +41,7 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
           <Button
             type='button'
             onClick={handleHide}
-            className={styles['sidebar__button-hide']}
+            className={styles['button-hide']}
             variant='transparent'
             icon={<FontAwesomeIcon icon={icon} />}
           />
@@ -90,4 +90,4 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
   );
 };
 
-export default AdminLayout;
+export default Layout;

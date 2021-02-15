@@ -1,7 +1,7 @@
-import LayoutAdmin from '@components/AdminLayout';
+import Layout from '@components/Layout';
 
 const Item = () => {
-  return <LayoutAdmin title='Настройка товара' />;
+  return <Layout title='Настройка товара' />;
 };
 
 export default Item;

@@ -1,7 +1,7 @@
-import LayoutAdmin from '@components/AdminLayout';
+import Layout from '@components/Layout';
 
 const Admin = () => {
-  return <LayoutAdmin title='Панель администратора' />;
+  return <Layout title='Панель администратора' />;
 };
 
 export default Admin;

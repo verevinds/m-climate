@@ -12,13 +12,12 @@ export interface IAdminHeader {
 
 const AdminHeader: React.FC<IAdminHeader> = ({ title }) => {
   const { pathname } = useRouter();
-  console.log(pathname);
-  const isMainPage = pathname.split('/').length <= 1;
+  const isMainPage = Boolean(pathname.split('/')[1]);
 
   return (
     <div className={styles.header}>
       <h1>{title}</h1>
-      {!isMainPage && (
+      {isMainPage && (
         <div className={styles.header__links}>
           <ActiveLink
             href={`${pathname}`}
