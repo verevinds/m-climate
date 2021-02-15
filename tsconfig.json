@@ -13,7 +13,7 @@
     ],
     "include": [
         ".env.d.ts",
-        "next-env.d.ts",
+        "admin/next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
         "**/*.js",

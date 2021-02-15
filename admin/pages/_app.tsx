@@ -1,5 +1,6 @@
 import '@src/scss/styles.scss';
 import '@verevinds/ui-kit/dist/styles.global.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';
