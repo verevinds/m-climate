@@ -48,7 +48,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@reduxjs/toolkit": "^1.5.0",
     "@svgr/webpack": "^5.5.0",
-    "@verevinds/ui-kit": "^1.0.45",
+    "@verevinds/ui-kit": "^1.0.46",
     "axios": "^0.21.1",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
