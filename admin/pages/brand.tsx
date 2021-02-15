@@ -1,5 +1,5 @@
 import AdminBrandCreate from '@components/AdminBrandCreate';
-import AdminBrandList from '@components/AdminBrandList';
+import AdminBrandList from '@components/BrandItems';
 import Layout from '@components/Layout';
 import { AppInitialPropsWithRedux } from '@pages/_app';
 import { getBrands } from '@redux/reducer/brand';

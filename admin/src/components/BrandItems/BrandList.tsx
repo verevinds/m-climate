@@ -1,7 +1,7 @@
-import AdminBrandItems from './AdminBrandItems';
-import styles from './adminbrandlist.module.scss';
+import BrandItems from './BrandItems';
+import styles from './brandlist.module.scss';
 
-const AdminBrandList = () => {
+const BrandList = () => {
   return (
     <>
       <h3>Список брендов</h3>
@@ -9,10 +9,10 @@ const AdminBrandList = () => {
         <h4>Название</h4>
         <h4>Дата создания</h4>
         <span />
-        <AdminBrandItems />
+        <BrandItems />
       </div>
     </>
   );
 };
 
-export default AdminBrandList;
+export default BrandList;

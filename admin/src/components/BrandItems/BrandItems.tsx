@@ -8,9 +8,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 
-import styles from './adminbrandlist.module.scss';
+import styles from './brandlist.module.scss';
 
-const AdminBrandItems = () => {
+const BrandItems = () => {
   const dispatch = useDispatch();
   const { list } = useSelector(selectBrand);
 
@@ -45,4 +45,4 @@ const AdminBrandItems = () => {
   );
 };
 
-export default React.memo(AdminBrandItems);
+export default React.memo(BrandItems);
