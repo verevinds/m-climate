@@ -2,6 +2,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Brand } from '@redux/reducer/brand';
 import { deleteBrand, selectBrand } from '@redux/reducer/brand';
+import { Button } from '@verevinds/ui-kit';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,16 +27,15 @@ const AdminBrandItems = () => {
               .setLocale('ru')
               .toFormat('dd.MM.yy HH:mm')}
           </span>
-          <button
+          <Button
             type='button'
             aria-label='Удалить'
             onClick={handleDelete(el._id)}
-            className={styles['button']}
             data-tip
             data-for={el['_id']}
-          >
-            <FontAwesomeIcon icon={faTrash} color='red' />
-          </button>
+            icon={<FontAwesomeIcon icon={faTrash} />}
+            variant='outline-danger'
+          />
           <ReactTooltip id={el['_id']} effect='float'>
             <span>Удалить</span>
           </ReactTooltip>

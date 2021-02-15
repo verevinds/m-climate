@@ -1,5 +1,5 @@
 node_modules
 lib
 next.config.js
-server/public/uploads
+server
 tsconfig.json

@@ -42,23 +42,6 @@
     width: 100%;
     font-weight: 600;
   }
-  &__button-hide {
-    flex: 1;
-    background-color: transparent;
-    &::after {
-      width: 18px;
-      height: 18px;
-      background-color: var(--color-text-primary);
-      transition: all ease-in-out 300ms;
-      content: '';
-
-      -webkit-mask: url('../../../public/svg/angle-double-left.svg') no-repeat
-        50% 50%;
-      mask: url('../../../public/svg/angle-double-left.svg') no-repeat 50% 50%;
-      -webkit-mask-size: cover;
-      mask-size: cover;
-    }
-  }
   &__main {
     display: flex;
     flex-direction: column;
@@ -84,11 +67,6 @@
 }
 .-hide.layout {
   grid-template-columns: 50px auto;
-}
-.-hide .sidebar__button-hide::after {
-  -webkit-mask: url('../../../public/svg/angle-double-right.svg') no-repeat 50%
-    50%;
-  mask: url('../../../public/svg/angle-double-right.svg') no-repeat 50% 50%;
 }
 .-hide .sidebar__link {
   flex-direction: row;

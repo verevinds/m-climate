@@ -1,10 +1,17 @@
 import AdminHeader from '@components/AdminHeader';
-import { faBox, faHome, faTags } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+  faBox,
+  faHome,
+  faTags,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectApplication, setHide } from '@redux/reducer/application';
 import ActiveLink from '@utils/ActiveLink';
+import { Button } from '@verevinds/ui-kit';
 import cls from 'classnames';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './adminlayout.module.scss';
@@ -19,6 +26,10 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
   } = useSelector(selectApplication);
 
   const handleHide = () => dispatch(setHide());
+  const icon = useMemo(
+    () => (isHide ? faAngleDoubleLeft : faAngleDoubleRight),
+    [isHide],
+  );
 
   return (
     <div className={cls(styles['layout'], isHide && styles['-hide'])}>
@@ -27,10 +38,12 @@ const AdminLayout: React.FC<{ title: string }> = ({ children, title }) => {
           <div className={styles['sidebar__title']}>
             <p>Навигация</p>
           </div>
-          <button
+          <Button
             type='button'
             onClick={handleHide}
             className={styles['sidebar__button-hide']}
+            variant='transparent'
+            icon={<FontAwesomeIcon icon={icon} />}
           />
         </div>
         <div className={styles['sidebar__main']}>
