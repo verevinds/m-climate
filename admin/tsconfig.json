@@ -13,14 +13,14 @@
   ],
   "include": [
     ".env.d.ts",
-    "../next-env.d.ts",
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx"
   ],
   "compilerOptions": {
-    "module": "esnext",
-    "isolatedModules": true
+      "module": "esnext",
+      "isolatedModules": true
   }
 }
