@@ -1,4 +1,4 @@
-import AdminBrandCreate from '@components/AdminBrandCreate';
+import AdminBrandCreate from '@components/BrandCreate';
 import AdminBrandList from '@components/BrandItems';
 import Layout from '@components/Layout';
 import { AppInitialPropsWithRedux } from '@pages/_app';

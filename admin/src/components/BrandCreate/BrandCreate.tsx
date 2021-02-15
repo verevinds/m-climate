@@ -5,13 +5,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import styles from './adminbrandcreate.module.scss';
+import styles from './brandcreate.module.scss';
 
 type Inputs = {
   name: string;
 };
 
-const AdminCreate: React.FC = () => {
+const BrandCreate: React.FC = () => {
   const { query } = useRouter();
   const isPageCreate = query.type && query.type === 'create';
   if (!isPageCreate) return null;
@@ -50,4 +50,4 @@ const AdminCreate: React.FC = () => {
   );
 };
 
-export default React.memo(AdminCreate);
+export default React.memo(BrandCreate);
