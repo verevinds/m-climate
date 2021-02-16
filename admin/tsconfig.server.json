@@ -1,56 +1,54 @@
 {
-    "compilerOptions": {
-        // "module": "commonjs",
-        "outDir": "dist",
-        // "target": "es2017",
-        "jsx": "preserve",
-        "lib": ["DOM", "DOM.Iterable", "ES2017", "ESNext"],
-        "baseUrl": ".",
-        "moduleResolution": "node",
-        "strict": true,
-        "allowJs": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "removeComments": false,
-        "preserveConstEnums": true,
-        "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true,
-        // "noEmit": false,
-        "sourceMap": true,
-            "alwaysStrict": true,
-            "isolatedModules": true,
-            "module": "esnext",
-            "noEmit": true,
-            "noFallthroughCasesInSwitch": true,
-            "target": "esnext",
-        "plugins": [
-            {
-                "transform": "@zerollup/ts-transform-paths"
-            }
-        ],
-        // "incremental": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false,
-        "paths": {
-            "@api/*": ["./src/api/*"],
-            "@redux/*": ["./src/redux/*"],
-            "@store/*": ["./src/store/*"],
-            "@uikit/*": ["./src/components/UIKit/*"],
-            "@components/*": ["./src/components/*"],
-            "@src/*": ["./src/*"],
-            "@server/*": ["./server/*"],
-            "@pages/*": ["./pages/*"],
-            "@public/*": ["./public/*"],
-            "@lib/*": ["./src/lib/*"],
-            "@type/*": [
-                "./src/type/*"
-            ],
-            "@utils/*": ["./src/utils/*"]
-        }
-    },
-    "ts-node": { "files": true }
+  "compilerOptions": {
+    // "module": "commonjs",
+    "outDir": "dist",
+    // "target": "es2017",
+    "jsx": "preserve",
+    "lib": ["DOM", "DOM.Iterable", "ES2017", "ESNext"],
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "strict": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    // "noEmit": false,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "isolatedModules": true,
+    "module": "esnext",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "target": "esnext",
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths"
+      }
+    ],
+    // "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@api/*": ["./src/api/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@store/*": ["./src/store/*"],
+      "@uikit/*": ["./src/components/UIKit/*"],
+      "@components/*": ["./src/components/*"],
+      "@src/*": ["./src/*"],
+      "@server/*": ["./server/*"],
+      "@pages/*": ["./pages/*"],
+      "@public/*": ["./public/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@type/*": ["./src/type/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
+  },
+  "ts-node": { "files": true }
 }

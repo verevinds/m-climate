@@ -1,7 +1,7 @@
 import { addBrand, Brand } from '@redux/reducer/brand';
-import { Button } from '@verevinds/ui-kit';
+import { Button, Input } from '@verevinds/ui-kit';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -17,33 +17,35 @@ const BrandCreate: React.FC = () => {
   if (!isPageCreate) return null;
 
   const dispatch = useDispatch();
-  const { register, handleSubmit, errors } = useForm<Inputs>();
+  const { register, handleSubmit, errors, setValue } = useForm<Inputs>();
+
+  useEffect(() => {
+    register({ name: 'name' }, { required: 'Обязательно к заполнению' });
+  }, []);
 
   const onSubmit = async (brand: Brand) => {
+    console.log(brand);
     dispatch(addBrand(brand));
+  };
+
+  const handleChange = (e: React.SyntheticEvent) => {
+    const { value } = e.target as HTMLInputElement;
+
+    setValue('name', value);
   };
 
   return (
     <div className={styles['brand']}>
       <h3 className={styles['title']}>Добавить новый бренд</h3>
       <form onSubmit={handleSubmit(onSubmit)} className={styles['form']}>
-        <div className={styles['name']}>
-          <input
-            name='name'
-            ref={register({ required: true })}
-            className={styles['name__input']}
-            placeholder='Energolux'
-          />
-          {errors.name && (
-            <label className={styles['name__label']}>
-              *Поле обезательное для заполнения
-            </label>
-          )}
-        </div>
+        <Input
+          placeholder='Energolux'
+          error={errors.name?.message}
+          onChange={handleChange}
+          name='name'
+        />
         <div className={styles['buttons-block']}>
-          <Button type='submit' className={styles['button']}>
-            Добавить
-          </Button>
+          <Button type='submit'>Добавить</Button>
         </div>
       </form>
     </div>
