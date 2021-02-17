@@ -9,3 +9,26 @@ $z-indexes: (
   'spinner': 400,
   'modal': 600,
 );
+
+@mixin show($height) {
+  @keyframes show {
+    from {
+      height: 0;
+    }
+    to {
+      height: $height;
+    }
+  }
+}
+@keyframes show-form {
+  from {
+    transform: translateY(-100px);
+
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+
+    opacity: 1;
+  }
+}

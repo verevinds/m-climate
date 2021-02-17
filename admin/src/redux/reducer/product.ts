@@ -35,10 +35,12 @@ export type Product = {
 
 export type ProductReducer = {
   list: Product[];
+  isPending: boolean;
 };
 
 const initialState: ProductReducer = {
   list: [],
+  isPending: false,
 };
 
 export const getProducts = createAsyncThunk('product/getThunk', async () => {
@@ -88,6 +90,9 @@ const product = createSlice({
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
     });
+    builder.addCase(addProduct.pending, state => {
+      state.isPending = true;
+    });
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
       if (payload) {
         const newList = state.list
@@ -95,6 +100,8 @@ const product = createSlice({
           .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
         state.list = newList;
       }
+
+      state.isPending = false;
     });
     builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
@@ -105,6 +112,8 @@ const product = createSlice({
 
 export const selectProduct = (state: RootState) => state.product;
 export const selectProductList = (state: RootState) => state.product.list;
+export const selectProductPending = (state: RootState) =>
+  state.product.isPending;
 
 export const { voidAction } = product.actions;
 

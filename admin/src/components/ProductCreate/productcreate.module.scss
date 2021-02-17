@@ -1,0 +1,50 @@
+@import '@src/scss/global_variables.scss';
+
+@include show(366px);
+
+.product {
+  --delay: 600ms;
+  border-bottom: 1px solid var(--color-divider);
+  animation: show linear calc(var(--delay) - 300ms);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+
+  animation: show-form linear var(--delay);
+}
+.title {
+  animation: show-form linear var(--delay);
+}
+.input {
+  grid-area: input;
+  &-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+    -ms-grid-column-span: 5px;
+
+    @media screen and (max-width: $viewport-xs) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.images {
+  margin-top: 0.5em;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 300px auto;
+  @media screen and (max-width: $viewport-xs) {
+    grid-template-columns: 100%;
+    grid-row-gap: 10px;
+  }
+}
+.buttons-block {
+  margin: 0.5em 0;
+  grid-area: button;
+  display: flex;
+  justify-content: flex-end;
+}

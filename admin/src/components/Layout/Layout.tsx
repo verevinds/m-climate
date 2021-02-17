@@ -64,7 +64,7 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
             {
               id: '3',
               name: 'Товар',
-              url: '/item',
+              url: '/product',
               icon: faBox,
             },
           ].map(el => (

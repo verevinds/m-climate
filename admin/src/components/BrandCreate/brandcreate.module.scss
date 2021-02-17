@@ -1,3 +1,6 @@
+@import '@src/scss/global_variables.scss';
+@include show(151px);
+
 .brand,
 .form {
   display: flex;
@@ -33,26 +36,4 @@
 .buttons-block {
   display: flex;
   justify-content: flex-end;
-}
-
-@keyframes show {
-  from {
-    height: 0;
-  }
-  to {
-    height: 151px;
-  }
-}
-
-@keyframes show-form {
-  from {
-    transform: translateY(-100px);
-
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0px);
-
-    opacity: 1;
-  }
 }

@@ -4,7 +4,7 @@
     padding: 1rem;
   }
   &__sidebar {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     width: 300px;
     height: 100vh;
@@ -23,6 +23,10 @@
     box-sizing: border-box;
     margin: 1rem 70px;
     transition: all ease-in 300ms;
+
+    @media screen and (max-width: $viewport-sm) {
+      margin-right: 1rem;
+    }
   }
 }
 
