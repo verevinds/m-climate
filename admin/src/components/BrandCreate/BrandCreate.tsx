@@ -42,6 +42,7 @@ const BrandCreate: React.FC = () => {
           placeholder='Energolux'
           error={errors.name?.message}
           onChange={handleChange}
+          className={styles['input']}
           name='name'
         />
         <div className={styles['buttons-block']}>

@@ -4,6 +4,7 @@
 
   box-sizing: border-box;
 }
+
 .brand {
   flex-direction: column;
 
@@ -14,41 +15,26 @@
   border-bottom: 1px solid var(--color-divider);
   animation: show linear 300ms;
 }
+
 .form {
   flex-direction: column;
   justify-content: end;
   animation: show-form linear 300ms;
 }
+
 .title {
   animation: show-form linear 300ms;
 }
-.name {
-  display: flex;
-  flex-direction: column;
 
-  height: 40px;
-  &__input {
-    padding: 0.25rem 0.75rem;
-    border: 2px solid var(--color-primary);
-    border-radius: 3px;
-    &:focus {
-      outline-color: var(--color-brand-secondary);
-    }
-  }
-  &__label {
-    margin-top: 1px;
-    color: var(--color-text-secondary);
-    font-size: 0.8rem;
-    animation: vision ease-in-out 200ms;
-  }
+.input {
+  margin: 0.25rem 0;
 }
+
 .buttons-block {
   display: flex;
   justify-content: flex-end;
 }
-.button {
-  margin-top: 1rem;
-}
+
 @keyframes show {
   from {
     height: 0;
@@ -67,15 +53,6 @@
   to {
     transform: translateY(0px);
 
-    opacity: 1;
-  }
-}
-
-@keyframes vision {
-  from {
-    opacity: 0;
-  }
-  to {
     opacity: 1;
   }
 }
