@@ -103,8 +103,8 @@ const product = createSlice({
   },
 });
 
-export const selectProduct = (state: RootState) => state.brand;
-export const selectProductList = (state: RootState) => state.brand.list;
+export const selectProduct = (state: RootState) => state.product;
+export const selectProductList = (state: RootState) => state.product.list;
 
 export const { voidAction } = product.actions;
 
