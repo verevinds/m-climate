@@ -1,3 +1,4 @@
+import Spinner from '@components/Spinner/Spinner';
 import { addProduct, Product } from '@redux/reducer/product';
 import {
   Button,
@@ -5,12 +6,23 @@ import {
   ImageUploadingView,
   Input,
 } from '@verevinds/ui-kit';
+import { convertToRaw, EditorState } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import styles from './productcreate.module.scss';
+
+const Editor = dynamic(
+  async () => {
+    const mod = await import('react-draft-wysiwyg');
+    return mod.Editor;
+  },
+  { loading: () => <Spinner />, ssr: false },
+);
 
 type ProductInput = {
   name: string;
@@ -38,6 +50,7 @@ const ProductCreate = () => {
   const isPageCreate = query.type && query.type === 'create';
   if (!isPageCreate) return null;
   const [images, setImages] = useState([]);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const {
     handleSubmit,
@@ -90,11 +103,14 @@ const ProductCreate = () => {
 
   const onSubmit = useCallback(
     async (product: Product) => {
-      const res = await dispatch(addProduct({ product, images }));
-      console.log({ res });
+      const description = draftToHtml(
+        convertToRaw(editorState.getCurrentContent()),
+      );
+      Object.assign(product, { description });
+      await dispatch(addProduct({ product, images }));
       reset({});
     },
-    [images],
+    [images, editorState],
   );
 
   const handleChange = (name: keyof ProductInput) => (
@@ -122,6 +138,12 @@ const ProductCreate = () => {
             />
           ))}
         </div>
+        <h4>Добавить описание</h4>
+        <Editor
+          editorState={editorState}
+          onEditorStateChange={setEditorState}
+          placeholder='Введите текст'
+        />
         <h4>Добавить картинки</h4>
         <div className={styles['images']}>
           <div className={styles['add']}>
