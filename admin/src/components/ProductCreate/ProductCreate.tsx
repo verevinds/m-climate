@@ -3,6 +3,7 @@ import { selectBrandList } from '@redux/reducer/brand';
 import { addProduct, Product } from '@redux/reducer/product';
 import {
   Button,
+  Checkbox,
   ImageUploadingAdd,
   ImageUploadingView,
   Input,
@@ -80,7 +81,7 @@ const ProductCreate = () => {
     {
       name: 'inStock',
       title: 'В наличии',
-      type: 'checkbox',
+      as: Checkbox,
       defaultValue: false,
     },
     { name: 'type', title: 'Тип' },
