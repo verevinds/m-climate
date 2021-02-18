@@ -11,8 +11,8 @@ import { convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useForm, ValidationRule } from 'react-hook-form';
+import React, { useCallback, useState } from 'react';
+import { Controller, useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './productcreate.module.scss';
@@ -55,27 +55,34 @@ const ProductCreate = () => {
   const [images, setImages] = useState([]);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-  const {
-    handleSubmit,
-    errors,
-    setValue,
-    register,
-    reset,
-  } = useForm<ProductInput>();
+  const { handleSubmit, errors, control } = useForm<ProductInput>();
 
   const productInputs: {
     name: keyof ProductInput;
     title: string;
     required?: string | ValidationRule<boolean>;
+    select?: {
+      [key: string]: any;
+      _id: string;
+      name: string;
+    }[];
+    as?: JSX.Element | string;
+    type?: HTMLInputElement['type'];
+    defaultValue?: any;
   }[] = [
     {
       name: 'name',
       title: 'Название',
       required: 'Обязательный для заполнения',
     },
-    { name: 'price', title: 'Цена' },
-    { name: 'priceOld', title: 'Старая цена' },
-    { name: 'inStock', title: 'В наличии' },
+    { name: 'price', title: 'Цена', type: 'number' },
+    { name: 'priceOld', title: 'Старая цена', type: 'number' },
+    {
+      name: 'inStock',
+      title: 'В наличии',
+      type: 'checkbox',
+      defaultValue: false,
+    },
     { name: 'type', title: 'Тип' },
     { name: 'servicedArea', title: 'Рабочая площадь' },
     { name: 'powerCooling', title: 'Мощность охлаждения' },
@@ -96,14 +103,8 @@ const ProductCreate = () => {
     { name: 'weightIndoor', title: 'Вес внутри' },
     { name: 'weightOutdoor', title: 'Вес снаружи' },
     { name: 'warranty', title: 'Гарантия' },
-    { name: 'brand', title: 'Бренд' },
+    { name: 'brand', title: 'Бренд', select: brands, as: 'select' },
   ];
-
-  useEffect(() => {
-    productInputs.forEach(({ name, required }) =>
-      required ? register({ name }, { required }) : register({ name }),
-    );
-  }, []);
 
   const onSubmit = useCallback(
     async (product: Product) => {
@@ -112,19 +113,10 @@ const ProductCreate = () => {
       );
       Object.assign(product, { description });
       await dispatch(addProduct({ product, images }));
-      reset({});
-      // console.log(product);
+      console.log(product);
     },
     [images, editorState],
   );
-
-  const handleChange = (name: keyof ProductInput) => (
-    e: React.SyntheticEvent,
-  ) => {
-    const { value } = e.target as HTMLInputElement;
-
-    setValue(name, value);
-  };
 
   return (
     <div className={styles['product']}>
@@ -132,25 +124,67 @@ const ProductCreate = () => {
       <h4>Характеристики</h4>
       <form onSubmit={handleSubmit(onSubmit)} className={styles['form']}>
         <div className={styles['input-block']}>
-          {productInputs.map(({ name, title }) =>
-            name === 'brand' ? null : (
-              <Input
-                key={name}
-                title={title}
-                error={errors[name]?.message}
-                onChange={handleChange(name)}
-                className={styles['input']}
-                name={name}
-              />
-            ),
+          {productInputs.map(
+            ({
+              required,
+              select,
+              name,
+              defaultValue,
+              as = Input,
+              ...restProps
+            }) => {
+              if (select)
+                return (
+                  <Controller
+                    key={name}
+                    name={name}
+                    as={as}
+                    control={control}
+                    rules={{ required }}
+                    defaultValue={select[0]._id}
+                    {...restProps}
+                  >
+                    {select.map(el => (
+                      <option value={el._id} key={el._id}>
+                        {el.name}
+                      </option>
+                    ))}
+                  </Controller>
+                );
+
+              if (restProps.type === 'checkbox')
+                return (
+                  <Controller
+                    name={name}
+                    control={control}
+                    defaultValue={defaultValue}
+                    rules={{ required: true }}
+                    render={props => (
+                      <Input
+                        type='checkbox'
+                        onChange={(e: React.SyntheticEvent) => {
+                          const { checked } = e.target as HTMLInputElement;
+                          props.onChange(checked);
+                        }}
+                        checked={props.value}
+                      />
+                    )}
+                  />
+                );
+
+              return (
+                <Controller
+                  key={name}
+                  name={name}
+                  control={control}
+                  rules={{ required }}
+                  error={errors[name]?.message}
+                  as={as}
+                  {...restProps}
+                />
+              );
+            },
           )}
-          <select name='brand' ref={register}>
-            {brands.map(brand => (
-              <option value={brand._id} key={brand._id}>
-                {brand.name}
-              </option>
-            ))}
-          </select>
         </div>
         <h4>Добавить описание</h4>
         <Editor
