@@ -8,18 +8,18 @@
 :root {
   --color-bg: #fff;
   // Основной цвет
-  --color-primary: hsl(36, 66%, 65%);
-  --color-primary-light: hsl(36, 66%, 68%);
-  --color-primary-lighter: hsl(36, 66%, 72%);
-  --color-primary-lightest: hsl(35, 68%, 75%);
-  --color-primary-dark: hsl(36, 66%, 55%);
-  --color-primary-darker: hsl(36, 66%, 52%);
-  --color-primary-darkest: hsl(36, 66%, 48%);
+  --color-primary: hsl(195, 100%, 40%);
+  --color-primary-light: hsl(195, 100%, 50%);
+  --color-primary-lighter: hsl(195, 100%, 53%);
+  --color-primary-lightest: hsl(195, 100%, 57%);
+  --color-primary-dark: hsl(195, 100%, 30%);
+  --color-primary-darker: hsl(195, 100%, 27%);
+  --color-primary-darkest: hsl(195, 100%, 24%);
   // Дополнительный цвет
-  --color-brand-secondary: #78a5a3;
-  --color-brand-secondary-light: #97bab8;
-  --color-brand-secondary-lighter: hsl(177, 20%, 76%);
-  --color-brand-secondary-lightest: hsl(177, 20%, 86%);
+  --color-brand-secondary: hsl(31, 100%, 50%);
+  --color-brand-secondary-light: hsl(31, 100%, 60%);
+  --color-brand-secondary-lighter: hsl(31, 100%, 63%);
+  --color-brand-secondary-lightest: hsl(31, 100%, 67%);
   --color-divider: hsl(0, 0%, 90%);
   // Цвет текста
   --color-text-for-secondary: #fff;

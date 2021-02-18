@@ -55,7 +55,7 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
 
-    padding: 1rem 1.1rem;
+    padding: 1rem 1.3rem;
 
     &__text {
       padding: 0 1.2rem;
@@ -84,6 +84,7 @@
 }
 
 .-active {
+  color: var(--color-text-primary-light) !important;
   background-color: var(--color-brand-secondary-lightest);
   animation: active 500ms ease-in-out;
 }

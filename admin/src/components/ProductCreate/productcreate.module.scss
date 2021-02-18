@@ -22,11 +22,28 @@
   grid-area: input;
   &-block {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;
     grid-gap: 5px;
     -ms-grid-column-span: 5px;
-
+    // $viewport-xxs: 480px;
+    // $viewport-xs: 576px;
+    // $viewport-sm: 768px;
+    // $viewport-md: 992px;
+    // $viewport-lg: 1200px;
+    // $viewport-xl: 1440px;
+    @media screen and (max-width: $viewport-xl) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media screen and (max-width: $viewport-lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (max-width: $viewport-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: $viewport-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
     @media screen and (max-width: $viewport-xs) {
       grid-template-columns: 1fr;
     }
@@ -37,21 +54,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media screen and (max-width: $viewport-xs) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 }
 .add {
-  min-width: 320px;
-  @media screen and (max-width: $viewport-xs) {
-    min-width: 100%;
-    flex: 1;
-    margin-bottom: 1rem;
-  }
+  width: 100%;
 }
 .slider {
-  margin: 0 1rem;
-  width: 100%;
+  margin: 1rem;
 }
 .buttons-block {
   margin: 0.5em 0;
