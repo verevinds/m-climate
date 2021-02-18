@@ -2,9 +2,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RestDelete } from '@type/api';
 import Api from '@utils/Api';
+import { AxiosResponse } from 'axios';
+import { ImageListType } from 'react-images-uploading';
 
 import type { RootState } from '..';
 
+export type Images = {
+  filename: string;
+  message: string;
+  url: string;
+  wasFile: boolean;
+};
 export type Product = {
   price: number;
   priceOld: number;
@@ -55,9 +63,29 @@ export const getProducts = createAsyncThunk('product/getThunk', async () => {
 });
 
 export const addProduct = createAsyncThunk(
-  'admin/addThunk',
-  async (product: Product) => {
+  'product/addThunk',
+  async ({ product, images }: { product: Product; images: ImageListType }) => {
     try {
+      const promiseImages: Promise<AxiosResponse<Images>>[] = [];
+
+      images.forEach(image => {
+        if (image.file) {
+          const data = new FormData();
+          data.append('file', image.file);
+          const promiseImage = Api().post<Images>('/api/files', data);
+          promiseImages.push(promiseImage);
+        }
+      });
+
+      const responseImages = await Promise.all(promiseImages);
+
+      const arrayImages = responseImages.map(response => ({
+        url: response?.data.url,
+        filename: response?.data.filename,
+      }));
+
+      Object.assign(product, { images: arrayImages });
+
       const { data } = await Api().post<Product>('/api/product', product);
 
       return data;
@@ -68,7 +96,7 @@ export const addProduct = createAsyncThunk(
 );
 
 export const deleteProduct = createAsyncThunk(
-  'admin/deleteThunk',
+  'product/deleteThunk',
   async (id: Product['_id']) => {
     try {
       const { data } = await Api().delete<RestDelete>(`/api/product/${id}`);

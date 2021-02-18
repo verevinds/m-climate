@@ -6,7 +6,7 @@ import {
   Input,
 } from '@verevinds/ui-kit';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -38,7 +38,7 @@ const ProductCreate = () => {
   const isPageCreate = query.type && query.type === 'create';
   if (!isPageCreate) return null;
   const [images, setImages] = useState([]);
-  console.log(images);
+
   const {
     handleSubmit,
     errors,
@@ -88,10 +88,14 @@ const ProductCreate = () => {
     );
   }, []);
 
-  const onSubmit = async (product: Product) => {
-    await dispatch(addProduct(product));
-    reset();
-  };
+  const onSubmit = useCallback(
+    async (product: Product) => {
+      const res = await dispatch(addProduct({ product, images }));
+      console.log({ res });
+      reset({});
+    },
+    [images],
+  );
 
   const handleChange = (name: keyof ProductInput) => (
     e: React.SyntheticEvent,
@@ -104,6 +108,7 @@ const ProductCreate = () => {
   return (
     <div className={styles['product']}>
       <h3 className={styles['title']}>Добавить продукт</h3>
+      <h4>Характеристики</h4>
       <form onSubmit={handleSubmit(onSubmit)} className={styles['form']}>
         <div className={styles['input-block']}>
           {productInputs.map(({ name, title }) => (
@@ -117,13 +122,20 @@ const ProductCreate = () => {
             />
           ))}
         </div>
+        <h4>Добавить картинки</h4>
         <div className={styles['images']}>
-          <div>
-            <ImageUploadingAdd initialImages={images} callback={setImages} />
+          <div className={styles['add']}>
+            <ImageUploadingAdd
+              initialImages={images}
+              callback={setImages}
+              className={styles['add']}
+            />
           </div>
-          <div>
-            <ImageUploadingView initialImages={images} callback={setImages} />
-          </div>
+          {images.length ? (
+            <div className={styles['slider']}>
+              <ImageUploadingView initialImages={images} callback={setImages} />
+            </div>
+          ) : null}
         </div>
         <div className={styles['buttons-block']}>
           <Button type='submit'>Добавить</Button>

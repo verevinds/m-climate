@@ -34,13 +34,24 @@
 }
 .images {
   margin-top: 0.5em;
-  display: grid;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  grid-template-columns: 300px auto;
   @media screen and (max-width: $viewport-xs) {
-    grid-template-columns: 100%;
-    grid-row-gap: 10px;
+    flex-direction: column;
   }
+}
+.add {
+  min-width: 320px;
+  @media screen and (max-width: $viewport-xs) {
+    min-width: 100%;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+}
+.slider {
+  margin: 0 1rem;
+  width: 100%;
 }
 .buttons-block {
   margin: 0.5em 0;

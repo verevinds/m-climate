@@ -1,14 +1,17 @@
+var uuidv4 = require('uuid-v4');
+var path = require('path');
+
 exports.load = (req, res) => {
   if (req.files) {
     const { file } = req.files;
-    const filename = file.name;
-    const name = `${filename}`;
+    const filename = path.extname(file.name);
+    const name = `${uuidv4()}${filename}`;
 
     file.mv(`${'./public/uploads/'}${name}`, err => {
       if (err) {
-        res.send('error occured');
+        res.status(400).send('error occured');
       } else {
-        res.send({
+        res.status(200).send({
           message: `Файл ${filename} успешно загружен`,
           url: `${process.env.URL_SERVER}:8081/uploads/${name}`,
           filename,
@@ -17,7 +20,7 @@ exports.load = (req, res) => {
       }
     });
   } else {
-    res.send({
+    res.status(400).send({
       message: 'Файл отсутствует',
       wasFile: false,
     });

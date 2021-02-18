@@ -25,6 +25,12 @@ const productSchema = new Schema({
   inStock: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  images: [
+    {
+      url: String,
+      filename: String,
+    },
+  ],
 });
 
 productSchema.pre('save', next => {

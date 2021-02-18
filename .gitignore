@@ -145,3 +145,4 @@ dist
 storybook-static
 node_modules
 .next
+server/public
