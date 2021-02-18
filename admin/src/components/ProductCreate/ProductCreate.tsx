@@ -1,4 +1,5 @@
 import Spinner from '@components/Spinner/Spinner';
+import { selectBrandList } from '@redux/reducer/brand';
 import { addProduct, Product } from '@redux/reducer/product';
 import {
   Button,
@@ -12,7 +13,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, ValidationRule } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './productcreate.module.scss';
 
@@ -43,9 +44,11 @@ type ProductInput = {
   price: string;
   priceOld: string;
   inStock: boolean;
+  brand: string;
 };
 const ProductCreate = () => {
   const dispatch = useDispatch();
+  const brands = useSelector(selectBrandList);
   const { query } = useRouter();
   const isPageCreate = query.type && query.type === 'create';
   if (!isPageCreate) return null;
@@ -93,6 +96,7 @@ const ProductCreate = () => {
     { name: 'weightIndoor', title: 'Вес внутри' },
     { name: 'weightOutdoor', title: 'Вес снаружи' },
     { name: 'warranty', title: 'Гарантия' },
+    { name: 'brand', title: 'Бренд' },
   ];
 
   useEffect(() => {
@@ -109,6 +113,7 @@ const ProductCreate = () => {
       Object.assign(product, { description });
       await dispatch(addProduct({ product, images }));
       reset({});
+      // console.log(product);
     },
     [images, editorState],
   );
@@ -127,16 +132,25 @@ const ProductCreate = () => {
       <h4>Характеристики</h4>
       <form onSubmit={handleSubmit(onSubmit)} className={styles['form']}>
         <div className={styles['input-block']}>
-          {productInputs.map(({ name, title }) => (
-            <Input
-              key={name}
-              title={title}
-              error={errors[name]?.message}
-              onChange={handleChange(name)}
-              className={styles['input']}
-              name={name}
-            />
-          ))}
+          {productInputs.map(({ name, title }) =>
+            name === 'brand' ? null : (
+              <Input
+                key={name}
+                title={title}
+                error={errors[name]?.message}
+                onChange={handleChange(name)}
+                className={styles['input']}
+                name={name}
+              />
+            ),
+          )}
+          <select name='brand' ref={register}>
+            {brands.map(brand => (
+              <option value={brand._id} key={brand._id}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
         </div>
         <h4>Добавить описание</h4>
         <Editor

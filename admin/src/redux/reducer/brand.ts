@@ -81,6 +81,7 @@ const brandSlice = createSlice({
 });
 
 export const selectBrand = (state: RootState) => state.brand;
+export const selectBrandList = (state: RootState) => state.brand.list;
 
 export const { voidAction } = brandSlice.actions;
 
