@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { Controller, useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
 
 import styles from './productcreate.module.scss';
 
@@ -62,12 +63,12 @@ const ProductCreate = () => {
     name: keyof ProductInput;
     title: string;
     required?: string | ValidationRule<boolean>;
-    select?: {
+    option?: {
       [key: string]: any;
       _id: string;
       name: string;
     }[];
-    as?: JSX.Element | string;
+    as?: JSX.Element | string | any;
     type?: HTMLInputElement['type'];
     defaultValue?: any;
   }[] = [
@@ -104,7 +105,7 @@ const ProductCreate = () => {
     { name: 'weightIndoor', title: 'Вес внутри' },
     { name: 'weightOutdoor', title: 'Вес снаружи' },
     { name: 'warranty', title: 'Гарантия' },
-    { name: 'brand', title: 'Бренд', select: brands, as: 'select' },
+    { name: 'brand', title: 'Бренд', option: brands, as: Select },
   ];
 
   const onSubmit = useCallback(
@@ -128,13 +129,13 @@ const ProductCreate = () => {
           {productInputs.map(
             ({
               required,
-              select,
+              option,
               name,
               defaultValue,
               as = Input,
               ...restProps
             }) => {
-              if (select)
+              if (option)
                 return (
                   <Controller
                     key={name}
@@ -142,15 +143,13 @@ const ProductCreate = () => {
                     as={as}
                     control={control}
                     rules={{ required }}
-                    defaultValue={select[0]._id}
+                    defaultValue={option[0]._id}
+                    options={option.map(el => ({
+                      value: el._id,
+                      label: el.name,
+                    }))}
                     {...restProps}
-                  >
-                    {select.map(el => (
-                      <option value={el._id} key={el._id}>
-                        {el.name}
-                      </option>
-                    ))}
-                  </Controller>
+                  />
                 );
 
               if (restProps.type === 'checkbox')
