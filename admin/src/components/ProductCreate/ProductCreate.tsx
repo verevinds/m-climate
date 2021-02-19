@@ -74,15 +74,13 @@ const ProductCreate = () => {
     {
       name: 'name',
       title: 'Название',
-      required: 'Обязательный для заполнения',
     },
     { name: 'price', title: 'Цена', type: 'number' },
     { name: 'priceOld', title: 'Старая цена', type: 'number' },
     {
       name: 'inStock',
       title: 'В наличии',
-      as: Checkbox,
-      defaultValue: false,
+      type: 'checkbox',
     },
     { name: 'type', title: 'Тип' },
     { name: 'servicedArea', title: 'Рабочая площадь' },
@@ -108,7 +106,11 @@ const ProductCreate = () => {
   ];
 
   const onSubmit = useCallback(
-    async (product: Product) => {
+    async (
+      product: Omit<Product, 'brand'> & {
+        brand: { value: string; label: string };
+      },
+    ) => {
       await dispatch(addProduct({ product, images, description: editorState }));
     },
     [images, editorState],
@@ -129,7 +131,14 @@ const ProductCreate = () => {
               as = Input,
               ...restProps
             }) => {
-              if (option)
+              if (option) {
+                const customStyles = {
+                  control: (provided: any) => ({
+                    ...provided,
+                    border: '2px solid var(--color-primary, #007bff)',
+                  }),
+                };
+
                 return (
                   <Controller
                     key={name}
@@ -137,6 +146,8 @@ const ProductCreate = () => {
                     as={as}
                     control={control}
                     rules={{ required }}
+                    styles={customStyles}
+                    placeholder='Выберите бренд...'
                     defaultValue={option[0]._id}
                     options={option.map(el => ({
                       value: el._id,
@@ -145,17 +156,18 @@ const ProductCreate = () => {
                     {...restProps}
                   />
                 );
-
+              }
               if (restProps.type === 'checkbox')
                 return (
                   <Controller
+                    key={name}
                     name={name}
                     control={control}
-                    defaultValue={defaultValue}
                     rules={{ required: true }}
+                    defaultValue
                     render={props => (
-                      <Input
-                        type='checkbox'
+                      <Checkbox
+                        title={restProps.title}
                         onChange={(e: React.SyntheticEvent) => {
                           const { checked } = e.target as HTMLInputElement;
                           props.onChange(checked);
@@ -172,10 +184,11 @@ const ProductCreate = () => {
                   name={name}
                   control={control}
                   rules={{ required }}
+                  defaultValue=''
                   render={({ onChange, onBlur }) => (
                     <Input
+                      title={restProps.title}
                       error={errors[name]?.message}
-                      {...restProps}
                       onChange={onChange}
                       onBlur={onBlur}
                     />

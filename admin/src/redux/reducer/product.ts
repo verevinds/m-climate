@@ -73,7 +73,9 @@ export const addProduct = createAsyncThunk(
       images,
       description: draftDescription,
     }: {
-      product: Product;
+      product: Omit<Product, 'brand'> & {
+        brand: { value: string; label: string };
+      };
       images: ImageListType;
       description: EditorState;
     },
@@ -81,7 +83,6 @@ export const addProduct = createAsyncThunk(
   ) => {
     try {
       if (images.length) {
-        console.log(images);
         const promiseImages: Promise<AxiosResponse<Images>>[] = [];
 
         images.forEach(image => {
@@ -105,8 +106,7 @@ export const addProduct = createAsyncThunk(
       const description = draftToHtml(
         convertToRaw(draftDescription.getCurrentContent()),
       );
-      Object.assign(product, { description });
-
+      Object.assign(product, { brand: product.brand.value, description });
       const { data } = await Api().post<{ product: Product; message: string }>(
         '/api/product',
         product,
