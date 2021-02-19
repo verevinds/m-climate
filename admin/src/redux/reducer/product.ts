@@ -14,6 +14,7 @@ export type Images = {
   filename: string;
   message: string;
   url: string;
+  path: string;
   wasFile: boolean;
 };
 export type Product = {
@@ -148,7 +149,6 @@ const productSlice = createSlice({
       state.isPending = true;
     });
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
-      console.log(payload);
       const { message, product } = payload;
       if (product && state.isPending) {
         const newList = state.list

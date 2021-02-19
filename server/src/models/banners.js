@@ -7,6 +7,7 @@ const bannersSchema = new Schema({
   url: { type: String, required: true },
   enable: { type: Boolean, default: true },
   dateEnd: Date,
+  path: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

@@ -1,4 +1,4 @@
-import { Banner } from '@redux/reducer/banners';
+import { addBanners, Banner } from '@redux/reducer/banners';
 import {
   Button,
   ImageUploadingAdd,
@@ -9,21 +9,22 @@ import cogoToast from 'cogo-toast';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import { Controller, useForm, ValidationRule } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import styles from './bannerscreate.module.scss';
 
 type BannerInput = Pick<Banner, 'name' | 'dateEnd'>;
 const BannersCreate = () => {
   const { query } = useRouter();
+  const dispatch = useDispatch();
   const isPageCreate = query.type && query.type === 'create';
   const [images, setImages] = useState([]);
   const { handleSubmit, errors, control } = useForm<BannerInput>();
 
   const onSubmit = useCallback(
     async (banner: BannerInput) => {
-      console.log(images);
       if (images.length) {
-        console.log({ banner, images });
+        await dispatch(addBanners({ banner, images }));
       } else
         cogoToast.error('Вы не добавили изображение!', {
           position: 'top-right',

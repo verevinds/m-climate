@@ -19,7 +19,8 @@ exports.load = (req, res) => {
       } else {
         res.status(200).send({
           message: `Файл ${filename} успешно загружен`,
-          url: `${process.env.URL_SERVER}:8081/uploads/${name}`,
+          url: `${process.env.URL_SERVER}:8081/uploads/${folder}/${name}`,
+          path: `./public/uploads/${folder}/${name}`,
           filename,
           wasFile: true,
         });
