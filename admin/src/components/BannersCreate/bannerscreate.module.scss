@@ -2,3 +2,27 @@
   display: flex;
   flex-direction: column;
 }
+.form {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    'name images slider'
+    'dateEnd images slider'
+    'buttons . .';
+  grid-template-columns: 300px 1fr 1fr;
+}
+.name {
+  grid-area: name;
+}
+.dateEnd {
+  grid-area: dateEnd;
+}
+.images {
+  grid-area: images;
+}
+.slider {
+  grid-area: slider;
+}
+.buttons-block {
+  grid-area: buttons;
+}

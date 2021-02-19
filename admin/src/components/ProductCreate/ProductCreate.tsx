@@ -97,7 +97,13 @@ const ProductCreate = () => {
     { name: 'weightIndoor', title: 'Вес внутри' },
     { name: 'weightOutdoor', title: 'Вес снаружи' },
     { name: 'warranty', title: 'Гарантия' },
-    { name: 'brand', title: 'Бренд', option: brands, as: Select },
+    {
+      name: 'brand',
+      title: 'Бренд',
+      option: brands,
+      as: Select,
+      required: 'Обязательно к заполнению',
+    },
     {
       name: 'inStock',
       title: 'В наличии',
@@ -150,7 +156,6 @@ const ProductCreate = () => {
                     rules={{ required }}
                     styles={customStyles}
                     placeholder='Выберите бренд...'
-                    defaultValue={option[0]._id}
                     options={option.map(el => ({
                       value: el._id,
                       label: el.name,
@@ -187,14 +192,12 @@ const ProductCreate = () => {
                   name={name}
                   control={control}
                   rules={{ required }}
-                  defaultValue=''
-                  render={({ onChange, onBlur }) => (
+                  render={({ onChange }) => (
                     <Input
                       id={name}
                       title={restProps.title}
                       error={errors[name]?.message}
                       onChange={onChange}
-                      onBlur={onBlur}
                     />
                   )}
                 />

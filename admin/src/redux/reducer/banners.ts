@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RestDelete } from '@src/type/api';
 import Api from '@src/utils/Api';
@@ -14,7 +15,7 @@ export type Banner = {
   name: string;
   url: string;
   enable: boolean;
-  dateEnd?: string;
+  dateEnd: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -110,9 +111,7 @@ const bannersSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getBanners.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-    });
-    builder.addCase(addBanners.pending, state => {
-      state.isPending = true;
+      state.isPending = false;
     });
     builder.addCase(addBanners.fulfilled, (state, { payload }) => {
       const { message, banners } = payload;
@@ -128,19 +127,6 @@ const bannersSlice = createSlice({
       }
       state.isPending = false;
     });
-    builder.addCase(addBanners.rejected, (state, action) => {
-      const { payload } = action as { payload: { message: string } };
-
-      const { hide } = cogoToast.error(payload.message, {
-        heading: 'Ошибка',
-        position: 'top-right',
-        hideAfter: 1000,
-        onClick: () => {
-          if (hide) hide();
-        },
-      });
-      state.isPending = false;
-    });
     builder.addCase(deleteBanners.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
         state.list = state.list.filter(brand => brand._id !== payload._id);
@@ -148,7 +134,15 @@ const bannersSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
+      state.isPending = false;
     });
+    builder.addCase(getBanners.pending, handlePending);
+    builder.addCase(addBanners.pending, handlePending);
+    builder.addCase(deleteBanners.pending, handlePending);
+
+    builder.addCase(getBanners.rejected, handleReject);
+    builder.addCase(addBanners.rejected, handleReject);
+    builder.addCase(deleteBanners.rejected, handleReject);
   },
 });
 

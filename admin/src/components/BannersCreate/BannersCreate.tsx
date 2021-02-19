@@ -63,6 +63,7 @@ const BannersCreate = () => {
                 id={name}
                 title={title}
                 type={type}
+                className={styles[name]}
                 error={errors[name]?.message}
                 onChange={onChange}
                 onBlur={onBlur}
@@ -71,19 +72,17 @@ const BannersCreate = () => {
           />
         ))}
         <div className={styles['images']}>
-          <div className={styles['add']}>
-            <ImageUploadingAdd
-              initialImages={images}
-              callback={setImages}
-              className={styles['add']}
-            />
-          </div>
-          {images.length ? (
-            <div className={styles['slider']}>
-              <ImageUploadingView initialImages={images} callback={setImages} />
-            </div>
-          ) : null}
+          <ImageUploadingAdd
+            initialImages={images}
+            callback={setImages}
+            className={styles['add']}
+          />
         </div>
+        {images.length ? (
+          <div className={styles['slider']}>
+            <ImageUploadingView initialImages={images} callback={setImages} />
+          </div>
+        ) : null}
         <div className={styles['buttons-block']}>
           <Button type='submit'>Добавить</Button>
         </div>
