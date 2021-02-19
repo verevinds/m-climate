@@ -169,6 +169,7 @@ const ProductCreate = () => {
                     defaultValue
                     render={props => (
                       <Checkbox
+                        id={name}
                         title={restProps.title}
                         onChange={(e: React.SyntheticEvent) => {
                           const { checked } = e.target as HTMLInputElement;
@@ -189,6 +190,7 @@ const ProductCreate = () => {
                   defaultValue=''
                   render={({ onChange, onBlur }) => (
                     <Input
+                      id={name}
                       title={restProps.title}
                       error={errors[name]?.message}
                       onChange={onChange}
