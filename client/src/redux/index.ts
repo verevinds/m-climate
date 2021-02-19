@@ -16,7 +16,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { ThunkDispatch } from 'redux-thunk';
 
-import rootReducer from './reducer';
+import rootReducer, { RootState } from './reducer';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +25,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-export type RootState = ReturnType<typeof rootReducer>;
 export type RootStateWithPirsist = typeof persistedReducer;
 
 export const initStore = (preloadedState = {}) => {

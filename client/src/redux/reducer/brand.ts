@@ -2,9 +2,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RestDelete } from '@type/api';
 import Api from '@utils/Api';
-import type { AxiosResponse } from 'axios';
 
-import type { RootState } from '..';
+import type { RootState } from '.';
 
 export type Brand = {
   _id: string;
@@ -21,7 +20,7 @@ const initialState: BrandReducer = {
 };
 export const getBrands = createAsyncThunk('admin/testThunk', async () => {
   try {
-    const { data } = await Api().get<any, AxiosResponse<Brand[]>>('/api/brand');
+    const { data } = await Api().get<Brand[]>('/api/brand');
     data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
     return data;
@@ -34,10 +33,7 @@ export const addBrand = createAsyncThunk(
   'admin/addBrand',
   async (brand: Brand) => {
     try {
-      const { data } = await Api().post<any, AxiosResponse<Brand>>(
-        '/api/brand',
-        brand,
-      );
+      const { data } = await Api().post<Brand>('/api/brand', brand);
 
       return data;
     } catch (e) {
@@ -50,9 +46,7 @@ export const deleteBrand = createAsyncThunk(
   'admin/deleteBrand',
   async (id: Brand['_id']) => {
     try {
-      const { data } = await Api().delete<any, AxiosResponse<RestDelete>>(
-        `/api/brand/${id}`,
-      );
+      const { data } = await Api().delete<RestDelete>(`/api/brand/${id}`);
 
       return data;
     } catch (e) {
@@ -61,8 +55,8 @@ export const deleteBrand = createAsyncThunk(
   },
 );
 
-const admin = createSlice({
-  name: 'admin',
+const brandSlice = createSlice({
+  name: 'brand',
   initialState,
   reducers: {
     voidAction: () => {},
@@ -87,7 +81,8 @@ const admin = createSlice({
 });
 
 export const selectBrand = (state: RootState) => state.brand;
+export const selectBrandList = (state: RootState) => state.brand.list;
 
-export const { voidAction } = admin.actions;
+export const { voidAction } = brandSlice.actions;
 
-export default admin.reducer;
+export default brandSlice.reducer;

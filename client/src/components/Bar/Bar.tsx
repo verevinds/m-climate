@@ -1,12 +1,13 @@
 import Item from '@components/Item/Item';
 import Slider from '@components/Slider/Slider';
+import { Product } from '@redux/reducer/product';
 import React from 'react';
 
 import styles from './bar.module.scss';
 
 interface IBar {
   title?: string;
-  items: any[];
+  items: Product[];
 }
 
 const Bar: React.FC<IBar> = props => {
@@ -23,9 +24,9 @@ const Bar: React.FC<IBar> = props => {
             disabledClass: styles.disabled,
           }}
         >
-          {items.map(el => (
-            <div key={el.id} className={styles.bar__item}>
-              <Item />
+          {items.map(item => (
+            <div key={item._id} className={styles.bar__item}>
+              <Item item={item} />
             </div>
           ))}
         </Slider>
