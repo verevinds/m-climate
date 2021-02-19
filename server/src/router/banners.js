@@ -3,6 +3,7 @@ module.exports = app => {
   const router = require('express').Router();
 
   router.get('/', banners.find);
+  router.get('/actual', banners.findActual);
   router.post('/', banners.create);
   router.delete('/:id', banners.delete);
 

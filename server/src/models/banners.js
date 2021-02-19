@@ -6,7 +6,7 @@ const bannersSchema = new Schema({
   name: { type: String, required: true },
   url: { type: String, required: true },
   enable: { type: Boolean, default: true },
-  dateEnd: Date,
+  dateEnd: { type: Date, default: new Date(3000, 1, 1) },
   path: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
