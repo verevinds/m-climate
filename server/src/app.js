@@ -27,6 +27,7 @@ require('./router/post')(app);
 require('./router/brand')(app);
 require('./router/product')(app);
 require('./router/files')(app);
+require('./router/banners')(app);
 
 const PORT = process.env.PORT || 8081;
 
