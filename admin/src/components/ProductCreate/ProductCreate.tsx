@@ -8,8 +8,7 @@ import {
   ImageUploadingView,
   Input,
 } from '@verevinds/ui-kit';
-import { convertToRaw, EditorState } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
+import { EditorState } from 'draft-js';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
@@ -110,12 +109,7 @@ const ProductCreate = () => {
 
   const onSubmit = useCallback(
     async (product: Product) => {
-      const description = draftToHtml(
-        convertToRaw(editorState.getCurrentContent()),
-      );
-      Object.assign(product, { description });
-      await dispatch(addProduct({ product, images }));
-      console.log(product);
+      await dispatch(addProduct({ product, images, description: editorState }));
     },
     [images, editorState],
   );
@@ -178,9 +172,14 @@ const ProductCreate = () => {
                   name={name}
                   control={control}
                   rules={{ required }}
-                  error={errors[name]?.message}
-                  as={as}
-                  {...restProps}
+                  render={({ onChange, onBlur }) => (
+                    <Input
+                      error={errors[name]?.message}
+                      {...restProps}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    />
+                  )}
                 />
               );
             },

@@ -12,6 +12,10 @@ module.exports = Product => (req, res) => {
   });
 
   product.save(error =>
-    error ? res.status(400).send(error) : res.status(200).send(product),
+    error
+      ? res.status(400).send(error)
+      : res
+          .status(200)
+          .send({ product, message: `Товар "${product.name}" добавлен!` }),
   );
 };
