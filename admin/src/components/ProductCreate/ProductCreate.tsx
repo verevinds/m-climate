@@ -52,7 +52,6 @@ const ProductCreate = () => {
   const brands = useSelector(selectBrandList);
   const { query } = useRouter();
   const isPageCreate = query.type && query.type === 'create';
-  if (!isPageCreate) return null;
   const [images, setImages] = useState([]);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -116,6 +115,8 @@ const ProductCreate = () => {
     },
     [images, editorState],
   );
+
+  if (!isPageCreate) return null;
 
   return (
     <div className={styles['product']}>
@@ -210,6 +211,7 @@ const ProductCreate = () => {
           <div className={styles['add']}>
             <ImageUploadingAdd
               initialImages={images}
+              multiple
               callback={setImages}
               className={styles['add']}
             />

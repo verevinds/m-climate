@@ -8,7 +8,7 @@ import { convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { ImageListType } from 'react-images-uploading';
 
-import type { RootState } from '..';
+import type { RootState } from '.';
 
 export type Images = {
   filename: string;
