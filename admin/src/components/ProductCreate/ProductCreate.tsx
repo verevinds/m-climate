@@ -74,14 +74,10 @@ const ProductCreate = () => {
     {
       name: 'name',
       title: 'Название',
+      required: 'Обязательно к заполнению',
     },
     { name: 'price', title: 'Цена', type: 'number' },
     { name: 'priceOld', title: 'Старая цена', type: 'number' },
-    {
-      name: 'inStock',
-      title: 'В наличии',
-      type: 'checkbox',
-    },
     { name: 'type', title: 'Тип' },
     { name: 'servicedArea', title: 'Рабочая площадь' },
     { name: 'powerCooling', title: 'Мощность охлаждения' },
@@ -103,6 +99,11 @@ const ProductCreate = () => {
     { name: 'weightOutdoor', title: 'Вес снаружи' },
     { name: 'warranty', title: 'Гарантия' },
     { name: 'brand', title: 'Бренд', option: brands, as: Select },
+    {
+      name: 'inStock',
+      title: 'В наличии',
+      type: 'checkbox',
+    },
   ];
 
   const onSubmit = useCallback(
