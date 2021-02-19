@@ -3,6 +3,7 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faBox,
+  faCameraRetro,
   faHome,
   faTags,
 } from '@fortawesome/free-solid-svg-icons';
@@ -66,6 +67,12 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               name: 'Товар',
               url: '/product',
               icon: faBox,
+            },
+            {
+              id: '4',
+              name: 'Баннеры',
+              url: '/banners',
+              icon: faCameraRetro,
             },
           ].map(el => (
             <ActiveLink

@@ -6,8 +6,14 @@ exports.load = (req, res) => {
     const { file } = req.files;
     const filename = path.extname(file.name);
     const name = `${uuidv4()}${filename}`;
+    const folder = req.body.folder;
+    if (!folder)
+      res.status(400).send({
+        message: 'Путь для хранения отсутствует',
+        wasFile: true,
+      });
 
-    file.mv(`${'./public/uploads/'}${name}`, err => {
+    file.mv(`./public/uploads/${folder}/${name}`, err => {
       if (err) {
         res.status(400).send('error occured');
       } else {

@@ -89,6 +89,7 @@ export const addProduct = createAsyncThunk(
           if (image.file) {
             const data = new FormData();
             data.append('file', image.file);
+            data.append('folder', 'product');
             const promiseImage = Api().post<Images>('/api/files', data);
             promiseImages.push(promiseImage);
           }
