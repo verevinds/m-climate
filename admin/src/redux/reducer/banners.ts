@@ -154,6 +154,8 @@ const bannersSlice = createSlice({
 
 export const selectBanners = (state: RootState) => state.banners;
 export const selectBannersList = (state: RootState) => state.banners.list;
+export const selectBannersPending = (state: RootState) =>
+  state.banners.isPending;
 
 export const { voidAction } = bannersSlice.actions;
 

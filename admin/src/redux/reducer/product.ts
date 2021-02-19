@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RestDelete } from '@type/api';
 import Api from '@utils/Api';
@@ -145,9 +146,7 @@ const productSlice = createSlice({
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
     });
-    builder.addCase(addProduct.pending, state => {
-      state.isPending = true;
-    });
+
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
       const { message, product } = payload;
       if (product && state.isPending) {
@@ -162,19 +161,7 @@ const productSlice = createSlice({
       }
       state.isPending = false;
     });
-    builder.addCase(addProduct.rejected, (state, action) => {
-      const { payload } = action as { payload: { message: string } };
 
-      const { hide } = cogoToast.error(payload.message, {
-        heading: 'Ошибка',
-        position: 'top-right',
-        hideAfter: 1000,
-        onClick: () => {
-          if (hide) hide();
-        },
-      });
-      state.isPending = false;
-    });
     builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
         state.list = state.list.filter(brand => brand._id !== payload._id);
@@ -183,6 +170,14 @@ const productSlice = createSlice({
         position: 'top-right',
       });
     });
+
+    builder.addCase(getProducts.pending, handlePending);
+    builder.addCase(addProduct.pending, handlePending);
+    builder.addCase(deleteProduct.pending, handlePending);
+
+    builder.addCase(getProducts.rejected, handleReject);
+    builder.addCase(addProduct.rejected, handleReject);
+    builder.addCase(deleteProduct.rejected, handleReject);
   },
 });
 
