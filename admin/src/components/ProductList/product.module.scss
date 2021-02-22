@@ -1,0 +1,14 @@
+.list {
+  display: grid;
+
+  grid-row-gap: 5px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 100px repeat(6, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+.img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

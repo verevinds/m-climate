@@ -17,7 +17,7 @@ const ProductList = () => {
   };
   return (
     <>
-      <h3>Список брендов</h3>
+      <h3>Список баннеров</h3>
       {banners.map(banner => (
         <div key={banner._id}>
           <img src={banner.url} alt={banner.name} />

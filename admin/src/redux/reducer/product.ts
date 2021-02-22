@@ -44,6 +44,7 @@ export type Product = {
   description?: string;
   createdAt: string;
   updatedAt: string;
+  images: { _id: string; url: string; filename: string }[];
 };
 
 export type ProductReducer = {
