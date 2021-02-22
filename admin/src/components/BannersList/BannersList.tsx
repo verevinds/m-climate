@@ -8,6 +8,8 @@ import {
 import { Button } from '@verevinds/ui-kit';
 import { useDispatch, useSelector } from 'react-redux';
 
+import styles from './bannerslist.module.scss';
+
 const ProductList = () => {
   const dispatch = useDispatch();
 
@@ -19,18 +21,20 @@ const ProductList = () => {
     <>
       <h3>Список баннеров</h3>
       {banners.map(banner => (
-        <div key={banner._id}>
-          <img src={banner.url} alt={banner.name} />
-          <p>{banner.name}</p>
-          <Button
-            type='button'
-            aria-label='Удалить'
-            onClick={handleDelete(banner._id)}
-            data-tip
-            data-for={banner['_id']}
-            icon={<FontAwesomeIcon icon={faTrash} />}
-            variant='outline-danger'
-          />
+        <div key={banner._id} className={styles['banner']}>
+          <div className={styles['header']}>
+            <h5 className={styles['name']}>{banner.name}</h5>
+            <Button
+              type='button'
+              aria-label='Удалить'
+              onClick={handleDelete(banner._id)}
+              data-tip
+              data-for={banner['_id']}
+              icon={<FontAwesomeIcon icon={faTrash} />}
+              variant='outline-danger'
+            />
+          </div>
+          <img src={banner.url} alt={banner.name} className={styles['img']} />
         </div>
       ))}
     </>
