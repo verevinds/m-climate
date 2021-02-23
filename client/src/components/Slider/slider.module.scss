@@ -3,13 +3,13 @@
   width: 100%;
   :global {
     .swiper-pagination-bullet-active {
-      background-color: var(--color-text-primary-lighter);
+      background-color: var(--color-primary-text-lighter);
     }
     .swiper-button-prev,
     .swiper-button-next {
       min-width: 44px;
       min-height: 44px;
-      background-color: var(--color-brand-secondary);
+      background-color: var(--color-secondary);
 
       border-radius: 50%;
 
@@ -17,7 +17,7 @@
     }
     .swiper-button-prev:hover,
     .swiper-button-next:hover {
-      background-color: var(--color-brand-secondary-light);
+      background-color: var(--color-secondary-light);
     }
     .swiper-button-prev {
       transform: translateX(25%);
@@ -25,7 +25,7 @@
     .swiper-button-prev:after,
     .swiper-button-next:after {
       margin: auto;
-      color: var(--color-text-for-secondary);
+      color: var(--color-secondary-text-light);
       font-size: 22px;
       transform: translateX(25%);
     }

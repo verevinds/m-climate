@@ -20,7 +20,7 @@
     }
     &-old {
       margin-left: 0.5rem;
-      color: var(--color-text-primary-lighter);
+      color: var(--color-primary-text-lighter);
       font-weight: 100;
       font-size: 1.1rem;
 
@@ -34,12 +34,12 @@
   }
 
   &__title {
-    color: var(--color-brand-secondary);
+    color: var(--color-secondary);
     &:visited {
-      color: var(--color-brand-secondary);
+      color: var(--color-secondary);
     }
     &:hover {
-      color: var(--color-text-secondary);
+      color: var(--color-secondary-text-light);
     }
   }
 }

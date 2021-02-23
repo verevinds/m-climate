@@ -3,8 +3,8 @@
   flex-wrap: wrap-reverse;
 
   padding: 1rem 3rem;
-  color: var(--color-text-for-secondary);
-  background-color: var(--color-brand-secondary);
+  color: var(--color-secondary-text-light);
+  background-color: var(--color-secondary);
   &__contact,
   &__menu-wrap {
     margin: 1rem 3rem;
@@ -19,9 +19,9 @@
     }
   }
   &__link a {
-    color: var(--color-text-for-secondary);
+    color: var(--color-secondary-text-light);
     &:hover {
-      color: var(--color-text-secondary);
+      color: var(--color-secondary-text-light);
     }
   }
 }

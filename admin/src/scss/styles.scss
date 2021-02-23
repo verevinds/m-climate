@@ -15,19 +15,22 @@
   --color-primary-dark: hsl(195, 100%, 30%);
   --color-primary-darker: hsl(195, 100%, 27%);
   --color-primary-darkest: hsl(195, 100%, 24%);
+  --color-primary-text: #434b5b;
+  --color-primary-text-light: #fff;
+  --color-primary-text-dark: #434b5b;
   // Дополнительный цвет
-  --color-brand-secondary: hsl(31, 100%, 50%);
-  --color-brand-secondary-light: hsl(31, 100%, 60%);
-  --color-brand-secondary-lighter: hsl(31, 100%, 63%);
-  --color-brand-secondary-lightest: hsl(31, 100%, 67%);
-  --color-divider: hsl(0, 0%, 90%);
+  --color-secondary: hsl(31, 100%, 50%);
+  --color-secondary-light: hsl(31, 100%, 60%);
+  --color-secondary-lighter: hsl(31, 100%, 63%);
+  --color-secondary-lightest: hsl(31, 100%, 67%);
+  --color-secondary-text: #ce5955;
+  --color-secondary-text-light: #fff;
+  --color-secondary-text-dark: #434b5b;
   // Цвет текста
-  --color-text-for-secondary: #fff;
-  --color-text-primary: #434b5b;
-  --color-text-primary-light: #fff;
-  --color-text-primary-lighter: #aab1c0;
-  --color-text-primary-lightest: #e5e7eb;
-  --color-text-secondary: #ce5955;
+  --color-text-light: #e5e7eb;
+  --color-text-dark: #434b5b;
+  // Дополнительные параметры
+  --color-divider: hsl(0, 0%, 90%);
   --radius: 4px;
 }
 
@@ -38,7 +41,7 @@
   font-family: 'Open Sans', sans-serif;
 }
 html {
-  color: var(--color-text-primary);
+  color: var(--color-primary-text);
 }
 h1 {
   padding-bottom: 1.5rem;
@@ -58,11 +61,11 @@ h3 {
   font-size: 1.2rem;
 }
 a {
-  color: var(--color-text-primary);
+  color: var(--color-primary-text);
   text-decoration: none;
   transition: color ease-in-out 200ms;
   &:visited {
-    color: var(--color-text-primary);
+    color: var(--color-primary-text);
   }
   &.link-menu {
     display: flex;
@@ -70,7 +73,7 @@ a {
     justify-content: center;
 
     margin: 0 0.5rem;
-    color: var(--color-text-primary-light);
+    color: var(--color-primary-text);
     font-size: 0.85rem;
 
     text-align: center;
@@ -81,7 +84,7 @@ a {
     margin: 5px auto;
   }
   &:hover {
-    color: var(--color-text-secondary);
+    color: var(--color-secondary-text);
   }
 }
 

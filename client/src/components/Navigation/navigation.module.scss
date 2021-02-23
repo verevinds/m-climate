@@ -54,7 +54,7 @@
     &-favorite {
       position: relative;
       font-style: italic;
-      background-color: var(--color-brand-secondary);
+      background-color: var(--color-secondary);
       border-top-left-radius: var(--radius);
       border-bottom-right-radius: var(--radius);
       transition: ease-in-out 200ms;
@@ -66,8 +66,7 @@
       display: inline-block;
       width: 0;
       height: 0;
-      border-color: var(--color-brand-secondary) transparent transparent
-        transparent;
+      border-color: var(--color-secondary) transparent transparent transparent;
       border-style: solid;
       border-width: 22px 4px 0 0;
       border-top-right-radius: var(--radius);
@@ -81,8 +80,7 @@
       display: inline-block;
       width: 0;
       height: 0;
-      border-color: transparent transparent var(--color-brand-secondary)
-        transparent;
+      border-color: transparent transparent var(--color-secondary) transparent;
       border-style: solid;
       border-width: 0 0 26px 5px;
       border-bottom-left-radius: var(--radius);
@@ -90,18 +88,18 @@
       content: '';
     }
     &-favorite:hover {
-      background-color: var(--color-brand-secondary-light);
+      background-color: var(--color-secondary-light);
     }
     &-favorite:hover &-favorite::after {
-      border-color: var(--color-brand-secondary-light) transparent transparent
+      border-color: var(--color-secondary-light) transparent transparent
         transparent;
     }
     &-favorite:hover &-favorite::before {
-      border-color: transparent transparent var(--color-brand-secondary-light)
+      border-color: transparent transparent var(--color-secondary-light)
         transparent;
     }
     &-favorite .nav__link {
-      color: var(--color-text-for-secondary);
+      color: var(--color-secondary-text-light);
     }
   }
 }

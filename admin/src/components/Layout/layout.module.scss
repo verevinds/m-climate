@@ -83,8 +83,8 @@
 }
 
 .-active {
-  color: var(--color-text-primary-light) !important;
-  background-color: var(--color-brand-secondary-lightest);
+  color: var(--color-primary-text-light) !important;
+  background-color: var(--color-secondary-lightest);
   animation: active 500ms ease-in-out;
 }
 @keyframes active {
@@ -92,6 +92,6 @@
     background-color: #fff;
   }
   to {
-    background-color: var(--color-brand-secondary-lightest);
+    background-color: var(--color-secondary-lightest);
   }
 }

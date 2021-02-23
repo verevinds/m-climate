@@ -8,13 +8,13 @@ const Menu = () => {
     <>
       <br />
       <div className={styles['menu__button-container']}>
-        <label htmlFor='menu' className={styles.menu__button}>
-          <input
-            type='checkbox'
-            id='menu'
-            className={styles['menu__button-input']}
-          />
-          <span className={styles.menu__text}>Каталог</span>
+        <input
+          type='checkbox'
+          id='menu1'
+          className={styles['menu__button-input']}
+        />
+        <label htmlFor='menu1' className={styles.menu__button}>
+          Каталог
         </label>
         <br />
         <div className={styles['menu-wrap']}>
