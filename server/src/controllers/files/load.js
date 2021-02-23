@@ -1,5 +1,6 @@
 var uuidv4 = require('uuid-v4');
 var path = require('path');
+var fs = require('fs');
 
 exports.load = (req, res) => {
   if (req.files) {
@@ -7,20 +8,26 @@ exports.load = (req, res) => {
     const filename = path.extname(file.name);
     const name = `${uuidv4()}${filename}`;
     const folder = req.body.folder;
+    const dir = `./public/uploads/${folder}`;
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+
     if (!folder)
       res.status(400).send({
         message: 'Путь для хранения отсутствует',
         wasFile: true,
       });
 
-    file.mv(`./public/uploads/${folder}/${name}`, err => {
+    file.mv(`${dir}/${name}`, err => {
       if (err) {
         res.status(400).send('error occured');
       } else {
         res.status(200).send({
           message: `Файл ${filename} успешно загружен`,
           url: `${process.env.URL_SERVER}:8081/uploads/${folder}/${name}`,
-          path: `./public/uploads/${folder}/${name}`,
+          path: `${dir}/${name}`,
           filename,
           wasFile: true,
         });
