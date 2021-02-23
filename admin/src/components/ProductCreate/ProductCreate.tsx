@@ -140,12 +140,12 @@ const ProductCreate = () => {
               ...restProps
             }) => {
               if (option) {
-                const customStyles = {
-                  control: (provided: any) => ({
-                    ...provided,
-                    border: '2px solid var(--color-primary, #007bff)',
-                  }),
-                };
+                // const customStyles = {
+                //   control: (provided: any) => ({
+                //     ...provided,
+                //     border: '2px solid var(--color-primary, #007bff)',
+                //   }),
+                // };
 
                 return (
                   <Controller
@@ -154,7 +154,7 @@ const ProductCreate = () => {
                     as={as}
                     control={control}
                     rules={{ required }}
-                    styles={customStyles}
+                    // styles={customStyles}
                     placeholder='Выберите бренд...'
                     options={option.map(el => ({
                       value: el._id,
