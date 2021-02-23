@@ -20,12 +20,12 @@ const Header = () => {
         <Search />
       </div>
       <div className={styles.header__toolbar}>
-        <a href='#' className='link-menu'>
-          <FontAwesomeIcon icon={faPercent} />
+        <a href='#' className={styles['link']}>
+          <FontAwesomeIcon icon={faPercent} className={styles['link__icon']} />
           Акции
         </a>
-        <a href='#' className='link-menu'>
-          <FontAwesomeIcon icon={faHeart} />
+        <a href='#' className={styles['link']}>
+          <FontAwesomeIcon icon={faHeart} className={styles['link__icon']} />
           Избранное
         </a>
       </div>

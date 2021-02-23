@@ -97,24 +97,8 @@ a {
   &:visited {
     color: var(--color-primary-text);
   }
-  &.link-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    margin: 0 0.5rem;
-    color: var(--color-primary-text-light);
-    font-size: 0.85rem;
-
-    text-align: center;
-  }
-  &.link-menu svg {
-    width: 20px;
-    height: 20px;
-    margin: 5px auto;
-  }
   &:hover {
-    color: var(--color-secondary-text-light);
+    color: var(--color-secondary-text);
   }
 }
 

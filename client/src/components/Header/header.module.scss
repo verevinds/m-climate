@@ -43,6 +43,21 @@
     margin: 0 auto;
   }
 }
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 0.5rem;
+  color: var(--color-primary-text);
+  font-size: 0.85rem;
+
+  text-align: center;
+  &__icon {
+    margin: 5px auto;
+    font-size: 20px;
+  }
+}
 
 @media screen and (max-width: $viewport-sm) {
   .header {
