@@ -14,22 +14,6 @@
   transform: translateY(-999px);
   transition: all linear 600ms 200ms;
 
-  @media screen and (max-width: $viewport-sm) {
-    justify-content: space-between;
-
-    padding: 0 0.8rem;
-    padding-bottom: 0.8rem;
-    &__location {
-      display: block;
-    }
-    &__button {
-      background-color: transparent;
-    }
-    &__text {
-      display: none;
-    }
-  }
-
   &__location {
     display: none;
     flex: 100%;
@@ -70,7 +54,6 @@
     &::before {
       width: 18px;
       height: 18px;
-      margin-right: 5px;
       background-color: var(--color-primary-text-light);
       transition: all ease-in-out 200ms;
       content: '';
@@ -99,11 +82,27 @@
       transform: translateY(0px);
       transition: all linear 200ms 0ms;
     }
-    &__text {
-      display: inline-block;
+  }
+}
 
-      box-sizing: border-box;
-      padding-left: 12px;
+.text {
+  display: inline-block;
+
+  box-sizing: border-box;
+  padding-left: 12px;
+}
+
+@media screen and (max-width: $viewport-sm) {
+  .menu {
+    justify-content: space-between;
+
+    padding: 0 0.8rem;
+    padding-bottom: 0.8rem;
+    &__location {
+      display: block;
     }
+  }
+  .text {
+    display: none;
   }
 }

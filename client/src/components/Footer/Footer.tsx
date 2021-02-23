@@ -3,6 +3,7 @@ import styles from './footer.module.scss';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
+      <div className={styles['shadow']} />
       <nav className={styles['footer__menu-wrap']}>
         <h3>Информация</h3>
         <ul className={styles.footer__menu}>

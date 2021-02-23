@@ -1,10 +1,9 @@
 .footer {
   display: flex;
-  flex-wrap: wrap-reverse;
-
-  padding: 1rem 3rem;
-  color: var(--color-secondary-text-light);
-  background-color: var(--color-secondary);
+  flex-wrap: wrap;
+  overflow: hidden;
+  color: var(--color-primary-text);
+  background-color: var(--bg);
   &__contact,
   &__menu-wrap {
     margin: 1rem 3rem;
@@ -18,10 +17,9 @@
       padding-top: 0;
     }
   }
-  &__link a {
-    color: var(--color-secondary-text-light);
-    &:hover {
-      color: var(--color-secondary-text-light);
-    }
-  }
+}
+.shadow {
+  flex: 100%;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
 }

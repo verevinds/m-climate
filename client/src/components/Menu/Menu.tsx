@@ -14,7 +14,7 @@ const Menu = () => {
           className={styles['menu__button-input']}
         />
         <label htmlFor='menu1' className={styles.menu__button}>
-          Каталог
+          <span className={styles['text']}>Каталог</span>
         </label>
         <br />
         <div className={styles['menu-wrap']}>
