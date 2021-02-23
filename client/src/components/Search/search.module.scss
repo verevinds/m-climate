@@ -1,25 +1,9 @@
 .search {
-  display: flex;
-  padding: 2px;
-  background-color: var(--color-primary);
-  border-radius: var(--radius);
-
-  &__input {
-    width: 100%;
-    padding: 0 1rem;
-    border: 0 none transparent;
-    border-top-left-radius: var(--radius);
-    border-bottom-left-radius: var(--radius);
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__button {
-    background-color: transparent;
-
-    &:focus {
-      outline: none;
+  min-height: initial;
+  :global {
+    .inpt__input {
+      box-sizing: border-box;
+      height: 41px;
     }
   }
 }

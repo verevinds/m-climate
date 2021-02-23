@@ -19,7 +19,9 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
       </div>
       <div className={styles.item__price}>
         <span className={styles['item__price-current']}>{price}</span>
-        <span className={styles['item__price-old']}>{priceOld}</span>
+        {priceOld ? (
+          <span className={styles['item__price-old']}>{priceOld}</span>
+        ) : null}
       </div>
       <div className={styles['item__title-wrap']}>
         <a href='#' className={styles.item__title}>

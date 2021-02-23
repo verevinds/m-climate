@@ -6,7 +6,6 @@ import MenuBlock from './MenuBlock';
 const Menu = () => {
   return (
     <>
-      <br />
       <div className={styles['menu__button-container']}>
         <input
           type='checkbox'

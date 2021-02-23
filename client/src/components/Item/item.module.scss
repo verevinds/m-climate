@@ -10,7 +10,7 @@
 
   &__img {
     width: 150px;
-    height: 166px;
+    height: 150px;
     object-fit: contain;
   }
 
@@ -29,7 +29,7 @@
     &-current::after,
     &-old::after {
       font-size: 0.7em;
-      content: '₽';
+      content: 'руб.';
     }
   }
 
@@ -39,7 +39,7 @@
       color: var(--color-secondary);
     }
     &:hover {
-      color: var(--color-secondary-text-light);
+      color: var(--color-secondary-text);
     }
   }
 }

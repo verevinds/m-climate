@@ -1,16 +1,17 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input } from '@verevinds/ui-kit';
 
 import styles from './search.module.scss';
 
 const Search = () => {
   return (
-    <div className={styles.search}>
-      <input className={styles.search__input} />
-      <button type='button' className={styles.search__button}>
-        <FontAwesomeIcon icon={faSearch} />
-      </button>
-    </div>
+    <Input
+      className={styles['search']}
+      icon={<FontAwesomeIcon icon={faSearch} />}
+      variant='primary'
+      placeholder='Найти кондиционер...'
+    />
   );
 };
 

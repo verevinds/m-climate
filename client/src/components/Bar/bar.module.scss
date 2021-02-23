@@ -3,6 +3,7 @@
 .bar {
   display: inline-flex;
   width: 100%;
+  margin-bottom: 1rem;
   &-wrap {
     @media screen and (max-width: $viewport-sm) {
       margin-bottom: 2rem;
@@ -16,8 +17,7 @@
     }
   }
   &__item {
-    width: 144px;
-    height: 227px;
+    width: 150px;
     margin-right: 1rem;
   }
 }

@@ -6,12 +6,13 @@ import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './header.module.scss';
+import Logo from './Logo';
 
 const Header = () => {
   return (
     <header className={styles['block']}>
       <div className={styles['logo']}>
-        <img src='//via.placeholder.com/223x45' alt='Логотип' />
+        <Logo />
       </div>
       <div className={styles['menu']}>
         <Menu />

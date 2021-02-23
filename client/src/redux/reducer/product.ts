@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RestDelete } from '@type/api';
 import Api from '@utils/Api';
@@ -10,16 +11,12 @@ import { ImageListType } from 'react-images-uploading';
 
 import type { RootState } from '.';
 
-export type ImagesState = {
+export type Images = {
   filename: string;
   message: string;
   url: string;
+  path: string;
   wasFile: boolean;
-};
-export type Images = {
-  _id: string;
-  url: string;
-  filename: string;
 };
 export type Product = {
   price: number;
@@ -44,10 +41,10 @@ export type Product = {
   weightIndoor?: string;
   weightOutdoor?: string;
   warranty?: string;
-  images: (Images | never)[];
   description?: string;
   createdAt: string;
   updatedAt: string;
+  images: { _id: string; url: string; filename: string }[];
 };
 
 export type ProductReducer = {
@@ -89,13 +86,14 @@ export const addProduct = createAsyncThunk(
   ) => {
     try {
       if (images.length) {
-        const promiseImages: Promise<AxiosResponse<ImagesState>>[] = [];
+        const promiseImages: Promise<AxiosResponse<Images>>[] = [];
 
         images.forEach(image => {
           if (image.file) {
             const data = new FormData();
             data.append('file', image.file);
-            const promiseImage = Api().post<ImagesState>('/api/files', data);
+            data.append('folder', 'product');
+            const promiseImage = Api().post<Images>('/api/files', data);
             promiseImages.push(promiseImage);
           }
         });
@@ -148,12 +146,10 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
+      state.isPending = false;
     });
-    builder.addCase(addProduct.pending, state => {
-      state.isPending = true;
-    });
+
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
-      console.log(payload);
       const { message, product } = payload;
       if (product && state.isPending) {
         const newList = state.list
@@ -167,19 +163,7 @@ const productSlice = createSlice({
       }
       state.isPending = false;
     });
-    builder.addCase(addProduct.rejected, (state, action) => {
-      const { payload } = action as { payload: { message: string } };
 
-      const { hide } = cogoToast.error(payload.message, {
-        heading: 'Ошибка',
-        position: 'top-right',
-        hideAfter: 1000,
-        onClick: () => {
-          if (hide) hide();
-        },
-      });
-      state.isPending = false;
-    });
     builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
         state.list = state.list.filter(brand => brand._id !== payload._id);
@@ -187,7 +171,16 @@ const productSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
+      state.isPending = false;
     });
+
+    builder.addCase(getProducts.pending, handlePending);
+    builder.addCase(addProduct.pending, handlePending);
+    builder.addCase(deleteProduct.pending, handlePending);
+
+    builder.addCase(getProducts.rejected, handleReject);
+    builder.addCase(addProduct.rejected, handleReject);
+    builder.addCase(deleteProduct.rejected, handleReject);
   },
 });
 
