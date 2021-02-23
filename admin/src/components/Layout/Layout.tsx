@@ -3,6 +3,7 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faBox,
+  faCalendarAlt,
   faCameraRetro,
   faHome,
   faTags,
@@ -73,6 +74,12 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               name: 'Баннеры',
               url: '/banners',
               icon: faCameraRetro,
+            },
+            {
+              id: '5',
+              name: 'Акции',
+              url: '/promotions',
+              icon: faCalendarAlt,
             },
           ].map(el => (
             <ActiveLink

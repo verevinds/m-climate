@@ -23,13 +23,17 @@ Product.getInitialProps = async ({
   err,
   reduxStore,
 }: AppInitialPropsWithRedux) => {
-  const promise = [
-    reduxStore.dispatch(getProducts()),
-    reduxStore.dispatch(getBrands()),
-  ];
+  const banners = reduxStore.getState().banners.list;
+  const products = reduxStore.getState().product.list;
 
-  await Promise.all(promise);
+  if (!banners.length || !products.length) {
+    const promise = [
+      reduxStore.dispatch(getProducts()),
+      reduxStore.dispatch(getBrands()),
+    ];
 
+    await Promise.all(promise);
+  }
   return { err };
 };
 export default Product;
