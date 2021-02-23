@@ -9,17 +9,17 @@ import styles from './header.module.scss';
 
 const Header = () => {
   return (
-    <header className={styles.header}>
-      <div className={styles.header__logo}>
+    <header className={styles['block']}>
+      <div className={styles['logo']}>
         <img src='//via.placeholder.com/223x45' alt='Логотип' />
       </div>
-      <div className={styles.header__menu}>
+      <div className={styles['menu']}>
         <Menu />
       </div>
-      <div className={styles.header__search}>
+      <div className={styles['search']}>
         <Search />
       </div>
-      <div className={styles.header__toolbar}>
+      <div className={styles['toolbar']}>
         <a href='#' className={styles['link']}>
           <FontAwesomeIcon icon={faPercent} className={styles['link__icon']} />
           Акции
@@ -29,7 +29,7 @@ const Header = () => {
           Избранное
         </a>
       </div>
-      <div className={styles.header__nav}>
+      <div className={styles['nav']}>
         <Navigation
           items={[
             { id: '1', name: 'Кондиционеры', url: '#', favorite: true },

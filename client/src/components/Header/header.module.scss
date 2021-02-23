@@ -1,6 +1,5 @@
 @import 'src/scss/global_variables.scss';
-
-.header {
+.block {
   display: grid;
 
   grid-gap: 20px;
@@ -15,33 +14,31 @@
   height: 100%;
   padding: 1rem 5rem;
   overflow: hidden;
+}
+.logo {
+  display: flex;
 
-  &__logo {
-    display: flex;
+  grid-area: logo;
+  justify-self: center;
 
-    grid-area: logo;
-    justify-self: center;
+  width: 223px;
+  height: 45px;
+}
+.menu {
+  grid-area: menu;
+  margin: 0 auto;
+}
+.search {
+  grid-area: search;
+}
+.toolbar {
+  display: flex;
 
-    width: 223px;
-    height: 45px;
-  }
-  &__search {
-    grid-area: search;
-  }
-  &__toolbar {
-    display: flex;
-
-    grid-area: toolbar;
-  }
-
-  &__nav {
-    grid-area: nav;
-    width: 100%;
-  }
-  &__menu {
-    grid-area: menu;
-    margin: 0 auto;
-  }
+  grid-area: toolbar;
+}
+.nav {
+  grid-area: nav;
+  width: 100%;
 }
 .link {
   display: flex;
@@ -60,7 +57,7 @@
 }
 
 @media screen and (max-width: $viewport-sm) {
-  .header {
+  .block {
     grid-gap: 5px;
     grid-template-areas:
       'menu logo toolbar'
@@ -69,18 +66,17 @@
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 48px 1fr 79px;
     padding: 0.2rem;
-
-    &__menu {
-      margin: 0;
-    }
-    &__search {
-      width: 100%;
-    }
-    &__toolbar {
-      overflow: hidden;
-      & > :nth-child(n + 2) {
-        display: none;
-      }
+  }
+  .menu {
+    margin: 0;
+  }
+  .search {
+    width: 100%;
+  }
+  .toolbar {
+    overflow: hidden;
+    & > :nth-child(n + 2) {
+      display: none;
     }
   }
 }
