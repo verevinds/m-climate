@@ -1,28 +1,34 @@
 import type { Product } from '@redux/reducer/product';
+import { Service } from '@src/interface';
 import React from 'react';
 
 import styles from './item.module.scss';
 
-type ItemProps = {
-  item: Product;
+type ItemWrapProps = {
+  image: string;
+  name: string;
+  price?: number;
+  priceOld?: number;
 };
-const BarItem: React.FC<ItemProps> = ({ item }) => {
-  const { images, name, price, priceOld } = item;
+const ItemWrap: React.FC<ItemWrapProps> = props => {
+  const { name, image, price, priceOld } = props;
   return (
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
         <img
-          src={images.length ? images[0].url : '//via.placeholder.com/150x166'}
+          src={image || '//via.placeholder.com/150x166'}
           className={styles.item__img}
           alt={name}
         />
       </div>
-      <div className={styles.item__price}>
-        <span className={styles['item__price-current']}>{price}</span>
-        {priceOld ? (
-          <span className={styles['item__price-old']}>{priceOld}</span>
-        ) : null}
-      </div>
+      {price && (
+        <div className={styles.item__price}>
+          <span className={styles['item__price-current']}>{price}</span>
+          {priceOld ? (
+            <span className={styles['item__price-old']}>{priceOld}</span>
+          ) : null}
+        </div>
+      )}
       <div className={styles['item__title-wrap']}>
         <a href='#' className={styles.item__title}>
           {name}
@@ -30,6 +36,23 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
       </div>
     </div>
   );
+};
+
+type ItemProps = {
+  item: Product | Service;
+};
+const BarItem: React.FC<ItemProps> = ({ item }) => {
+  const currentItem = item as Product;
+
+  if (currentItem.images) {
+    const { images, name, price, priceOld } = item as Product;
+
+    return <ItemWrap {...{ image: images[0].url, name, price, priceOld }} />;
+  }
+
+  const { image, name } = item as Service;
+
+  return <ItemWrap {...{ image, name }} />;
 };
 
 export default BarItem;

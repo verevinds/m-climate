@@ -4,7 +4,7 @@ module.exports = app => {
 
   router.get('/', service.find);
   router.post('/', service.create);
-  // router.delete('/:id', service.delete);
+  router.delete('/:id', service.delete);
 
   app.use('/api/service', router);
 };
