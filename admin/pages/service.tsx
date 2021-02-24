@@ -1,20 +1,18 @@
 import Layout from '@components/Layout';
-import { getService, selectServiceList } from '@redux/reducer/service';
-import { useSelector } from 'react-redux';
+import ServiceCreate from '@components/ServiceCreate/ServiceCreate';
+import ServiceList from '@components/ServiceList/ServiceList';
+import { getService } from '@redux/reducer/service';
 
 import { AppInitialPropsWithRedux } from './_app';
 
-const Service = () => {
-  const services = useSelector(selectServiceList);
+export default function Service() {
   return (
     <Layout title='Панель услуг'>
-      <h2>Добавить услугу</h2>
-      {services.map(service => (
-        <p key={service._id}>{service.name}</p>
-      ))}
+      <ServiceCreate />
+      <ServiceList />
     </Layout>
   );
-};
+}
 
 Service.getInitialProps = async ({
   err,
@@ -29,5 +27,3 @@ Service.getInitialProps = async ({
   }
   return { err };
 };
-
-export default Service;
