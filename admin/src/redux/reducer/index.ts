@@ -5,6 +5,7 @@ import application from './application';
 import banners from './banners';
 import brand from './brand';
 import product from './product';
+import service from './service';
 
 const rootReducer = combineReducers({
   admin,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   brand,
   product,
   banners,
+  service,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
