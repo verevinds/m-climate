@@ -7,6 +7,7 @@ import {
   faCameraRetro,
   faHome,
   faTags,
+  faWrench,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectApplication, setHide } from '@redux/reducer/application';
@@ -80,6 +81,12 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               name: 'Акции',
               url: '/promotions',
               icon: faCalendarAlt,
+            },
+            {
+              id: '6',
+              name: 'Услуги',
+              url: '/service',
+              icon: faWrench,
             },
           ].map(el => (
             <ActiveLink
