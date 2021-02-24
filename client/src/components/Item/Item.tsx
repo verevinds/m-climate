@@ -11,7 +11,7 @@ type ItemWrapProps = {
   priceOld?: number;
 };
 const ItemWrap: React.FC<ItemWrapProps> = props => {
-  const { name, image, price, priceOld } = props;
+  const { name, image, price, priceOld, children } = props;
   return (
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
@@ -29,11 +29,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
           ) : null}
         </div>
       )}
-      <div className={styles['item__title-wrap']}>
-        <a href='#' className={styles.item__title}>
-          {name}
-        </a>
-      </div>
+      <div className={styles['item__title-wrap']}>{children}</div>
     </div>
   );
 };
@@ -41,18 +37,31 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
 type ItemProps = {
   item: Product | Service;
 };
+
 const BarItem: React.FC<ItemProps> = ({ item }) => {
   const currentItem = item as Product;
 
   if (currentItem.images) {
     const { images, name, price, priceOld } = item as Product;
 
-    return <ItemWrap {...{ image: images[0].url, name, price, priceOld }} />;
+    return (
+      <ItemWrap {...{ image: images[0].url, name, price, priceOld }}>
+        <a href={`/product/${item._id}`} className={styles.item__title}>
+          {name}
+        </a>
+      </ItemWrap>
+    );
   }
 
   const { image, name } = item as Service;
 
-  return <ItemWrap {...{ image, name }} />;
+  return (
+    <ItemWrap {...{ image, name }}>
+      <a href={`/service/${item._id}`} className={styles.item__title}>
+        {name}
+      </a>
+    </ItemWrap>
+  );
 };
 
 export default BarItem;
