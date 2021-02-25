@@ -1,10 +1,7 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  deleteProduct,
-  Product,
-  selectProductList,
-} from '@redux/reducer/product';
+import { deleteProduct, selectProductList } from '@redux/reducer/product';
+import { Product } from '@src/interface';
 import { Button } from '@verevinds/ui-kit';
 import { DateTime } from 'luxon';
 import { useDispatch, useSelector } from 'react-redux';
