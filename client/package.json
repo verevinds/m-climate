@@ -7,7 +7,7 @@
     "dev": "next dev -p 8080",
     "build": "next build && next export -o _static",
     "start": "next start -H 0.0.0.0 -p ${PORT:-80}",
-    "production": "build && start"
+    "production": "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
