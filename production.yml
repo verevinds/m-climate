@@ -6,11 +6,11 @@ services:
       - 80
     ports:
       - 80:80
-    command: npm run dev
+    command: npm run production
 
   admin:
     expose:
       - 4000
     ports:
       - 4000:4000
-    command: npm run dev
+    command: npm run production
