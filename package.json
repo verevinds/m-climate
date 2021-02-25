@@ -12,7 +12,9 @@
     "prettier": "npx prettier --debug-check ./",
     "prettier:fix": "npx prettier --write ./",
     "stylelint": "stylelint '**/*{.css,.scss}'",
-    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
+    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
+    "docker": "docker-compose up -d",
+    "docker:production": "docker-compose -f docker-compose.yml -f production.yml up -d"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

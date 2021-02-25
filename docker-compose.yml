@@ -28,6 +28,7 @@ services:
     build:
       context: ./client
       dockerfile: ./Dockerfile
+    command: npm run dev
     volumes:
       - ./client:/app
       - ./node_modules:/app/node_modules
@@ -47,6 +48,7 @@ services:
     build:
       context: ./admin
       dockerfile: ./Dockerfile
+    command: npm run dev
     volumes:
       - ./admin:/app
       - ./node_modules:/app/node_modules

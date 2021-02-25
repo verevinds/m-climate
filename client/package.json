@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build && next export -o _static",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}"
+    "start": "next start -H 0.0.0.0 -p ${PORT:-80}",
+    "production": "build && start"
   },
   "repository": {
     "type": "git",
