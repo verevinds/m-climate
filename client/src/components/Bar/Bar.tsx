@@ -14,6 +14,8 @@ interface IBar {
 const Bar: React.FC<IBar> = props => {
   const { title, items } = props;
 
+  if (!items.length) return null;
+
   return (
     <div className={styles['bar-wrap']}>
       {title && <h2 className={styles.bar__title}>{title}</h2>}

@@ -12,7 +12,7 @@ import {
 import { EditorState } from 'draft-js';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Controller, useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
@@ -62,7 +62,7 @@ const ProductCreate = () => {
     name: keyof ProductInput;
     title: string;
     required?: string | ValidationRule<boolean>;
-    option?: {
+    options?: {
       [key: string]: any;
       _id: string;
       name: string;
@@ -70,52 +70,68 @@ const ProductCreate = () => {
     as?: JSX.Element | string | any;
     type?: HTMLInputElement['type'];
     defaultValue?: any;
-  }[] = [
-    {
-      name: 'name',
-      title: 'Название',
-      required: 'Обязательно к заполнению',
-    },
-    { name: 'price', title: 'Цена', type: 'number' },
-    { name: 'priceOld', title: 'Старая цена', type: 'number' },
-    { name: 'type', title: 'Тип' },
-    { name: 'servicedArea', title: 'Рабочая площадь' },
-    { name: 'powerCooling', title: 'Мощность охлаждения' },
-    { name: 'powerHeating', title: 'Мощность обогрева' },
-    {
-      name: 'powerConsumptionCooling',
-      title: 'Потребляемая мощность охлаждение',
-    },
-    {
-      name: 'powerConsumptionHeating',
-      title: 'Потребляемая мощность обогрева',
-    },
-    { name: 'energyEfficiency', title: 'Энергоэффективность' },
-    { name: 'noiseInside', title: 'Шум внутри' },
-    { name: 'noiseOutside', title: 'Шум снаружи' },
-    { name: 'sizeIndoor', title: 'Размер внутри' },
-    { name: 'sizeOutdoor', title: 'Размер снаружи' },
-    { name: 'weightIndoor', title: 'Вес внутри' },
-    { name: 'weightOutdoor', title: 'Вес снаружи' },
-    { name: 'warranty', title: 'Гарантия' },
-    {
-      name: 'brand',
-      title: 'Бренд',
-      option: brands,
-      as: Select,
-      required: 'Обязательно к заполнению',
-    },
-    {
-      name: 'inStock',
-      title: 'В наличии',
-      type: 'checkbox',
-    },
-  ];
+    placeholder?: string;
+  }[] = useMemo(
+    () => [
+      {
+        name: 'name',
+        title: 'Название',
+        required: 'Обязательно к заполнению',
+      },
+      { name: 'price', title: 'Цена', type: 'number' },
+      { name: 'priceOld', title: 'Старая цена', type: 'number' },
+      {
+        name: 'type',
+        title: 'Тип',
+        placeholder: 'Выберите тип...',
+        options: [
+          { _id: 'Инвентарные', name: 'Инвентарные' },
+          { _id: 'Традиционные', name: 'Традиционные' },
+        ],
+        as: Select,
+        required: 'Обязательно к заполнению',
+      },
+      { name: 'servicedArea', title: 'Рабочая площадь' },
+      { name: 'powerCooling', title: 'Мощность охлаждения' },
+      { name: 'powerHeating', title: 'Мощность обогрева' },
+      {
+        name: 'powerConsumptionCooling',
+        title: 'Потребляемая мощность охлаждение',
+      },
+      {
+        name: 'powerConsumptionHeating',
+        title: 'Потребляемая мощность обогрева',
+      },
+      { name: 'energyEfficiency', title: 'Энергоэффективность' },
+      { name: 'noiseInside', title: 'Шум внутри' },
+      { name: 'noiseOutside', title: 'Шум снаружи' },
+      { name: 'sizeIndoor', title: 'Размер внутри' },
+      { name: 'sizeOutdoor', title: 'Размер снаружи' },
+      { name: 'weightIndoor', title: 'Вес внутри' },
+      { name: 'weightOutdoor', title: 'Вес снаружи' },
+      { name: 'warranty', title: 'Гарантия' },
+      {
+        name: 'brand',
+        title: 'Бренд',
+        placeholder: 'Выберите бренд...',
+        options: brands,
+        as: Select,
+        required: 'Обязательно к заполнению',
+      },
+      {
+        name: 'inStock',
+        title: 'В наличии',
+        type: 'checkbox',
+      },
+    ],
+    [brands],
+  );
 
   const onSubmit = useCallback(
     async (
       product: Omit<Product, 'brand'> & {
         brand: { value: string; label: string };
+        type: { value: string; label: string };
       },
     ) => {
       await dispatch(addProduct({ product, images, description: editorState }));
@@ -134,13 +150,14 @@ const ProductCreate = () => {
           {productInputs.map(
             ({
               required,
-              option,
+              options,
               name,
               defaultValue,
+              placeholder,
               as = Input,
               ...restProps
             }) => {
-              if (option) {
+              if (options) {
                 // const customStyles = {
                 //   control: (provided: any) => ({
                 //     ...provided,
@@ -156,8 +173,8 @@ const ProductCreate = () => {
                     control={control}
                     rules={{ required }}
                     // styles={customStyles}
-                    placeholder='Выберите бренд...'
-                    options={option.map(el => ({
+                    placeholder={placeholder}
+                    options={options.map(el => ({
                       value: el._id,
                       label: el.name,
                     }))}

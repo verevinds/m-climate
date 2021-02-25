@@ -29,7 +29,11 @@ const ProductList = () => {
         {products.map(product => (
           <>
             <img
-              src={product.images[0].url}
+              src={
+                product.images.length
+                  ? product.images[0].url
+                  : '/svg/no-camera.svg'
+              }
               alt={product.name}
               className={styles['img']}
             />

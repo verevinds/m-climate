@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = Product => (req, res) => {
+module.exports = Product => async (req, res) => {
   if (!req.body) return res.sendStatus(400);
 
   const { body } = req;
@@ -11,11 +11,22 @@ module.exports = Product => (req, res) => {
     brand: mongoose.Types.ObjectId(brand),
   });
 
-  product.save(error =>
-    error
-      ? res.status(400).send(error)
-      : res
-          .status(200)
-          .send({ product, message: `Товар "${product.name}" добавлен!` }),
-  );
+  const newProduct = await product.save();
+
+  console.log({ newProduct });
+
+  Product.findOne({ _id: newProduct._id })
+    .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
+    .select('-__v')
+    .exec((error, product) =>
+      error
+        ? console.error(error)
+        : res
+            .status(200)
+            .send({ product, message: `Товар "${product.name}" добавлен!` }),
+    );
+
+  // res
+  // .status(200)
+  // .send({ product, message: `Товар "${product.name}" добавлен!` });
 };
