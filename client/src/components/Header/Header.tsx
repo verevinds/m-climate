@@ -4,9 +4,9 @@ import Search from '@components/Search/Search';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Logo from '@public/svg/logo.svg';
 
 import styles from './header.module.scss';
-import Logo from './Logo';
 
 const Header = () => {
   return (
