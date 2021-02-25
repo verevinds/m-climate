@@ -1,6 +1,7 @@
 import Spinner from '@components/Spinner/Spinner';
 import { selectBrandList } from '@redux/reducer/brand';
-import { addProduct, Product } from '@redux/reducer/product';
+import { addProduct } from '@redux/reducer/product';
+import { Product } from '@src/interface';
 import {
   Button,
   Checkbox,
