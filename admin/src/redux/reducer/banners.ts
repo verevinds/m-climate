@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Images } from '@src/interface';
 import { RestDelete } from '@src/type/api';
 import Api from '@src/utils/Api';
 import { AxiosResponse } from 'axios';
@@ -8,7 +9,6 @@ import cogoToast from 'cogo-toast';
 import { ImageListType } from 'react-images-uploading';
 
 import type { RootState } from '.';
-import { Images } from './product';
 
 export type Banner = {
   _id: string;
