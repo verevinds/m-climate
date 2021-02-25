@@ -41,8 +41,9 @@ export const addProduct = createAsyncThunk(
       images,
       description: draftDescription,
     }: {
-      product: Omit<Product, 'brand'> & {
+      product: Omit<Product, 'brand' | 'type'> & {
         brand: { value: string; label: string };
+        type: { value: string; label: string };
       };
       images: ImageListType;
       description: EditorState;
@@ -75,7 +76,11 @@ export const addProduct = createAsyncThunk(
       const description = draftToHtml(
         convertToRaw(draftDescription.getCurrentContent()),
       );
-      Object.assign(product, { brand: product.brand.value, description });
+      Object.assign(product, {
+        brand: product.brand.value,
+        type: product.type.value,
+        description,
+      });
       const { data } = await Api().post<{ product: Product; message: string }>(
         '/api/product',
         product,
@@ -115,6 +120,7 @@ const productSlice = createSlice({
     });
 
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
+      console.log({ payload });
       const { message, product } = payload;
       if (product && state.isPending) {
         const newList = state.list

@@ -16,7 +16,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
         <img
-          src={image || '//via.placeholder.com/150x166'}
+          src={image || '/svg/no-camera.svg'}
           className={styles.item__img}
           alt={name}
         />
@@ -45,7 +45,14 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
     const { images, name, price, priceOld } = item as Product;
 
     return (
-      <ItemWrap {...{ image: images[0].url, name, price, priceOld }}>
+      <ItemWrap
+        {...{
+          image: images.length ? images[0].url : '/svg/no-camera.svg',
+          name,
+          price,
+          priceOld,
+        }}
+      >
         <a href={`/product/${item._id}`} className={styles.item__title}>
           {name}
         </a>

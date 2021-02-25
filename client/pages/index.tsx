@@ -4,6 +4,7 @@ import Layout from '@components/Layout/LayoutClient';
 import { getBrands, selectBrandList } from '@redux/reducer/brand';
 import { getProducts, selectProductList } from '@redux/reducer/product';
 import { getService, selectServiceList } from '@redux/reducer/service';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { AppInitialPropsWithRedux } from './_app';
@@ -13,17 +14,19 @@ const IndexPage = () => {
   const brands = useSelector(selectBrandList);
   const services = useSelector(selectServiceList);
 
+  const populars = useMemo(
+    () =>
+      products.filter(
+        product =>
+          product.type?.toLocaleLowerCase() ===
+          'Инвентарные'.toLocaleLowerCase(),
+      ),
+    [products],
+  );
+
   return (
     <Layout>
-      <Bar
-        title='Популярные'
-        items={products.filter(
-          product =>
-            product.type?.toLocaleLowerCase() ===
-            'инверторный'.toLocaleLowerCase(),
-        )}
-        key='1'
-      />
+      <Bar title='Популярные' items={populars} key='1' />
       <Bar title='Кондиционеры' items={products} key='2' />
       <Bar title='Услуги' items={services} key='3' />
       <Advantage />
