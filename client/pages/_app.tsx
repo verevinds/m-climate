@@ -23,7 +23,9 @@ class MyApp extends App {
     const { Component, pageProps, reduxStore } = this
       .props as AppInitialPropsWithRedux;
 
-    const persistor = persistStore(reduxStore);
+    const persistor = persistStore(reduxStore, {}, () => {
+      persistor.persist();
+    });
     return (
       <>
         <Head>
