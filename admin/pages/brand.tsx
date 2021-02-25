@@ -17,13 +17,10 @@ Brand.getInitialProps = async ({
   err,
   reduxStore,
 }: AppInitialPropsWithRedux) => {
-  const brands = reduxStore.getState().brand.list;
+  const promise = [reduxStore.dispatch(getBrands())];
 
-  if (!brands.length) {
-    const promise = [reduxStore.dispatch(getBrands())];
+  await Promise.all(promise);
 
-    await Promise.all(promise);
-  }
   return { err };
 };
 
