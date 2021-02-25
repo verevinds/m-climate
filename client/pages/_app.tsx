@@ -1,6 +1,7 @@
 import '@src/scss/styles.scss';
 import '@verevinds/ui-kit/dist/styles.global.css';
 
+import Spinner from '@components/Spinner/Spinner';
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';
 import type { AppInitialProps, AppProps } from 'next/app';
@@ -40,7 +41,7 @@ class MyApp extends App {
           />
         </Head>
         <Provider store={reduxStore}>
-          <PersistGate loading={<div>loading</div>} persistor={persistor}>
+          <PersistGate loading={<Spinner />} persistor={persistor}>
             <Component {...pageProps} />
           </PersistGate>
         </Provider>

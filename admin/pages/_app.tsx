@@ -3,6 +3,7 @@ import '@verevinds/ui-kit/dist/styles.global.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
+import Spinner from '@components/Spinner/Spinner';
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';
 import type { AppInitialProps, AppProps } from 'next/app';
@@ -24,7 +25,9 @@ class MyApp extends App {
     const { Component, pageProps, reduxStore } = this
       .props as AppInitialPropsWithRedux;
 
-    const persistor = persistStore(reduxStore);
+    const persistor = persistStore(reduxStore, {}, () => {
+      persistor.persist();
+    });
     return (
       <>
         <Head>
@@ -42,7 +45,7 @@ class MyApp extends App {
           />
         </Head>
         <Provider store={reduxStore}>
-          <PersistGate loading={<div>loading</div>} persistor={persistor}>
+          <PersistGate loading={<Spinner />} persistor={persistor}>
             <Component {...pageProps} />
           </PersistGate>
         </Provider>
