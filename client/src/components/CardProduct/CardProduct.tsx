@@ -1,0 +1,97 @@
+import CardProductTabs from '@components/CardProductTabs/CardProductTabs';
+import Slider from '@components/Slider/Slider';
+import { faHeadset, faPhone, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { selectProductItem } from '@redux/reducer/product';
+import addCommas from '@src/utils/addCommas';
+import { Button } from '@verevinds/ui-kit';
+import cn from 'classnames';
+import { useSelector } from 'react-redux';
+
+import styles from './cardproduct.module.scss';
+
+export default function CardProduct() {
+  const item = useSelector(selectProductItem);
+
+  if (!item) return null;
+
+  return (
+    <article className={styles['block']}>
+      <h1 className={styles['h1']}>{item?.name}</h1>
+      <section className={styles['img']}>
+        <Slider
+          slidesPerView={2}
+          spaceBetween={50}
+          loop
+          navigation={{
+            disabledClass: styles.disabled,
+          }}
+        >
+          {item?.images.map((image, idx) => (
+            <img
+              key={image._id}
+              src={image.url}
+              alt={`${item.name}-${idx}`}
+              className={styles['img__item']}
+            />
+          ))}
+        </Slider>
+        <div className={styles['shadow-right']} />
+      </section>
+      <section className={styles['main']}>
+        <div className={styles['line']}>
+          <span className={styles['price']}>
+            {addCommas(Number(item?.price))}
+          </span>
+          {item?.priceOld ? (
+            <span className={styles['price-old']}>
+              {addCommas(item.priceOld)}
+            </span>
+          ) : null}
+        </div>
+
+        <div className={styles['line']}>
+          <span className={styles['value']}>{item?.brand?.name}</span>
+        </div>
+
+        <div className={styles['line']}>
+          <span className={cn(styles['value'], styles['light'])}>
+            {item?.type}
+          </span>
+        </div>
+
+        <div className={cn(styles['line'], styles['accent'])}>
+          <FontAwesomeIcon
+            icon={faTruck}
+            size='2x'
+            className={styles['icon-track']}
+          />
+          <span>Бесплатная доставка</span>
+        </div>
+
+        <div className={styles['hr']} />
+
+        <div className={styles['line']}>
+          <a href='tel:+73833108210' rel='nofollow' className={styles['phone']}>
+            <FontAwesomeIcon icon={faPhone} className={styles['phone__icon']} />
+
+            <span>8 (383) 310-82-10</span>
+          </a>
+        </div>
+
+        <div className={styles['line']}>
+          <a href='tel:+73833108210' rel='nofollow'>
+            <Button className={styles['call']}>
+              Связаться с менеджером
+              <FontAwesomeIcon
+                icon={faHeadset}
+                className={styles['icon-phone']}
+              />
+            </Button>
+          </a>
+        </div>
+      </section>
+      <CardProductTabs />
+    </article>
+  );
+}

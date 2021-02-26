@@ -13,7 +13,8 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
 export type AppInitialPropsWithRedux = AppProps &
-  AppInitialProps & {
+  AppInitialProps &
+  AppContext & {
     err?: Error;
     reduxStore: StoreWithPersist;
   };

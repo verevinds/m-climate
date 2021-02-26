@@ -3,6 +3,7 @@ module.exports = app => {
   const router = require('express').Router();
 
   router.get('/', product.find);
+  router.get('/:id', product.findOne);
   router.post('/', product.create);
   router.delete('/:id', product.delete);
 
