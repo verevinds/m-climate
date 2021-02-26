@@ -4,7 +4,7 @@ import '@verevinds/ui-kit/dist/styles.global.css';
 import Spinner from '@components/Spinner/Spinner';
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';
-import type { AppInitialProps, AppProps } from 'next/app';
+import type { AppContext, AppInitialProps, AppProps } from 'next/app';
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -16,9 +16,34 @@ export type AppInitialPropsWithRedux = AppProps &
   AppInitialProps & {
     err?: Error;
     reduxStore: StoreWithPersist;
+    page?: string;
   };
 
 class MyApp extends App {
+  static async getInitialProps(appContext: AppContext) {
+    const { asPath } = appContext.ctx;
+    const path = asPath?.split('/');
+    const page = path?.length && Boolean(path[0]) ? path[0] : 'index';
+
+    let appProps: unknown = {};
+    if (typeof appContext.Component.getInitialProps === 'function') {
+      try {
+        appProps = await appContext.Component.getInitialProps(
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          appContext,
+        );
+      } catch (error) {
+        console.error('error on getInitialProps:>> ', error);
+      }
+    }
+
+    return {
+      pageProps: appProps,
+      page,
+    };
+  }
+
   render() {
     const { Component, pageProps, reduxStore } = this
       .props as AppInitialPropsWithRedux;
