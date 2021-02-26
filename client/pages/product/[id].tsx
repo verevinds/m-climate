@@ -2,14 +2,16 @@ import CardProduct from '@components/CardProduct';
 import Layout from '@components/Layout/LayoutClient';
 import { AppInitialPropsWithRedux } from '@pages/_app';
 import { getProduct } from '@redux/reducer/product';
-import NavLink from 'next/link';
+import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
 
 const Product = ({ item }: any) => {
   return (
     <Layout>
       <nav>
-        <NavLink href='/'>Главная</NavLink>
+        <ActiveLink href='/'>
+          <a>Главная</a>
+        </ActiveLink>
         {` -> `}
         <span>{item.name}</span>
       </nav>
@@ -25,8 +27,7 @@ Product.getInitialProps = async ({
   query,
 }: AppInitialPropsWithRedux) => {
   const { id } = query;
-
-  const promise = [reduxStore.dispatch(getProduct(id))];
+  const promise = [reduxStore.dispatch(getProduct(id as string))];
 
   await Promise.all(promise);
 

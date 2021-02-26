@@ -1,10 +1,9 @@
 import Menu from '@components/Menu/Menu';
 import Navigation from '@components/Navigation/Navigation';
 import Search from '@components/Search/Search';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faPercent } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Heart from '@public/svg/heart.svg';
 import Logo from '@public/svg/logo.svg';
+import Percent from '@public/svg/percent.svg';
 
 import styles from './header.module.scss';
 
@@ -22,11 +21,11 @@ const Header = () => {
       </div>
       <div className={styles['toolbar']}>
         <a href='#' className={styles['link']}>
-          <FontAwesomeIcon icon={faPercent} className={styles['link__icon']} />
+          <Percent className={styles['link__icon']} />
           Акции
         </a>
         <a href='#' className={styles['link']}>
-          <FontAwesomeIcon icon={faHeart} className={styles['link__icon']} />
+          <Heart className={styles['link__icon']} />
           Избранное
         </a>
       </div>

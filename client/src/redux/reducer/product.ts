@@ -30,18 +30,18 @@ export const getProducts = createAsyncThunk('product/getThunk', async () => {
   }
 });
 
-export const getProduct = createAsyncThunk<
-  Product | undefined,
-  Pick<Product, '_id'>
->('product/getOneThunk', async id => {
-  try {
-    const { data } = await Api().get<Product>(`/api/product/${id}`);
+export const getProduct = createAsyncThunk<Product | undefined, string>(
+  'product/getOneThunk',
+  async id => {
+    try {
+      const { data } = await Api().get<Product>(`/api/product/${id}`);
 
-    return data;
-  } catch (e) {
-    errorPush(e.massage);
-  }
-});
+      return data;
+    } catch (e) {
+      errorPush(e.massage);
+    }
+  },
+);
 
 const productSlice = createSlice({
   name: 'product',

@@ -1,7 +1,8 @@
 import CardProductTabs from '@components/CardProductTabs/CardProductTabs';
 import Slider from '@components/Slider/Slider';
-import { faHeadset, faPhone, faTruck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Headset from '@public/svg/headset.svg';
+import Phone from '@public/svg/phone.svg';
+import Truck from '@public/svg/truck.svg';
 import { selectProductItem } from '@redux/reducer/product';
 import addCommas from '@src/utils/addCommas';
 import { Button } from '@verevinds/ui-kit';
@@ -61,11 +62,7 @@ export default function CardProduct() {
         </div>
 
         <div className={cn(styles['line'], styles['accent'])}>
-          <FontAwesomeIcon
-            icon={faTruck}
-            size='2x'
-            className={styles['icon-track']}
-          />
+          <Truck className={styles['icon-truck']} />
           <span>Бесплатная доставка</span>
         </div>
 
@@ -73,7 +70,7 @@ export default function CardProduct() {
 
         <div className={styles['line']}>
           <a href='tel:+73833108210' rel='nofollow' className={styles['phone']}>
-            <FontAwesomeIcon icon={faPhone} className={styles['phone__icon']} />
+            <Phone className={styles['phone__icon']} />
 
             <span>8 (383) 310-82-10</span>
           </a>
@@ -83,10 +80,7 @@ export default function CardProduct() {
           <a href='tel:+73833108210' rel='nofollow'>
             <Button className={styles['call']}>
               Связаться с менеджером
-              <FontAwesomeIcon
-                icon={faHeadset}
-                className={styles['icon-phone']}
-              />
+              <Headset className={styles['icon-phone']} />
             </Button>
           </a>
         </div>

@@ -80,12 +80,15 @@ button {
     outline: none;
   }
 }
+nav a {
+  color: var(--color-primary) !important;
+}
 a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color ease-in-out 200ms;
   &:visited {
-    color: var(--color-primary);
+    color: inherit;
   }
   &:hover {
     color: var(--color-secondary-text);
