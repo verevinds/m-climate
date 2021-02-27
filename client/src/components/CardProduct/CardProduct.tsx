@@ -5,6 +5,7 @@ import Phone from '@public/svg/phone.svg';
 import Truck from '@public/svg/truck.svg';
 import { selectProductItem } from '@redux/reducer/product';
 import addCommas from '@src/utils/addCommas';
+import useWindowDimensions from '@src/utils/hooks/useWindowDimensions';
 import { Button } from '@verevinds/ui-kit';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
@@ -13,7 +14,8 @@ import styles from './cardproduct.module.scss';
 
 export default function CardProduct() {
   const item = useSelector(selectProductItem);
-
+  const Dimension = useWindowDimensions();
+  const isMobile = Dimension && Dimension.windowDimensions.width <= 425;
   if (!item) return null;
 
   return (
@@ -21,9 +23,12 @@ export default function CardProduct() {
       <h1 className={styles['h1']}>{item?.name}</h1>
       <section className={styles['img']}>
         <Slider
-          slidesPerView={2}
-          spaceBetween={50}
+          slidesPerView='auto'
+          spaceBetween={isMobile ? 0 : 50}
           loop
+          pagination={{
+            el: styles['pagination'],
+          }}
           navigation={{
             disabledClass: styles.disabled,
           }}

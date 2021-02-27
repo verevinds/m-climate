@@ -1,30 +1,32 @@
+@import 'src/scss/global_variables.scss';
+
 .block {
   display: grid;
-  grid-template-columns: 700px 1fr;
-  grid-template-rows: auto;
+  grid-gap: 10px;
   grid-template-areas:
     'h1 h1'
     'img main'
     'img .'
     'tabs tabs';
-  grid-gap: 10px;
+  grid-template-rows: auto;
+  grid-template-columns: 900px 1fr;
 }
 .h1 {
   grid-area: h1;
 }
 .img {
-  overflow: hidden;
   position: relative;
   grid-area: img;
+  overflow: hidden;
   &__item {
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
     object-fit: contain;
   }
   :global {
-    .swiper-button-next {
-      transform: translateX(-70px);
-    }
+    // .swiper-button-next {
+    //   transform: translateX(-70px);
+    // }
     .swiper-button-next,
     .swiper-button-prev {
       background-color: var(--color-primary);
@@ -34,21 +36,24 @@
 .shadow-right {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   z-index: 100;
-  box-shadow: 0 0 70px 50px #fff;
+  box-shadow: 0 0 10px 10px #fff;
 }
 .main {
   display: flex;
   flex-direction: column;
   grid-area: main;
+
+  justify-self: center;
+  box-sizing: border-box;
+  max-width: 368px;
+  padding: 2rem;
   font-size: 1.2rem;
+  border-radius: var(--radius);
   box-shadow: 0 9px 46px 0 rgba(34, 34, 34, 0.06),
     0 1px 11px 0 rgba(34, 34, 34, 0.06);
-  border-radius: var(--radius);
-  padding: 2rem;
-  box-sizing: border-box;
 }
 .line {
   margin: 0.5rem 0;
@@ -60,68 +65,140 @@
   }
 }
 .name {
-  font-weight: 600;
   margin-right: 1rem;
+  font-weight: 600;
 }
 .value {
   line-height: 22px;
 }
 .price {
-  font-size: 2.3rem;
   font-weight: 700;
+  font-size: 2.3rem;
   &::after {
-    content: '₽';
-    font-size: 1.3rem;
     margin-left: 0.2rem;
+    font-size: 1.3rem;
+    content: '₽';
   }
   &-old {
     margin-left: 0.7rem;
-    text-decoration: line-through;
     color: var(--color-primary-text-lighter);
+    text-decoration: line-through;
     &::after {
-      content: '₽';
-      font-size: 0.9rem;
       margin-left: 0.2rem;
+      font-size: 0.9rem;
+      content: '₽';
     }
   }
 }
 .light {
-  font-weight: 100;
   color: var(--color-primary-text-lighter);
+  font-weight: 100;
 }
 .accent {
   color: var(--color-secondary);
   font-size: 1rem;
 }
 .icon-truck {
-  margin-right: 1rem;
   height: 2rem;
+  margin-right: 1rem;
 }
 .icon-phone {
-  margin-left: 1rem;
   height: 1.4rem;
+  margin-left: 1rem;
   transform: translateY(0.2rem);
 }
 .call {
   width: 100%;
-  font-size: 1.4rem;
   font-weight: 600;
+  font-size: 1.4rem;
+  white-space: nowrap;
 }
 .phone {
   width: 100%;
-  font-size: 1.4rem;
   font-weight: 600;
+  font-size: 1.4rem;
   letter-spacing: 2px;
   &__icon {
-    margin-right: 1rem;
     height: 1.1rem;
+    margin-right: 1rem;
   }
 }
 .hr {
-  margin: 1rem 0;
   box-sizing: border-box;
-  height: 1px;
   width: 100%;
-
+  height: 1px;
+  margin: 1rem 0;
   background-color: var(--color-divider);
+}
+
+@media screen and (max-width: $viewport-lg) {
+  .block {
+    grid-template-columns: 500px 1fr;
+  }
+  .img {
+    &__item {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: $viewport-md) {
+  .block {
+    grid-template-areas:
+      'h1'
+      'img'
+      'main'
+      'tabs';
+    grid-template-columns: 100%;
+  }
+  .img {
+    &__item {
+      width: 310px;
+      height: 310px;
+    }
+  }
+  .main {
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: initial;
+    height: 220px;
+  }
+  .hr {
+    display: none;
+  }
+}
+@media screen and (max-width: $viewport-sm) {
+  .img {
+    &__item {
+      width: 425px;
+      height: 425px;
+    }
+  }
+  .main {
+    flex-wrap: initial;
+    width: 100%;
+    max-width: initial;
+    height: initial;
+  }
+  .hr {
+    display: initial;
+  }
+}
+@media screen and (max-width: $viewport-xs) {
+  .img {
+    &__item {
+      width: 375px;
+      height: 375px;
+    }
+  }
+}
+
+@media screen and (max-width: $viewport-xxs) {
+  .img {
+    &__item {
+      width: 320px;
+      height: 320px;
+    }
+  }
 }

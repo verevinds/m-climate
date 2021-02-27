@@ -1,3 +1,4 @@
+@import 'src/scss/global_variables.scss';
 .tabs {
   grid-area: tabs;
   box-sizing: border-box;
@@ -55,5 +56,23 @@
   background-size: 3px 1px;
 }
 .value {
-  width: 22%;
+  width: 45%;
+}
+
+@media screen and (max-width: $viewport-md) {
+  .value {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: $viewport-sm) {
+  .value {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: $viewport-xs) {
+  .value {
+    width: 19%;
+  }
 }
