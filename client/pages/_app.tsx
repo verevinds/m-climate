@@ -3,21 +3,13 @@ import '@verevinds/ui-kit/dist/styles.global.css';
 
 import Spinner from '@components/Spinner/Spinner';
 import withReduxStore from '@lib/with-redux-store';
-import { StoreWithPersist } from '@redux/index';
-import type { AppContext, AppInitialProps, AppProps } from 'next/app';
+import { AppInitialPropsWithRedux } from '@src/interface';
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-
-export type AppInitialPropsWithRedux = AppProps &
-  AppInitialProps &
-  AppContext['ctx'] & {
-    err?: Error;
-    reduxStore: StoreWithPersist;
-  };
 
 class MyApp extends App {
   render() {

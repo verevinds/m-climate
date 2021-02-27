@@ -1,7 +1,7 @@
 import CardProduct from '@components/CardProduct';
 import Layout from '@components/Layout/LayoutClient';
-import { AppInitialPropsWithRedux } from '@pages/_app';
 import { getProduct } from '@redux/reducer/product';
+import { AppInitialPropsWithRedux } from '@src/interface';
 import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
 
