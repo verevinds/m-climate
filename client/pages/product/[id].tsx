@@ -27,7 +27,9 @@ Product.getInitialProps = async ({
   query,
 }: AppInitialPropsWithRedux) => {
   const { id } = query;
-  const promise = [reduxStore.dispatch(getProduct(id as string))];
+  const promise = [
+    typeof id === 'string' ? reduxStore.dispatch(getProduct(id)) : undefined,
+  ];
 
   await Promise.all(promise);
 
