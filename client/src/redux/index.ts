@@ -31,7 +31,7 @@ export const initStore = (preloadedState = {}) => {
   return configureStore({
     reducer: persistedReducer,
     preloadedState,
-    devTools: true,
+    devTools: process.env.nodeEnv !== 'production',
     middleware: getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: {
