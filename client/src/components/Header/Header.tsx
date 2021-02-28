@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={styles['block']}>
       <div className={styles['logo']}>
-        <Logo />
+        <Logo className={styles['logo__icon']} />
       </div>
       <div className={styles['menu']}>
         <Menu />

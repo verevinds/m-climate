@@ -23,6 +23,10 @@
 
   width: 223px;
   height: 45px;
+  &__icon {
+    width: inherit;
+    height: inherit;
+  }
 }
 .menu {
   grid-area: menu;
