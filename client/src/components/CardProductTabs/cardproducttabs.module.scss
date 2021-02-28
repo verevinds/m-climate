@@ -66,6 +66,15 @@
 }
 
 @media screen and (max-width: $viewport-sm) {
+  .line {
+    flex-direction: column;
+  }
+  .name {
+    font-weight: 600;
+  }
+  .dots {
+    display: none;
+  }
   .value {
     width: 30%;
   }

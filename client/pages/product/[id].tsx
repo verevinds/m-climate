@@ -1,25 +1,14 @@
+import Breadcrumbs from '@components/Breadcrumbs';
 import CardProduct from '@components/CardProduct';
 import Layout from '@components/Layout/LayoutClient';
-import { getProduct, selectProductItem } from '@redux/reducer/product';
+import { getProduct } from '@redux/reducer/product';
 import { AppInitialPropsWithRedux } from '@src/interface';
-import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 const Product = () => {
-  const item = useSelector(selectProductItem);
   return (
     <Layout>
-      <nav>
-        <a href='/'>Главная</a>
-        {` -> `}
-        <ActiveLink href='/brand'>
-          <a>{item?.brand?.name}</a>
-        </ActiveLink>
-        {` -> `}
-        <span>{item?.name}</span>
-      </nav>
-      <br />
+      <Breadcrumbs />
       <CardProduct />
     </Layout>
   );
