@@ -24,7 +24,6 @@ const BrandCreate: React.FC = () => {
   }, []);
 
   const onSubmit = async (brand: Brand) => {
-    console.log(brand);
     dispatch(addBrand(brand));
   };
 

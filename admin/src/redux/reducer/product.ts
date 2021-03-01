@@ -28,7 +28,6 @@ export const getProducts = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const { city } = state.application.geo;
-      console.log({ city });
       const { data } = await Api().get<Product[]>(`/api/product/?city=${city}`);
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
@@ -129,7 +128,6 @@ const productSlice = createSlice({
     });
 
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
-      console.log({ payload });
       const { message, product } = payload;
       if (product && state.isPending) {
         const newList = state.list

@@ -11,7 +11,7 @@ const Banners = () => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);
-  console.log(banners.length);
+
   return (
     <Slider
       watchOverflow

@@ -13,8 +13,6 @@ module.exports = Product => async (req, res) => {
 
   const newProduct = await product.save();
 
-  console.log({ newProduct });
-
   Product.findOne({ _id: newProduct._id })
     .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
     .select('-__v')
