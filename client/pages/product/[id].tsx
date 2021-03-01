@@ -1,21 +1,48 @@
 import Breadcrumbs from '@components/Breadcrumbs';
 import CardProduct from '@components/CardProduct';
 import Layout from '@components/Layout/LayoutClient';
-import { getProduct } from '@redux/reducer/product';
+import NotFound from '@components/NotFound';
+import { selectGeoCity } from '@redux/reducer/application/geo';
+import { getBanners } from '@redux/reducer/banners';
+import { getProduct, selectProductItem } from '@redux/reducer/product';
 import { AppInitialPropsWithRedux } from '@src/interface';
-import React from 'react';
+import { NextComponentType } from 'next';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Product = () => {
+type InitialProps = { id: string | string[] | undefined };
+
+const Product: NextComponentType<
+  AppInitialPropsWithRedux,
+  InitialProps,
+  unknown & InitialProps
+> = props => {
+  const dispatch = useDispatch();
+  const city = useSelector(selectGeoCity);
+  const item = useSelector(selectProductItem);
+
+  useEffect(() => {
+    dispatch(getBanners());
+    if (typeof props.id === 'string') {
+      dispatch(getProduct(props.id));
+    }
+  }, [city]);
+
   return (
     <Layout>
-      <Breadcrumbs />
-      <CardProduct />
+      {item ? (
+        <>
+          <Breadcrumbs />
+          <CardProduct />
+        </>
+      ) : (
+        <NotFound text={'Error 404. \n Товар не найден'} />
+      )}
     </Layout>
   );
 };
 
 Product.getInitialProps = async ({
-  err,
   reduxStore,
   query,
 }: AppInitialPropsWithRedux) => {
@@ -26,6 +53,6 @@ Product.getInitialProps = async ({
 
   await Promise.all(promise);
 
-  return { err, item: reduxStore.getState().product.item };
+  return { id };
 };
 export default Product;

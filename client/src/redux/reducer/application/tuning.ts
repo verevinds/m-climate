@@ -1,10 +1,8 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedUrlQuery } from 'querystring';
 
 import type { RootState } from '..';
-import { getBanners } from '../banners';
-import { getProducts } from '../product';
 
 interface IInitialState {
   context: {
@@ -68,13 +66,3 @@ export const {
 } = tuningSlice.actions;
 
 export default tuningSlice.reducer;
-
-export const updateApplication = createAsyncThunk(
-  'tuning/updateThunk',
-  async (_, { dispatch }) => {
-    await dispatch(turnOnPending());
-    await dispatch(getProducts());
-    await dispatch(getBanners());
-    await dispatch(turnOffPending());
-  },
-);

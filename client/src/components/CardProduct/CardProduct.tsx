@@ -21,17 +21,19 @@ export default function CardProduct() {
   return (
     <article className={styles['block']}>
       <h1 className={styles['h1']}>{item?.name}</h1>
+
       <section className={styles['img']}>
         <Slider
-          slidesPerView='auto'
+          slidesPerView={2}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+          }}
           spaceBetween={isMobile ? 0 : 50}
           loop
-          pagination={{
-            el: styles['pagination'],
-          }}
-          navigation={{
-            disabledClass: styles.disabled,
-          }}
+          pagination
+          navigation
         >
           {item?.images.map((image, idx) => (
             <img

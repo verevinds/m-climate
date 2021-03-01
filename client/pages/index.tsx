@@ -5,8 +5,8 @@ import { selectGeoCity } from '@redux/reducer/application/geo';
 import {
   turnOffPending,
   turnOnPending,
-  updateApplication,
 } from '@redux/reducer/application/tuning';
+import { getBanners } from '@redux/reducer/banners';
 import { getBrands, selectBrandList } from '@redux/reducer/brand';
 import { getProducts, selectProductList } from '@redux/reducer/product';
 import { getService, selectServiceList } from '@redux/reducer/service';
@@ -32,7 +32,8 @@ const IndexPage = () => {
   );
 
   useEffect(() => {
-    dispatch(updateApplication());
+    dispatch(getProducts());
+    dispatch(getBanners());
   }, [city]);
 
   return (
