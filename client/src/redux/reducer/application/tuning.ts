@@ -1,8 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedUrlQuery } from 'querystring';
 
 import type { RootState } from '..';
+import { getBanners } from '../banners';
+import { getProducts } from '../product';
 
 interface IInitialState {
   context: {
@@ -43,13 +45,36 @@ const tuningSlice = createSlice({
     setHide: state => {
       state.admin.sideBar.isHide = !state.admin.sideBar.isHide;
     },
+    turnOnPending: state => {
+      state.isPending = true;
+    },
+    turnOffPending: state => {
+      state.isPending = false;
+    },
   },
 });
 
 export const selectTuning = (state: RootState) => state.application.tuning;
 export const selectTuningContext = (state: RootState) =>
   state.application.tuning.context;
+export const selectTuningPending = (state: RootState) =>
+  state.application.tuning.isPending;
 
-export const { setContext, setHide } = tuningSlice.actions;
+export const {
+  setContext,
+  setHide,
+  turnOffPending,
+  turnOnPending,
+} = tuningSlice.actions;
 
 export default tuningSlice.reducer;
+
+export const updateApplication = createAsyncThunk(
+  'tuning/updateThunk',
+  async (_, { dispatch }) => {
+    await dispatch(turnOnPending());
+    await dispatch(getProducts());
+    await dispatch(getBanners());
+    await dispatch(turnOffPending());
+  },
+);

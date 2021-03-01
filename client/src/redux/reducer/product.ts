@@ -62,11 +62,9 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-      state.isPending = false;
     });
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
       if (payload) state.item = payload;
-      state.isPending = false;
     });
 
     builder.addCase(getProducts.pending, handlePending);

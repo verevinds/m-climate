@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import application from './application';
 import geo from './geo';
+import tuning from './tuning';
 
 export default combineReducers({
-  application,
+  tuning,
   geo,
 });

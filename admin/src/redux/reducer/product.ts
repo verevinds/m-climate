@@ -126,7 +126,6 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-      state.isPending = false;
     });
 
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
@@ -142,7 +141,6 @@ const productSlice = createSlice({
           position: 'top-right',
         });
       }
-      state.isPending = false;
     });
 
     builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
@@ -152,7 +150,6 @@ const productSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
-      state.isPending = false;
     });
 
     builder.addCase(getProducts.pending, handlePending);

@@ -39,8 +39,6 @@ const serviceSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getService.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-
-      state.isPending = false;
     });
 
     builder.addCase(getService.pending, handlePending);
