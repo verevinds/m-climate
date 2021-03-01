@@ -26,7 +26,7 @@ export const getProducts = createAsyncThunk(
   async (_, { getState, dispatch }) => {
     try {
       dispatch(turnOnPending());
-      const state = getState() as RootState;
+      const state: any = getState();
       const { city } = state.application.geo;
       const geo: any = await dispatch(getGeo());
 
@@ -49,7 +49,7 @@ export const getProduct = createAsyncThunk<Product | undefined, string>(
   async (id, { dispatch, getState }) => {
     try {
       dispatch(turnOnPending());
-      const state = getState() as RootState;
+      const state: any = getState();
       const { city } = state.application.geo;
       const geo: any = await dispatch(getGeo());
 
