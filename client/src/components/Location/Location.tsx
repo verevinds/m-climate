@@ -1,5 +1,4 @@
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MapMarkerAlt from '@public/svg/map-marker-alt.svg';
 
 import styles from './location.module.scss';
 
@@ -7,7 +6,7 @@ const Location = () => {
   return (
     <button className={styles.location} type='button'>
       <span className={styles.location__icon}>
-        <FontAwesomeIcon icon={faMapMarkerAlt} />
+        <MapMarkerAlt />
       </span>
       <span className={styles.location__text}>Новосибирск</span>
     </button>

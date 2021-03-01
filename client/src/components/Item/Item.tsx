@@ -1,5 +1,6 @@
-import type { Product } from '@redux/reducer/product';
+import type { Product } from '@src/interface';
 import { Service } from '@src/interface';
+import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
 
 import styles from './item.module.scss';
@@ -53,9 +54,9 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
           priceOld,
         }}
       >
-        <a href={`/product/${item._id}`} className={styles.item__title}>
-          {name}
-        </a>
+        <ActiveLink href={`/product/${item._id}`}>
+          <a className={styles.item__title}>{name}</a>
+        </ActiveLink>
       </ItemWrap>
     );
   }
@@ -64,9 +65,9 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
   return (
     <ItemWrap {...{ image, name }}>
-      <a href={`/service/${item._id}`} className={styles.item__title}>
-        {name}
-      </a>
+      <ActiveLink href={`/service/${item._id}`}>
+        <a className={styles.item__title}>{name}</a>
+      </ActiveLink>
     </ItemWrap>
   );
 };

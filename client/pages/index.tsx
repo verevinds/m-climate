@@ -4,10 +4,9 @@ import Layout from '@components/Layout/LayoutClient';
 import { getBrands, selectBrandList } from '@redux/reducer/brand';
 import { getProducts, selectProductList } from '@redux/reducer/product';
 import { getService, selectServiceList } from '@redux/reducer/service';
+import { AppInitialPropsWithRedux } from '@src/interface';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-
-import { AppInitialPropsWithRedux } from './_app';
 
 const IndexPage = () => {
   const products = useSelector(selectProductList);

@@ -1,7 +1,6 @@
 import '@src/scss/styles.scss';
 import '@verevinds/ui-kit/dist/styles.global.css';
 
-import Spinner from '@components/Spinner/Spinner';
 import withReduxStore from '@lib/with-redux-store';
 import { StoreWithPersist } from '@redux/index';
 import type { AppContext, AppInitialProps, AppProps } from 'next/app';
@@ -9,7 +8,6 @@ import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 
 export type AppInitialPropsWithRedux = AppProps &
   AppInitialProps & {
@@ -41,9 +39,7 @@ const MyApp = (props: AppInitialPropsWithRedux) => {
         />
       </Head>
       <Provider store={reduxStore}>
-        <PersistGate loading={<Spinner />} persistor={persistor}>
-          <Component {...pageProps} />
-        </PersistGate>
+        <Component {...pageProps} />
       </Provider>
     </>
   );
