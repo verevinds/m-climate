@@ -9,6 +9,7 @@ import cogoToast from 'cogo-toast';
 import { ImageListType } from 'react-images-uploading';
 
 import type { RootState } from '.';
+import { getGeo } from './application/geo';
 
 export type Banner = {
   _id: string;
@@ -29,16 +30,24 @@ const initialState: BannersReducer = {
   isPending: false,
 };
 
-export const getBanners = createAsyncThunk('banners/getThunk', async () => {
-  try {
-    const { data } = await Api().get<Banner[]>('/api/banners');
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getBanners = createAsyncThunk(
+  'banners/getThunk',
+  async (_, { getState, dispatch }) => {
+    try {
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+      const geo: any = await dispatch(getGeo());
 
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-});
+      const url = `/api/banners/?city=${city || geo.payload.city}`;
+      const { data } = await Api().get<Banner[]>(url);
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 export const addBanners = createAsyncThunk(
   'banners/addThunk',
   async (

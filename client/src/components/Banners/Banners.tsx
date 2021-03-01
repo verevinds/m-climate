@@ -11,6 +11,7 @@ const Banners = () => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);
+  console.log(banners.length);
   return (
     <Slider
       watchOverflow
@@ -18,7 +19,9 @@ const Banners = () => {
       speed={500}
       effect='fade'
       autoplay
+      slidesPerView={1}
       pagination={{ clickable: true }}
+      className={styles['slider']}
     >
       {banners.map(banner => (
         <img

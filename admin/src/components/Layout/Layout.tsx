@@ -4,11 +4,11 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faBox,
-  faCalendarAlt,
+  // faCalendarAlt,
   faCameraRetro,
   faHome,
   faTags,
-  faWrench,
+  // faWrench,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectTuning, setHide } from '@redux/reducer/application/tuning';
@@ -77,18 +77,18 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               url: '/banners',
               icon: faCameraRetro,
             },
-            {
-              id: '5',
-              name: 'Акции',
-              url: '/promotions',
-              icon: faCalendarAlt,
-            },
-            {
-              id: '6',
-              name: 'Услуги',
-              url: '/service',
-              icon: faWrench,
-            },
+            // {
+            //   id: '5',
+            //   name: 'Акции',
+            //   url: '/promotions',
+            //   icon: faCalendarAlt,
+            // },
+            // {
+            //   id: '6',
+            //   name: 'Услуги',
+            //   url: '/service',
+            //   icon: faWrench,
+            // },
           ].map(el => (
             <ActiveLink
               key={el.id}

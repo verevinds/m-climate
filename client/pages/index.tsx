@@ -2,6 +2,7 @@ import Advantage from '@components/Advantage/Advantage';
 import Bar from '@components/Bar/Bar';
 import Layout from '@components/Layout/LayoutClient';
 import { selectGeoCity } from '@redux/reducer/application/geo';
+import { getBanners } from '@redux/reducer/banners';
 import { getBrands, selectBrandList } from '@redux/reducer/brand';
 import { getProducts, selectProductList } from '@redux/reducer/product';
 import { getService, selectServiceList } from '@redux/reducer/service';
@@ -25,8 +26,10 @@ const IndexPage = () => {
       ),
     [products],
   );
+
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getBanners());
   }, [city]);
 
   return (

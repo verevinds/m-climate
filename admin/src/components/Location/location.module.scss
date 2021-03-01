@@ -2,22 +2,19 @@
   position: relative;
 }
 .button {
-  display: inline-flex;
-
-  padding: 0;
-  background-color: transparent;
-
-  cursor: pointer;
-  transition: all ease-in-out 200ms;
   position: relative;
+  display: inline-flex;
   display: flex;
   align-content: center;
   align-items: center;
-  margin: 5px;
   height: 44px;
+  margin: 5px;
+
+  padding: 0;
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
+  background-color: transparent;
 
   border: 0;
   -webkit-border-radius: 4px;
@@ -25,6 +22,9 @@
   border-radius: var(--radius);
 
   cursor: pointer;
+
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
   transition: all 0.12s ease-out;
   -webkit-appearance: none;
 
@@ -42,36 +42,36 @@
   }
 }
 .dropdown {
-  z-index: 100;
-  display: none;
-  flex-direction: column;
   position: absolute;
   top: 45px;
   left: 5px;
-  padding: 1rem;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
   box-sizing: border-box;
+  padding: 1rem;
   background-color: var(--color-bg);
   border: 1px solid var(--color-divider);
   border-radius: var(--radius);
   &:before {
-    content: ' ';
     position: absolute;
+    top: -16px;
+    left: 0;
     width: 0;
     height: 0;
-    left: 0;
-    top: -16px;
     border: 8px solid;
     border-color: transparent transparent var(--color-divider);
+    content: ' ';
   }
   &:after {
-    content: ' ';
     position: absolute;
+    top: -12px;
+    left: 2px;
     width: 0;
     height: 0;
-    left: 2px;
-    top: -12px;
     border: 6px solid;
     border-color: transparent transparent #fff;
+    content: ' ';
   }
   &-show {
     display: flex;
@@ -80,8 +80,8 @@
     white-space: nowrap;
   }
   &__element {
-    line-height: 22px;
     margin-top: 1rem;
+    line-height: 22px;
   }
 }
 .icon {
