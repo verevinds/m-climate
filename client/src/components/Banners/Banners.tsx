@@ -1,16 +1,17 @@
 import Slider from '@components/Slider/Slider';
 import { getBanners, selectBannersList } from '@redux/reducer/banners';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './banners.module.scss';
 
 const Banners = () => {
   const dispatch = useDispatch();
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);
+  console.log(banners.length);
   return (
     <Slider
       watchOverflow
@@ -18,7 +19,9 @@ const Banners = () => {
       speed={500}
       effect='fade'
       autoplay
+      slidesPerView={1}
       pagination={{ clickable: true }}
+      className={styles['slider']}
     >
       {banners.map(banner => (
         <img

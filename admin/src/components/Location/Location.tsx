@@ -28,7 +28,7 @@ const Location = () => {
     <div className={styles.location}>
       <button className={styles.button} type='button' onClick={handleShow}>
         <span className={styles.button__icon}>
-          <MapMarkerAlt />
+          <MapMarkerAlt className={styles['icon']} />
         </span>
         <span className={styles.button_text}>
           {city === 'Novosibirsk' ? 'Новосибирск' : 'Краснодар'}

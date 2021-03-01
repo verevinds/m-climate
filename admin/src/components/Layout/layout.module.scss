@@ -29,6 +29,10 @@
   }
 }
 
+.location {
+  box-sizing: border-box;
+  padding: 1rem;
+}
 .sidebar {
   &__nav-top {
     display: flex;

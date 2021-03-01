@@ -1,16 +1,17 @@
 import AdminHeader from '@components/Header';
+import Location from '@components/Location';
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faBox,
-  faCalendarAlt,
+  // faCalendarAlt,
   faCameraRetro,
   faHome,
   faTags,
-  faWrench,
+  // faWrench,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { selectApplication, setHide } from '@redux/reducer/application';
+import { selectTuning, setHide } from '@redux/reducer/application/tuning';
 import ActiveLink from '@utils/ActiveLink';
 import { Button } from '@verevinds/ui-kit';
 import cls from 'classnames';
@@ -26,7 +27,7 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
     admin: {
       sideBar: { isHide },
     },
-  } = useSelector(selectApplication);
+  } = useSelector(selectTuning);
 
   const handleHide = () => dispatch(setHide());
   const icon = useMemo(
@@ -76,18 +77,18 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               url: '/banners',
               icon: faCameraRetro,
             },
-            {
-              id: '5',
-              name: 'Акции',
-              url: '/promotions',
-              icon: faCalendarAlt,
-            },
-            {
-              id: '6',
-              name: 'Услуги',
-              url: '/service',
-              icon: faWrench,
-            },
+            // {
+            //   id: '5',
+            //   name: 'Акции',
+            //   url: '/promotions',
+            //   icon: faCalendarAlt,
+            // },
+            // {
+            //   id: '6',
+            //   name: 'Услуги',
+            //   url: '/service',
+            //   icon: faWrench,
+            // },
           ].map(el => (
             <ActiveLink
               key={el.id}
@@ -101,6 +102,10 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               </a>
             </ActiveLink>
           ))}
+        </div>
+        <div className={styles['location']}>
+          <h3>Текущий город</h3>
+          <Location />
         </div>
       </div>
       <div className={styles['layout__main']}>

@@ -1,17 +1,25 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { selectGeoCity } from '@redux/reducer/application/geo';
 import {
   Banner,
   deleteBanners,
+  getBanners,
   selectBannersList,
 } from '@redux/reducer/banners';
 import { Button } from '@verevinds/ui-kit';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './bannerslist.module.scss';
 
 const ProductList = () => {
   const dispatch = useDispatch();
+
+  const city = useSelector(selectGeoCity);
+  useEffect(() => {
+    dispatch(getBanners());
+  }, [city]);
 
   const banners = useSelector(selectBannersList);
   const handleDelete = (id: Banner['_id']) => async () => {

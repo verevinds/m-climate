@@ -2,14 +2,35 @@
   position: relative;
 }
 .button {
+  position: relative;
   display: inline-flex;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 44px;
+  margin: 5px;
 
-  height: 100%;
   padding: 0;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
   background-color: transparent;
+
+  border: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: var(--radius);
+
+  cursor: pointer;
 
   cursor: pointer;
   transition: all ease-in-out 200ms;
+  transition: all 0.12s ease-out;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
   &:hover {
     color: var(--color-secondary-text);
   }
@@ -22,7 +43,8 @@
 }
 .dropdown {
   position: absolute;
-  top: 30px;
+  top: 45px;
+  left: 5px;
   z-index: 100;
   display: none;
   flex-direction: column;
@@ -61,4 +83,8 @@
     margin-top: 1rem;
     line-height: 22px;
   }
+}
+.icon {
+  width: 1.2rem;
+  height: 1rem;
 }

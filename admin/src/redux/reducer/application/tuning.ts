@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedUrlQuery } from 'querystring';
 
-import type { RootState } from '.';
+import type { RootState } from '..';
 
 interface IInitialState {
   context: {
@@ -10,6 +10,7 @@ interface IInitialState {
     pathname: string;
     query: ParsedUrlQuery;
   };
+  isPending: boolean;
   admin: {
     sideBar: {
       isHide: boolean;
@@ -19,6 +20,7 @@ interface IInitialState {
 
 const initialState: IInitialState = {
   context: { name: '', pathname: '', query: {} },
+  isPending: false,
   admin: {
     sideBar: {
       isHide: false,
@@ -26,8 +28,8 @@ const initialState: IInitialState = {
   },
 };
 
-const application = createSlice({
-  name: 'application',
+const tuningSlice = createSlice({
+  name: 'tuning',
   initialState,
   reducers: {
     setContext: (
@@ -44,10 +46,10 @@ const application = createSlice({
   },
 });
 
-export const selectApplication = (state: RootState) => state.application;
-export const selectApplicationContext = (state: RootState) =>
-  state.application.context;
+export const selectTuning = (state: RootState) => state.application.tuning;
+export const selectTuningContext = (state: RootState) =>
+  state.application.tuning.context;
 
-export const { setContext, setHide } = application.actions;
+export const { setContext, setHide } = tuningSlice.actions;
 
-export default application.reducer;
+export default tuningSlice.reducer;

@@ -29,16 +29,21 @@ const initialState: BannersReducer = {
   isPending: false,
 };
 
-export const getBanners = createAsyncThunk('banners/getThunk', async () => {
-  try {
-    const { data } = await Api().get<Banner[]>('/api/banners');
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getBanners = createAsyncThunk(
+  'banners/getThunk',
+  async (_, { getState }) => {
+    try {
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+      const { data } = await Api().get<Banner[]>(`/api/banners/?city=${city}`);
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-});
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 export const addBanners = createAsyncThunk(
   'banners/addThunk',
   async (
@@ -49,7 +54,7 @@ export const addBanners = createAsyncThunk(
       banner: Pick<Banner, 'name' | 'dateEnd'>;
       images: ImageListType;
     },
-    { rejectWithValue },
+    { rejectWithValue, getState },
   ) => {
     try {
       const promiseImages: Promise<AxiosResponse<Images>>[] = [];
@@ -72,9 +77,13 @@ export const addBanners = createAsyncThunk(
         filename: response?.data.filename,
       }));
 
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+
       Object.assign(banner, {
         url: arrayImages[0].url,
         path: arrayImages[0].path,
+        city,
       });
 
       const { data } = await Api().post<{ banners: Banner; message: string }>(
@@ -111,7 +120,6 @@ const bannersSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getBanners.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-      state.isPending = false;
     });
     builder.addCase(addBanners.fulfilled, (state, { payload }) => {
       const { message, banners } = payload;
@@ -125,7 +133,6 @@ const bannersSlice = createSlice({
           position: 'top-right',
         });
       }
-      state.isPending = false;
     });
     builder.addCase(deleteBanners.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
@@ -134,7 +141,6 @@ const bannersSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
-      state.isPending = false;
     });
     builder.addCase(getBanners.pending, handlePending);
     builder.addCase(addBanners.pending, handlePending);
