@@ -9,6 +9,8 @@ function getWindowDimensions() {
 }
 
 export default function useWindowDimensions() {
+  if (!process.browser) return undefined;
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions(),
   );

@@ -1,3 +1,15 @@
+import { AppContext, AppInitialProps } from 'next/app';
+import { AppProps } from 'next/dist/next-server/lib/router/router';
+
+import { StoreWithPersist } from './redux';
+
+export type AppInitialPropsWithRedux = AppProps &
+  AppInitialProps &
+  AppContext['ctx'] & {
+    err?: Error;
+    reduxStore: StoreWithPersist;
+  };
+
 export type Service = {
   _id: string;
   name: string;

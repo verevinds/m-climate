@@ -3,3 +3,4 @@
 node_modules
 next.config.js
 tsconfig.json
+_static

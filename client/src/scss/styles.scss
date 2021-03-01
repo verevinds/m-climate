@@ -15,9 +15,11 @@
   --color-primary-dark: hsl(195, 100%, 30%);
   --color-primary-darker: hsl(195, 100%, 27%);
   --color-primary-darkest: hsl(195, 100%, 24%);
-  --color-primary-text: #434b5b;
-  --color-primary-text-light: #fff;
-  --color-primary-text-dark: #434b5b;
+  --color-primary-text: hsl(220, 15%, 31%);
+  --color-primary-text-light: hsl(220, 15%, 41%);
+  --color-primary-text-lighter: hsl(220, 15%, 45%);
+  --color-primary-text-lightest: #fff;
+  --color-primary-text-dark: hsl(220, 15%, 21%);
   // Дополнительный цвет
   --color-secondary: hsl(31, 100%, 50%);
   --color-secondary-light: hsl(31, 100%, 60%);
@@ -32,6 +34,8 @@
   // Дополнительные параметры
   --color-divider: hsl(0, 0%, 90%);
   --radius: 4px;
+  --shadow: 0 9px 46px 0 rgba(34, 34, 34, 0.06),
+    0 1px 11px 0 rgba(34, 34, 34, 0.06);
 }
 
 * {
@@ -78,20 +82,26 @@ button {
     outline: none;
   }
 }
+nav a {
+  color: var(--color-primary) !important;
+}
 a {
-  color: var(--color-primary-text);
+  color: var(--color-primary);
   text-decoration: none;
   transition: color ease-in-out 200ms;
   &:visited {
-    color: var(--color-primary-text);
+    color: inherit;
   }
   &:hover {
     color: var(--color-secondary-text);
   }
 }
-
 .swiper-slide {
   display: flex;
   justify-content: center;
   overflow: hidden;
+}
+svg {
+  width: 1.2rem;
+  height: 1rem;
 }

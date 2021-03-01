@@ -1,4 +1,7 @@
 .location {
+  position: relative;
+}
+.button {
   display: inline-flex;
 
   height: 100%;
@@ -15,5 +18,47 @@
   }
   &__icon {
     margin-right: 1rem;
+  }
+}
+.dropdown {
+  position: absolute;
+  top: 30px;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius);
+  &:before {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid;
+    border-color: transparent transparent var(--color-divider);
+    content: ' ';
+  }
+  &:after {
+    position: absolute;
+    top: -12px;
+    left: 2px;
+    width: 0;
+    height: 0;
+    border: 6px solid;
+    border-color: transparent transparent #fff;
+    content: ' ';
+  }
+  &-show {
+    display: flex;
+  }
+  &__title {
+    white-space: nowrap;
+  }
+  &__element {
+    margin-top: 1rem;
+    line-height: 22px;
   }
 }

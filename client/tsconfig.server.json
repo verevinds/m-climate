@@ -36,17 +36,17 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "@api/*": ["./src/api/*"],
-      "@redux/*": ["./src/redux/*"],
-      "@store/*": ["./src/store/*"],
-      "@uikit/*": ["./src/components/UIKit/*"],
-      "@components/*": ["./src/components/*"],
-      "@src/*": ["./src/*"],
-      "@pages/*": ["./pages/*"],
-      "@public/*": ["./public/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@type/*": ["./src/type/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@api/*": ["src/api/*"],
+      "@redux/*": ["src/redux/*"],
+      "@store/*": ["src/store/*"],
+      "@uikit/*": ["src/components/UIKit/*"],
+      "@components/*": ["src/components/*"],
+      "@src/*": ["src/*"],
+      "@pages/*": ["pages/*"],
+      "@public/*": ["public/*"],
+      "@lib/*": ["src/lib/*"],
+      "@type/*": ["src/type/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "ts-node": { "files": true }

@@ -3,3 +3,6 @@ lib
 next.config.js
 server
 tsconfig.json
+.next
+_static
+.husky

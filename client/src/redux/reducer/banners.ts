@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { Images } from '@src/interface';
 import { RestDelete } from '@src/type/api';
 import Api from '@src/utils/Api';
 import { AxiosResponse } from 'axios';
@@ -8,7 +9,7 @@ import cogoToast from 'cogo-toast';
 import { ImageListType } from 'react-images-uploading';
 
 import type { RootState } from '.';
-import { Images } from './product';
+import { getGeo } from './application/geo';
 
 export type Banner = {
   _id: string;
@@ -29,16 +30,24 @@ const initialState: BannersReducer = {
   isPending: false,
 };
 
-export const getBanners = createAsyncThunk('banners/getThunk', async () => {
-  try {
-    const { data } = await Api().get<Banner[]>('/api/banners');
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getBanners = createAsyncThunk(
+  'banners/getThunk',
+  async (_, { getState, dispatch }) => {
+    try {
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+      const geo: any = await dispatch(getGeo());
 
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-});
+      const url = `/api/banners/?city=${city || geo.payload.city}`;
+      const { data } = await Api().get<Banner[]>(url);
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 export const addBanners = createAsyncThunk(
   'banners/addThunk',
   async (
@@ -111,7 +120,6 @@ const bannersSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getBanners.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-      state.isPending = false;
     });
     builder.addCase(addBanners.fulfilled, (state, { payload }) => {
       const { message, banners } = payload;
@@ -125,7 +133,6 @@ const bannersSlice = createSlice({
           position: 'top-right',
         });
       }
-      state.isPending = false;
     });
     builder.addCase(deleteBanners.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
@@ -134,7 +141,6 @@ const bannersSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
-      state.isPending = false;
     });
     builder.addCase(getBanners.pending, handlePending);
     builder.addCase(addBanners.pending, handlePending);

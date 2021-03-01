@@ -3,3 +3,10 @@
   height: 300px;
   object-fit: cover;
 }
+.slider {
+  :global {
+    .swiper-slide {
+      width: 100%;
+    }
+  }
+}
