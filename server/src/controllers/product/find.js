@@ -1,5 +1,4 @@
 module.exports = Product => (req, res) => {
-  console.log(req.query);
   Product.find(req.query)
     .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
     .select('-__v')

@@ -1,5 +1,6 @@
 module.exports = Brand => (req, res) =>
   Brand.find({
+    ...req.query,
     dateEnd: {
       $gte: new Date().getTime(),
     },
