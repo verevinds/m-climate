@@ -1,15 +1,49 @@
 import MapMarkerAlt from '@public/svg/map-marker-alt.svg';
+import {
+  selectGeoCity,
+  turnKDA,
+  turnNSK,
+} from '@redux/reducer/application/geo';
+import { Button } from '@verevinds/ui-kit';
+import cn from 'classnames';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './location.module.scss';
 
 const Location = () => {
+  const dispatch = useDispatch();
+  const [show, toggleShow] = useState(true);
+  const handleShow = useCallback(() => toggleShow(!show), [show]);
+  const city = useSelector(selectGeoCity);
+  const toggleNSK = () => {
+    dispatch(turnNSK());
+    handleShow();
+  };
+  const toggleKDA = () => {
+    dispatch(turnKDA());
+    handleShow();
+  };
   return (
-    <button className={styles.location} type='button'>
-      <span className={styles.location__icon}>
-        <MapMarkerAlt />
-      </span>
-      <span className={styles.location__text}>Новосибирск</span>
-    </button>
+    <div className={styles.location}>
+      <button className={styles.button} type='button' onClick={handleShow}>
+        <span className={styles.button__icon}>
+          <MapMarkerAlt />
+        </span>
+        <span className={styles.button_text}>
+          {city === 'Novosibirsk' ? 'Новосибирск' : 'Краснодар'}
+        </span>
+      </button>
+      <div className={cn(styles['dropdown'], show && styles['dropdown-show'])}>
+        <h2 className={styles['dropdown__title']}>Выберите город</h2>
+        <Button className={styles['dropdown__element']} onClick={toggleNSK}>
+          Новосибирск
+        </Button>
+        <Button className={styles['dropdown__element']} onClick={toggleKDA}>
+          Красноярск
+        </Button>
+      </div>
+    </div>
   );
 };
 
