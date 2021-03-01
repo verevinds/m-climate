@@ -1,13 +1,13 @@
 import Slider from '@components/Slider/Slider';
 import { getBanners, selectBannersList } from '@redux/reducer/banners';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './banners.module.scss';
 
 const Banners = () => {
   const dispatch = useDispatch();
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);

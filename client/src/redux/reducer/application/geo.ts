@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
+import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Api from '@src/utils/Api';
 
 import type { RootState } from '..';
 
-interface IInitialState {
+export type Geo = {
   range: number[];
   country: string;
   region: string;
@@ -14,16 +15,22 @@ interface IInitialState {
   ll: number[];
   metro: number;
   area: number;
-}
-export const getGeo = createAsyncThunk('geo/getThunk', async () => {
-  try {
-    const { data } = await Api().get<IInitialState>('/api/geo');
+};
 
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-});
+type IInitialState = Geo;
+
+export const getGeo = createAsyncThunk<Geo | undefined, void>(
+  'geo/getThunk',
+  async () => {
+    try {
+      const { data } = await Api().get<Geo>('/api/geo');
+
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 
 const initialState: IInitialState = {
   range: [],
@@ -74,6 +81,9 @@ const geoSlice = createSlice({
         state = payload;
       }
     });
+
+    builder.addCase(getGeo.pending, handlePending);
+    builder.addCase(getGeo.rejected, handleReject);
   },
 });
 

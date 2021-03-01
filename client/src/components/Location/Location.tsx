@@ -13,7 +13,7 @@ import styles from './location.module.scss';
 
 const Location = () => {
   const dispatch = useDispatch();
-  const [show, toggleShow] = useState(true);
+  const [show, toggleShow] = useState(false);
   const handleShow = useCallback(() => toggleShow(!show), [show]);
   const city = useSelector(selectGeoCity);
   const toggleNSK = () => {
