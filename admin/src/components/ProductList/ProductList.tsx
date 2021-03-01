@@ -1,9 +1,15 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { deleteProduct, selectProductList } from '@redux/reducer/product';
+import { selectGeoCity } from '@redux/reducer/application/geo';
+import {
+  deleteProduct,
+  getProducts,
+  selectProductList,
+} from '@redux/reducer/product';
 import { Product } from '@src/interface';
 import { Button } from '@verevinds/ui-kit';
 import { DateTime } from 'luxon';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './product.module.scss';
@@ -15,6 +21,13 @@ const ProductList = () => {
   const handleDelete = (id: Product['_id']) => async () => {
     dispatch(deleteProduct(id));
   };
+
+  const city = useSelector(selectGeoCity);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [city]);
+
   return (
     <>
       <h3>Список товаров</h3>

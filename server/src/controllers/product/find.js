@@ -1,6 +1,5 @@
 module.exports = Product => (req, res) => {
-  const city = res.city;
-  Product.find({ city })
+  Product.find(req.query)
     .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
     .select('-__v')
     .exec((error, product) =>

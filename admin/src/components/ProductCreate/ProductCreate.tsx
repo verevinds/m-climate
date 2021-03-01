@@ -85,8 +85,8 @@ const ProductCreate = () => {
         title: 'Тип',
         placeholder: 'Выберите тип...',
         options: [
-          { _id: 'Инвентарные', name: 'Инвентарные' },
-          { _id: 'Традиционные', name: 'Традиционные' },
+          { _id: 'Инвентарный', name: 'Инвентарный' },
+          { _id: 'Традиционный', name: 'Традиционный' },
         ],
         as: Select,
         required: 'Обязательно к заполнению',
@@ -134,7 +134,13 @@ const ProductCreate = () => {
         type: { value: string; label: string };
       },
     ) => {
-      await dispatch(addProduct({ product, images, description: editorState }));
+      await dispatch(
+        addProduct({
+          product,
+          images,
+          description: editorState,
+        }),
+      );
     },
     [images, editorState],
   );

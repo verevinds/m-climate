@@ -22,16 +22,21 @@ const initialState: ProductReducer = {
   isPending: false,
 };
 
-export const getProducts = createAsyncThunk('product/getThunk', async () => {
-  try {
-    const { data } = await Api().get<Product[]>('/api/product');
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getProducts = createAsyncThunk(
+  'product/getThunk',
+  async (_, { getState }) => {
+    try {
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+      const { data } = await Api().get<Product[]>(`/api/product/?city=${city}`);
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-});
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 
 export const addProduct = createAsyncThunk(
   'product/addThunk',
@@ -48,7 +53,7 @@ export const addProduct = createAsyncThunk(
       images: ImageListType;
       description: EditorState;
     },
-    { rejectWithValue },
+    { rejectWithValue, getState },
   ) => {
     try {
       if (images.length) {
@@ -73,6 +78,9 @@ export const addProduct = createAsyncThunk(
         Object.assign(product, { images: arrayImages });
       }
 
+      const state = getState() as RootState;
+      const { city } = state.application.geo;
+
       const description = draftToHtml(
         convertToRaw(draftDescription.getCurrentContent()),
       );
@@ -80,6 +88,7 @@ export const addProduct = createAsyncThunk(
         brand: product.brand.value,
         type: product.type.value,
         description,
+        city,
       });
       const { data } = await Api().post<{ product: Product; message: string }>(
         '/api/product',
