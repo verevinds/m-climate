@@ -23,13 +23,9 @@ Banners.getInitialProps = async ({
   err,
   reduxStore,
 }: AppInitialPropsWithRedux) => {
-  const banners = reduxStore.getState().banners.list;
+  const promise = [reduxStore.dispatch(getBanners())];
 
-  if (!banners.length) {
-    const promise = [reduxStore.dispatch(getBanners())];
-
-    await Promise.all(promise);
-  }
+  await Promise.all(promise);
   return { err };
 };
 
