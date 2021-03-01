@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedUrlQuery } from 'querystring';
 
-import type { RootState } from '.';
+import type { RootState } from '..';
 
 interface IInitialState {
   context: {
@@ -44,9 +44,10 @@ const application = createSlice({
   },
 });
 
-export const selectApplication = (state: RootState) => state.application;
+export const selectApplication = (state: RootState) =>
+  state.application.application;
 export const selectApplicationContext = (state: RootState) =>
-  state.application.context;
+  state.application.application.context;
 
 export const { setContext, setHide } = application.actions;
 
