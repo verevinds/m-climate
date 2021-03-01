@@ -1,4 +1,5 @@
 import { initStore } from '@redux/index';
+import { getGeo } from '@redux/reducer/application/geo';
 import React from 'react';
 
 const isServer = !process.browser;
@@ -33,7 +34,9 @@ export default App => {
       }
 
       const initialReduxState = reduxStore.getState();
+      const promise = [reduxStore.dispatch(getGeo())];
 
+      await Promise.all(promise);
       return {
         ...appProps,
         initialReduxState,
