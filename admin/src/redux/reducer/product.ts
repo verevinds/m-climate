@@ -73,6 +73,7 @@ export const addProduct = createAsyncThunk(
 
         const arrayImages = responseImages.map(response => ({
           url: response?.data.url,
+          path: response?.data.path,
           filename: response?.data.filename,
         }));
         Object.assign(product, { images: arrayImages });

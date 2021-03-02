@@ -23,8 +23,4 @@ module.exports = Product => async (req, res) => {
             .status(200)
             .send({ product, message: `Товар "${product.name}" добавлен!` }),
     );
-
-  // res
-  // .status(200)
-  // .send({ product, message: `Товар "${product.name}" добавлен!` });
 };
