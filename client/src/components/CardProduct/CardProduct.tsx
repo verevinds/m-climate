@@ -4,6 +4,7 @@ import Headset from '@public/svg/headset.svg';
 import Phone from '@public/svg/phone.svg';
 import Truck from '@public/svg/truck.svg';
 import { selectProductItem } from '@redux/reducer/product';
+import ActiveLink from '@src/utils/ActiveLink';
 import addCommas from '@src/utils/addCommas';
 import useWindowDimensions from '@src/utils/hooks/useWindowDimensions';
 import { Button } from '@verevinds/ui-kit';
@@ -91,6 +92,9 @@ export default function CardProduct() {
             </Button>
           </a>
         </div>
+        <ActiveLink href='/service/installation'>
+          <a>Узнайте подробнее о услуге установки</a>
+        </ActiveLink>
       </section>
       <CardProductTabs />
     </article>
