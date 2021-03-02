@@ -33,6 +33,7 @@ exports.load = (req, res) => {
       console.log(file.data, 'form image buffer data is here');
 
       sharp(file.data)
+        .webp({ lossless: false })
         .toBuffer()
         .then(newBuffer => {
           file.data = newBuffer;
