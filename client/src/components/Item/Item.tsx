@@ -20,6 +20,14 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
           <source
             srcSet={
               image && image !== '/svg/no-camera.svg'
+                ? `${image.substr(0, image.lastIndexOf('.'))}.avif`
+                : '/svg/no-camera.svg'
+            }
+            type='image/avif'
+          />
+          <source
+            srcSet={
+              image && image !== '/svg/no-camera.svg'
                 ? `${image.substr(0, image.lastIndexOf('.'))}.webp`
                 : '/svg/no-camera.svg'
             }

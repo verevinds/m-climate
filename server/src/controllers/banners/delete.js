@@ -12,16 +12,15 @@ module.exports = Banners => (req, res) => {
         await fs.unlinkSync(data.path);
         await fs.unlinkSync(`${path}.webp`);
         await fs.unlinkSync(`${path}.avif`);
-
-        res.status(200).send({
-          _id,
-          message: `Баннер "${data.name}" удалён!`,
-          data,
-          err,
-        });
       } catch (e) {
         console.error(e);
       }
+      res.status(200).send({
+        _id,
+        message: `Баннер "${data.name}" удалён!`,
+        data,
+        err,
+      });
     }
   });
 };

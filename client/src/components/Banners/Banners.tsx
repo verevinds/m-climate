@@ -26,6 +26,10 @@ const Banners = () => {
       {banners.map(banner => (
         <picture key={banner._id} className={styles['full-size']}>
           <source
+            srcSet={`${banner.url.substr(0, banner.url.lastIndexOf('.'))}.avif`}
+            type='image/avif'
+          />
+          <source
             srcSet={`${banner.url.substr(0, banner.url.lastIndexOf('.'))}.webp`}
             type='image/webp'
           />

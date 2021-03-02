@@ -15,15 +15,15 @@ module.exports = Product => (req, res) => {
           fs.unlinkSync(`${path}.webp`);
           fs.unlinkSync(`${path}.avif`);
         });
-
-        res.status(200).send({
-          _id,
-          message: `Товар "${data.name}" удалён!`,
-          data,
-        });
       } catch (e) {
         console.error(e);
       }
+
+      res.status(200).send({
+        _id,
+        message: `Товар "${data.name}" удалён!`,
+        data,
+      });
     }
   });
 };
