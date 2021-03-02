@@ -6,7 +6,7 @@ import React from 'react';
 import styles from './item.module.scss';
 
 type ItemWrapProps = {
-  image: string;
+  image?: string;
   name: string;
   price?: number;
   priceOld?: number;
@@ -16,11 +16,21 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
   return (
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
-        <img
-          src={image || '/svg/no-camera.svg'}
-          className={styles.item__img}
-          alt={name}
-        />
+        <picture className={styles['item__img']}>
+          <source
+            srcSet={
+              image && image !== '/svg/no-camera.svg'
+                ? `${image.substr(0, image.lastIndexOf('.'))}.webp`
+                : '/svg/no-camera.svg'
+            }
+            type='image/webp'
+          />
+          <img
+            src={image || '/svg/no-camera.svg'}
+            alt={name}
+            className={styles['item__img']}
+          />
+        </picture>
       </div>
       {price && (
         <div className={styles.item__price}>
@@ -48,7 +58,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
     return (
       <ItemWrap
         {...{
-          image: images.length ? images[0].url : '/svg/no-camera.svg',
+          image: images.length ? images[0].url : undefined,
           name,
           price,
           priceOld,
