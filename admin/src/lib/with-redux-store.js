@@ -34,9 +34,7 @@ export default App => {
       }
 
       const initialReduxState = reduxStore.getState();
-      const promise = [reduxStore.dispatch(getGeo())];
 
-      await Promise.all(promise);
       return {
         ...appProps,
         initialReduxState,
