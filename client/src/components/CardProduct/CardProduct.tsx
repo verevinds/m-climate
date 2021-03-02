@@ -36,14 +36,22 @@ export default function CardProduct() {
           pagination
           navigation
         >
-          {item?.images.map((image, idx) => (
+          {item?.images.length ? (
+            item?.images.map((image, idx) => (
+              <img
+                key={image._id}
+                src={image.url}
+                alt={`${item.name}-${idx}`}
+                className={styles['img__item']}
+              />
+            ))
+          ) : (
             <img
-              key={image._id}
-              src={image.url}
-              alt={`${item.name}-${idx}`}
+              src='/svg/no-camera.svg'
+              alt='нет изображения'
               className={styles['img__item']}
             />
-          ))}
+          )}
         </Slider>
         <div className={styles['shadow-right']} />
       </section>
