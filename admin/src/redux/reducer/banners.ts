@@ -120,6 +120,7 @@ const bannersSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getBanners.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
+      state.isPending = false;
     });
     builder.addCase(addBanners.fulfilled, (state, { payload }) => {
       const { message, banners } = payload;
@@ -133,6 +134,7 @@ const bannersSlice = createSlice({
           position: 'top-right',
         });
       }
+      state.isPending = false;
     });
     builder.addCase(deleteBanners.fulfilled, (state, { payload }) => {
       if (payload && !payload.err)
@@ -141,7 +143,9 @@ const bannersSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
+      state.isPending = false;
     });
+
     builder.addCase(getBanners.pending, handlePending);
     builder.addCase(addBanners.pending, handlePending);
     builder.addCase(deleteBanners.pending, handlePending);
