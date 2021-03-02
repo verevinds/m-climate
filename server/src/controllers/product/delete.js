@@ -4,26 +4,26 @@ module.exports = Product => (req, res) => {
 
   const _id = req.params.id;
 
-  Product.findByIdAndDelete({ _id }, (err, data) => {
+  Product.findByIdAndDelete({ _id }, async (err, data) => {
     if (err) {
       res.status(400).send(err);
     } else {
       try {
-        data.images.forEach(image => {
+        await data.images.forEach(image => {
+          const path = image.path.substr(0, image.path.lastIndexOf('.'));
           fs.unlinkSync(image.path);
-          fs.unlinkSync(
-            image.path.substr(0, image.path.lastIndexOf('.')) + '.webp',
-          );
+          fs.unlinkSync(`${path}.webp`);
+          fs.unlinkSync(`${path}.avif`);
+        });
+
+        res.status(200).send({
+          _id,
+          message: `Товар "${data.name}" удалён!`,
+          data,
         });
       } catch (e) {
         console.error(e);
       }
-
-      res.status(200).send({
-        _id,
-        message: `Товар "${data.name}" удалён!`,
-        data,
-      });
     }
   });
 };

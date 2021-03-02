@@ -23,37 +23,21 @@ exports.load = (req, res) => {
           wasFile: true,
         });
 
-      file.mv(`${dir}/${fullName}`, err => {
+      file.mv(`${dir}/${fullName}`, async err => {
         if (err) {
           res.status(500).send('error occured');
         }
-      });
 
-      console.log(file, 'form image is here');
-      console.log(file.data, 'form image buffer data is here');
+        await sharp(`${dir}/${fullName}`).webp().toFile(`${dir}/${name}.webp`);
+        await sharp(`${dir}/${fullName}`).avif().toFile(`${dir}/${name}.avif`);
 
-      sharp(file.data)
-        .webp({ lossless: false })
-        .toBuffer()
-        .then(newBuffer => {
-          file.data = newBuffer;
-
-          file.mv(`${dir}/${name}.webp`, err => {
-            if (err) {
-              return res.status(500).send(err);
-            }
-          });
-        })
-        .catch(err => {
-          console.log(err);
+        res.status(200).send({
+          message: `Файл ${filename} успешно загружен`,
+          url: `${process.env.API}/uploads/${folder}/${fullName}`,
+          path: `${dir}/${fullName}`,
+          filename,
+          wasFile: true,
         });
-
-      res.status(200).send({
-        message: `Файл ${filename} успешно загружен`,
-        url: `${process.env.API}/uploads/${folder}/${fullName}`,
-        path: `${dir}/${fullName}`,
-        filename,
-        wasFile: true,
       });
     } else {
       res.status(400).send({
