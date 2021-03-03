@@ -26,13 +26,13 @@ export const getGeo = createAsyncThunk('geo/getThunk', async () => {
 });
 
 const initialState: IInitialState = {
-  range: [],
-  country: '',
-  region: '',
-  eu: '',
-  timezone: '',
-  city: '',
-  ll: [],
+  range: [3558093824, 3558094847],
+  country: 'RU',
+  region: 'NVS',
+  eu: '0',
+  timezone: 'Asia/Novosibirsk',
+  city: 'Novosibirsk',
+  ll: [55.041, 82.9428],
   metro: 0,
   area: 1,
 };
