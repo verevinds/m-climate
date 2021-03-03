@@ -35,6 +35,14 @@ jobs:
         run: npm ci
 
       # Runs a set of commands using the runners shell
+      - name: Restart api
+        run: sudo -S docker-compose restart api
+        
+      - name: Restart container admin
+        run: sudo -S docker-compose restart admin
+        
       - name: Restart container
-        run: sudo -S docker-compose restart
+        run: sudo -S docker-compose restart frontend
+
+
 
