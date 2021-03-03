@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { handlePending, handleReject } from '@redux/caseReducer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import Api from '@src/utils/Api';
 
+// import Api from '@src/utils/Api';
 import type { RootState } from '..';
 
 export type Geo = {
@@ -23,8 +23,33 @@ export const getGeo = createAsyncThunk<Geo | undefined, void>(
   'geo/getThunk',
   async () => {
     try {
-      const { data } = await Api().get<Geo>('/api/geo');
-
+      console.log(window.location.hostname.split('.'));
+      const location = window.location.hostname.split('.')[0];
+      // const { data } = await Api().get<Geo>('/api/geo');
+      const data =
+        location === 'kda'
+          ? {
+              range: [92970496, 92971007],
+              country: 'RU',
+              region: 'KDA',
+              eu: '0',
+              timezone: 'Europe/Moscow',
+              city: 'Krasnodar',
+              ll: [45.0355, 38.975],
+              metro: 0,
+              area: 1000,
+            }
+          : {
+              range: [3558093824, 3558094847],
+              country: 'RU',
+              region: 'NVS',
+              eu: '0',
+              timezone: 'Asia/Novosibirsk',
+              city: 'Novosibirsk',
+              ll: [55.041, 82.9428],
+              metro: 0,
+              area: 1,
+            };
       return data;
     } catch (e) {
       console.error(e);
