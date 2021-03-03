@@ -13,6 +13,7 @@ export const handleReject: CaseReducer = (state, action) => {
       if (hide) hide();
     },
   });
+  state.isPending = false;
 };
 export const handlePending: CaseReducer = state => {
   state.isPending = true;

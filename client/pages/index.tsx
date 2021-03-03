@@ -5,11 +5,11 @@ import { selectGeoCity } from '@redux/reducer/application/geo';
 import {
   turnOffPending,
   turnOnPending,
-  updateApplication,
 } from '@redux/reducer/application/tuning';
+import { getBanners } from '@redux/reducer/banners';
 import { getBrands, selectBrandList } from '@redux/reducer/brand';
 import { getProducts, selectProductList } from '@redux/reducer/product';
-import { getService, selectServiceList } from '@redux/reducer/service';
+import { getService } from '@redux/reducer/service';
 import { AppInitialPropsWithRedux } from '@src/interface';
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,6 @@ const IndexPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductList);
   const brands = useSelector(selectBrandList);
-  const services = useSelector(selectServiceList);
   const city = useSelector(selectGeoCity);
 
   const populars = useMemo(
@@ -32,14 +31,44 @@ const IndexPage = () => {
   );
 
   useEffect(() => {
-    dispatch(updateApplication());
+    dispatch(getProducts());
+    dispatch(getBanners());
   }, [city]);
 
   return (
     <Layout>
       <Bar title='Популярные' items={populars} key='1' />
       <Bar title='Кондиционеры' items={products} key='2' />
-      <Bar title='Услуги' items={services} key='3' />
+      <Bar
+        title='Услуги'
+        items={[
+          {
+            _id: 'installation',
+            name: 'Стандартный монтаж',
+            image: '/svg/no-camera.svg',
+            createdAt: '',
+            updatedAt: '',
+            description: '',
+          },
+          {
+            _id: 'dismantling',
+            name: 'Демонтаж кондиционера',
+            image: '/svg/no-camera.svg',
+            createdAt: '',
+            updatedAt: '',
+            description: '',
+          },
+          {
+            _id: 'maintenance',
+            name: 'Сервисное обслуживание',
+            image: '/svg/no-camera.svg',
+            createdAt: '',
+            updatedAt: '',
+            description: '',
+          },
+        ]}
+        key='3'
+      />
       <Advantage />
       {brands.map(brand => (
         <Bar

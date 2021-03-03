@@ -7,6 +7,7 @@ import Api from '@utils/Api';
 
 import type { RootState } from '.';
 import { getGeo } from './application/geo';
+import { turnOffPending, turnOnPending } from './application/tuning';
 
 export type ProductReducer = {
   list: Product[];
@@ -24,7 +25,8 @@ export const getProducts = createAsyncThunk(
   'product/getThunk',
   async (_, { getState, dispatch }) => {
     try {
-      const state = getState() as RootState;
+      dispatch(turnOnPending());
+      const state: any = getState();
       const { city } = state.application.geo;
       const geo: any = await dispatch(getGeo());
 
@@ -33,8 +35,10 @@ export const getProducts = createAsyncThunk(
       const { data } = await Api().get<Product[]>(url);
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
+      dispatch(turnOffPending());
       return data;
     } catch (e) {
+      dispatch(turnOffPending());
       console.error(e);
     }
   },
@@ -42,12 +46,21 @@ export const getProducts = createAsyncThunk(
 
 export const getProduct = createAsyncThunk<Product | undefined, string>(
   'product/getOneThunk',
-  async id => {
+  async (id, { dispatch, getState }) => {
     try {
-      const { data } = await Api().get<Product>(`/api/product/${id}`);
+      dispatch(turnOnPending());
+      const state: any = getState();
+      const { city } = state.application.geo;
+      const geo: any = await dispatch(getGeo());
 
+      const url = `/api/product/${id}/?city=${city || geo.payload.city}`;
+
+      const { data } = await Api().get<Product>(url);
+
+      dispatch(turnOffPending());
       return data;
     } catch (e) {
+      dispatch(turnOffPending());
       errorPush(e.massage);
     }
   },

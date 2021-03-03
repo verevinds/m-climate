@@ -11,7 +11,7 @@ const Banners = () => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);
-  console.log(banners.length);
+
   return (
     <Slider
       watchOverflow
@@ -24,12 +24,21 @@ const Banners = () => {
       className={styles['slider']}
     >
       {banners.map(banner => (
-        <img
-          key={banner._id}
-          src={banner.url}
-          className={styles['full-size']}
-          alt={banner.name}
-        />
+        <picture key={banner._id} className={styles['full-size']}>
+          <source
+            srcSet={`${banner.url.substr(0, banner.url.lastIndexOf('.'))}.avif`}
+            type='image/avif'
+          />
+          <source
+            srcSet={`${banner.url.substr(0, banner.url.lastIndexOf('.'))}.webp`}
+            type='image/webp'
+          />
+          <img
+            src={banner.url}
+            alt={banner.name}
+            className={styles['full-size']}
+          />
+        </picture>
       ))}
     </Slider>
   );

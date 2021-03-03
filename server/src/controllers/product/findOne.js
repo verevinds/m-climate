@@ -4,10 +4,12 @@ module.exports = Product => (req, res) => {
   if (!_id)
     res.status(400).send({ message: 'Не указан id запрашиваемого товара' });
 
-  Product.findOne({ _id })
+  Product.findOne({ ...req.query, _id })
     .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
     .select('-__v -createdAt -updatedAt')
     .exec((error, product) =>
-      error ? console.error(error) : res.status(200).send(product),
+      error
+        ? res.status(400).send({ product, message: 'Товар не найден' })
+        : res.status(200).send(product),
     );
 };

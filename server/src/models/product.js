@@ -29,6 +29,7 @@ const productSchema = new Schema({
     {
       url: String,
       filename: String,
+      path: String,
     },
   ],
   city: { type: String, default: 'Novosibirsk' },

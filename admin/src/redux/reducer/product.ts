@@ -28,7 +28,6 @@ export const getProducts = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const { city } = state.application.geo;
-      console.log({ city });
       const { data } = await Api().get<Product[]>(`/api/product/?city=${city}`);
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
@@ -74,6 +73,7 @@ export const addProduct = createAsyncThunk(
 
         const arrayImages = responseImages.map(response => ({
           url: response?.data.url,
+          path: response?.data.path,
           filename: response?.data.filename,
         }));
         Object.assign(product, { images: arrayImages });
@@ -126,10 +126,10 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
+      state.isPending = false;
     });
 
     builder.addCase(addProduct.fulfilled, (state, { payload }) => {
-      console.log({ payload });
       const { message, product } = payload;
       if (product && state.isPending) {
         const newList = state.list
@@ -141,6 +141,7 @@ const productSlice = createSlice({
           position: 'top-right',
         });
       }
+      state.isPending = false;
     });
 
     builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
@@ -150,6 +151,7 @@ const productSlice = createSlice({
         heading: 'Успешно удалён',
         position: 'top-right',
       });
+      state.isPending = false;
     });
 
     builder.addCase(getProducts.pending, handlePending);

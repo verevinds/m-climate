@@ -42,7 +42,23 @@ const ProductList = () => {
               variant='outline-danger'
             />
           </div>
-          <img src={banner.url} alt={banner.name} className={styles['img']} />
+          <picture>
+            <source
+              srcSet={`${banner.url.substr(
+                0,
+                banner.url.lastIndexOf('.'),
+              )}.avif`}
+              type='image/avif'
+            />
+            <source
+              srcSet={`${banner.url.substr(
+                0,
+                banner.url.lastIndexOf('.'),
+              )}.webp`}
+              type='image/webp'
+            />
+            <img src={banner.url} alt={banner.name} className={styles['img']} />
+          </picture>
         </div>
       ))}
     </>

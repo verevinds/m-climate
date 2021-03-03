@@ -69,11 +69,7 @@ const geoSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getGeo.fulfilled, (state, { payload }) => {
-      if (payload) {
-        state = payload;
-      }
-    });
+    builder.addCase(getGeo.fulfilled, (_state, { payload }) => payload);
   },
 });
 

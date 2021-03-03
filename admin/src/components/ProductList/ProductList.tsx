@@ -41,15 +41,39 @@ const ProductList = () => {
         <h4>Инструменты</h4>
         {products.map(product => (
           <>
-            <img
-              src={
-                product.images.length
-                  ? product.images[0].url
-                  : '/svg/no-camera.svg'
-              }
-              alt={product.name}
-              className={styles['img']}
-            />
+            <picture>
+              <source
+                srcSet={
+                  product.images.length
+                    ? `${product.images[0].url.substr(
+                        0,
+                        product.images[0].url.lastIndexOf('.'),
+                      )}.avif`
+                    : '/svg/no-camera.svg'
+                }
+                type='image/avif'
+              />
+              <source
+                srcSet={
+                  product.images.length
+                    ? `${product.images[0].url.substr(
+                        0,
+                        product.images[0].url.lastIndexOf('.'),
+                      )}.webp`
+                    : '/svg/no-camera.svg'
+                }
+                type='image/webp'
+              />
+              <img
+                src={
+                  product.images.length
+                    ? product.images[0].url
+                    : '/svg/no-camera.svg'
+                }
+                alt={product.name}
+                className={styles['img']}
+              />
+            </picture>
             <span>{product.name}</span>
             <span>{product.brand?.name}</span>
             <span>{product.type}</span>

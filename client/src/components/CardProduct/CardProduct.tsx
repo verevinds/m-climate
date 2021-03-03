@@ -4,6 +4,7 @@ import Headset from '@public/svg/headset.svg';
 import Phone from '@public/svg/phone.svg';
 import Truck from '@public/svg/truck.svg';
 import { selectProductItem } from '@redux/reducer/product';
+import ActiveLink from '@src/utils/ActiveLink';
 import addCommas from '@src/utils/addCommas';
 import useWindowDimensions from '@src/utils/hooks/useWindowDimensions';
 import { Button } from '@verevinds/ui-kit';
@@ -21,26 +22,36 @@ export default function CardProduct() {
   return (
     <article className={styles['block']}>
       <h1 className={styles['h1']}>{item?.name}</h1>
+
       <section className={styles['img']}>
         <Slider
-          slidesPerView='auto'
+          slidesPerView={2}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+          }}
           spaceBetween={isMobile ? 0 : 50}
           loop
-          pagination={{
-            el: styles['pagination'],
-          }}
-          navigation={{
-            disabledClass: styles.disabled,
-          }}
+          pagination
+          navigation
         >
-          {item?.images.map((image, idx) => (
+          {item?.images.length ? (
+            item?.images.map((image, idx) => (
+              <img
+                key={image._id}
+                src={image.url}
+                alt={`${item.name}-${idx}`}
+                className={styles['img__item']}
+              />
+            ))
+          ) : (
             <img
-              key={image._id}
-              src={image.url}
-              alt={`${item.name}-${idx}`}
+              src='/svg/no-camera.svg'
+              alt='нет изображения'
               className={styles['img__item']}
             />
-          ))}
+          )}
         </Slider>
         <div className={styles['shadow-right']} />
       </section>
@@ -89,6 +100,9 @@ export default function CardProduct() {
             </Button>
           </a>
         </div>
+        <ActiveLink href='/service/installation'>
+          <a>Узнайте подробнее о услуге установки</a>
+        </ActiveLink>
       </section>
       <CardProductTabs />
     </article>

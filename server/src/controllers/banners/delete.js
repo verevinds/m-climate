@@ -4,10 +4,17 @@ module.exports = Banners => (req, res) => {
 
   const _id = req.params.id;
 
-  Banners.findByIdAndDelete({ _id }, (err, data) => {
+  Banners.findByIdAndDelete({ _id }, async (err, data) => {
     if (err) res.status(400).send(err);
     else {
-      fs.unlinkSync(data.path);
+      try {
+        const path = data.path.substr(0, data.path.lastIndexOf('.'));
+        await fs.unlinkSync(data.path);
+        await fs.unlinkSync(`${path}.webp`);
+        await fs.unlinkSync(`${path}.avif`);
+      } catch (e) {
+        console.error(e);
+      }
       res.status(200).send({
         _id,
         message: `Баннер "${data.name}" удалён!`,
