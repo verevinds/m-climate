@@ -12,8 +12,6 @@ services:
     volumes:
       - ./server:/app
       - ./node_modules:/app/node_modules
-    env_file:
-      - .env
     depends_on:
       - mongo
     networks:
@@ -32,8 +30,6 @@ services:
     volumes:
       - ./client:/app
       - ./node_modules:/app/node_modules
-    env_file:
-      - .env
     depends_on:
       - api
     networks:
@@ -52,8 +48,6 @@ services:
     volumes:
       - ./admin:/app
       - ./node_modules:/app/node_modules
-    env_file:
-      - .env
     depends_on:
       - api
     networks:
