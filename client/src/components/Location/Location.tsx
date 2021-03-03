@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import styles from './location.module.scss';
 
 const Location = () => {
-
   const { asPath } = useRouter();
 
   const [show, toggleShow] = useState(false);

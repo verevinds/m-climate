@@ -43,6 +43,7 @@ export default function CardProduct() {
                 src={image.url}
                 alt={`${item.name}-${idx}`}
                 className={styles['img__item']}
+                loading='lazy'
               />
             ))
           ) : (
@@ -50,6 +51,7 @@ export default function CardProduct() {
               src='/svg/no-camera.svg'
               alt='нет изображения'
               className={styles['img__item']}
+              loading='lazy'
             />
           )}
         </Slider>

@@ -37,6 +37,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
             src={image || '/svg/no-camera.svg'}
             alt={name}
             className={styles['item__img']}
+            loading='lazy'
           />
         </picture>
       </div>

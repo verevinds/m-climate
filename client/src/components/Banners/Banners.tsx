@@ -37,6 +37,7 @@ const Banners = () => {
             src={banner.url}
             alt={banner.name}
             className={styles['full-size']}
+            loading='lazy'
           />
         </picture>
       ))}
