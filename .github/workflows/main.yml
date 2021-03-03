@@ -30,4 +30,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Restart container
-        run: echo Restart container && docker-compose restart
+        run: sudo docker-compose restart
