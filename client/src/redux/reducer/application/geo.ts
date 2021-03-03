@@ -19,15 +19,13 @@ export type Geo = {
 
 type IInitialState = Geo;
 
-export const getGeo = createAsyncThunk<Geo | undefined, void>(
+export const getGeo = createAsyncThunk<Geo | undefined, { subdomain: string }>(
   'geo/getThunk',
-  async () => {
+  async ({ subdomain }) => {
     try {
-      console.log(window.location.hostname.split('.'));
-      const location = window.location.hostname.split('.')[0];
       // const { data } = await Api().get<Geo>('/api/geo');
       const data =
-        location === 'kda'
+        subdomain === 'kda'
           ? {
               range: [92970496, 92971007],
               country: 'RU',

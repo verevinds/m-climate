@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Api from '@src/utils/Api';
 
 import type { RootState } from '.';
-import { getGeo } from './application/geo';
 import { turnOffPending, turnOnPending } from './application/tuning';
 
 export type Banner = {
@@ -33,9 +32,8 @@ export const getBanners = createAsyncThunk(
       dispatch(turnOnPending());
       const state: any = getState();
       const { city } = state.application.geo;
-      const geo: any = await dispatch(getGeo());
 
-      const url = `/api/banners/?city=${city || geo.payload.city}`;
+      const url = `/api/banners/?city=${city}`;
       const { data } = await Api().get<Banner[]>(url);
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 

@@ -6,7 +6,6 @@ import errorPush from '@src/utils/errorPush';
 import Api from '@utils/Api';
 
 import type { RootState } from '.';
-import { getGeo } from './application/geo';
 import { turnOffPending, turnOnPending } from './application/tuning';
 
 export type ProductReducer = {
@@ -28,9 +27,8 @@ export const getProducts = createAsyncThunk(
       dispatch(turnOnPending());
       const state: any = getState();
       const { city } = state.application.geo;
-      const geo: any = await dispatch(getGeo());
 
-      const url = `/api/product/?city=${city || geo.payload.city}`;
+      const url = `/api/product/?city=${city}`;
 
       const { data } = await Api().get<Product[]>(url);
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
@@ -51,9 +49,8 @@ export const getProduct = createAsyncThunk<Product | undefined, string>(
       dispatch(turnOnPending());
       const state: any = getState();
       const { city } = state.application.geo;
-      const geo: any = await dispatch(getGeo());
 
-      const url = `/api/product/${id}/?city=${city || geo.payload.city}`;
+      const url = `/api/product/${id}/?city=${city}`;
 
       const { data } = await Api().get<Product>(url);
 
