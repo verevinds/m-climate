@@ -34,5 +34,5 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Restart container
-        run: sudo -S docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+        run: sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
