@@ -1,7 +1,7 @@
 import Advantage from '@components/Advantage/Advantage';
 import Bar from '@components/Bar/Bar';
 import Layout from '@components/Layout/LayoutClient';
-import { selectGeoCity } from '@redux/reducer/application/geo';
+import { getGeo, selectGeoCity } from '@redux/reducer/application/geo';
 import {
   turnOffPending,
   turnOnPending,
@@ -84,8 +84,12 @@ const IndexPage = () => {
 IndexPage.getInitialProps = async ({
   err,
   reduxStore,
+  req,
 }: AppInitialPropsWithRedux) => {
   await reduxStore.dispatch(turnOnPending());
+
+  const subdomain = (req && req.headers.host?.split('.')[0]) || 'nsk';
+  await reduxStore.dispatch(getGeo({ subdomain }));
 
   const promise = [
     reduxStore.dispatch(getProducts()),
