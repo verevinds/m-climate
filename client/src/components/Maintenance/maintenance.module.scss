@@ -6,16 +6,8 @@
 .list {
   padding: 1rem;
 }
-.img {
-  float: left;
-  width: 240px;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-}
 @media (max-width: $viewport-md) {
-  .block,
-  .title {
+  .block {
     padding: 1rem;
-    padding-bottom: 0;
   }
 }
