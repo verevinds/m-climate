@@ -10,7 +10,7 @@ import { Product } from '@src/interface';
 import { Button } from '@verevinds/ui-kit';
 import { DateTime } from 'luxon';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './product.module.scss';
@@ -29,7 +29,7 @@ const ProductList = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [city]);
-  const handleClick = (id: Product['_id']) => e => {
+  const handleClick = (id: Product['_id']) => (e: SyntheticEvent) => {
     e.preventDefault();
     router.push(`product/?type=update&id=${id}`);
   };
