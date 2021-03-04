@@ -61,9 +61,10 @@ const ProductCreate = () => {
   const isPageCreate =
     (query.type && query.type === 'create') || query.type === 'update';
   const isPageUpdate = query.type === 'update';
+
   const initUpdateProduct = useMemo(
     () => products.find(product => query.id && product._id === query.id),
-    [products],
+    [products, query],
   );
 
   const [images, setImages] = useState([]);
@@ -72,7 +73,7 @@ const ProductCreate = () => {
   const { handleSubmit, errors, control, setValue } = useForm<ProductInput>();
 
   useEffect(() => {
-    if (initUpdateProduct)
+    if (initUpdateProduct) {
       Object.keys(initUpdateProduct).forEach(key => {
         const currentKey = key as keyof (ProductInput & {
           description: string;
@@ -111,6 +112,7 @@ const ProductCreate = () => {
             break;
         }
       });
+    }
   }, [initUpdateProduct]);
 
   const handleDelete = (image: ImageProduct) => () => {
@@ -219,6 +221,8 @@ const ProductCreate = () => {
   );
 
   if (!isPageCreate) return null;
+  if (!initUpdateProduct && isPageUpdate)
+    return <h1>Товар для редактирования не найден.</h1>;
 
   return (
     <div className={styles['product']}>
