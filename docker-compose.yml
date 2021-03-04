@@ -3,15 +3,15 @@ version: '2.2'
 services:
   api:
     restart: on-failure
+    expose:
+      - 8081
     ports:
       - 8081:8081
     build:
       context: ./server
       dockerfile: ./Dockerfile
-    command: npm run dev
     volumes:
       - ./server:/app
-      - ./node_modules:/app/node_modules
     env_file:
       - .env
     depends_on:
