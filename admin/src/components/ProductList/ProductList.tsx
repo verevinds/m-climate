@@ -1,4 +1,4 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectGeoCity } from '@redux/reducer/application/geo';
 import {
@@ -9,7 +9,8 @@ import {
 import { Product } from '@src/interface';
 import { Button } from '@verevinds/ui-kit';
 import { DateTime } from 'luxon';
-import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './product.module.scss';
@@ -17,6 +18,7 @@ import styles from './product.module.scss';
 const ProductList = () => {
   const dispatch = useDispatch();
 
+  const router = useRouter();
   const products = useSelector(selectProductList);
   const handleDelete = (id: Product['_id']) => async () => {
     dispatch(deleteProduct(id));
@@ -27,7 +29,10 @@ const ProductList = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [city]);
-
+  const handleClick = (id: Product['_id']) => e => {
+    e.preventDefault();
+    router.push(`product/?type=update&id=${id}`);
+  };
   return (
     <>
       <h3>Список товаров</h3>
@@ -40,7 +45,7 @@ const ProductList = () => {
         <h4>Дата обновления</h4>
         <h4>Инструменты</h4>
         {products.map(product => (
-          <>
+          <React.Fragment key={product._id}>
             <picture>
               <source
                 srcSet={
@@ -87,16 +92,27 @@ const ProductList = () => {
                 .setLocale('ru')
                 .toFormat('dd.MM.yy HH:mm')}
             </span>
-            <Button
-              type='button'
-              aria-label='Удалить'
-              onClick={handleDelete(product._id)}
-              data-tip
-              data-for={product['_id']}
-              icon={<FontAwesomeIcon icon={faTrash} />}
-              variant='outline-danger'
-            />
-          </>
+            <div>
+              <Button
+                type='button'
+                aria-label='Удалить'
+                onClick={handleDelete(product._id)}
+                data-tip
+                data-for={product['_id']}
+                icon={<FontAwesomeIcon icon={faTrash} />}
+                variant='outline-danger'
+              />
+              <Button
+                type='button'
+                aria-label='Удалить'
+                onClick={handleClick(product['_id'])}
+                data-tip
+                data-for={product['_id']}
+                icon={<FontAwesomeIcon icon={faEdit} />}
+                variant='outline-info'
+              />
+            </div>
+          </React.Fragment>
         ))}
       </div>
     </>
