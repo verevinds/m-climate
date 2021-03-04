@@ -1,7 +1,12 @@
 import Spinner from '@components/Spinner/Spinner';
 import { selectBrandList } from '@redux/reducer/brand';
-import { addProduct } from '@redux/reducer/product';
-import { Product } from '@src/interface';
+import {
+  addProduct,
+  deleteProductImage,
+  selectProductList,
+  updateProduct,
+} from '@redux/reducer/product';
+import { ImageProduct, Product } from '@src/interface';
 import {
   Button,
   Checkbox,
@@ -9,10 +14,10 @@ import {
   ImageUploadingView,
   Input,
 } from '@verevinds/ui-kit';
-import { EditorState } from 'draft-js';
+import { ContentState, convertFromHTML, EditorState } from 'draft-js';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Controller, useForm, ValidationRule } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
@@ -51,12 +56,67 @@ type ProductInput = {
 const ProductCreate = () => {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrandList);
+  const products = useSelector(selectProductList);
   const { query } = useRouter();
-  const isPageCreate = query.type && query.type === 'create';
+  const isPageCreate =
+    (query.type && query.type === 'create') || query.type === 'update';
+  const isPageUpdate = query.type === 'update';
+  const initUpdateProduct = useMemo(
+    () => products.find(product => query.id && product._id === query.id),
+    [products],
+  );
+
   const [images, setImages] = useState([]);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-  const { handleSubmit, errors, control } = useForm<ProductInput>();
+  const { handleSubmit, errors, control, setValue } = useForm<ProductInput>();
+
+  useEffect(() => {
+    if (initUpdateProduct)
+      Object.keys(initUpdateProduct).forEach(key => {
+        const currentKey = key as keyof (ProductInput & {
+          description: string;
+        });
+        switch (currentKey) {
+          case 'type':
+            setValue(currentKey, {
+              value: initUpdateProduct[currentKey],
+              label: initUpdateProduct[currentKey],
+            });
+            break;
+          case 'brand': {
+            const currentBrand = brands.find(
+              el => el.name === initUpdateProduct[currentKey]?.name,
+            );
+            setValue(currentKey, {
+              value: currentBrand?._id,
+              label: initUpdateProduct[currentKey]?.name,
+            });
+            break;
+          }
+          case 'description': {
+            setEditorState(
+              EditorState.createWithContent(
+                ContentState.createFromBlockArray(
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  convertFromHTML(initUpdateProduct[currentKey] || ''),
+                ),
+              ),
+            );
+            break;
+          }
+          default:
+            setValue(currentKey, initUpdateProduct[currentKey]);
+            break;
+        }
+      });
+  }, [initUpdateProduct]);
+
+  const handleDelete = (image: ImageProduct) => () => {
+    if (initUpdateProduct)
+      dispatch(deleteProductImage({ image, id: initUpdateProduct._id }));
+  };
 
   const productInputs: {
     name: keyof ProductInput;
@@ -134,22 +194,37 @@ const ProductCreate = () => {
         type: { value: string; label: string };
       },
     ) => {
-      await dispatch(
-        addProduct({
-          product,
-          images,
-          description: editorState,
-        }),
-      );
+      if (isPageUpdate) {
+        if (initUpdateProduct)
+          await dispatch(
+            updateProduct({
+              product,
+              images,
+              description: editorState,
+              id: initUpdateProduct._id,
+            }),
+          );
+        setImages([]);
+      } else {
+        dispatch(
+          addProduct({
+            product,
+            images,
+            description: editorState,
+          }),
+        );
+      }
     },
-    [images, editorState],
+    [images, editorState, initUpdateProduct],
   );
 
   if (!isPageCreate) return null;
 
   return (
     <div className={styles['product']}>
-      <h3 className={styles['title']}>Добавить продукт</h3>
+      <h3 className={styles['title']}>
+        {isPageUpdate ? 'Обновить продукт' : 'Добавить продукт'}
+      </h3>
       <h4>Характеристики</h4>
       <form onSubmit={handleSubmit(onSubmit)} className={styles['form']}>
         <div className={styles['input-block']}>
@@ -164,13 +239,6 @@ const ProductCreate = () => {
               ...restProps
             }) => {
               if (options) {
-                // const customStyles = {
-                //   control: (provided: any) => ({
-                //     ...provided,
-                //     border: '2px solid var(--color-primary, #007bff)',
-                //   }),
-                // };
-
                 return (
                   <Controller
                     key={name}
@@ -184,10 +252,10 @@ const ProductCreate = () => {
                       value: el._id,
                       label: el.name,
                     }))}
-                    {...restProps}
                   />
                 );
               }
+
               if (restProps.type === 'checkbox')
                 return (
                   <Controller
@@ -216,19 +284,17 @@ const ProductCreate = () => {
                   name={name}
                   control={control}
                   rules={{ required }}
-                  render={({ onChange }) => (
-                    <Input
-                      id={name}
-                      title={restProps.title}
-                      error={errors[name]?.message}
-                      onChange={onChange}
-                    />
-                  )}
+                  id={name}
+                  defaultValue={defaultValue}
+                  title={restProps.title}
+                  error={errors[name]?.message}
+                  as={Input}
                 />
               );
             },
           )}
         </div>
+
         <h4>Добавить описание</h4>
         <Editor
           editorState={editorState}
@@ -252,8 +318,49 @@ const ProductCreate = () => {
           ) : null}
         </div>
         <div className={styles['buttons-block']}>
-          <Button type='submit'>Добавить</Button>
+          <Button type='submit'>
+            {isPageUpdate ? 'Сохранить' : 'Добавить'}
+          </Button>
         </div>
+        {isPageUpdate ? (
+          <div>
+            {initUpdateProduct?.images.map(image => {
+              return (
+                <div key={image._id} className={styles['img-current']}>
+                  <picture>
+                    <source
+                      srcSet={`${image.url.substr(
+                        0,
+                        image.url.lastIndexOf('.'),
+                      )}.avif`}
+                      type='image/avif'
+                    />
+                    <source
+                      srcSet={`${image.url.substr(
+                        0,
+                        image.url.lastIndexOf('.'),
+                      )}.webp`}
+                      type='image/webp'
+                    />
+                    <img
+                      src={image.url}
+                      alt={initUpdateProduct.name}
+                      className={styles['img-current__img']}
+                    />
+                  </picture>
+                  <Button
+                    type='button'
+                    variant='outline-danger'
+                    className={styles['img-current__delete']}
+                    onClick={handleDelete(image)}
+                  >
+                    Удалить
+                  </Button>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
       </form>
     </div>
   );

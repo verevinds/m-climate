@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 const sharp = require('sharp');
 
-exports.load = (req, res) => {
+module.exports = (req, res) => {
   try {
     if (req.files) {
       const { file } = req.files;
@@ -35,7 +35,7 @@ exports.load = (req, res) => {
           message: `Файл ${filename} успешно загружен`,
           url: `${process.env.API}/uploads/${folder}/${fullName}`,
           path: `${dir}/${fullName}`,
-          filename,
+          filename: fullName,
           wasFile: true,
         });
       });

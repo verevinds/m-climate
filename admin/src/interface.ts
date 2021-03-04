@@ -14,6 +14,12 @@ export type Images = {
   path: string;
   wasFile: boolean;
 };
+export type ImageProduct = {
+  _id: string;
+  url: string;
+  filename: string;
+  path: string;
+};
 export type Product = {
   price: number;
   priceOld: number;
@@ -40,5 +46,5 @@ export type Product = {
   description?: string;
   createdAt: string;
   updatedAt: string;
-  images: { _id: string; url: string; filename: string }[];
+  images: ImageProduct[];
 };

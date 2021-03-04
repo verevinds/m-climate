@@ -67,3 +67,23 @@
   justify-content: flex-end;
   margin: 0.5em 0;
 }
+.img-current {
+  position: relative;
+  display: inline-flex;
+  height: 100%;
+  margin: 1rem;
+  &__img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    transition: filter ease-in-out 400ms;
+  }
+  &__delete {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

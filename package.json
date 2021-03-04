@@ -50,7 +50,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@reduxjs/toolkit": "^1.5.0",
     "@svgr/webpack": "^5.5.0",
-    "@verevinds/ui-kit": "^1.2.45",
+    "@verevinds/ui-kit": "^1.2.47",
     "axios": "^0.21.1",
     "axios-cache-adapter": "^2.7.1",
     "babel-cli": "6.26.0",
