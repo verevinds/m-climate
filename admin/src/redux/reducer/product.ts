@@ -199,7 +199,9 @@ export const updateProduct = createAsyncThunk(
         product: {
           ...currentProduct,
           images: images.length ? product.images : currentProduct.images,
-          brand,
+          brand: {
+            name: brand?.name,
+          },
           type: product.type.label,
         },
         message: `Товар ${product.name} успешно обновлён!`,
