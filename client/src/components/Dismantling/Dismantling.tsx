@@ -1,7 +1,10 @@
+import styles from './dismantling.module.scss';
+
 export default function Dismantling() {
   return (
-    <div>
+    <div className={styles['block']}>
       <h1>Демонтаж кондиционера – от 1500 руб</h1>
+      <br />
       <p>М.Климат предлагает своим клиентам услугу демонтажа кондиционера.</p>
       <p>
         Для дальнейшей исправной работы техники необходимо произвести демонтаж

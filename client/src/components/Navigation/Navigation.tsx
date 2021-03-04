@@ -1,4 +1,5 @@
 import Location from '@components/Location/Location';
+import ActiveLink from '@src/utils/ActiveLink';
 import cls from 'classnames';
 import React from 'react';
 
@@ -22,9 +23,11 @@ const Navigation: React.FC<INavigation> = ({ items, noLocation }) => {
               index === 0 && favorite && styles['nav__element-favorite'],
             )}
           >
-            <a href={url} className={styles.nav__link} title={name}>
-              {name}
-            </a>
+            <ActiveLink href={url} activeClassName={styles['link-active']}>
+              <a className={styles.nav__link} title={name}>
+                {name}
+              </a>
+            </ActiveLink>
           </li>
         ))}
       </ul>

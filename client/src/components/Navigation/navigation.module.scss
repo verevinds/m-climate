@@ -103,3 +103,10 @@
     }
   }
 }
+
+.link-active {
+  color: var(--color-secondary-text);
+  &:visited {
+    color: var(--color-secondary-text);
+  }
+}

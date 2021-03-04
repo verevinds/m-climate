@@ -33,9 +33,21 @@ const Header = () => {
         <Navigation
           items={[
             { id: '1', name: 'Кондиционеры', url: '#', favorite: true },
-            { id: '2', name: 'Монтаж / демонтаж', url: '#' },
-            { id: '3', name: 'Сервисное обслуживание', url: '#' },
-            { id: '4', name: 'Подключение бытовой техники', url: '#' },
+            {
+              id: '2',
+              name: 'Стандартный монтаж',
+              url: '/service/installation',
+            },
+            {
+              id: '3',
+              name: 'Демонтаж кондиционера',
+              url: '/service/dismantling',
+            },
+            {
+              id: '4',
+              name: 'Сервисное обслуживание',
+              url: '/service/maintenance',
+            },
           ]}
         />
       </div>
