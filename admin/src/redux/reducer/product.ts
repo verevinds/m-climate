@@ -190,11 +190,17 @@ export const updateProduct = createAsyncThunk(
         `/api/product/${id}`,
         product,
       );
+      const brands = state.brand.list;
+      const brand = brands.find(
+        el => product && el._id === product.brand.value,
+      );
 
       return {
         product: {
           ...currentProduct,
           images: images.length ? product.images : currentProduct.images,
+          brand,
+          type: product.type.label,
         },
         message: `Товар ${product.name} успешно обновлён!`,
       };
