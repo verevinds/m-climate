@@ -57,7 +57,7 @@ const ProductCreate = () => {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrandList);
   const products = useSelector(selectProductList);
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const isPageCreate =
     (query.type && query.type === 'create') || query.type === 'update';
   const isPageUpdate = query.type === 'update';
@@ -207,14 +207,16 @@ const ProductCreate = () => {
             }),
           );
         setImages([]);
+        push('/product');
       } else {
-        dispatch(
+        await dispatch(
           addProduct({
             product,
             images,
             description: editorState,
           }),
         );
+        push('/product');
       }
     },
     [images, editorState, initUpdateProduct],
