@@ -191,9 +191,10 @@ export const updateProduct = createAsyncThunk(
         product,
       );
       const brands = state.brand.list;
-      const brand = brands.find(
-        el => product && el._id === product.brand.value,
-      );
+      // TODO
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const brand = brands.find(el => product && el._id === product.brand);
 
       return {
         product: {
@@ -202,7 +203,7 @@ export const updateProduct = createAsyncThunk(
           brand: {
             name: brand?.name,
           },
-          type: product.type.label,
+          type: product.type,
         },
         message: `Товар ${product.name} успешно обновлён!`,
       };
@@ -321,7 +322,8 @@ const productSlice = createSlice({
         const { product, message } = payload;
         const newList = state.list;
         const index = newList.findIndex(el => el._id === product?._id);
-        newList[index] = product as Product;
+        // TODO исправить несхождения с типами
+        newList[index] = product as Omit<Product, 'type'>;
         state.list = newList;
         cogoToast.success(message, {
           heading: 'Успешно добавлен',

@@ -14,7 +14,6 @@ jest.setup.js
 jsconfig.json
 run.sh
 urls.txt
-node_modules
 npm-debug.log
 Dockerfile
 .dockerignore
