@@ -162,7 +162,6 @@ export const updateProduct = createAsyncThunk(
           path: response?.data.path,
           filename: response?.data.filename,
         }));
-        console.log({ arrayImages });
         Object.assign(
           product,
           currentProduct
@@ -173,7 +172,6 @@ export const updateProduct = createAsyncThunk(
                 images: arrayImages,
               },
         );
-        console.log({ product });
       }
 
       const { city } = state.application.geo;
@@ -188,7 +186,6 @@ export const updateProduct = createAsyncThunk(
         city,
       });
 
-      console.log({ product });
       await Api().put<{ product: Product; message: string }>(
         `/api/product/${id}`,
         product,
@@ -197,7 +194,7 @@ export const updateProduct = createAsyncThunk(
       return {
         product: {
           ...currentProduct,
-          images: product.images,
+          images: images.length ? product.images : currentProduct.images,
         },
         message: `Товар ${product.name} успешно обновлён!`,
       };
