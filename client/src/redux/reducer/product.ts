@@ -33,7 +33,7 @@ export const getProducts = createAsyncThunk(
       const { city } = state.application.geo;
 
       const url = `/api/product`;
-      console.log({ city, ...query });
+
       const params = query ? { city, ...query } : { city };
       const { data } = await Api().get<Product[]>(url, {
         params,
@@ -41,7 +41,7 @@ export const getProducts = createAsyncThunk(
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());
-      console.log({ data });
+
       return data;
     } catch (e) {
       dispatch(turnOffPending());
