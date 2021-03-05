@@ -24,15 +24,16 @@ const initialState: ProductReducer = {
 export const getProducts = createAsyncThunk(
   'product/getThunk',
   async (
-    query: ParsedUrlQuery | void,
+    arg: { query?: ParsedUrlQuery; zip?: boolean },
     { getState, dispatch, rejectWithValue },
   ) => {
     try {
       dispatch(turnOnPending());
+      const { query, zip } = arg;
       const state = getState() as RootState;
       const { city } = state.geo;
       console.log({ city });
-      const url = `/api/product`;
+      const url = zip ? '/api/product/zip' : `/api/product`;
 
       const params = query ? { city, ...query } : { city };
       const { data } = await Api().get<Product[]>(url, {

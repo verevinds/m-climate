@@ -11,15 +11,13 @@ import {
 } from '../src/redux/reducer/application/tuning';
 import { getBanners } from '../src/redux/reducer/banners';
 import { getBrands, selectBrandList } from '../src/redux/reducer/brand';
-import { selectGeoCity, toggleCity } from '../src/redux/reducer/geo';
+import { toggleCity } from '../src/redux/reducer/geo';
 import { getProducts, selectProductList } from '../src/redux/reducer/product';
-import { getService } from '../src/redux/reducer/service';
 
 const IndexPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductList);
   const brands = useSelector(selectBrandList);
-  const city = useSelector(selectGeoCity);
 
   const populars = useMemo(
     () =>
@@ -32,13 +30,13 @@ const IndexPage = () => {
   );
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getBrands());
+    dispatch(getProducts({ zip: true }));
     dispatch(getBanners());
-  }, [city]);
+  }, []);
 
   return (
     <Layout>
-      {`city: ${city}`}
       <Bar title='Популярные' items={populars} key='1' />
       <Bar title='Кондиционеры' items={products} key='2' />
       <Bar
@@ -93,9 +91,7 @@ IndexPage.getInitialProps = async ({
   reduxStore.dispatch(toggleCity(req));
 
   const promise = [
-    reduxStore.dispatch(getProducts()) as Promise<any>,
-    reduxStore.dispatch(getBrands()),
-    reduxStore.dispatch(getService()),
+    reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,
   ];
 
   await Promise.all(promise);

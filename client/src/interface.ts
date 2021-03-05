@@ -55,3 +55,10 @@ export type Product = {
   updatedAt: string;
   images: { _id: string; url: string; filename: string }[];
 };
+export type ProductZip = {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  priceOld: number;
+};

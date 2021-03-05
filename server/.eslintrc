@@ -1,12 +1,7 @@
 {
   "root": true,
   "plugins": ["prettier"],
-  "extends": [
-    "airbnb-base",
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:node/recommended"
-  ],
+  "extends": ["plugin:prettier/recommended", "plugin:node/recommended"],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module"

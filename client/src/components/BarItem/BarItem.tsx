@@ -1,4 +1,4 @@
-import type { Product } from '@src/interface';
+import type { Product, ProductZip } from '@src/interface';
 import { Service } from '@src/interface';
 import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
@@ -55,11 +55,11 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
 };
 
 type ItemProps = {
-  item: Product | Service;
+  item: Product | Service | ProductZip;
 };
 
 const BarItem: React.FC<ItemProps> = ({ item }) => {
-  const currentItem = item as Product;
+  const currentItem = item as Product & ProductZip;
 
   if (currentItem.images) {
     const { images, name, price, priceOld } = item as Product;
@@ -74,6 +74,18 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
         }}
       >
         <ActiveLink href={`/product/${item._id}`}>
+          <a className={styles.item__title}>{name}</a>
+        </ActiveLink>
+      </ItemWrap>
+    );
+  }
+
+  if (currentItem.price) {
+    const { image, name, price, priceOld } = item as ProductZip;
+
+    return (
+      <ItemWrap {...{ image, name, price, priceOld }}>
+        <ActiveLink href={`/service/${item._id}`}>
           <a className={styles.item__title}>{name}</a>
         </ActiveLink>
       </ItemWrap>
