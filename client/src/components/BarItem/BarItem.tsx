@@ -85,7 +85,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
     return (
       <ItemWrap {...{ image, name, price, priceOld }}>
-        <ActiveLink href={`/service/${item._id}`}>
+        <ActiveLink href={`/product/${item._id}`}>
           <a className={styles.item__title}>{name}</a>
         </ActiveLink>
       </ItemWrap>
