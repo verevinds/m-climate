@@ -1,3 +1,4 @@
+import Breadcrumbs from '@components/Breadcrumbs';
 import Item from '@components/Item';
 import Layout from '@components/Layout/LayoutClient';
 import { getGeo } from '@redux/reducer/application/geo';
@@ -26,6 +27,7 @@ const ProductPage = () => {
 
   return (
     <Layout>
+      <Breadcrumbs />
       <h1>{`Каталог кондиционеров ${text}`}</h1>
       {products.map(product => (
         <Item key={product._id} {...product} />

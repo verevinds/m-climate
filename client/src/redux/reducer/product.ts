@@ -4,6 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '@src/interface';
 import errorPush from '@src/utils/errorPush';
 import Api from '@utils/Api';
+import { ParsedUrlQuery } from 'querystring';
 
 import type { RootState } from '.';
 import { turnOffPending, turnOnPending } from './application/tuning';
@@ -20,7 +21,7 @@ const initialState: ProductReducer = {
   isPending: false,
 };
 
-export const getProducts = createAsyncThunk(
+export const getProducts = createAsyncThunk<ParsedUrlQuery, Product[]>(
   'product/getThunk',
   async (query, { getState, dispatch }) => {
     try {
