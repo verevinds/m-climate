@@ -22,15 +22,17 @@ const initialState: ProductReducer = {
 
 export const getProducts = createAsyncThunk(
   'product/getThunk',
-  async (_, { getState, dispatch }) => {
+  async (query, { getState, dispatch }) => {
     try {
       dispatch(turnOnPending());
       const state: any = getState();
       const { city } = state.application.geo;
 
-      const url = `/api/product/?city=${city}`;
-
-      const { data } = await Api().get<Product[]>(url);
+      const url = `/api/product`;
+      console.log({ city, ...query });
+      const { data } = await Api().get<Product[]>(url, {
+        params: { city, ...query },
+      });
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());

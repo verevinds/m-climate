@@ -1,0 +1,56 @@
+@import 'src/scss/global_variables.scss';
+
+.item {
+  display: flex;
+  flex-direction: column;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+
+  &__price {
+    &-current {
+      font-size: 1.5rem;
+    }
+    &-old {
+      margin-left: 0.5rem;
+      color: var(--color-primary-text-lighter);
+      font-weight: 100;
+      font-size: 1.1rem;
+
+      text-decoration: line-through;
+    }
+    &-current::after,
+    &-old::after {
+      font-size: 0.7em;
+      content: 'руб.';
+    }
+  }
+
+  &__title {
+    color: var(--color-secondary);
+    &:visited {
+      color: var(--color-secondary);
+    }
+    &:hover {
+      color: var(--color-secondary-text);
+    }
+  }
+}
+
+@media screen and (max-width: $viewport-sm) {
+  .item {
+    :global {
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none;
+      }
+    }
+  }
+}

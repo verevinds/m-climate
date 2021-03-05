@@ -110,3 +110,10 @@
     color: var(--color-secondary-text);
   }
 }
+
+.nav__element-favorite .link-active {
+  color: #fff;
+  &:visited {
+    color: #fff;
+  }
+}

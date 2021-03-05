@@ -1,4 +1,4 @@
-import Item from '@components/Item/Item';
+import Item from '@components/BarItem';
 import Slider from '@components/Slider/Slider';
 import { Product, Service } from '@src/interface';
 import React from 'react';

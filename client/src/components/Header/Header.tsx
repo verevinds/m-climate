@@ -32,7 +32,7 @@ const Header = () => {
       <div className={styles['nav']}>
         <Navigation
           items={[
-            { id: '1', name: 'Кондиционеры', url: '#', favorite: true },
+            { id: '1', name: 'Кондиционеры', url: '/product', favorite: true },
             {
               id: '2',
               name: 'Стандартный монтаж',

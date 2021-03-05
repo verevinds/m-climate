@@ -10,7 +10,7 @@ export default function Breadcrumbs() {
     <nav className={styles['block']}>
       <a href='/'>Главная</a>
       {` / `}
-      <ActiveLink href='/brand'>
+      <ActiveLink href={`/product?brand=${item?.brand?._id}`}>
         <a>{item?.brand?.name}</a>
       </ActiveLink>
       {` / `}

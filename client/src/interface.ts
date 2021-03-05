@@ -33,6 +33,7 @@ export type Product = {
   _id: string;
   name: string;
   brand?: {
+    _id: string;
     name: string;
   };
   type?: string;

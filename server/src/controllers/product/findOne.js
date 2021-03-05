@@ -5,7 +5,7 @@ module.exports = Product => (req, res) => {
     res.status(400).send({ message: 'Не указан id запрашиваемого товара' });
 
   Product.findOne({ ...req.query, _id })
-    .populate({ path: 'brand', select: '-__v -_id -createdAt -updatedAt' })
+    .populate({ path: 'brand', select: '-__v -createdAt -updatedAt' })
     .select('-__v -createdAt -updatedAt')
     .exec((error, product) =>
       error
