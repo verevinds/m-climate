@@ -23,10 +23,13 @@ const initialState: ProductReducer = {
 
 export const getProducts = createAsyncThunk(
   'product/getThunk',
-  async (query: ParsedUrlQuery, { getState, dispatch, rejectWithValue }) => {
+  async (
+    query: ParsedUrlQuery | undefined,
+    { getState, dispatch, rejectWithValue },
+  ) => {
     try {
       dispatch(turnOnPending());
-      const state: any = getState();
+      const state = getState() as RootState;
       const { city } = state.application.geo;
 
       const url = `/api/product`;
@@ -37,7 +40,7 @@ export const getProducts = createAsyncThunk(
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());
-      return await data;
+      return data;
     } catch (e) {
       dispatch(turnOffPending());
       console.error(e);

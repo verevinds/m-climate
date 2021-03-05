@@ -92,7 +92,7 @@ IndexPage.getInitialProps = async ({
   await reduxStore.dispatch(getGeo({ subdomain }));
 
   const promise = [
-    reduxStore.dispatch(getProducts()),
+    reduxStore.dispatch(getProducts()) as Promise<any>,
     reduxStore.dispatch(getBrands()),
     reduxStore.dispatch(getService()),
   ];
