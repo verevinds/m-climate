@@ -1,14 +1,15 @@
-import Breadcrumbs from '@components/Breadcrumbs';
-import CardProduct from '@components/CardProduct';
-import Layout from '@components/Layout/LayoutClient';
-import NotFound from '@components/NotFound';
-import { selectGeoCity } from '@redux/reducer/application/geo';
-import { getBanners } from '@redux/reducer/banners';
-import { getProduct, selectProductItem } from '@redux/reducer/product';
-import { AppInitialPropsWithRedux } from '@src/interface';
 import { NextComponentType } from 'next';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import Breadcrumbs from '../../src/components/Breadcrumbs';
+import CardProduct from '../../src/components/CardProduct';
+import Layout from '../../src/components/Layout/LayoutClient';
+import NotFound from '../../src/components/NotFound';
+import { AppInitialPropsWithRedux } from '../../src/interface';
+import { selectGeoCity } from '../../src/redux/reducer/application/geo';
+import { getBanners } from '../../src/redux/reducer/banners';
+import { getProduct, selectProductItem } from '../../src/redux/reducer/product';
 
 type InitialProps = { id: string | string[] | undefined };
 

@@ -24,7 +24,7 @@ const initialState: ProductReducer = {
 export const getProducts = createAsyncThunk(
   'product/getThunk',
   async (
-    query: ParsedUrlQuery | undefined,
+    query: ParsedUrlQuery | void,
     { getState, dispatch, rejectWithValue },
   ) => {
     try {

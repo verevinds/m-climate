@@ -1,13 +1,17 @@
-import Breadcrumbs from '@components/Breadcrumbs';
-import Item from '@components/Item';
-import Layout from '@components/Layout/LayoutClient';
-import { getGeo } from '@redux/reducer/application/geo';
-import { getBrands, selectBrandList } from '@redux/reducer/brand';
-import { getProducts, selectProductList } from '@redux/reducer/product';
-import { AppInitialPropsWithRedux } from '@src/interface';
 import { useRouter } from 'next/dist/client/router';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+
+import Breadcrumbs from '../../src/components/Breadcrumbs';
+import Item from '../../src/components/Item';
+import Layout from '../../src/components/Layout/LayoutClient';
+import { AppInitialPropsWithRedux } from '../../src/interface';
+import { getGeo } from '../../src/redux/reducer/application/geo';
+import { getBrands, selectBrandList } from '../../src/redux/reducer/brand';
+import {
+  getProducts,
+  selectProductList,
+} from '../../src/redux/reducer/product';
 
 const ProductPage = () => {
   const products = useSelector(selectProductList);
@@ -30,7 +34,7 @@ const ProductPage = () => {
       <Breadcrumbs />
       <h1>{`Каталог кондиционеров ${text}`}</h1>
       {products.map(product => (
-        <Item key={product._id} {...product} />
+        <Item key={product._id} product={product} />
       ))}
     </Layout>
   );

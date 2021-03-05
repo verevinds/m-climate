@@ -1,18 +1,19 @@
-import Advantage from '@components/Advantage/Advantage';
-import Bar from '@components/Bar/Bar';
-import Layout from '@components/Layout/LayoutClient';
-import { getGeo, selectGeoCity } from '@redux/reducer/application/geo';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Advantage from '../src/components/Advantage/Advantage';
+import Bar from '../src/components/Bar/Bar';
+import Layout from '../src/components/Layout/LayoutClient';
+import { AppInitialPropsWithRedux } from '../src/interface';
+import { getGeo, selectGeoCity } from '../src/redux/reducer/application/geo';
 import {
   turnOffPending,
   turnOnPending,
-} from '@redux/reducer/application/tuning';
-import { getBanners } from '@redux/reducer/banners';
-import { getBrands, selectBrandList } from '@redux/reducer/brand';
-import { getProducts, selectProductList } from '@redux/reducer/product';
-import { getService } from '@redux/reducer/service';
-import { AppInitialPropsWithRedux } from '@src/interface';
-import { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+} from '../src/redux/reducer/application/tuning';
+import { getBanners } from '../src/redux/reducer/banners';
+import { getBrands, selectBrandList } from '../src/redux/reducer/brand';
+import { getProducts, selectProductList } from '../src/redux/reducer/product';
+import { getService } from '../src/redux/reducer/service';
 
 const IndexPage = () => {
   const dispatch = useDispatch();

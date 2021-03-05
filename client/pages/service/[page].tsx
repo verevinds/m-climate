@@ -1,9 +1,10 @@
-import Dismantling from '@components/Dismantling';
-import Installation from '@components/Installation';
-import Layout from '@components/Layout/LayoutClient';
-import Maintenance from '@components/Maintenance';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useMemo } from 'react';
+
+import Dismantling from '../../src/components/Dismantling';
+import Installation from '../../src/components/Installation';
+import Layout from '../../src/components/Layout/LayoutClient';
+import Maintenance from '../../src/components/Maintenance';
 
 type ServiceSlugProps = {
   page: 'installation' | 'dismantling' | 'maintenance';

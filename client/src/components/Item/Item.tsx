@@ -5,15 +5,9 @@ import NavLink from 'next/link';
 
 import styles from './item.module.scss';
 
-const Item: React.FC<Product> = ({
-  _id,
-  name,
-  images,
-  price,
-  priceOld,
-  brand,
-  type,
-}) => {
+const Item: React.FC<{ product: Product }> = ({ product }) => {
+  const { _id, name, images, price, priceOld, brand, type } = product;
+
   return (
     <div className={styles['wrap']}>
       <NavLink href={`/product/${_id}`}>
@@ -27,7 +21,7 @@ const Item: React.FC<Product> = ({
             className={styles['img']}
           />
           <div className={styles['label']}>
-            <span>{brand.name}</span>
+            <span>{brand?.name}</span>
           </div>
           <span className={styles['name']}>{name}</span>
           <div className={styles['price']}>
