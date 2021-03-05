@@ -34,12 +34,14 @@ export const getProducts = createAsyncThunk(
 
       const url = `/api/product`;
       console.log({ city, ...query });
+      const params = query ? { city, ...query } : { city };
       const { data } = await Api().get<Product[]>(url, {
-        params: { city, ...query },
+        params,
       });
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());
+      console.log({ data });
       return data;
     } catch (e) {
       dispatch(turnOffPending());
@@ -79,7 +81,6 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
-      state.list = [];
     });
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
       if (payload) state.item = payload;
