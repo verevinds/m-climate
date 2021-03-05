@@ -32,7 +32,7 @@ export const getProducts = createAsyncThunk(
       const { query, zip } = arg;
       const state = getState() as RootState;
       const { city } = state.geo;
-      console.log({ city });
+
       const url = zip ? '/api/product/zip' : `/api/product`;
 
       const params = query ? { city, ...query } : { city };
