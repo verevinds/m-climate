@@ -4,9 +4,7 @@ module.exports = {
     api: process.env.API,
     apiProduction: process.env.API_PRODUCTION,
     apiServer: process.env.API_SERVER,
-    nodeEnv: process.env.NODE_ENV,
     apiServerProduction: process.env.API_SERVER_PRODUCTION,
-    url:  process.env.NODE_ENV === 'production' ? process.env.URL : `${process.env.URL}:8080`
   },
   webpackDevMiddleware: config => {
     config.watchOptions = {

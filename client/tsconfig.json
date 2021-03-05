@@ -20,7 +20,7 @@
     "**/*.jsx"
   ],
   "compilerOptions": {
-    "module": "esnext",
-    "isolatedModules": true
+      "module": "esnext",
+      "isolatedModules": true
   }
 }
