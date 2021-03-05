@@ -7,8 +7,8 @@ import CardProduct from '../../src/components/CardProduct';
 import Layout from '../../src/components/Layout/LayoutClient';
 import NotFound from '../../src/components/NotFound';
 import { AppInitialPropsWithRedux } from '../../src/interface';
-import { selectGeoCity } from '../../src/redux/reducer/application/geo';
 import { getBanners } from '../../src/redux/reducer/banners';
+import { selectGeoCity, toggleCity } from '../../src/redux/reducer/geo';
 import { getProduct, selectProductItem } from '../../src/redux/reducer/product';
 
 type InitialProps = { id: string | string[] | undefined };
@@ -46,7 +46,10 @@ const Product: NextComponentType<
 Product.getInitialProps = async ({
   reduxStore,
   query,
+  req,
 }: AppInitialPropsWithRedux) => {
+  reduxStore.dispatch(toggleCity(req));
+
   const { id } = query;
   const promise = [
     typeof id === 'string' ? reduxStore.dispatch(getProduct(id)) : undefined,

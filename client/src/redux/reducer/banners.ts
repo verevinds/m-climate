@@ -31,7 +31,7 @@ export const getBanners = createAsyncThunk(
     try {
       dispatch(turnOnPending());
       const state: any = getState();
-      const { city } = state.application.geo;
+      const { city } = state.geo;
 
       const url = `/api/banners/?city=${city}`;
       const { data } = await Api().get<Banner[]>(url);

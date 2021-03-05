@@ -1,5 +1,5 @@
 import MapMarkerAlt from '@public/svg/map-marker-alt.svg';
-import { selectGeoCity } from '@redux/reducer/application/geo';
+import { selectGeoCity } from '@redux/reducer/geo';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';

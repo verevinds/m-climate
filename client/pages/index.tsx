@@ -5,13 +5,13 @@ import Advantage from '../src/components/Advantage/Advantage';
 import Bar from '../src/components/Bar/Bar';
 import Layout from '../src/components/Layout/LayoutClient';
 import { AppInitialPropsWithRedux } from '../src/interface';
-import { getGeo, selectGeoCity } from '../src/redux/reducer/application/geo';
 import {
   turnOffPending,
   turnOnPending,
 } from '../src/redux/reducer/application/tuning';
 import { getBanners } from '../src/redux/reducer/banners';
 import { getBrands, selectBrandList } from '../src/redux/reducer/brand';
+import { selectGeoCity, toggleCity } from '../src/redux/reducer/geo';
 import { getProducts, selectProductList } from '../src/redux/reducer/product';
 import { getService } from '../src/redux/reducer/service';
 
@@ -38,6 +38,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      {`city: ${city}`}
       <Bar title='Популярные' items={populars} key='1' />
       <Bar title='Кондиционеры' items={products} key='2' />
       <Bar
@@ -87,10 +88,9 @@ IndexPage.getInitialProps = async ({
   reduxStore,
   req,
 }: AppInitialPropsWithRedux) => {
-  await reduxStore.dispatch(turnOnPending());
+  reduxStore.dispatch(turnOnPending());
 
-  const subdomain = (req && req.headers.host?.split('.')[0]) || 'nsk';
-  await reduxStore.dispatch(getGeo({ subdomain }));
+  reduxStore.dispatch(toggleCity(req));
 
   const promise = [
     reduxStore.dispatch(getProducts()) as Promise<any>,
@@ -100,7 +100,7 @@ IndexPage.getInitialProps = async ({
 
   await Promise.all(promise);
 
-  await reduxStore.dispatch(turnOffPending());
+  reduxStore.dispatch(turnOffPending());
 
   return { err };
 };

@@ -30,8 +30,8 @@ export const getProducts = createAsyncThunk(
     try {
       dispatch(turnOnPending());
       const state = getState() as RootState;
-      const { city } = state.application.geo;
-
+      const { city } = state.geo;
+      console.log({ city });
       const url = `/api/product`;
 
       const params = query ? { city, ...query } : { city };
@@ -57,7 +57,7 @@ export const getProduct = createAsyncThunk<Product | undefined, string>(
     try {
       dispatch(turnOnPending());
       const state: any = getState();
-      const { city } = state.application.geo;
+      const { city } = state.geo;
 
       const url = `/api/product/${id}/?city=${city}`;
 

@@ -1,3 +1,4 @@
+import { toggleCity } from '@redux/reducer/geo';
 import { useRouter } from 'next/dist/client/router';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
@@ -6,7 +7,6 @@ import Breadcrumbs from '../../src/components/Breadcrumbs';
 import Item from '../../src/components/Item';
 import Layout from '../../src/components/Layout/LayoutClient';
 import { AppInitialPropsWithRedux } from '../../src/interface';
-import { getGeo } from '../../src/redux/reducer/application/geo';
 import { getBrands, selectBrandList } from '../../src/redux/reducer/brand';
 import {
   getProducts,
@@ -44,9 +44,8 @@ ProductPage.getInitialProps = async ({
   query,
   req,
 }: AppInitialPropsWithRedux) => {
-  const subdomain = (req && req.headers.host?.split('.')[0]) || 'nsk';
-  await reduxStore.dispatch(getGeo({ subdomain }));
-  console.log(query);
+  reduxStore.dispatch(toggleCity(req));
+
   const promise = [
     reduxStore.dispatch(getProducts(query)) as Promise<any>,
     reduxStore.dispatch(getBrands()),
