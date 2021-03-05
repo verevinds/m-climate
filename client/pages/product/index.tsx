@@ -1,8 +1,8 @@
+import Breadcrumbs from '@src/components/Breadcrumbs';
 import { useRouter } from 'next/dist/client/router';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import Breadcrumbs from '../../src/components/Breadcrumbs';
 import Item from '../../src/components/Item';
 import Layout from '../../src/components/Layout/LayoutClient';
 import { AppInitialPropsWithRedux } from '../../src/interface';

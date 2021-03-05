@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.server.json",
   "exclude": [
     ".k8s",
     "dist",
