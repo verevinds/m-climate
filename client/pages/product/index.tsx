@@ -44,7 +44,7 @@ ProductPage.getInitialProps = async ({
   await reduxStore.dispatch(getGeo({ subdomain }));
   console.log(query);
   const promise = [
-    reduxStore.dispatch(getProducts(query)),
+    reduxStore.dispatch(getProducts(query)) as Promise<any>,
     reduxStore.dispatch(getBrands()),
   ];
   await Promise.all(promise);

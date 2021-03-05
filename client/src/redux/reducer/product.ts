@@ -23,7 +23,7 @@ const initialState: ProductReducer = {
 
 export const getProducts = createAsyncThunk(
   'product/getThunk',
-  async (query: ParsedUrlQuery | undefined, { getState, dispatch }) => {
+  async (query: ParsedUrlQuery, { getState, dispatch, rejectWithValue }) => {
     try {
       dispatch(turnOnPending());
       const state: any = getState();
@@ -37,10 +37,11 @@ export const getProducts = createAsyncThunk(
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());
-      return data;
+      return await data;
     } catch (e) {
       dispatch(turnOffPending());
       console.error(e);
+      return rejectWithValue(e.response.data);
     }
   },
 );
@@ -75,6 +76,7 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       if (payload) state.list = payload;
+      state.list = [];
     });
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
       if (payload) state.item = payload;
