@@ -21,29 +21,29 @@ const initialState: ProductReducer = {
   isPending: false,
 };
 
-export const getProducts = createAsyncThunk<
-  Product[] | undefined,
-  ParsedUrlQuery | undefined
->('product/getThunk', async (query, { getState, dispatch }) => {
-  try {
-    dispatch(turnOnPending());
-    const state: any = getState();
-    const { city } = state.application.geo;
+export const getProducts = createAsyncThunk(
+  'product/getThunk',
+  async (query: ParsedUrlQuery | undefined, { getState, dispatch }) => {
+    try {
+      dispatch(turnOnPending());
+      const state: any = getState();
+      const { city } = state.application.geo;
 
-    const url = `/api/product`;
-    console.log({ city, ...query });
-    const { data } = await Api().get<Product[]>(url, {
-      params: { city, ...query },
-    });
-    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+      const url = `/api/product`;
+      console.log({ city, ...query });
+      const { data } = await Api().get<Product[]>(url, {
+        params: { city, ...query },
+      });
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
-    dispatch(turnOffPending());
-    return data;
-  } catch (e) {
-    dispatch(turnOffPending());
-    console.error(e);
-  }
-});
+      dispatch(turnOffPending());
+      return data;
+    } catch (e) {
+      dispatch(turnOffPending());
+      console.error(e);
+    }
+  },
+);
 
 export const getProduct = createAsyncThunk<Product | undefined, string>(
   'product/getOneThunk',
