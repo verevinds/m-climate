@@ -30,9 +30,7 @@ const IndexPage = () => {
   );
 
   useEffect(() => {
-    dispatch(getBrands());
     dispatch(getProducts({ zip: true }));
-    dispatch(getBanners());
   }, []);
 
   return (
@@ -92,6 +90,8 @@ IndexPage.getInitialProps = async ({
 
   const promise = [
     reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,
+    reduxStore.dispatch(getBrands()),
+    reduxStore.dispatch(getBanners()),
   ];
 
   await Promise.all(promise);
