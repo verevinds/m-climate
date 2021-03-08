@@ -25,7 +25,7 @@ export default function CardProduct() {
 
       <section className={styles['img']}>
         <Slider
-          slidesPerView={2}
+          slidesPerView={1}
           breakpoints={{
             768: {
               slidesPerView: 2,
