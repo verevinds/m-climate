@@ -1,3 +1,10 @@
+@import 'src/scss/global_variables.scss';
 .block {
   margin: 1rem 0;
+}
+
+@media screen and (max-width: $viewport-md) {
+  .block {
+    margin: 1rem;
+  }
 }
