@@ -76,7 +76,6 @@
   font-size: 2.3rem;
   &::after {
     margin-left: 0.2rem;
-    font-size: 1.3rem;
     content: '₽';
   }
   &-old {
@@ -85,7 +84,6 @@
     text-decoration: line-through;
     &::after {
       margin-left: 0.2rem;
-      font-size: 0.9rem;
       content: '₽';
     }
   }
@@ -99,6 +97,7 @@
   font-size: 1rem;
 }
 .icon-truck {
+  width: 2rem;
   height: 2rem;
   margin-right: 1rem;
 }

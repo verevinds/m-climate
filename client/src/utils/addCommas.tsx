@@ -1,5 +1,5 @@
 export default function (nStr: string | number) {
-  const str = `${nStr} `;
+  const str = `${nStr}`;
   const x = str.split('.');
   let x1 = x[0];
   const x2 = x.length > 1 ? `.${x[1]}` : '';
