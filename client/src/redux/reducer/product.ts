@@ -34,6 +34,8 @@ export const getProducts = createAsyncThunk(
       const { query, zip } = arg;
       const state = getState() as RootState;
       const { city } = state.geo;
+      const products = state.product.list;
+      const isList = Boolean(products.length);
 
       const url = zip ? '/api/product/zip' : `/api/product`;
 
@@ -45,7 +47,7 @@ export const getProducts = createAsyncThunk(
 
       dispatch(turnOffPending());
 
-      return data;
+      return isList ? products : data;
     } catch (e) {
       dispatch(turnOffPending());
       console.error(e);
