@@ -1,41 +1,17 @@
 import { toggleCity } from '@redux/reducer/geo';
-import { useRouter } from 'next/dist/client/router';
-import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import ListingProduct from '@src/components/ListingProduct';
 
 import Breadcrumbs from '../../src/components/Breadcrumbs';
-import Item from '../../src/components/Item';
 import Layout from '../../src/components/Layout/LayoutClient';
 import { AppInitialPropsWithRedux } from '../../src/interface';
-import { getBrands, selectBrandList } from '../../src/redux/reducer/brand';
-import {
-  getProducts,
-  selectProductList,
-} from '../../src/redux/reducer/product';
+import { getBrands } from '../../src/redux/reducer/brand';
+import { getProducts } from '../../src/redux/reducer/product';
 
 const ProductPage = () => {
-  const products = useSelector(selectProductList);
-  const brands = useSelector(selectBrandList);
-  const { query } = useRouter();
-
-  const text = useMemo(() => {
-    let draft = '';
-    if (query) {
-      if (query.brand) {
-        const brand = brands.find(el => el._id === query.brand);
-        draft += brand?.name;
-      }
-    }
-    return draft;
-  }, [query, brands]);
-
   return (
     <Layout>
       <Breadcrumbs />
-      <h1>{`Каталог кондиционеров ${text}`}</h1>
-      {products.map(product => (
-        <Item key={product._id} product={product} />
-      ))}
+      <ListingProduct />
     </Layout>
   );
 };

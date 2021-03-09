@@ -9,34 +9,32 @@ const Item: React.FC<{ product: Product }> = ({ product }) => {
   const { _id, name, images, price, priceOld, brand, type } = product;
 
   return (
-    <div className={styles['wrap']}>
-      <NavLink href={`/product/${_id}`}>
-        <div className={styles['item']}>
-          <div className={styles['label']}>
-            <span className={styles['type']}>{type}</span>
-          </div>
-          <Img
-            src={images && images.length ? images[0].url : ''}
-            alt={name}
-            className={styles['img']}
-          />
-          <div className={styles['label']}>
-            <span>{brand?.name}</span>
-          </div>
-          <span className={styles['name']}>{name}</span>
-          <div className={styles['price']}>
-            <span className={styles['price-current']}>
-              {`${addCommas(price)} ₽`}
-            </span>
-            {priceOld && (
-              <span className={styles['price-old']}>
-                {`${addCommas(priceOld)} ₽`}
-              </span>
-            )}
-          </div>
+    <NavLink href={`/product/${_id}`}>
+      <div className={styles['item']}>
+        <div className={styles['label']}>
+          <span className={styles['type']}>{type}</span>
         </div>
-      </NavLink>
-    </div>
+        <Img
+          src={images && images.length ? images[0].url : ''}
+          alt={name}
+          className={styles['img']}
+        />
+        <div className={styles['label']}>
+          <span>{brand?.name}</span>
+        </div>
+        <span className={styles['name']}>{name}</span>
+        <div className={styles['price']}>
+          <span className={styles['price-current']}>
+            {`${addCommas(price)} ₽`}
+          </span>
+          {priceOld && (
+            <span className={styles['price-old']}>
+              {`${addCommas(priceOld)} ₽`}
+            </span>
+          )}
+        </div>
+      </div>
+    </NavLink>
   );
 };
 export default Item;

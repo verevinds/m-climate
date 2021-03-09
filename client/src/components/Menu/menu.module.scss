@@ -97,9 +97,13 @@
 @media screen and (max-width: $viewport-sm) {
   .menu {
     justify-content: space-between;
-
     padding: 0 0.8rem;
     padding-bottom: 0.8rem;
+    &__button {
+      &-container {
+        width: 50px;
+      }
+    }
     &__location {
       display: block;
     }

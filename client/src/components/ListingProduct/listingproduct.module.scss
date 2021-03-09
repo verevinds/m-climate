@@ -1,0 +1,28 @@
+@import 'src/scss/global_variables.scss';
+.title {
+  margin: 1rem 0;
+}
+.block {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+@media (max-width: $viewport-xl) {
+  .block {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: $viewport-md) {
+  .block {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: $viewport-sm) {
+  .title {
+    margin: 1rem;
+  }
+  .block {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
