@@ -36,12 +36,15 @@ const Product: NextComponentType<
     () =>
       products.filter(
         product =>
-          product.servicedArea === item?.servicedArea ||
-          product.type === item?.type ||
-          product.energyEfficiency === item?.energyEfficiency,
+          product._id !== item?._id &&
+          (product.servicedArea === item?.servicedArea ||
+            product.type === item?.type ||
+            product.energyEfficiency === item?.energyEfficiency),
       ),
     [products, item],
   );
+
+  const uniquePopulars = populars.filter(popular => popular._id !== item?._id);
 
   useEffect(() => {
     dispatch(getBanners());
@@ -57,7 +60,7 @@ const Product: NextComponentType<
           <Breadcrumbs />
           <CardProduct />
           <br />
-          <Bar title='Популярные' items={populars} />
+          <Bar title='Популярные' items={uniquePopulars} />
           <Bar title='Похожие кондиционеры' items={similars} />
         </>
       ) : (
