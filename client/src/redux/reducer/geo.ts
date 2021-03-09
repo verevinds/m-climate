@@ -36,9 +36,10 @@ const geoSlice = createSlice({
   initialState,
   reducers: {
     toggleCity: (
-      _state,
+      state,
       { payload }: { payload: IncomingMessage | undefined },
     ) => {
+      if (state.city) return state;
       const subdomain =
         (payload && payload.headers.host?.split('.')[0]) || 'nsk';
 
