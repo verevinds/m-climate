@@ -79,6 +79,7 @@
         "import/no-extraneous-dependencies": 0,
         "react/no-danger": 0,
         "react/display-name": 0,
-        "@typescript-eslint/naming-convention": 0
+        "@typescript-eslint/naming-convention": 0,
+        "no-bitwise": 0
     }
 }

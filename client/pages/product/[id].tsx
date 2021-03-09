@@ -32,20 +32,36 @@ const Product: NextComponentType<
   const populars = useSelector(selectProductPopulars);
   const products = useSelector(selectProductList);
 
-  const similars = useMemo(
-    () =>
-      products.filter(
-        product =>
-          product._id !== item?._id &&
-          (product.servicedArea === item?.servicedArea ||
-            product.type === item?.type ||
-            product.energyEfficiency === item?.energyEfficiency),
-      ),
-    [products, item],
+  const uniquePopulars = useMemo(
+    () => populars.filter(popular => popular._id !== item?._id),
+    [populars],
   );
 
-  const uniquePopulars = populars.filter(popular => popular._id !== item?._id);
+  const similars = useMemo(() => {
+    const similarProducts = products.filter(
+      product =>
+        product._id !== item?._id &&
+        (product.servicedArea === item?.servicedArea ||
+          product.type === item?.type ||
+          product.energyEfficiency === item?.energyEfficiency ||
+          product.powerConsumptionCooling === item?.powerConsumptionCooling ||
+          product.powerConsumptionHeating === item?.powerConsumptionHeating ||
+          product.powerCooling === item?.powerCooling ||
+          product.powerHeating === item?.powerHeating ||
+          product.sizeIndoor === item?.sizeIndoor ||
+          product.sizeOutdoor === item?.sizeOutdoor ||
+          product.weightIndoor === item?.weightIndoor ||
+          product.weightOutdoor === item?.weightOutdoor ||
+          product.noiseInside === item?.noiseInside ||
+          product.noiseOutside === item?.noiseOutside),
+    );
 
+    const uniqueSimilarProducts = similarProducts.filter(
+      product => !~uniquePopulars.findIndex(el => el._id === product._id),
+    );
+
+    return uniqueSimilarProducts;
+  }, [products, item, uniquePopulars]);
   useEffect(() => {
     dispatch(getBanners());
     if (typeof props.id === 'string') {
