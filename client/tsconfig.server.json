@@ -5,7 +5,7 @@
     // "target": "es2017",
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ES2017", "ESNext"],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "moduleResolution": "node",
     "strict": true,
     "allowJs": true,

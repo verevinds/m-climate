@@ -1,10 +1,10 @@
+import Item from '@components/Item';
+import { selectBrandList } from '@redux/reducer/brand';
+import { selectProductList } from '@redux/reducer/product';
 import { useRouter } from 'next/dist/client/router';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectBrandList } from '../../redux/reducer/brand';
-import { selectProductList } from '../../redux/reducer/product';
-import Item from '../Item';
 import styles from './listingproduct.module.scss';
 
 const ListingProduct = () => {

@@ -9,7 +9,8 @@
     "next.config.js",
     "node_modules",
     "package-lock.json",
-    "package.json"
+    "package.json",
+    "_static"
   ],
   "include": [
     ".env.d.ts",
