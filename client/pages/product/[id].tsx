@@ -62,6 +62,7 @@ const Product: NextComponentType<
 
     return uniqueSimilarProducts;
   }, [products, item, uniquePopulars]);
+
   useEffect(() => {
     dispatch(getBanners());
     if (typeof props.id === 'string') {
