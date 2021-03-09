@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Advantage from '../src/components/Advantage/Advantage';
@@ -12,22 +12,18 @@ import {
 import { getBanners } from '../src/redux/reducer/banners';
 import { getBrands, selectBrandList } from '../src/redux/reducer/brand';
 import { toggleCity } from '../src/redux/reducer/geo';
-import { getProducts, selectProductList } from '../src/redux/reducer/product';
+import {
+  getProducts,
+  getProductsPopular,
+  selectProductList,
+  selectProductPopulars,
+} from '../src/redux/reducer/product';
 
 const IndexPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductList);
+  const populars = useSelector(selectProductPopulars);
   const brands = useSelector(selectBrandList);
-
-  const populars = useMemo(
-    () =>
-      products.filter(
-        product =>
-          product.type?.toLocaleLowerCase() ===
-          'Инвентарный'.toLocaleLowerCase(),
-      ),
-    [products],
-  );
 
   useEffect(() => {
     dispatch(getProducts({ zip: true }));
@@ -89,6 +85,7 @@ IndexPage.getInitialProps = async ({
   reduxStore.dispatch(toggleCity(req));
 
   const promise = [
+    reduxStore.dispatch(getProductsPopular()),
     reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,
     reduxStore.dispatch(getBrands()),
     reduxStore.dispatch(getBanners()),

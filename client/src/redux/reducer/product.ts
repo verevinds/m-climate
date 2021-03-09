@@ -11,12 +11,14 @@ import { turnOffPending, turnOnPending } from './application/tuning';
 
 export type ProductReducer = {
   list: Product[];
+  populars: Product[];
   item: Product | null;
   isPending: boolean;
 };
 
 const initialState: ProductReducer = {
   list: [],
+  populars: [],
   item: null,
   isPending: false,
 };
@@ -73,6 +75,32 @@ export const getProduct = createAsyncThunk<Product | undefined, string>(
   },
 );
 
+export const getProductsPopular = createAsyncThunk(
+  'product/getPopularsThunk',
+  async (_, { getState, dispatch, rejectWithValue }) => {
+    try {
+      dispatch(turnOnPending());
+      const state = getState() as RootState;
+      const { populars } = state.product;
+      const isPopulars = Boolean(populars.length);
+
+      const { city } = state.geo;
+      const { data } = await Api().get<Product[]>('/api/product/popular', {
+        params: { city },
+      });
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
+      dispatch(turnOffPending());
+
+      return isPopulars ? populars : data;
+    } catch (e) {
+      dispatch(turnOffPending());
+      console.error(e);
+      return rejectWithValue(e.response.data);
+    }
+  },
+);
+
 const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -86,12 +114,17 @@ const productSlice = createSlice({
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
       if (payload) state.item = payload;
     });
+    builder.addCase(getProductsPopular.fulfilled, (state, { payload }) => {
+      if (payload) state.populars = payload;
+    });
 
     builder.addCase(getProducts.pending, handlePending);
     builder.addCase(getProduct.pending, handlePending);
+    builder.addCase(getProductsPopular.pending, handlePending);
 
     builder.addCase(getProducts.rejected, handleReject);
     builder.addCase(getProduct.rejected, handleReject);
+    builder.addCase(getProductsPopular.rejected, handleReject);
   },
 });
 
@@ -102,5 +135,7 @@ export default productSlice.reducer;
 export const selectProduct = (state: RootState) => state.product;
 export const selectProductItem = (state: RootState) => state.product.item;
 export const selectProductList = (state: RootState) => state.product.list;
+export const selectProductPopulars = (state: RootState) =>
+  state.product.populars;
 export const selectProductPending = (state: RootState) =>
   state.product.isPending;
