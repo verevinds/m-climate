@@ -1,13 +1,13 @@
 @import 'src/scss/global_variables.scss';
 .wrap {
-  display: none;
   position: absolute;
-  left: 0;
   right: 0;
-  background-color: var(--color-bg);
+  left: 0;
   z-index: 100;
-  padding: 1rem 3rem;
+  display: none;
   box-sizing: border-box;
+  padding: 1rem 3rem;
+  background-color: var(--color-bg);
   box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.5);
 }
 .show {
@@ -20,8 +20,8 @@
 
 @media (max-width: $viewport-md) {
   .wrap {
-    padding: 1rem;
     margin-top: 1px;
+    padding: 1rem;
   }
   .location {
     display: flex;

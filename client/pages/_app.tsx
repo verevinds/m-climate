@@ -1,4 +1,5 @@
 import '@src/scss/styles.scss';
+import '@src/scss/font.scss';
 import '@verevinds/ui-kit/dist/styles.global.css';
 
 import withReduxStore from '@lib/with-redux-store';

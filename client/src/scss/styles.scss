@@ -8,31 +8,36 @@
 :root {
   --color-bg: #fff;
   // Основной цвет
-  --color-primary: hsl(195, 100%, 40%);
-  --color-primary-light: hsl(195, 100%, 50%);
-  --color-primary-lighter: hsl(195, 100%, 53%);
-  --color-primary-lightest: hsl(195, 100%, 57%);
-  --color-primary-dark: hsl(195, 100%, 30%);
-  --color-primary-darker: hsl(195, 100%, 27%);
-  --color-primary-darkest: hsl(195, 100%, 24%);
-  --color-primary-text: hsl(220, 15%, 31%);
-  --color-primary-text-light: hsl(220, 15%, 41%);
-  --color-primary-text-lighter: hsl(220, 15%, 45%);
+  // #FFDE1C
+  // #FD4629
+  // #61AAA7
+  // #076881
+  // #373135
+  --color-primary: hsl(192, 90%, 27%);
+  --color-primary-light: hsl(192, 90%, 30%);
+  --color-primary-lighter: hsl(195, 100%, 33%);
+  --color-primary-lightest: hsl(195, 100%, 37%);
+  --color-primary-dark: hsl(192, 90%, 17%);
+  --color-primary-darker: hsl(195, 100%, 14%);
+  --color-primary-darkest: hsl(195, 100%, 10%);
+  --color-primary-text: hsl(320, 6%, 20%);
+  --color-primary-text-light: hsl(320, 6%, 30%);
+  --color-primary-text-lighter: hsl(320, 6%, 33%);
   --color-primary-text-lightest: #fff;
   --color-primary-text-dark: hsl(220, 15%, 21%);
   // Дополнительный цвет
-  --color-secondary: hsl(31, 100%, 50%);
-  --color-secondary-light: hsl(31, 100%, 60%);
-  --color-secondary-lighter: hsl(31, 100%, 63%);
-  --color-secondary-lightest: hsl(31, 100%, 67%);
+  --color-secondary: hsl(8, 98%, 58%);
+  --color-secondary-light: hsl(8, 98%, 62%);
+  --color-secondary-lighter: hsl(8, 98%, 66%);
+  --color-secondary-lightest: hsl(8, 98%, 69%);
   --color-secondary-text: #ce5955;
   --color-secondary-text-light: #fff;
   --color-secondary-text-dark: #434b5b;
   // Цвет текста
   --color-text-light: #e5e7eb;
-  --color-text-dark: #434b5b;
+  --color-text-dark: hsl(320, 6%, 20%);
   // Дополнительные параметры
-  --color-divider: hsl(0, 0%, 90%);
+  --color-divider: #e6e6e6;
   --radius: 4px;
   --shadow: 0 9px 46px 0 rgba(34, 34, 34, 0.06),
     0 1px 11px 0 rgba(34, 34, 34, 0.06);
@@ -45,7 +50,7 @@
 html {
   color: var(--color-primary-text);
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Evolventa Regular', sans-serif;
 }
 h1 {
   font-size: 2rem;
