@@ -1,17 +1,22 @@
+import Img from '@components/Img';
 import { Button } from '@verevinds/ui-kit';
 
 import styles from './installation.module.scss';
 
 export default function Installation() {
   return (
-    <>
+    <article className={styles['wrap']}>
       <h1 className={styles['title']}>
         СТАНДАРТНЫЙ МОНТАЖ – 3500 рублей
         <sup>*</sup>
       </h1>
       <br />
-
-      <div className={styles['block']}>
+      <Img
+        src='/service/installation.jpg'
+        alt='монтаж'
+        className={styles['img']}
+      />
+      <section className={styles['block']}>
         <p>В стандартный монтаж входит:</p>
         <ul className={styles['list']}>
           <li>
@@ -47,7 +52,7 @@ export default function Installation() {
         </small>
         <br />
         <Button>Посмотреть прайс</Button>
-      </div>
-    </>
+      </section>
+    </article>
   );
 }

@@ -39,7 +39,7 @@ const IndexPage = () => {
           {
             _id: 'installation',
             name: 'Стандартный монтаж',
-            image: '/svg/no-camera.svg',
+            image: '/service/installation.jpg',
             createdAt: '',
             updatedAt: '',
             description: '',
@@ -55,7 +55,7 @@ const IndexPage = () => {
           {
             _id: 'maintenance',
             name: 'Сервисное обслуживание',
-            image: '/svg/no-camera.svg',
+            image: '/service/maintenance.jpg',
             createdAt: '',
             updatedAt: '',
             description: '',
