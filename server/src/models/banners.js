@@ -8,6 +8,7 @@ const bannersSchema = new Schema({
   enable: { type: Boolean, default: true },
   dateEnd: { type: Date, default: new Date(3000, 1, 1) },
   path: String,
+  href: String,
   city: { type: String, default: 'Novosibirsk' },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

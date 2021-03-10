@@ -11,6 +11,7 @@ export type Banner = {
   name: string;
   url: string;
   enable: boolean;
+  href: string;
   dateEnd: string;
   createdAt: string;
   updatedAt: string;

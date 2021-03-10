@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from './bannerscreate.module.scss';
 
-type BannerInput = Pick<Banner, 'name' | 'dateEnd'>;
+type BannerInput = Pick<Banner, 'name' | 'dateEnd' | 'href'>;
 const BannersCreate = () => {
   const { query } = useRouter();
   const dispatch = useDispatch();
@@ -40,6 +40,7 @@ const BannersCreate = () => {
     defaultValue?: any;
   }[] = [
     { name: 'name', required: 'Обязательно к заполнению', title: 'Название' },
+    { name: 'href', title: 'Ссылка на промо' },
     {
       name: 'dateEnd',
       title: 'Выберите дату снятия с показа',
