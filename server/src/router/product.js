@@ -2,6 +2,7 @@ module.exports = app => {
   const product = require('../controllers/product');
   const router = require('express').Router();
 
+  router.get('/similar', product.findSimilar);
   router.get('/popular', product.findPopular);
   router.get('/zip', product.findZip);
   router.get('/', product.find);

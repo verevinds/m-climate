@@ -1,6 +1,6 @@
 import Bar from '@components/Bar/Bar';
 import { NextComponentType } from 'next';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Breadcrumbs from '../../src/components/Breadcrumbs';
@@ -12,11 +12,10 @@ import { getBanners } from '../../src/redux/reducer/banners';
 import { selectGeoCity, toggleCity } from '../../src/redux/reducer/geo';
 import {
   getProduct,
-  getProducts,
   getProductsPopular,
   selectProductItem,
-  selectProductList,
   selectProductPopulars,
+  selectProductSimilars,
 } from '../../src/redux/reducer/product';
 
 type InitialProps = { id: string | string[] | undefined };
@@ -30,38 +29,7 @@ const Product: NextComponentType<
   const city = useSelector(selectGeoCity);
   const item = useSelector(selectProductItem);
   const populars = useSelector(selectProductPopulars);
-  const products = useSelector(selectProductList);
-
-  const uniquePopulars = useMemo(
-    () => populars.filter(popular => popular._id !== item?._id),
-    [populars],
-  );
-
-  const similars = useMemo(() => {
-    const similarProducts = products.filter(
-      product =>
-        product._id !== item?._id &&
-        (product.servicedArea === item?.servicedArea ||
-          product.type === item?.type ||
-          product.energyEfficiency === item?.energyEfficiency ||
-          product.powerConsumptionCooling === item?.powerConsumptionCooling ||
-          product.powerConsumptionHeating === item?.powerConsumptionHeating ||
-          product.powerCooling === item?.powerCooling ||
-          product.powerHeating === item?.powerHeating ||
-          product.sizeIndoor === item?.sizeIndoor ||
-          product.sizeOutdoor === item?.sizeOutdoor ||
-          product.weightIndoor === item?.weightIndoor ||
-          product.weightOutdoor === item?.weightOutdoor ||
-          product.noiseInside === item?.noiseInside ||
-          product.noiseOutside === item?.noiseOutside),
-    );
-
-    const uniqueSimilarProducts = similarProducts.filter(
-      product => !~uniquePopulars.findIndex(el => el._id === product._id),
-    );
-
-    return uniqueSimilarProducts;
-  }, [products, item, uniquePopulars]);
+  const similars = useSelector(selectProductSimilars);
 
   useEffect(() => {
     dispatch(getBanners());
@@ -77,7 +45,7 @@ const Product: NextComponentType<
           <Breadcrumbs />
           <CardProduct />
           <br />
-          <Bar title='Популярные' items={uniquePopulars} />
+          <Bar title='Популярные' items={populars} />
           <Bar title='Похожие кондиционеры' items={similars} />
         </>
       ) : (
@@ -94,11 +62,10 @@ Product.getInitialProps = async ({
 }: AppInitialPropsWithRedux) => {
   reduxStore.dispatch(toggleCity(req));
 
-  const { id } = query;
+  const id = query.id as string;
   // TODO разобраться с типами промиса
   const promise = [
-    reduxStore.dispatch(getProductsPopular()) as Promise<any>,
-    reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,
+    reduxStore.dispatch(getProductsPopular(id)) as Promise<any>,
     typeof id === 'string' ? reduxStore.dispatch(getProduct(id)) : undefined,
   ];
 

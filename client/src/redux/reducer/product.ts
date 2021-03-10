@@ -12,6 +12,7 @@ import { turnOffPending, turnOnPending } from './application/tuning';
 export type ProductReducer = {
   list: Product[];
   populars: Product[];
+  similars: Product[];
   item: Product | null;
   isPending: boolean;
 };
@@ -19,6 +20,7 @@ export type ProductReducer = {
 const initialState: ProductReducer = {
   list: [],
   populars: [],
+  similars: [],
   item: null,
   isPending: false,
 };
@@ -56,30 +58,37 @@ export const getProducts = createAsyncThunk(
   },
 );
 
-export const getProduct = createAsyncThunk<Product | undefined, string>(
-  'product/getOneThunk',
-  async (id, { dispatch, getState }) => {
-    try {
-      dispatch(turnOnPending());
-      const state: any = getState();
-      const { city } = state.geo;
+export const getProduct = createAsyncThunk<
+  { product: Product; similars: Product[] } | undefined,
+  string
+>('product/getOneThunk', async (id, { dispatch, getState }) => {
+  try {
+    dispatch(turnOnPending());
+    const state: any = getState();
+    const { city } = state.geo;
 
-      const url = `/api/product/${id}/?city=${city}`;
+    const url = `/api/product/${id}/?city=${city}`;
 
-      const { data } = await Api().get<Product>(url);
+    const { data } = await Api().get<Product>(url);
 
-      dispatch(turnOffPending());
-      return data;
-    } catch (e) {
-      dispatch(turnOffPending());
-      errorPush(e.massage);
-    }
-  },
-);
+    const { data: similars } = await Api().get<Product[]>(
+      '/api/product/similar',
+      {
+        params: Object.assign(data, { city }),
+      },
+    );
+
+    dispatch(turnOffPending());
+    return { product: data, similars };
+  } catch (e) {
+    dispatch(turnOffPending());
+    errorPush(e.massage);
+  }
+});
 
 export const getProductsPopular = createAsyncThunk(
   'product/getPopularsThunk',
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (id: string | undefined, { getState, dispatch, rejectWithValue }) => {
     try {
       dispatch(turnOnPending());
       const state = getState() as RootState;
@@ -88,13 +97,38 @@ export const getProductsPopular = createAsyncThunk(
 
       const { city } = state.geo;
       const { data } = await Api().get<Product[]>('/api/product/popular', {
-        params: { city },
+        params: { city, _id: id },
       });
       data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
       dispatch(turnOffPending());
 
       return isPopulars ? populars : data;
+    } catch (e) {
+      dispatch(turnOffPending());
+      console.error(e);
+      return rejectWithValue(e.response.data);
+    }
+  },
+);
+export const getProductsSimilar = createAsyncThunk(
+  'product/getSimilarThunk',
+  async (product: Product, { getState, dispatch, rejectWithValue }) => {
+    try {
+      dispatch(turnOnPending());
+      const state = getState() as RootState;
+      const { similars } = state.product;
+      const isSimilars = Boolean(similars.length);
+
+      const { city } = state.geo;
+      const { data } = await Api().get<Product[]>('/api/product/similar', {
+        params: Object.assign(product, { city }),
+      });
+      data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
+      dispatch(turnOffPending());
+
+      return isSimilars ? similars : data;
     } catch (e) {
       dispatch(turnOffPending());
       console.error(e);
@@ -114,7 +148,10 @@ const productSlice = createSlice({
       if (payload) state.list = payload;
     });
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
-      if (payload) state.item = payload;
+      if (payload) {
+        state.item = payload.product;
+        state.similars = payload.similars;
+      }
     });
     builder.addCase(getProductsPopular.fulfilled, (state, { payload }) => {
       if (payload) state.populars = payload;
@@ -139,5 +176,7 @@ export const selectProductItem = (state: RootState) => state.product.item;
 export const selectProductList = (state: RootState) => state.product.list;
 export const selectProductPopulars = (state: RootState) =>
   state.product.populars;
+export const selectProductSimilars = (state: RootState) =>
+  state.product.similars;
 export const selectProductPending = (state: RootState) =>
   state.product.isPending;

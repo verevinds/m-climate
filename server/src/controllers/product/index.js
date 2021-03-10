@@ -6,6 +6,7 @@ exports.find = require('./find')(Product);
 exports.findOne = require('./findOne')(Product);
 exports.findZip = require('./findZip')(Product);
 exports.findPopular = require('./findPopular')(Product);
+exports.findSimilar = require('./findSimilar')(Product);
 exports.create = require('./create')(Product);
 exports.delete = require('./delete')(Product);
 exports.update = require('./update')(Product);

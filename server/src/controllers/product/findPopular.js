@@ -1,8 +1,14 @@
 module.exports = Product => (req, res) => {
   try {
     const query = req.query;
+    const id = req.query._id;
 
-    Product.find({ ...query, type: 'Инвентарный', inStock: true })
+    Product.find({
+      ...query,
+      _id: { $ne: id },
+      type: 'Инвентарный',
+      inStock: true,
+    })
       .select('-inStock -city -description -__v -createdAt -updatedAt')
       .exec((error, products) => {
         if (error) res.status(500).send(error);
