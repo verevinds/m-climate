@@ -1,22 +1,30 @@
-import { TItem } from '@type/link';
+import ActiveLink from '@src/utils/ActiveLink';
 import React from 'react';
 
 import styles from './menublock.module.scss';
 
-interface IMenuBlock {
-  title?: string;
-  items: TItem[];
-}
-const MenuBlock: React.FC<IMenuBlock> = ({ items, title }) => {
+type MenuBlockProps = {
+  items: { [key: string]: any; _id: string; name: string }[];
+  title: string;
+  path: string;
+};
+
+const MenuBlock: React.FC<MenuBlockProps> = ({ items, title, path }) => {
   return (
-    <div className={styles['menu-block']}>
-      {title && <span className={styles['menu-block__title']}>{title}</span>}
-      {items.map((el: TItem) => (
-        <a key={el.id} href={el.url} className={styles['menu-block__link']}>
-          {el.name}
-        </a>
-      ))}
-    </div>
+    <>
+      {title && <span className={styles['title']}>{title}</span>}
+      <div className={styles['block']}>
+        {items.map(el => (
+          <ActiveLink
+            key={el._id}
+            href={`${path}${el._id}`}
+            activeClassName={styles['active']}
+          >
+            <a className={styles['link']}>{el.name}</a>
+          </ActiveLink>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 import styles from './location.module.scss';
 
-const Location = () => {
+const Location: React.FC<{ className?: string }> = ({ className }) => {
   const { asPath } = useRouter();
 
   const [show, toggleShow] = useState(false);
@@ -15,7 +15,7 @@ const Location = () => {
   const city = useSelector(selectGeoCity);
 
   return (
-    <div className={styles.location}>
+    <div className={cn(styles.location, className)}>
       <button className={styles.button} type='button' onClick={handleShow}>
         <span className={styles.button__icon}>
           <MapMarkerAlt />

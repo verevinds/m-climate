@@ -9,7 +9,7 @@ import Layout from '../../src/components/Layout/LayoutClient';
 import NotFound from '../../src/components/NotFound';
 import { AppInitialPropsWithRedux } from '../../src/interface';
 import { getBanners } from '../../src/redux/reducer/banners';
-import { selectGeoCity, toggleCity } from '../../src/redux/reducer/geo';
+import { selectGeoCity } from '../../src/redux/reducer/geo';
 import {
   getProduct,
   getProductsPopular,
@@ -58,10 +58,7 @@ const Product: NextComponentType<
 Product.getInitialProps = async ({
   reduxStore,
   query,
-  req,
 }: AppInitialPropsWithRedux) => {
-  reduxStore.dispatch(toggleCity(req));
-
   const id = query.id as string;
   // TODO разобраться с типами промиса
   const promise = [

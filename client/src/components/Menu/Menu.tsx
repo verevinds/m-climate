@@ -1,94 +1,31 @@
-import Location from '@components/Location/Location';
+import { useState } from 'react';
 
 import styles from './menu.module.scss';
-import MenuBlock from './MenuBlock';
+import MenuDropdown from './MenuDropdown';
 
 const Menu = () => {
+  const [show, toggleShow] = useState(false);
+  const handleShow = () => {
+    toggleShow(!show);
+  };
+
   return (
     <>
-      <div className={styles['menu__button-container']}>
+      <div className={styles['container']}>
         <input
           type='checkbox'
           id='menu1'
-          className={styles['menu__button-input']}
+          className={styles['button-input']}
+          defaultChecked={show}
+          onChange={handleShow}
         />
-        <label htmlFor='menu1' className={styles.menu__button}>
+        <label htmlFor='menu1' className={styles['button']}>
           <span className={styles['text']}>Каталог</span>
         </label>
         <br />
-        <div className={styles['menu-wrap']}>
-          <div className={styles.menu}>
-            <div className={styles.menu__location}>
-              <Location />
-            </div>
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-                { id: '5', name: 'ссылка', url: '#' },
-                { id: '6', name: 'ссылка', url: '#' },
-                { id: '7', name: 'ссылка', url: '#' },
-                { id: '8', name: 'ссылка', url: '#' },
-                { id: '9', name: 'ссылка', url: '#' },
-                { id: '10', name: 'ссылка', url: '#' },
-                { id: '11', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-            <MenuBlock
-              items={[
-                { id: '1', name: 'ссылка', url: '#' },
-                { id: '2', name: 'ссылка', url: '#' },
-                { id: '3', name: 'ссылка', url: '#' },
-                { id: '4', name: 'ссылка', url: '#' },
-                { id: '5', name: 'ссылка', url: '#' },
-                { id: '6', name: 'ссылка', url: '#' },
-                { id: '7', name: 'ссылка', url: '#' },
-                { id: '8', name: 'ссылка', url: '#' },
-                { id: '9', name: 'ссылка', url: '#' },
-              ]}
-              title='Кондиционеры'
-            />
-          </div>
-        </div>
+      </div>
+      <div>
+        <MenuDropdown show={show} />
       </div>
     </>
   );

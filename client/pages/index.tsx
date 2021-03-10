@@ -10,8 +10,7 @@ import {
   turnOnPending,
 } from '../src/redux/reducer/application/tuning';
 import { getBanners } from '../src/redux/reducer/banners';
-import { getBrands, selectBrandList } from '../src/redux/reducer/brand';
-import { toggleCity } from '../src/redux/reducer/geo';
+import { selectBrandList } from '../src/redux/reducer/brand';
 import {
   getProducts,
   getProductsPopular,
@@ -78,16 +77,11 @@ const IndexPage = () => {
 IndexPage.getInitialProps = async ({
   err,
   reduxStore,
-  req,
 }: AppInitialPropsWithRedux) => {
   reduxStore.dispatch(turnOnPending());
-
-  reduxStore.dispatch(toggleCity(req));
-
   const promise = [
     reduxStore.dispatch(getProductsPopular()),
     reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,
-    reduxStore.dispatch(getBrands()),
     reduxStore.dispatch(getBanners()),
   ];
 

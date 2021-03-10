@@ -24,7 +24,7 @@
     width: 223px;
     margin-right: 2rem;
 
-    @media screen and (max-width: $viewport-sm) {
+    @media screen and (max-width: $viewport-md) {
       display: none;
     }
   }

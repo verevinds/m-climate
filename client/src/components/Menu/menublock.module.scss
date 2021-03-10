@@ -1,18 +1,29 @@
 @import 'src/scss/global_variables.scss';
-.menu-block {
+.block {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 
-  margin: 1rem;
+  margin-bottom: 1rem;
+}
 
-  @media screen and (max-width: $viewport-sm) {
+.title {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.link {
+  padding: 0.25rem 1rem;
+}
+.active {
+  color: var(--color-secondary-text);
+  &:visited {
+    color: var(--color-secondary-text);
+  }
+}
+
+@media screen and (max-width: $viewport-sm) {
+  .block {
     margin: 0.25rem;
-  }
-  &__title {
-    font-weight: 600;
-    font-size: 1.3rem;
-  }
-  &__link {
-    padding: 0.25rem 1rem;
   }
 }

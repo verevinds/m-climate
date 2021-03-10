@@ -1,0 +1,29 @@
+@import 'src/scss/global_variables.scss';
+.wrap {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg);
+  z-index: 100;
+  padding: 1rem 3rem;
+  box-sizing: border-box;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.5);
+}
+.show {
+  display: initial;
+}
+.location {
+  display: none;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: $viewport-md) {
+  .wrap {
+    padding: 1rem;
+    margin-top: 1px;
+  }
+  .location {
+    display: flex;
+  }
+}

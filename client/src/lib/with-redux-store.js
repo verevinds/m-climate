@@ -1,4 +1,6 @@
 import { initStore } from '@redux/index';
+import { getBrands } from '@redux/reducer/brand';
+import { toggleCity } from '@redux/reducer/geo';
 import React from 'react';
 
 const isServer = !process.browser;
@@ -31,6 +33,11 @@ export default App => {
       if (typeof App.getInitialProps === 'function') {
         appProps = await App.getInitialProps(appContext);
       }
+      const promise = [
+        reduxStore.dispatch(getBrands()),
+        reduxStore.dispatch(toggleCity(appContext.ctx.req)),
+      ];
+      await Promise.all(promise);
 
       const initialReduxState = reduxStore.getState();
 

@@ -61,7 +61,7 @@
   }
 }
 
-@media screen and (max-width: $viewport-sm) {
+@media screen and (max-width: $viewport-md) {
   .block {
     grid-gap: 0;
     grid-template-areas:
@@ -69,7 +69,7 @@
       'search search search'
       'nav nav nav';
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 48px 1fr 48px;
+    grid-template-columns: 115px 1fr 48px;
     justify-items: center;
     margin: 0 0.4rem;
     padding: 0;
@@ -87,7 +87,11 @@
     }
   }
 }
-
+@media screen and (max-width: $viewport-sm) {
+  .block {
+    grid-template-columns: 48px 1fr 48px;
+  }
+}
 @media screen and (max-width: $viewport-xxs) {
   .logo {
     width: 190px;
