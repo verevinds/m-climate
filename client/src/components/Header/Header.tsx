@@ -2,9 +2,9 @@ import Menu from '@components/Menu/Menu';
 import Navigation from '@components/Navigation/Navigation';
 import Search from '@components/Search/Search';
 import Briefcase from '@public/svg/briefcase.svg';
-import Heart from '@public/svg/heart.svg';
+// import Heart from '@public/svg/heart.svg';
 import Logo from '@public/svg/logo.svg';
-import Percent from '@public/svg/percent.svg';
+// import Percent from '@public/svg/percent.svg';
 import ActiveLink from '@src/utils/ActiveLink';
 
 import styles from './header.module.scss';
@@ -22,14 +22,14 @@ const Header = () => {
         <Search />
       </div>
       <div className={styles['toolbar']}>
-        <a href='#' className={styles['link']}>
+        {/* <a href='#' className={styles['link']}>
           <Percent className={styles['link__icon']} />
           Акции
         </a>
         <a href='#' className={styles['link']}>
           <Heart className={styles['link__icon']} />
           Избранное
-        </a>
+        </a> */}
         <ActiveLink href='/portfolio'>
           <a className={styles['link']}>
             <Briefcase className={styles['link__icon']} />
