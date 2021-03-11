@@ -40,7 +40,7 @@ const Location = () => {
           Новосибирск
         </Button>
         <Button className={styles['dropdown__element']} onClick={toggleKDA}>
-          Красноярск
+          Краснодар
         </Button>
       </div>
     </div>

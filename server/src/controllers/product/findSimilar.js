@@ -35,7 +35,7 @@ module.exports = Product => (req, res) => {
       _id: { $ne: id },
       inStock: true,
       city,
-      type: { $ne: 'Инвентарный' },
+      type: { $ne: 'Инвенторный' },
       $or: orArray,
     })
       .select('-inStock -city -description -__v -createdAt -updatedAt')

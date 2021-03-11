@@ -6,7 +6,7 @@ module.exports = Product => (req, res) => {
     Product.find({
       ...query,
       _id: { $ne: id },
-      type: 'Инвентарный',
+      type: 'Инвенторный',
       inStock: true,
     })
       .select('-inStock -city -description -__v -createdAt -updatedAt')

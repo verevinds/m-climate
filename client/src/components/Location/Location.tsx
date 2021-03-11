@@ -36,7 +36,7 @@ const Location: React.FC<{ className?: string }> = ({ className }) => {
           className={styles['dropdown__element']}
           href={`http://kda.${process.env.url}${asPath}`}
         >
-          Красноярск
+          Краснодар
         </a>
       </div>
     </div>
