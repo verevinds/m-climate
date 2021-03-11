@@ -45,8 +45,8 @@
     padding: 5px 10px;
     color: var(--color-primary-text);
     font-weight: 600;
-    white-space: nowrap;
     line-height: 1;
+    white-space: nowrap;
     &:last-child {
       margin-right: 0;
     }
@@ -54,22 +54,14 @@
       position: relative;
       background-color: var(--color-secondary);
       border-radius: var(--radius);
-      transition: ease-in-out 200ms;
       -webkit-transform: skew(-20deg);
       -moz-transform: skew(-20deg);
       -o-transform: skew(-20deg);
+      transition: ease-in-out 200ms;
     }
 
     &-favorite:hover {
       background-color: var(--color-secondary-light);
-    }
-    &-favorite:hover &-favorite::after {
-      border-color: var(--color-secondary-light) transparent transparent
-        transparent;
-    }
-    &-favorite:hover &-favorite::before {
-      border-color: transparent transparent var(--color-secondary-light)
-        transparent;
     }
     &-favorite .nav__link {
       color: var(--color-secondary-text-light);
