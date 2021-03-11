@@ -1,3 +1,4 @@
+import { toggleCity } from '@redux/reducer/geo';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -77,8 +78,11 @@ const IndexPage = () => {
 IndexPage.getInitialProps = async ({
   err,
   reduxStore,
+  req,
 }: AppInitialPropsWithRedux) => {
   reduxStore.dispatch(turnOnPending());
+  reduxStore.dispatch(toggleCity(req));
+
   const promise = [
     reduxStore.dispatch(getProductsPopular()),
     reduxStore.dispatch(getProducts({ zip: true })) as Promise<any>,

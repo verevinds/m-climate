@@ -1,3 +1,4 @@
+import { toggleCity } from '@redux/reducer/geo';
 import ListingProduct from '@src/components/ListingProduct';
 
 import Breadcrumbs from '../../src/components/Breadcrumbs';
@@ -16,7 +17,9 @@ const ProductPage = () => {
 ProductPage.getInitialProps = async ({
   reduxStore,
   query,
+  req,
 }: AppInitialPropsWithRedux) => {
+  reduxStore.dispatch(toggleCity(req));
   const promise = [reduxStore.dispatch(getProducts(query)) as Promise<any>];
   await Promise.all(promise);
   return { query };
