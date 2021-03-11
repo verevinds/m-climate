@@ -36,6 +36,7 @@
 
     @media screen and (max-width: $viewport-sm) {
       flex-wrap: nowrap;
+      padding: 0 1rem;
     }
   }
   &__element {
@@ -45,48 +46,20 @@
     color: var(--color-primary-text);
     font-weight: 600;
     white-space: nowrap;
-    &:first-child {
-      margin-left: 10px;
-    }
+    line-height: 1;
     &:last-child {
       margin-right: 0;
     }
     &-favorite {
       position: relative;
-      font-style: italic;
       background-color: var(--color-secondary);
-      border-top-left-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-radius: var(--radius);
       transition: ease-in-out 200ms;
+      -webkit-transform: skew(-20deg);
+      -moz-transform: skew(-20deg);
+      -o-transform: skew(-20deg);
     }
-    &-favorite::after {
-      position: absolute;
-      top: 0;
-      right: -4px;
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-color: var(--color-secondary) transparent transparent transparent;
-      border-style: solid;
-      border-width: 25px 4px 0 0;
-      border-top-right-radius: var(--radius);
-      transition: ease-in-out 200ms;
-      content: '';
-    }
-    &-favorite::before {
-      position: absolute;
-      top: 0;
-      left: -5px;
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-color: transparent transparent var(--color-secondary) transparent;
-      border-style: solid;
-      border-width: 0 0 29px 5px;
-      border-bottom-left-radius: var(--radius);
-      transition: ease-in-out 200ms;
-      content: '';
-    }
+
     &-favorite:hover {
       background-color: var(--color-secondary-light);
     }
