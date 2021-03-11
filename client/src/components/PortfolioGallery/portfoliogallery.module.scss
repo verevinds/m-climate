@@ -1,0 +1,28 @@
+.img {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+  &-small {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+  }
+}
+.bar {
+  margin-top: 1rem;
+  box-shadow: var(--shadow);
+  padding: 0.5rem;
+  :global {
+    .swiper-slide {
+      border: 5px solid transparent;
+      box-sizing: border-box;
+      border-radius: var(--radius);
+    }
+    .swiper-slide-active {
+      border-color: var(--color-primary);
+    }
+  }
+}
+.disabled {
+  display: none;
+}

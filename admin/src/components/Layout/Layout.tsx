@@ -4,6 +4,7 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faBox,
+  faBriefcase,
   // faCalendarAlt,
   faCameraRetro,
   faHome,
@@ -76,6 +77,12 @@ const Layout: React.FC<{ title: string }> = ({ children, title }) => {
               name: 'Баннеры',
               url: '/banners',
               icon: faCameraRetro,
+            },
+            {
+              id: '5',
+              name: 'Портфолио',
+              url: '/portfolio',
+              icon: faBriefcase,
             },
             // {
             //   id: '5',

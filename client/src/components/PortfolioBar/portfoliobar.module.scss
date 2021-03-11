@@ -1,0 +1,26 @@
+@import 'src/scss/global_variables.scss';
+
+.bar {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  &-wrap {
+    @media screen and (max-width: $viewport-sm) {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 40px 0px rgb(0, 0, 0, 0.11);
+    }
+  }
+  &__title {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  &__item {
+    width: 300px;
+    margin-right: 1rem;
+  }
+}
+.disabled {
+  display: none;
+}

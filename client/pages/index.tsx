@@ -1,3 +1,4 @@
+import PortfolioBar from '@components/PortfolioBar';
 import { toggleCity } from '@redux/reducer/geo';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,6 +65,7 @@ const IndexPage = () => {
         key='3'
       />
       <Advantage />
+      <PortfolioBar />
       {brands.map(brand => (
         <Bar
           key={brand._id}

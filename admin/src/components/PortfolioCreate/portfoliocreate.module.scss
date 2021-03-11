@@ -1,0 +1,34 @@
+.banners {
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    'name . slider'
+    'dateEnd . slider'
+    'href . .'
+    'images . .'
+    'buttons . .';
+  grid-template-columns: 300px 1fr 1fr;
+}
+.name {
+  grid-area: name;
+}
+
+.href {
+  grid-area: href;
+}
+.dateEnd {
+  grid-area: dateEnd;
+}
+.images {
+  grid-area: images;
+}
+.slider {
+  grid-area: slider;
+}
+.buttons-block {
+  grid-area: buttons;
+}
