@@ -26,6 +26,7 @@ const Bar: React.FC = () => {
         <Slider
           watchOverflow
           slidesPerView='auto'
+          loop
           navigation={{
             disabledClass: styles.disabled,
           }}
