@@ -41,7 +41,6 @@ const portfolioSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(getPortfolio.fulfilled, (state, { payload }) => {
-      console.log(payload);
       if (payload) state.list = payload;
       state.isPending = false;
     });
