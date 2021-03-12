@@ -13,7 +13,7 @@ module.exports = Product => (req, res) => {
           const path = image.path.substr(0, image.path.lastIndexOf('.'));
           fs.unlinkSync(image.path);
           fs.unlinkSync(`${path}.webp`);
-          fs.unlinkSync(`${path}.avif`);
+          // fs.unlinkSync(`${path}.avif`);
         });
       } catch (e) {
         console.error(e);

@@ -11,7 +11,7 @@ module.exports = Portfolio => (req, res) => {
         const path = data.path.substr(0, data.path.lastIndexOf('.'));
         await fs.unlinkSync(data.path);
         await fs.unlinkSync(`${path}.webp`);
-        await fs.unlinkSync(`${path}.avif`);
+        // await fs.unlinkSync(`${path}.avif`);
       } catch (e) {
         console.error(e);
       }

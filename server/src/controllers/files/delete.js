@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     const pathWithoutExtension = path.substr(0, path.lastIndexOf('.'));
     fs.unlinkSync(path);
     fs.unlinkSync(`${pathWithoutExtension}.webp`);
-    fs.unlinkSync(`${pathWithoutExtension}.avif`);
+    // fs.unlinkSync(`${pathWithoutExtension}.avif`);
     res.status(200).send({
       _id,
       message: `Изображение "${name}" удалено!`,

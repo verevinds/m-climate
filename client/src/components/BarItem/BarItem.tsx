@@ -17,14 +17,14 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
         <picture className={styles['item__img']}>
-          <source
+          {/* <source
             srcSet={
               image && image !== '/svg/no-camera.svg'
                 ? `${image.substr(0, image.lastIndexOf('.'))}.avif`
                 : '/svg/no-camera.svg'
             }
             type='image/avif'
-          />
+          /> */}
           <source
             srcSet={
               image && image !== '/svg/no-camera.svg'

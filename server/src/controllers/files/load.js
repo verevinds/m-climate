@@ -29,7 +29,7 @@ module.exports = (req, res) => {
         }
 
         await sharp(`${dir}/${fullName}`).webp().toFile(`${dir}/${name}.webp`);
-        await sharp(`${dir}/${fullName}`).avif().toFile(`${dir}/${name}.avif`);
+        // await sharp(`${dir}/${fullName}`).avif().toFile(`${dir}/${name}.avif`);
 
         res.status(200).send({
           message: `Файл ${filename} успешно загружен`,

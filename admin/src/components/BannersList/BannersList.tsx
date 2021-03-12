@@ -43,13 +43,13 @@ const ProductList = () => {
             />
           </div>
           <picture>
-            <source
+            {/* <source
               srcSet={`${banner.url.substr(
                 0,
                 banner.url.lastIndexOf('.'),
               )}.avif`}
               type='image/avif'
-            />
+            /> */}
             <source
               srcSet={`${banner.url.substr(
                 0,

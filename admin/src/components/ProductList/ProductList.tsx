@@ -47,7 +47,7 @@ const ProductList = () => {
         {products.map(product => (
           <React.Fragment key={product._id}>
             <picture>
-              <source
+              {/* <source
                 srcSet={
                   product.images.length
                     ? `${product.images[0].url.substr(
@@ -57,7 +57,7 @@ const ProductList = () => {
                     : '/svg/no-camera.svg'
                 }
                 type='image/avif'
-              />
+              /> */}
               <source
                 srcSet={
                   product.images.length

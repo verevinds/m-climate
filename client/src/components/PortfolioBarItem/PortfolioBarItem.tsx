@@ -14,14 +14,14 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
     <div className={styles.item}>
       <div className={styles['item__img-wrap']}>
         <picture className={styles['item__img']}>
-          <source
+          {/* <source
             srcSet={
               url && url !== '/svg/no-camera.svg'
                 ? `${url.substr(0, url.lastIndexOf('.'))}.avif`
                 : '/svg/no-camera.svg'
             }
             type='image/avif'
-          />
+          /> */}
           <source
             srcSet={
               url && url !== '/svg/no-camera.svg'

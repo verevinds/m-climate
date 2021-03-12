@@ -334,13 +334,13 @@ const ProductCreate = () => {
               return (
                 <div key={image._id} className={styles['img-current']}>
                   <picture>
-                    <source
+                    {/* <source
                       srcSet={`${image.url.substr(
                         0,
                         image.url.lastIndexOf('.'),
                       )}.avif`}
                       type='image/avif'
-                    />
+                    /> */}
                     <source
                       srcSet={`${image.url.substr(
                         0,

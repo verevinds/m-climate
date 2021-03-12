@@ -35,10 +35,10 @@ const ProductList = () => {
             />
           </div>
           <picture>
-            <source
+            {/* <source
               srcSet={`${image.url.substr(0, image.url.lastIndexOf('.'))}.avif`}
               type='image/avif'
-            />
+            /> */}
             <source
               srcSet={`${image.url.substr(0, image.url.lastIndexOf('.'))}.webp`}
               type='image/webp'

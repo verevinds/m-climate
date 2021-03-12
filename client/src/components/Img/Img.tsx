@@ -8,14 +8,14 @@ const Img: React.FC<ImgHTMLAttributes<HTMLImageElement>> = ({
 }) => {
   return (
     <picture className={className}>
-      <source
+      {/* <source
         srcSet={
           src && src !== '/svg/no-camera.svg'
             ? `${src.substr(0, src.lastIndexOf('.'))}.avif`
             : '/svg/no-camera.svg'
         }
         type='src/avif'
-      />
+      /> */}
       <source
         srcSet={
           src && src !== '/svg/no-camera.svg'
