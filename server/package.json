@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "kill-port 1111 && nodemon src/app.js"
+    "dev": "kill-port 1111 && nodemon -x src/app.js"
   },
   "engines": {
     "node": ">=8.0.0"
