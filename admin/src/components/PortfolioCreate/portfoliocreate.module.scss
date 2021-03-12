@@ -6,12 +6,11 @@
   display: grid;
   grid-gap: 10px;
   grid-template-areas:
-    'name . slider'
-    'dateEnd . slider'
-    'href . .'
-    'images . .'
-    'buttons . .';
-  grid-template-columns: 300px 1fr 1fr;
+    'images'
+    'slider'
+    'buttons';
+  grid-template-columns: 300px;
+  align-self: center;
 }
 .name {
   grid-area: name;
@@ -27,7 +26,9 @@
   grid-area: images;
 }
 .slider {
+  display: flex;
   grid-area: slider;
+  justify-content: center;
 }
 .buttons-block {
   grid-area: buttons;
