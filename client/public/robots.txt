@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://m-climate.site/sitemap.xml

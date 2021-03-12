@@ -15,7 +15,10 @@ module.exports = {
 
     return config
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
+    if (isServer) {
+      require('./scripts/generate-sitemap');
+    }
     config.module.rules.push({
       test: /\.svg$/,
       issuer: {

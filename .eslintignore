@@ -6,3 +6,4 @@ tsconfig.json
 .next
 _static
 .husky
+./client/public/sitemap.xml

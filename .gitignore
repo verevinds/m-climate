@@ -146,3 +146,4 @@ storybook-static
 node_modules
 .next
 server/public
+client/public/sitemap.xml
