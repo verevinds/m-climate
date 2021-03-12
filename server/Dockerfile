@@ -9,7 +9,6 @@ RUN npm install && npm cache clean --force --loglevel=error
 
 COPY . /app
 
-RUN npm install --global kill-port
-RUN npm install --global nodemon
+RUN npm install pm2@latest -g
 
 CMD ["npm", "run", "dev"]
