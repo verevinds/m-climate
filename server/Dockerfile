@@ -9,6 +9,8 @@ RUN npm install && npm cache clean --force --loglevel=error
 
 COPY . /app
 
-RUN npm install pm2@latest -g
+RUN npm install pm2 -g
+ENV PM2_PUBLIC_KEY cqgdwo4y13nhxb8
+ENV PM2_SECRET_KEY 71vp335qywe4zwe
 
-CMD ["npm", "run", "dev"]
+CMD ["pm2-runtime", "./src/app.js"]
