@@ -10,6 +10,12 @@
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.8);
 }
+.container {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  height: 100%;
+}
 .spinner {
   width: 15%;
   height: 15%;

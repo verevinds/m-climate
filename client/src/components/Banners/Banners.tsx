@@ -1,12 +1,18 @@
-import Img from '@components/Img';
 import Slider from '@components/Slider/Slider';
+import Spinner from '@components/Spinner/Spinner';
 import { getBanners, selectBannersList } from '@redux/reducer/banners';
 import ActiveLink from '@src/utils/ActiveLink';
 import cn from 'classnames';
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './banners.module.scss';
+
+const Img = dynamic(() => import('@components/Img'), {
+  loading: () => <Spinner inContainer />,
+  ssr: false,
+});
 
 const Banners = () => {
   const dispatch = useDispatch();
@@ -38,6 +44,7 @@ const Banners = () => {
           </ActiveLink>
         ) : (
           <Img
+            key={`${banner._id}-no-link`}
             src={banner.url}
             alt={banner.name}
             className={styles['full-size']}

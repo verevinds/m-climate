@@ -43,7 +43,9 @@
     }
   }
 }
-
+.img-wrap {
+  height: 150px;
+}
 @media screen and (max-width: $viewport-sm) {
   .item {
     :global {

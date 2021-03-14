@@ -1,9 +1,16 @@
+import Spinner from '@components/Spinner/Spinner';
 import type { Product, ProductZip } from '@src/interface';
 import { Service } from '@src/interface';
 import ActiveLink from '@src/utils/ActiveLink';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
 import styles from './baritem.module.scss';
+
+const Img = dynamic(() => import('@components/Img'), {
+  loading: () => <Spinner inContainer />,
+  ssr: false,
+});
 
 type ItemWrapProps = {
   image?: string;
@@ -15,31 +22,13 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
   const { name, image, price, priceOld, children } = props;
   return (
     <div className={styles.item}>
-      <div className={styles['item__img-wrap']}>
-        <picture className={styles['item__img']}>
-          {/* <source
-            srcSet={
-              image && image !== '/svg/no-camera.svg'
-                ? `${image.substr(0, image.lastIndexOf('.'))}.avif`
-                : '/svg/no-camera.svg'
-            }
-            type='image/avif'
-          /> */}
-          <source
-            srcSet={
-              image && image !== '/svg/no-camera.svg'
-                ? `${image.substr(0, image.lastIndexOf('.'))}.webp`
-                : '/svg/no-camera.svg'
-            }
-            type='image/webp'
-          />
-          <img
-            src={image || '/svg/no-camera.svg'}
-            alt={name}
-            className={styles['item__img']}
-            loading='lazy'
-          />
-        </picture>
+      <div className={styles['img-wrap']}>
+        <Img
+          src={image}
+          alt={name}
+          className={styles['item__img']}
+          loading='lazy'
+        />
       </div>
       {price && (
         <div className={styles.item__price}>

@@ -1,5 +1,5 @@
-import PortfolioBar from '@components/PortfolioBar';
 import { toggleCity } from '@redux/reducer/geo';
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,7 +12,6 @@ import {
   turnOnPending,
 } from '../src/redux/reducer/application/tuning';
 import { getBanners } from '../src/redux/reducer/banners';
-import { selectBrandList } from '../src/redux/reducer/brand';
 import {
   getProducts,
   getProductsPopular,
@@ -20,11 +19,17 @@ import {
   selectProductPopulars,
 } from '../src/redux/reducer/product';
 
+const PortfolioBar = dynamic(() => import('@components/PortfolioBar'), {
+  ssr: false,
+});
+const BarExtra = dynamic(() => import('@components/BarExtra'), {
+  ssr: false,
+});
+
 const IndexPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductList);
   const populars = useSelector(selectProductPopulars);
-  const brands = useSelector(selectBrandList);
 
   useEffect(() => {
     dispatch(getProducts({ zip: true }));
@@ -66,13 +71,7 @@ const IndexPage = () => {
       />
       <Advantage />
       <PortfolioBar />
-      {brands.map(brand => (
-        <Bar
-          key={brand._id}
-          title={brand.name}
-          items={products.filter(product => product.brand?.name === brand.name)}
-        />
-      ))}
+      <BarExtra />
     </Layout>
   );
 };
