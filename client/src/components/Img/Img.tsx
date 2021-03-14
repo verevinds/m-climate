@@ -22,7 +22,7 @@ const Img: React.FC<ImgHTMLAttributes<HTMLImageElement>> = ({
             ? `${src.substr(0, src.lastIndexOf('.'))}.webp`
             : '/svg/no-camera.svg'
         }
-        type='src/webp'
+        type='image/webp'
       />
       <img
         src={src || '/svg/no-camera.svg'}
