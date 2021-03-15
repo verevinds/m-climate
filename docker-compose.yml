@@ -1,74 +1,66 @@
-version: '2.2'
+
+version: '3'
+
+networks:
+  default:
+    external:
+      name: network
 
 services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    links:
+      - api
+
+  nginx-proxy-letsencrypt:
+    container_name: nginx-proxy-letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes: 
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+
   api:
     restart: always
     expose:
-      - 8081
-    ports:
-      - 8081:8081
+      - 80
     build:
       context: ./server
       dockerfile: ./Dockerfile
     volumes:
+      - certs:/etc/nginx/certs
       - ./server:/app
     env_file:
       - .env
     depends_on:
       - mongo
-    networks:
-      - local
-
-  frontend:
-    restart: on-failure
-    expose:
-      - 8080
-    ports:
-      - 8080:8080
-    build:
-      context: ./client
-      dockerfile: ./Dockerfile
-    command: npm run dev
-    volumes:
-      - ./client:/app
-      - ./node_modules:/app/node_modules
-    env_file:
-      - .env
-    depends_on:
-      - api
-    networks:
-      - local
-
-  admin:
-    restart: on-failure
-    expose:
-      - 3000
-    ports:
-      - 3000:3000
-    build:
-      context: ./admin
-      dockerfile: ./Dockerfile
-    command: npm run dev
-    volumes:
-      - ./admin:/app
-      - ./node_modules:/app/node_modules
-    env_file:
-      - .env
-    depends_on:
-      - api
-    networks:
-      - local
+    environment:
+      - VIRTUAL_HOST=api.m-climate.site
+      - LETSENCRYPT_HOST=api.m-climate.site
+      - LETSENCRYPT_EMAIL=admin@api.m-climate.site
 
   mongo:
     image: mongo
     restart: on-failure
     volumes:
       - apiDB:/data/db
-    networks:
-      - local
 
 volumes:
   apiDB:
+  certs:
+  vhost.d:
+  html:
 
-networks:
-  local:
+

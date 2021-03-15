@@ -1,16 +1,32 @@
-version: '2.2'
+version: '3'
+
+networks:
+  default:
+    external:
+      name: network
 
 services:
+  nginx-proxy-letsencrypt:
+    container_name: nginx-proxy-letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes: 
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+
   frontend:
-    expose:
-      - 80
-    ports:
-      - 80:80
+    container_name: frontend
     command: npm run production
+    image: nginx:latest
+    environment:
+      - VIRTUAL_HOST=m-climate.site
+      - LETSENCRYPT_HOST=m-climate.site
+      - LETSENCRYPT_EMAIL=admin@m-climate.site
 
   admin:
     expose:
       - 4000
-    ports:
-      - 4000:4000
     command: npm run production

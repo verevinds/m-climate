@@ -32,7 +32,7 @@ require('./router/service')(app);
 require('./router/geo')(app);
 require('./router/portfolio')(app);
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 80;
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number ${PORT}`);
