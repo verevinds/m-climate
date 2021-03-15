@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Children, memo, ReactElement } from 'react';
@@ -24,23 +25,21 @@ const ActiveLink: React.FC<IActiveLink> = ({
 
   if (exec) {
     className = isCurrent
-      ? `${childClassName} ${activeClassName}`.trim()
+      ? cn(childClassName, activeClassName)
       : childClassName;
   } else {
     className = asPath.startsWith(pathname)
-      ? `${childClassName} ${activeClassName}`.trim()
+      ? cn(childClassName, activeClassName)
       : childClassName;
   }
 
   if (isCurrent)
-    return React.cloneElement(child, {
-      className: className || null,
-    });
+    return <span className={className}>{child.props.children}</span>;
 
   return (
     <NextLink {...props}>
       {React.cloneElement(child, {
-        className: className || null,
+        className,
       })}
     </NextLink>
   );
