@@ -6,14 +6,22 @@ import Briefcase from '@public/svg/briefcase.svg';
 import Logo from '@public/svg/logo.svg';
 // import Percent from '@public/svg/percent.svg';
 import ActiveLink from '@src/utils/ActiveLink';
+import { useRouter } from 'next/router';
 
 import styles from './header.module.scss';
 
 const Header = () => {
+  const { asPath } = useRouter();
   return (
     <header className={styles['block']}>
       <div className={styles['logo']}>
-        <Logo className={styles['logo__icon']} />
+        {asPath === '/' ? (
+          <Logo className={styles['logo__icon']} />
+        ) : (
+          <a href='/' className={styles['logo__icon']}>
+            <Logo className={styles['logo__icon']} />
+          </a>
+        )}
       </div>
       <div className={styles['menu']}>
         <Menu />
