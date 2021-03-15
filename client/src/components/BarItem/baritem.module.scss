@@ -46,6 +46,9 @@
 .img-wrap {
   height: 150px;
 }
+.active {
+  color: var(--color-secondary-text);
+}
 @media screen and (max-width: $viewport-sm) {
   .item {
     :global {

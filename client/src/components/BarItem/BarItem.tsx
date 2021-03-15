@@ -62,7 +62,10 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
           priceOld,
         }}
       >
-        <ActiveLink href={`/product/${item._id}`}>
+        <ActiveLink
+          href={`/product/${item._id}`}
+          activeClassName={styles['active']}
+        >
           <a className={styles.item__title}>{name}</a>
         </ActiveLink>
       </ItemWrap>
@@ -74,7 +77,10 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
     return (
       <ItemWrap {...{ image, name, price, priceOld }}>
-        <ActiveLink href={`/product/${item._id}`}>
+        <ActiveLink
+          href={`/product/${item._id}`}
+          activeClassName={styles['active']}
+        >
           <a className={styles.item__title}>{name}</a>
         </ActiveLink>
       </ItemWrap>
@@ -85,7 +91,10 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
   return (
     <ItemWrap {...{ image, name }}>
-      <ActiveLink href={`/service/${item._id}`}>
+      <ActiveLink
+        href={`/service/${item._id}`}
+        activeClassName={styles['active']}
+      >
         <a className={styles.item__title}>{name}</a>
       </ActiveLink>
     </ItemWrap>

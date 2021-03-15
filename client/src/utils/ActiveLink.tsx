@@ -20,17 +20,23 @@ const ActiveLink: React.FC<IActiveLink> = ({
   const { href: pathname } = props;
 
   let className;
+  const isCurrent = asPath === pathname;
 
   if (exec) {
-    className =
-      asPath === pathname
-        ? `${childClassName} ${activeClassName}`.trim()
-        : childClassName;
+    className = isCurrent
+      ? `${childClassName} ${activeClassName}`.trim()
+      : childClassName;
   } else {
     className = asPath.startsWith(pathname)
       ? `${childClassName} ${activeClassName}`.trim()
       : childClassName;
   }
+
+  if (isCurrent)
+    return React.cloneElement(child, {
+      className: className || null,
+    });
+
   return (
     <NextLink {...props}>
       {React.cloneElement(child, {
