@@ -27,9 +27,11 @@ const ListingProduct = () => {
     <>
       <h1 className={styles['title']}>{`Каталог кондиционеров ${text}`}</h1>
       <div className={styles['block']}>
-        {products.map(product => (
-          <Item key={product._id} product={product} />
-        ))}
+        {products
+          .filter(product => query.brand && product.brand?._id === query.brand)
+          .map(product => (
+            <Item key={product._id} product={product} />
+          ))}
       </div>
     </>
   );
