@@ -5,7 +5,7 @@ import NavLink from 'next/link';
 
 import styles from './item.module.scss';
 
-const Item: React.FC<{ product: Product & { image: string } }> = ({
+const Item: React.FC<{ product: Product & { image?: string } }> = ({
   product,
 }) => {
   const { _id, name, images, price, priceOld, brand, type, image } = product;
