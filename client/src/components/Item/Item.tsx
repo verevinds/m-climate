@@ -8,7 +8,17 @@ import styles from './item.module.scss';
 const Item: React.FC<{ product: Product & { image?: string } }> = ({
   product,
 }) => {
-  const { _id, name, images, price, priceOld, brand, type, image } = product;
+  const {
+    _id,
+    name,
+    images,
+    price,
+    priceOld,
+    brand,
+    type,
+    image,
+    servicedArea,
+  } = product;
 
   return (
     <NavLink href={`/product/${_id}`}>
@@ -23,6 +33,12 @@ const Item: React.FC<{ product: Product & { image?: string } }> = ({
         />
         <div className={styles['label']}>
           <span>{brand?.name}</span>
+        </div>
+        <div className={styles['label']}>
+          <span>
+            {`Обслуживаемая площадь ${servicedArea}м`}
+            <sup>2</sup>
+          </span>
         </div>
         <span className={styles['name']}>{name}</span>
         <div className={styles['price']}>
