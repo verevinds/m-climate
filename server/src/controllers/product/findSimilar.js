@@ -38,6 +38,10 @@ module.exports = Product => (req, res) => {
       type: { $ne: 'Инвенторный' },
       $or: orArray,
     })
+      .populate({
+        path: 'brand',
+        select: '-__v -createdAt -updatedAt',
+      })
       .select('-inStock -city -description -__v -createdAt -updatedAt')
       .exec((error, products) => {
         if (error) res.status(500).send(error);
@@ -52,6 +56,7 @@ module.exports = Product => (req, res) => {
             zipProduct[i] = {
               price: products[i].price,
               priceOld: products[i].priceOld,
+              servicedArea: products[i].servicedArea,
               _id: products[i]._id,
               name: products[i].name,
               image: products[i].images.length ? products[i].images[0].url : '',

@@ -18,6 +18,7 @@ module.exports = Product => (req, res) => {
             price: products[i].price,
             priceOld: products[i].priceOld,
             _id: products[i]._id,
+            servicedArea: products[i].servicedArea,
             brand: products[i].brand,
             type: products[i].type,
             name: products[i].name,

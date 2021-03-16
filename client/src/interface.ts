@@ -61,4 +61,9 @@ export type ProductZip = {
   image: string;
   price: number;
   priceOld: number;
+  servicedArea?: string;
+  brand?: {
+    _id: string;
+    name: string;
+  };
 };

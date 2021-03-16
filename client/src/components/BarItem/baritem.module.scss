@@ -23,7 +23,7 @@
     &-current::after,
     &-old::after {
       font-size: 0.7em;
-      content: 'руб.';
+      content: ' ₽';
     }
   }
 
@@ -37,11 +37,22 @@
     }
   }
 }
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 2px;
+  font-size: 0.9rem;
+  text-transform: lowercase;
+}
 .img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   &-wrap {
+    display: flex;
+    justify-content: center;
     height: 150px;
   }
   &-modal {

@@ -4,6 +4,7 @@ import Times from '@public/svg/times.svg';
 import type { Product, ProductZip } from '@src/interface';
 import { Service } from '@src/interface';
 import ActiveLink from '@src/utils/ActiveLink';
+import addCommas from '@src/utils/addCommas';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
@@ -20,16 +21,39 @@ type ItemWrapProps = {
   name: string;
   price?: number;
   priceOld?: number;
+  servicedArea?: string;
+  brand?: {
+    _id: string;
+    name: string;
+  };
   isService?: boolean;
 };
 const ItemWrap: React.FC<ItemWrapProps> = props => {
-  const { name, image, price, priceOld, children, isService } = props;
+  const {
+    name,
+    image,
+    price,
+    priceOld,
+    children,
+    isService,
+    brand,
+    servicedArea,
+  } = props;
   const [show, toogleShow] = useState(false);
   const handleView = () => toogleShow(true);
   const handleHide = () => toogleShow(false);
   return (
     <>
       <div className={styles.item}>
+        <div className={styles['head']}>
+          <span>{brand?.name}</span>
+          {servicedArea ? (
+            <span>
+              {`до ${servicedArea}м`}
+              <sup>2</sup>
+            </span>
+          ) : null}
+        </div>
         <div className={styles['img-wrap']}>
           <Img
             src={image}
@@ -41,9 +65,13 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
         </div>
         {price && (
           <div className={styles.item__price}>
-            <span className={styles['item__price-current']}>{price}</span>
+            <span className={styles['item__price-current']}>
+              {addCommas(price)}
+            </span>
             {priceOld ? (
-              <span className={styles['item__price-old']}>{priceOld}</span>
+              <span className={styles['item__price-old']}>
+                {addCommas(priceOld)}
+              </span>
             ) : null}
           </div>
         )}
@@ -75,7 +103,14 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
   const currentItem = item as Product & ProductZip;
 
   if (currentItem.images) {
-    const { images, name, price, priceOld } = item as Product;
+    const {
+      images,
+      name,
+      price,
+      priceOld,
+      brand,
+      servicedArea,
+    } = item as Product;
 
     return (
       <ItemWrap
@@ -84,6 +119,8 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
           name,
           price,
           priceOld,
+          brand,
+          servicedArea,
         }}
       >
         <ActiveLink
@@ -97,10 +134,17 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
   }
 
   if (currentItem.price) {
-    const { image, name, price, priceOld } = item as ProductZip;
+    const {
+      image,
+      name,
+      price,
+      priceOld,
+      brand,
+      servicedArea,
+    } = item as ProductZip;
 
     return (
-      <ItemWrap {...{ image, name, price, priceOld }}>
+      <ItemWrap {...{ image, name, price, priceOld, brand, servicedArea }}>
         <ActiveLink
           href={`/product/${item._id}`}
           activeClassName={styles['active']}
