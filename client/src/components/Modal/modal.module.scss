@@ -1,19 +1,19 @@
 .overlay {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  left: 0;
   z-index: 500;
+  background-color: rgba(0, 0, 0, 0.6);
   animation: show ease-in-out 300ms;
 }
 
 .window {
-  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
+  display: flex;
   transform: translate(-50%, -50%);
   animation: show ease-in-out 1000ms, dropped-out ease-in-out 300ms;
 }
