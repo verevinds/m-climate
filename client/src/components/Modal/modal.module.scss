@@ -6,7 +6,7 @@
   left: 0;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.6);
-  animation: show ease-in-out 300ms;
+  animation: show ease-in-out 500ms;
 }
 
 .window {
@@ -15,7 +15,7 @@
   left: 50%;
   display: flex;
   transform: translate(-50%, -50%);
-  animation: show ease-in-out 1000ms, dropped-out ease-in-out 300ms;
+  animation: show ease-in-out 400ms, dropped-out ease-in-out 500ms;
 }
 
 @keyframes show {
