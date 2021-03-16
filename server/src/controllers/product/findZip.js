@@ -6,7 +6,7 @@ module.exports = Product => (req, res) => {
     Product.find({ ...query, inStock: true })
       .populate({
         path: 'brand',
-        select: '-_id -__v -createdAt -updatedAt',
+        select: '-__v -createdAt -updatedAt',
       })
       .select('-inStock -city -description -__v -createdAt -updatedAt')
       .exec((error, products) => {

@@ -23,15 +23,19 @@ const ListingProduct = () => {
     return draft;
   }, [query, brands]);
 
+  const currentProducts = useMemo(() => {
+    if (query.brand)
+      return products.filter(product => product.brand?._id === query.brand);
+    return products;
+  }, [products, query]);
+
   return (
     <>
       <h1 className={styles['title']}>{`Каталог кондиционеров ${text}`}</h1>
       <div className={styles['block']}>
-        {products
-          .filter(product => query.brand && product.brand?._id === query.brand)
-          .map(product => (
-            <Item key={product._id} product={product} />
-          ))}
+        {currentProducts.map(product => (
+          <Item key={product._id} product={product} />
+        ))}
       </div>
     </>
   );
