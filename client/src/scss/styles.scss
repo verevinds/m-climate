@@ -94,9 +94,7 @@ a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color ease-in-out 200ms;
-  &:visited {
-    color: inherit;
-  }
+
   &:hover {
     color: var(--color-secondary-text);
   }
