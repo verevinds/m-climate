@@ -29,11 +29,11 @@ const Item: React.FC<{ product: Product & { image?: string } }> = ({
           <span className={styles['price-current']}>
             {`${addCommas(price)} ₽`}
           </span>
-          {priceOld && (
+          {priceOld ? (
             <span className={styles['price-old']}>
               {`${addCommas(priceOld)} ₽`}
             </span>
-          )}
+          ) : null}
         </div>
       </div>
     </NavLink>
