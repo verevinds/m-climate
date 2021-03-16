@@ -7,7 +7,7 @@ export default function Installation() {
   return (
     <article className={styles['wrap']}>
       <h1 className={styles['title']}>
-        СТАНДАРТНЫЙ МОНТАЖ – 3500 рублей
+        Стандартный монтаж – 3500 рублей
         <sup>*</sup>
       </h1>
       <br />
