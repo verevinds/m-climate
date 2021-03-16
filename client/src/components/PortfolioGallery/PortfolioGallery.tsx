@@ -7,6 +7,7 @@ import styles from './portfoliogallery.module.scss';
 
 const PortfolioGallery = () => {
   const images = useSelector(selectPortfolioList);
+  if (!images.length) return null;
 
   return (
     <>
