@@ -45,15 +45,6 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
   return (
     <>
       <div className={styles.item}>
-        <div className={styles['head']}>
-          <span>{brand?.name}</span>
-          {servicedArea ? (
-            <span>
-              {`до ${servicedArea}м`}
-              <sup>2</sup>
-            </span>
-          ) : null}
-        </div>
         <div className={styles['img-wrap']}>
           <Img
             src={image}
@@ -63,6 +54,14 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
             onClick={handleView}
           />
         </div>
+        {servicedArea ? (
+          <span className={styles['area']}>
+            {`до ${servicedArea}м`}
+            <sup>2</sup>
+          </span>
+        ) : null}
+        <span className={styles['brand']}>{brand?.name}</span>
+        <div className={styles['item__title-wrap']}>{children}</div>
         {price && (
           <div className={styles.item__price}>
             <span className={styles['item__price-current']}>
@@ -75,7 +74,6 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
             ) : null}
           </div>
         )}
-        <div className={styles['item__title-wrap']}>{children}</div>
       </div>
       {isService ? null : (
         <Modal show={show} onClose={handleHide}>
