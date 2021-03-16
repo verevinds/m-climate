@@ -5,9 +5,11 @@ const { Schema } = mongoose;
 const bannersSchema = new Schema({
   name: { type: String, required: true },
   url: { type: String, required: true },
+  urlMobile: { type: String, required: true },
   enable: { type: Boolean, default: true },
   dateEnd: { type: Date, default: new Date(3000, 1, 1) },
   path: String,
+  pathMobile: String,
   href: String,
   city: { type: String, default: 'Novosibirsk' },
   createdAt: { type: Date, default: Date.now },

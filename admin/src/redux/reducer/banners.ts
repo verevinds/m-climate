@@ -51,42 +51,52 @@ export const addBanners = createAsyncThunk(
     {
       banner,
       images,
+      imagesMobile,
     }: {
       banner: Pick<Banner, 'name' | 'dateEnd'>;
       images: ImageListType;
+      imagesMobile: ImageListType;
     },
     { rejectWithValue, getState },
   ) => {
     try {
-      const promiseImages: Promise<AxiosResponse<Images>>[] = [];
+      const addImage = async (imagesArray: ImageListType) => {
+        const promiseImages: Promise<AxiosResponse<Images>>[] = [];
 
-      images.forEach(image => {
-        if (image.file) {
-          const data = new FormData();
-          data.append('file', image.file);
-          data.append('folder', 'banners');
-          const promiseImage = Api().post<Images>('/api/files', data);
-          promiseImages.push(promiseImage);
-        }
-      });
+        imagesArray.forEach(image => {
+          if (image.file) {
+            const data = new FormData();
+            data.append('file', image.file);
+            data.append('folder', 'banners');
+            const promiseImage = Api().post<Images>('/api/files', data);
+            promiseImages.push(promiseImage);
+          }
+        });
 
-      const responseImages = await Promise.all(promiseImages);
+        const responseImages = await Promise.all(promiseImages);
 
-      const arrayImages = responseImages.map(response => ({
-        url: response?.data.url,
-        path: response?.data.path,
-        filename: response?.data.filename,
-      }));
+        const arrayImages = responseImages.map(response => ({
+          url: response?.data.url,
+          path: response?.data.path,
+          filename: response?.data.filename,
+        }));
+        return arrayImages;
+      };
 
       const state = getState() as RootState;
       const { city } = state.application.geo;
 
+      const arrayImages = await addImage(images);
+      const arrayImagesMobile = await addImage(imagesMobile);
+
       Object.assign(banner, {
         url: arrayImages[0].url,
         path: arrayImages[0].path,
+        urlMobile: arrayImagesMobile[0].url,
+        pathMobile: arrayImagesMobile[0].path,
         city,
       });
-
+      console.log({ banner });
       const { data } = await Api().post<{ banners: Banner; message: string }>(
         '/api/banners',
         banner,

@@ -11,7 +11,12 @@ module.exports = Banners => (req, res) => {
         const path = data.path.substr(0, data.path.lastIndexOf('.'));
         await fs.unlinkSync(data.path);
         await fs.unlinkSync(`${path}.webp`);
-        // await fs.unlinkSync(`${path}.avif`);
+        const pathMobile = data.pathMobile.substr(
+          0,
+          data.pathMobile.lastIndexOf('.'),
+        );
+        await fs.unlinkSync(data.pathMobile);
+        await fs.unlinkSync(`${pathMobile}.webp`);
       } catch (e) {
         console.error(e);
       }

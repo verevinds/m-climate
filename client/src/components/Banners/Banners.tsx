@@ -2,6 +2,7 @@ import Slider from '@components/Slider/Slider';
 import Spinner from '@components/Spinner/Spinner';
 import { getBanners, selectBannersList } from '@redux/reducer/banners';
 import ActiveLink from '@src/utils/ActiveLink';
+import useWindowDimensions from '@src/utils/hooks/useWindowDimensions';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
@@ -20,6 +21,9 @@ const Banners = () => {
     dispatch(getBanners());
   }, []);
   const banners = useSelector(selectBannersList);
+  const Dimension = useWindowDimensions();
+
+  const isMobileSize = Dimension?.isMobile;
 
   return (
     <Slider
@@ -36,7 +40,7 @@ const Banners = () => {
         banner.href ? (
           <ActiveLink key={banner._id} href={banner.href}>
             <Img
-              src={banner.url}
+              src={isMobileSize ? banner.urlMobile : banner.url}
               alt={banner.name}
               className={cn(styles['full-size'], styles['cursor'])}
               loading='lazy'
@@ -45,7 +49,7 @@ const Banners = () => {
         ) : (
           <Img
             key={`${banner._id}-no-link`}
-            src={banner.url}
+            src={isMobileSize ? banner.urlMobile : banner.url}
             alt={banner.name}
             className={styles['full-size']}
             loading='lazy'

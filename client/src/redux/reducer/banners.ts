@@ -10,6 +10,7 @@ export type Banner = {
   _id: string;
   name: string;
   url: string;
+  urlMobile: string;
   enable: boolean;
   href: string;
   dateEnd: string;

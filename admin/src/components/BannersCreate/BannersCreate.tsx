@@ -19,18 +19,19 @@ const BannersCreate = () => {
   const dispatch = useDispatch();
   const isPageCreate = query.type && query.type === 'create';
   const [images, setImages] = useState([]);
+  const [imagesMobile, setImagesMobile] = useState([]);
   const { handleSubmit, errors, control } = useForm<BannerInput>();
-
+  console.log({ images, imagesMobile });
   const onSubmit = useCallback(
     async (banner: BannerInput) => {
-      if (images.length) {
-        await dispatch(addBanners({ banner, images }));
+      if (images.length > 0 && imagesMobile.length > 0) {
+        await dispatch(addBanners({ banner, images, imagesMobile }));
       } else
         cogoToast.error('Вы не добавили изображение!', {
           position: 'top-right',
         });
     },
-    [images],
+    [images, imagesMobile],
   );
   const bannersInputs: {
     name: keyof BannerInput;
@@ -73,17 +74,33 @@ const BannersCreate = () => {
           />
         ))}
         <div className={styles['images']}>
+          <p>Баннер для десктопа (1900х300, полезная площадь 900х300)</p>
           <ImageUploadingAdd
             initialImages={images}
             callback={setImages}
             className={styles['add']}
           />
+          {images.length ? (
+            <div className={styles['slider']}>
+              <ImageUploadingView initialImages={images} callback={setImages} />
+            </div>
+          ) : null}
+          <p>Баннер для мобилок (768х300, полезная площадь 320х300)</p>
+          <ImageUploadingAdd
+            initialImages={imagesMobile}
+            callback={setImagesMobile}
+            className={styles['add']}
+          />
+          {imagesMobile.length ? (
+            <div className={styles['slider']}>
+              <ImageUploadingView
+                initialImages={imagesMobile}
+                callback={setImagesMobile}
+              />
+            </div>
+          ) : null}
         </div>
-        {images.length ? (
-          <div className={styles['slider']}>
-            <ImageUploadingView initialImages={images} callback={setImages} />
-          </div>
-        ) : null}
+
         <div className={styles['buttons-block']}>
           <Button type='submit'>Добавить</Button>
         </div>
