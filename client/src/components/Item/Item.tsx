@@ -5,8 +5,10 @@ import NavLink from 'next/link';
 
 import styles from './item.module.scss';
 
-const Item: React.FC<{ product: Product }> = ({ product }) => {
-  const { _id, name, images, price, priceOld, brand, type } = product;
+const Item: React.FC<{ product: Product & { image: string } }> = ({
+  product,
+}) => {
+  const { _id, name, images, price, priceOld, brand, type, image } = product;
 
   return (
     <NavLink href={`/product/${_id}`}>
@@ -15,7 +17,7 @@ const Item: React.FC<{ product: Product }> = ({ product }) => {
           <span className={styles['type']}>{type}</span>
         </div>
         <Img
-          src={images && images.length ? images[0].url : ''}
+          src={images && images.length ? images[0].url : image}
           alt={name}
           className={styles['img']}
         />
