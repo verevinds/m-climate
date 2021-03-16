@@ -46,13 +46,14 @@
     height: 150px;
   }
   &-modal {
-    max-width: 80vw;
-    max-height: 80vw;
+    width: 100%;
     object-fit: contain;
   }
 }
 .modal {
   box-sizing: border-box;
+  max-width: 80vw;
+  max-height: 80vw;
   padding: 30px;
   background-color: #fff;
   border-radius: var(--radius);
