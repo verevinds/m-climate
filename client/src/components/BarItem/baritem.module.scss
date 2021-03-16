@@ -8,12 +8,6 @@
     margin-right: 0;
   }
 
-  &__img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-  }
-
   &__price {
     &-current {
       font-size: 1.5rem;
@@ -43,8 +37,31 @@
     }
   }
 }
-.img-wrap {
+.img {
+  width: 150px;
   height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  &-wrap {
+    height: 150px;
+  }
+  &-modal {
+    max-width: 80vw;
+  }
+}
+.modal {
+  box-sizing: border-box;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: var(--radius);
+}
+.exit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 .active {
   color: var(--color-secondary-text);
