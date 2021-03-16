@@ -41,7 +41,6 @@
   width: 150px;
   height: 150px;
   object-fit: cover;
-  cursor: zoom-in;
   &-wrap {
     height: 150px;
   }
@@ -49,6 +48,9 @@
     width: 100%;
     object-fit: contain;
   }
+}
+.crsr-zoom {
+  cursor: zoom-in;
 }
 .modal {
   box-sizing: border-box;

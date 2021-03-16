@@ -4,6 +4,7 @@ import Times from '@public/svg/times.svg';
 import type { Product, ProductZip } from '@src/interface';
 import { Service } from '@src/interface';
 import ActiveLink from '@src/utils/ActiveLink';
+import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
@@ -19,9 +20,10 @@ type ItemWrapProps = {
   name: string;
   price?: number;
   priceOld?: number;
+  isService?: boolean;
 };
 const ItemWrap: React.FC<ItemWrapProps> = props => {
-  const { name, image, price, priceOld, children } = props;
+  const { name, image, price, priceOld, children, isService } = props;
   const [show, toogleShow] = useState(false);
   const handleView = () => toogleShow(true);
   const handleHide = () => toogleShow(false);
@@ -32,7 +34,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
           <Img
             src={image}
             alt={name}
-            className={styles['img']}
+            className={cn(styles['img'], !isService && styles['crsr-zoom'])}
             loading='lazy'
             onClick={handleView}
           />
@@ -47,18 +49,20 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
         )}
         <div className={styles['item__title-wrap']}>{children}</div>
       </div>
-      <Modal show={show} onClose={handleHide}>
-        <div className={styles['modal']}>
-          <Times className={styles['exit-button']} onClick={handleHide} />
-          <h2>{name}</h2>
-          <Img
-            src={image}
-            alt={name}
-            className={styles['img-modal']}
-            loading='lazy'
-          />
-        </div>
-      </Modal>
+      {isService ? null : (
+        <Modal show={show} onClose={handleHide}>
+          <div className={styles['modal']}>
+            <Times className={styles['exit-button']} onClick={handleHide} />
+            <h2>{name}</h2>
+            <Img
+              src={image}
+              alt={name}
+              className={styles['img-modal']}
+              loading='lazy'
+            />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };
@@ -110,7 +114,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
   const { image, name } = item as Service;
 
   return (
-    <ItemWrap {...{ image, name }}>
+    <ItemWrap {...{ image, name, isService: true }}>
       <ActiveLink
         href={`/service/${item._id}`}
         activeClassName={styles['active']}
