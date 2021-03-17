@@ -1,6 +1,7 @@
 import Bar from '@components/Bar/Bar';
 import { selectBrandList } from '@redux/reducer/brand';
 import { selectProductList } from '@redux/reducer/product';
+import shuffle from '@src/utils/shuffle';
 import { useSelector } from 'react-redux';
 
 const BarExtra = () => {
@@ -13,7 +14,9 @@ const BarExtra = () => {
         <Bar
           key={brand._id}
           title={brand.name}
-          items={products.filter(product => product.brand?.name === brand.name)}
+          items={shuffle(products).filter(
+            product => product.brand?.name === brand.name,
+          )}
         />
       ))}
     </>

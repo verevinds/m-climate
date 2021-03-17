@@ -1,4 +1,5 @@
 import { toggleCity } from '@redux/reducer/geo';
+import shuffle from '@src/utils/shuffle';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,8 +38,8 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <Bar title='Популярные' items={populars} key='1' />
-      <Bar title='Кондиционеры' items={products} key='2' />
+      <Bar title='Популярные' items={shuffle(populars)} key='1' />
+      <Bar title='Кондиционеры' items={shuffle(products)} key='2' />
       <Bar
         title='Услуги'
         items={[
