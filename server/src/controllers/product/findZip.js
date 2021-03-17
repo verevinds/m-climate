@@ -22,7 +22,7 @@ module.exports = Product => (req, res) => {
             brand: products[i].brand,
             type: products[i].type,
             name: products[i].name,
-            image: products[i].images.length ? products[i].images[0].url : '',
+            images: products[i].images,
           };
         }
         res.status(200).send(zipProduct);

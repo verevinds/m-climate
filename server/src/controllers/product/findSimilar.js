@@ -59,7 +59,7 @@ module.exports = Product => (req, res) => {
               servicedArea: products[i].servicedArea,
               _id: products[i]._id,
               name: products[i].name,
-              image: products[i].images.length ? products[i].images[0].url : '',
+              images: products[i].images,
             };
           }
           res.status(200).send(zipProduct);

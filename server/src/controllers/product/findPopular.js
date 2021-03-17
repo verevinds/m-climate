@@ -24,9 +24,10 @@ module.exports = Product => (req, res) => {
             priceOld: products[i].priceOld,
             brand: products[i].brand,
             servicedArea: products[i].servicedArea,
+            type: products[i].type,
             _id: products[i]._id,
             name: products[i].name,
-            image: products[i].images.length ? products[i].images[0].url : '',
+            images: products[i].images,
           };
         }
         res.status(200).send(zipProduct);

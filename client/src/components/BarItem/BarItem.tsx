@@ -27,6 +27,7 @@ type ItemWrapProps = {
     name: string;
   };
   isService?: boolean;
+  type?: string;
 };
 const ItemWrap: React.FC<ItemWrapProps> = props => {
   const {
@@ -38,6 +39,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
     isService,
     brand,
     servicedArea,
+    type,
   } = props;
   const [show, toogleShow] = useState(false);
   const handleView = () => toogleShow(true);
@@ -45,6 +47,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
   return (
     <>
       <div className={styles.item}>
+        <span className={styles['type']}>{type}</span>
         <div className={styles['img-wrap']}>
           <Img
             src={image}
@@ -54,13 +57,14 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
             onClick={handleView}
           />
         </div>
+
+        <span className={styles['brand']}>{brand?.name}</span>
         {servicedArea ? (
           <span className={styles['area']}>
-            {`до ${servicedArea}м`}
+            {`Обслуживаемая площадь ${servicedArea}м`}
             <sup>2</sup>
           </span>
         ) : null}
-        <span className={styles['brand']}>{brand?.name}</span>
         <div className={styles['item__title-wrap']}>{children}</div>
         {price && (
           <div className={styles.item__price}>
@@ -108,6 +112,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
       priceOld,
       brand,
       servicedArea,
+      type,
     } = item as Product;
 
     return (
@@ -119,6 +124,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
           priceOld,
           brand,
           servicedArea,
+          type,
         }}
       >
         <ActiveLink
@@ -133,16 +139,19 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
   if (currentItem.price) {
     const {
-      image,
+      images,
       name,
       price,
       priceOld,
       brand,
       servicedArea,
+      type,
     } = item as ProductZip;
 
     return (
-      <ItemWrap {...{ image, name, price, priceOld, brand, servicedArea }}>
+      <ItemWrap
+        {...{ images, name, price, priceOld, brand, servicedArea, type }}
+      >
         <ActiveLink
           href={`/product/${item._id}`}
           activeClassName={styles['active']}

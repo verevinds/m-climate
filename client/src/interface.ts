@@ -58,7 +58,8 @@ export type Product = {
 export type ProductZip = {
   _id: string;
   name: string;
-  image: string;
+  images: { _id: string; url: string; filename: string }[];
+  type?: string;
   price: number;
   priceOld: number;
   servicedArea?: string;
