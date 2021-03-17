@@ -12,9 +12,10 @@ type ModalContainerProps = {
 const ModalContainer: React.FC<ModalContainerProps> = props => {
   if (!props.show) return null;
   return ReactDOM.createPortal(
-    <div className={styles['overlay']} onClick={props.onClose}>
+    <>
+      <div className={styles['overlay']} onClick={props.onClose} />
       <div className={styles['window']}>{props.children}</div>
-    </div>,
+    </>,
     document.body,
   );
 };

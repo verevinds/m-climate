@@ -1,4 +1,5 @@
 import Modal from '@components/Modal';
+import Slider from '@components/Slider/Slider';
 import Spinner from '@components/Spinner/Spinner';
 import Times from '@public/svg/times.svg';
 import type { Product, ProductZip } from '@src/interface';
@@ -28,6 +29,7 @@ type ItemWrapProps = {
   };
   isService?: boolean;
   type?: string;
+  images?: { _id: string; url: string; filename: string }[];
 };
 const ItemWrap: React.FC<ItemWrapProps> = props => {
   const {
@@ -39,6 +41,7 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
     isService,
     brand,
     servicedArea,
+    images,
     type,
   } = props;
   const [show, toogleShow] = useState(false);
@@ -84,12 +87,30 @@ const ItemWrap: React.FC<ItemWrapProps> = props => {
           <div className={styles['modal']}>
             <Times className={styles['exit-button']} onClick={handleHide} />
             <h2>{name}</h2>
-            <Img
-              src={image}
-              alt={name}
-              className={styles['img-modal']}
-              loading='lazy'
-            />
+            {images ? (
+              <Slider
+                navigation={{}}
+                loop
+                pagination={{ dynamicBullets: true, clickable: true }}
+              >
+                {images.map(el => (
+                  <Img
+                    src={el.url}
+                    key={el._id}
+                    alt={name}
+                    className={styles['img-modal']}
+                    loading='lazy'
+                  />
+                ))}
+              </Slider>
+            ) : (
+              <Img
+                src={image}
+                alt={name}
+                className={styles['img-modal']}
+                loading='lazy'
+              />
+            )}
           </div>
         </Modal>
       )}
@@ -119,6 +140,7 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
       <ItemWrap
         {...{
           image: images.length ? images[0].url : undefined,
+          images,
           name,
           price,
           priceOld,
@@ -150,7 +172,16 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
 
     return (
       <ItemWrap
-        {...{ images, name, price, priceOld, brand, servicedArea, type }}
+        {...{
+          image: images[0].url,
+          images,
+          name,
+          price,
+          priceOld,
+          brand,
+          servicedArea,
+          type,
+        }}
       >
         <ActiveLink
           href={`/product/${item._id}`}

@@ -13,6 +13,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 600;
   display: flex;
   transform: translate(-50%, -50%);
   animation: show ease-in-out 400ms, dropped-out ease-in-out 500ms;
