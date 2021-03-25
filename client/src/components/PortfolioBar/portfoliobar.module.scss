@@ -1,6 +1,7 @@
 @import 'src/scss/global_variables.scss';
 
 .bar {
+  --width: 300px;
   display: inline-flex;
   width: 100%;
   margin-bottom: 1rem;
@@ -17,10 +18,20 @@
     }
   }
   &__item {
-    width: 300px;
+    width: var(--width);
     margin-right: 1rem;
+    cursor: grab;
+    &:active {
+      cursor: grabbing;
+    }
   }
 }
 .disabled {
   display: none;
+}
+
+.img {
+  width: var(--width);
+  height: var(--width);
+  object-fit: cover;
 }
