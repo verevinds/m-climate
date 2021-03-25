@@ -32,6 +32,7 @@
 
   &__title {
     color: var(--color-primary);
+    line-height: 15px;
     &:visited {
       color: var(--color-primary);
     }
@@ -92,6 +93,11 @@
 }
 .active {
   color: var(--color-secondary-text);
+}
+.service {
+  display: flex;
+  margin-top: 1rem;
+  text-transform: uppercase;
 }
 @media screen and (max-width: $viewport-sm) {
   .modal {

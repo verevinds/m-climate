@@ -1,4 +1,7 @@
 @import '@src/scss/global_variables.scss';
+.wrap {
+  display: inline-block;
+}
 .block {
   display: flex;
   flex-direction: column;

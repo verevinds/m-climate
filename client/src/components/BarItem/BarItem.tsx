@@ -196,14 +196,18 @@ const BarItem: React.FC<ItemProps> = ({ item }) => {
   const { image, name } = item as Service;
 
   return (
-    <ItemWrap {...{ image, name, isService: true }}>
-      <ActiveLink
-        href={`/service/${item._id}`}
-        activeClassName={styles['active']}
-      >
-        <a className={styles.item__title}>{name}</a>
-      </ActiveLink>
-    </ItemWrap>
+    <ActiveLink
+      href={`/service/${item._id}`}
+      activeClassName={styles['active']}
+    >
+      <a>
+        <ItemWrap {...{ image, name, isService: true }}>
+          <span className={cn(styles['item__title'], styles['service'])}>
+            {name}
+          </span>
+        </ItemWrap>
+      </a>
+    </ActiveLink>
   );
 };
 

@@ -54,7 +54,7 @@ const IndexPage = () => {
           {
             _id: 'dismantling',
             name: 'Демонтаж кондиционера',
-            image: '/svg/no-camera.svg',
+            image: '/service/dismantling.jpg',
             createdAt: '',
             updatedAt: '',
             description: '',
