@@ -2,6 +2,10 @@
   width: 500px;
   height: 500px;
   object-fit: cover;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
   &-small {
     width: 150px;
     height: 150px;
